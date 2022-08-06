@@ -160,17 +160,17 @@ screen button_input():
         text "" size 25
         if name == "":
             imagebutton:
-                idle "gui/ui_button_hover.png"
+                idle "gui/gui_button_hover.png"
                 xalign 0.5
                 action SetScreenVariable("input_on", False)
             text _("CONFIRM") size 25 xalign 0.5 yoffset -50 outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
         else:
             imagebutton:
-                idle "gui/ui_button_hover.png"
-                selected "gui/ui_button_idle.png"
-                selected_idle "gui/ui_button_idle.png"
-                selected_hover "gui/ui_button_selected.png"
-                hover "gui/ui_button_selected.png"
+                idle "gui/gui_button_hover.png"
+                selected "gui/gui_button_idle.png"
+                selected_idle "gui/gui_button_idle.png"
+                selected_hover "gui/gui_button_selected.png"
+                hover "gui/gui_button_selected.png"
                 xalign 0.5
                 action [Hide("button_input"), Return()]
             text _("CONFIRM") size 25 xalign 0.5 yoffset -50 outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
