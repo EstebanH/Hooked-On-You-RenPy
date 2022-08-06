@@ -132,14 +132,37 @@ style say_thought is say_dialogue
 style namebox is default
 style namebox_label is say_label
 
-
 style window:
     xalign 0.5
     xfill True
-    yalign gui.textbox_yalign
-    ysize gui.textbox_height
+    yalign gui.textbox_yalign - 0.06
+    ysize gui.textbox_height 
 
     background Image("gui/gui_dialoguebox_default.png", xalign=0.5, yalign=1.0)
+
+style window_ocean:
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign - 0.06
+    ysize gui.textbox_height 
+
+    background Image("gui/gui_dialoguebox_ocean.png", xalign=0.5, yalign=0.3)
+
+style window_narrator:
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign - 0.06
+    ysize gui.textbox_height 
+
+    background Image("gui/gui_dialoguebox_leaf.png", xalign=0.5, yalign=1.0)
+
+style window_killer:
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign - 0.06
+    ysize gui.textbox_height 
+
+    background Image("gui/gui_dialoguebox_black.png", xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos - 238
@@ -148,9 +171,21 @@ style namebox:
     xsize 418
     ypos gui.name_ypos - 85
     #ysize gui.namebox_height
-    ysize 159
+    ysize 159 
 
     background Frame("gui/gui_nameplate.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style namebox_ocean:
+    xpos gui.name_xpos - 317
+    xanchor gui.name_xalign
+    #xsize gui.namebox_width
+    xsize 490
+    ypos gui.name_ypos - 120
+    #ysize gui.namebox_height
+    ysize 219
+
+    background Frame("gui/gui_nameplate_ocean.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
@@ -215,7 +250,7 @@ screen choice(items):
 
     vbox:
         for i in items:
-            textbutton i.caption action i.action
+            textbutton i.caption action i.action 
 
 
 style choice_vbox is vbox
@@ -224,17 +259,23 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
-    yanchor 0.5
-
-    spacing gui.choice_spacing
+    ypos 357
+    yanchor 0.4
+    spacing gui.choice_spacing + 15
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
+    ysize 79
+    xsize 880
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
 
+style choice_button_text is text:
+    size 30
+    color "#e4dfd8" 
+    yalign 0.5
+    outlines [ (2, "#0a5251", absolute(0), absolute(0)) ]
 
 ## Quick Menu screen ###########################################################
 ##
@@ -390,7 +431,7 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    background "gui/overlay/gui_main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
