@@ -94,6 +94,9 @@ style frame:
 ## and id "window" to apply style properties.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
+transform namebox_rotate():
+    anchor (0, 0) transform_anchor 1
+    rotate -3.5
 
 screen say(who, what):
     style_prefix "say"
@@ -106,7 +109,7 @@ screen say(who, what):
             window:
                 id "namebox"
                 style "namebox"
-                text who id "who"
+                text who at namebox_rotate id "who"
 
         text what id "what"
 
@@ -136,29 +139,31 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Image("gui/gui_dialoguebox_default.png", xalign=0.5, yalign=1.0)
 
 style namebox:
-    xpos gui.name_xpos
+    xpos gui.name_xpos - 238
     xanchor gui.name_xalign
-    xsize gui.namebox_width
-    ypos gui.name_ypos
-    ysize gui.namebox_height
+    #xsize gui.namebox_width
+    xsize 418
+    ypos gui.name_ypos - 85
+    #ysize gui.namebox_height
+    ysize 159
 
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background Frame("gui/gui_nameplate.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
     properties gui.text_properties("name", accent=True)
-    xalign gui.name_xalign
-    yalign 0.5
+    xalign 0.375
+    yalign 0.465
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
 
-    xpos gui.dialogue_xpos
-    xsize gui.dialogue_width
-    ypos gui.dialogue_ypos
+    xpos gui.dialogue_xpos - 70
+    xsize gui.dialogue_width + 140
+    ypos gui.dialogue_ypos 
 
     adjust_spacing False
 
