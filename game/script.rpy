@@ -29,8 +29,33 @@ init:
         "images/bg_haunting.png"
     image bg excitement:
         "images/bg_excitement.png"
-    image bg speedlinebg_red:
+        zoom 1.11
+    image bg warmlight:
+        "images/bg_warmlight.png"
+    image bg happy:
+        "images/bg_happy.png"
+    image bg speedlinebg_re2d:
         Tile("images/bg_speedlinebg_red.png")
+        xtile 5
+        ytile 5
+        zoom .5
+    image bg speedlinebg_red:
+        xoffset -3920
+        yoffset -1250
+        zoom 2
+        rotate -45
+        anchor (0, 0) transform_anchor 1
+        contains:
+            parallel:
+                Tile("images/bg_speedlinebg_red.png")
+                ytile 3
+                xtile 3
+                xpan -5400
+                linear 8 xpan 180
+                xalign 1
+                yalign 1
+                repeat
+
     define loadIn = ImageDissolve("images/bg_loading.png", 5.0)
     define loadOut = ImageDissolve("images/bg_loading.png", 5.0, reverse=True)
     image bg beach0:
@@ -239,9 +264,9 @@ label start:
     window show
     nrr "Claudette presents you with a tropical drink."
     nrr "When you take a sip, you find that it's incredible. Money well spent, in your estimation."
-    nrr "But I gotta ask: Could somebody maybe design the next one of these dating sims to be all- inclusive? It really takes some of the fun out of a fantasy vacation to be watching your wallet the entire time."
+    nrr "But I gotta ask: Could somebody maybe design the next one of these dating sims to be all-inclusive? It really takes some of the fun out of a fantasy vacation to be watching your wallet the entire time."
     menu:
-        nrr "But I gotta ask: Could somebody maybe design the next one of these dating sims to be all- inclusive? It really takes some of the fun out of a fantasy vacation to be watching your wallet the entire time."
+        nrr "But I gotta ask: Could somebody maybe design the next one of these dating sims to be all-inclusive? It really takes some of the fun out of a fantasy vacation to be watching your wallet the entire time."
         "Thank them for the delicious drink":
             mc "Thanks for the drink. It's quite delicious!"
 
@@ -252,12 +277,28 @@ label start:
     cl "Go with it, Dwight. It's normal to be thanked for doing a good job. Trust me on this one."
     nrr "Your mind doesn't have a chance to linger any longer on your current situation, as you feel something soft bump into your foot."
     window hide
-    scene bg speedlinebg_red at rotation with dissolve
+    scene bg speedlinebg_red with dissolve
     window show
     nrr "When you look down, you find a volleyball sitting in the sand there next to you."
     nrr "You stare down, frozen. A voice calls out from behind you."
-    # mc "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra sit amet aliquam id diam maecenas ultricies mi. Interdum velit euismod in pellentesque massa placerat duis. Dui faucibus in ornare quam viverra orci. Ligula ullamcorper malesuada proin libero nunc consequat. Est sit amet facilisis magna etiam. Viverra mauris in aliquam sem fringilla ut morbi tincidunt augue. Sit amet nulla facilisi morbi. Mattis aliquam faucibus purus in massa tempor nec feugiat. At urna condimentum mattis pellentesque. Imperdiet proin fermentum leo vel orci porta. Nec dui nunc mattis enim. Massa massa ultricies mi quis hendrerit dolor magna eget est. Eros in cursus turpis massa tincidunt dui. Donec ac odio tempor orci dapibus ultrices in iaculis. Eget nunc lobortis mattis aliquam faucibus purus in. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. In fermentum et sollicitudin ac orci. Accumsan sit amet nulla facilisi. Turpis in eu mi bibendum neque egestas congue quisque egestas."
-
+    th "Little help, please?"
+    scene bg beach0 with dissolve
+    nrr "You turn around, and when you see what's waiting for you, your jaw just about hits the ground."
+    window hide
+    scene bg happy with dissolve
+    pause 1
+    scene bg excitement with dissolve
+    pause 1
+    scene bg warmlight with dissolve
+    pause 1
+    scene bg warmdark with dissolve
+    pause 1
+    scene bg beach0 with dissolve
+    pause 1
+    window show
+    nrr "Four gorgeous monsters stand halfway between you and a well-tended volleyball court."
+    nrr "Each of them oozes with undead energy, a magical aura reaching out and penetrating you. Via your eyes."
+    nrr "Your heart begins to race. Curiousity. Fear. Desire. You can't help but stare at these casually dressed... let's call them Killers--I dunno, not to be judgemental but that's just the energy they put out there."
+    nrr "So many competing feelings rush through your mind at once you are completely paralyzed."
     # This ends the game.
-
     return
