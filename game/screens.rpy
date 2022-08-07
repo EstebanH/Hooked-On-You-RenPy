@@ -406,11 +406,11 @@ screen navigation():
 
         xpos gui.navigation_xpos
         yalign 0.5
-        xalign -1.8
 
         spacing gui.navigation_spacing
 
         if main_menu:
+            xalign -1.8
             button:
                 xoffset 75
                 action Start()
@@ -470,6 +470,7 @@ screen navigation():
                     at rotateright2
 
         else:
+            xalign 0
 
             textbutton _("History") action ShowMenu("history")
 
@@ -521,13 +522,37 @@ style navigation_button_text:
 ## Used to display the main menu when Ren'Py starts.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
-
+init:
+    transform menuslide:
+        easein 1.0 xoffset 0
+        linear 5.0 xoffset 0
+        easeout 1.0 xoffset 1000
+        linear 0.0 xoffset 1000
+        repeat
+    image slideshow1:
+        zoom 1.005
+        "gui/gui_menu_main_hunter.png"
+        pause 7
+        zoom 1.0125
+        "gui/gui_menu_main_trapper.png"
+        pause 7
+        zoom 1.15
+        "gui/gui_menu_main_spirit.png"
+        pause 7
+        zoom 1.01
+        "gui/gui_menu_main_wraith.png"
+        pause 7
+        zoom 1.1975
+        "gui/gui_menu_main_skull.png"
+        pause 7
+        repeat
 screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
     tag menu
 
     add gui.main_menu_background
+    add "slideshow1" at right, menuslide
 
     ## This empty frame darkens the main menu.
     frame:
