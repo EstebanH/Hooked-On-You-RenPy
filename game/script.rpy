@@ -15,13 +15,157 @@ define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c
 
 default name = ""
 
-transform rotation:
-    around (.5, .5) alignaround (.5, .5) xalign .5 yalign .5
-    rotate 0
-    linear 10 rotate 360    
-    repeat
 
 init:
+    transform rotation:
+        rotate -90
+        block:
+            easein 1 rotate -60
+            easein .5 rotate -70
+            easeout 2 rotate 0
+            ease .5 rotate -10
+            ease 4 rotate 50
+            block:
+                ease .1 rotate 50
+                easein .2 rotate 51
+                repeat 20
+            easeout 3.5 rotate -90
+            repeat
+
+    transform rotatebacknforth:
+        around (.5, .5) alignaround (.5, .5) xalign .5 yalign .5
+        rotate 0
+        linear 10 rotate 90
+        linear 10 rotate -90       
+        repeat
+
+    transform rotateleafa:
+        easein 2 rotate 10
+        easeout 2 rotate 0
+        easein 2 rotate -10  
+        easeout 2 rotate 0    
+        repeat
+
+    transform rotateleafa_reverse:
+        easein 2 rotate -10
+        easeout 2 rotate 0
+        easein 2 rotate 10  
+        easeout 2 rotate 0    
+        repeat
+
+    transform rotateleafb:
+        #transform_anchor (0.5,1.0) anchor (0.5,1.0) rotate_pad True
+        easein 2 rotate -5
+        easeout 2 rotate 0
+        easein 3 rotate 15  
+        easeout 2 rotate 0    
+        repeat
+
+    transform rotateleafb_reverse:
+        #transform_anchor (0.5,1.0) anchor (0.5,1.0) rotate_pad True
+        easein 2 rotate 5
+        easeout 2 rotate 0
+        easein 3 rotate -15  
+        easeout 2 rotate 0    
+        repeat
+
+    transform wave:
+        #transform_anchor (0.5,1.0) anchor (0.5,1.0) rotate_pad True
+        easein 2 yoffset -20
+        easeout 2 yoffset 0
+        easein 3 yoffset 40  
+        easeout 2 yoffset 0    
+        repeat
+        
+    transform slowblink:
+        linear 20.0 alpha 0.0
+        linear 1.0 alpha 0.7
+        repeat
+
+    transform rotateslow:
+        around (.5, .5) alignaround (.5, .5) xalign .5 yalign .5
+        rotate 0
+        linear 60 rotate 360  
+        repeat
+
+    transform slowerblink:
+        alpha 0.1
+        linear 5.0 alpha 0.4
+        linear 10.0 alpha 0.1
+        repeat
+
+    transform twinkle:
+        linear 1.0 alpha 0.9
+        linear 0.5 alpha 1.0
+        repeat
+
+    transform rotatewarmdark:
+        easein 4 rotate -5
+        easeout 4 rotate 0
+        easein 4 rotate 5  
+        easeout 4 rotate 0    
+        repeat
+
+    image dots = SnowBlossom(At("images/particle_dot.png", slowblink), border=150, count=20, start=0.00000000001, fast=True,  yspeed=(50, -40),  xspeed=(-25,25), horizontal=True)
+    image polygon = SnowBlossom(At("images/polygon.png", rotateslow, slowerblink), border=-500, count=2, start=0.00000000001, fast=True,  yspeed=(10, -10),  xspeed=(-15,15), horizontal=True)
+    image leaf1:
+        rotate 180
+        im.Flip("images/leaf1.png", horizontal="True", vertical="True")
+        zoom 1.3
+        yalign 2.2
+        xalign 1.075
+    image leaf2:
+        rotate 90
+        im.Flip("images/leaf2.png", vertical="True")
+        zoom 1.3
+        yoffset -200
+        xalign 1.15
+    image leaf3:
+        rotate 180
+        im.Flip("images/leaf3.png", horizontal="True", vertical="True")
+        zoom 1.5
+        yoffset 250
+        xoffset -175
+    image leaf4:
+        rotate 180
+        im.Flip("images/leaf4.png", horizontal="True", vertical="True")
+        zoom 1.3
+        yoffset 725
+        xoffset 275
+    image leaf5:
+        rotate -30
+        im.Flip("images/leaf5.png", horizontal="True")
+        zoom 1.55
+        yoffset 490
+        xoffset -25
+    image leaf6:
+        rotate 270
+        im.Flip("images/leaf1.png", horizontal="False", vertical="False")
+        zoom 1.3
+        yalign 2.2
+    image leaf7:
+        rotate 270
+        im.Flip("images/leaf2.png", horizontal="True", vertical="True")
+        zoom 1.3
+        yoffset -200
+        xoffset -150
+    image leaf8:
+        im.Flip("images/leaf3.png", horizontal="True")
+        zoom 1.5
+        yoffset 325
+        xoffset 1475
+    image leaf9:
+        im.Flip("images/leaf4.png", horizontal="True")
+        zoom 1.3
+        yoffset 825
+        xoffset 1125
+    image leaf10:
+        rotate 70
+        im.Flip("images/leaf5.png", vertical="True")
+        zoom 1.55
+        yoffset 490
+        xoffset 1350
+
     image bg loading:
         "images/bg/bg_loading.png"
     image bg beach0:
@@ -30,6 +174,16 @@ init:
         "images/bg/bg_volley_0.png"
     image bg warmdark:
         "images/bg/bg_warmdark.png"
+        zoom 1.1
+    image warmdark_effect1:
+        xalign 0.5 
+        yalign 0.5 
+        "images/bg/bg_warmdark_effect1.png"
+        zoom 1.1
+    image warmdark_effect2:
+        xalign 0.5 
+        yalign 0.5 
+        "images/bg/bg_warmdark_effect2.png"
         zoom 1.1
     image bg inner_monologue:
         "images/bg/bg_inner_monologue.png"
@@ -60,11 +214,10 @@ init:
                 repeat
 
 init python:
-    import random
     config.character_id_prefixes.append('namebox')
     config.character_id_prefixes.append('window')
     def change_name(newstring):                                              
-     #Functions that allow us to store the input
+    #Functions that allow us to store the input
         store.name = newstring
 
 screen button_input_hacky():
@@ -295,11 +448,29 @@ define e = Character("Eileen")
 label naming:
     show screen button_input_hacky
 
+
 # The game starts here.
 label start:
+    #image snow = SnowBlossom("particle_dot.png", count=100)
     $ mc_name = "Bill"
     $ quick_menu = False
+    
     scene bg warmdark
+    show dots
+    show polygon
+    show leaf1 at rotateleafa
+    show leaf2 at rotateleafa
+    show leaf3 at rotateleafb, wave
+    show leaf4 at rotateleafa
+    show leaf5 at rotateleafa
+    show leaf6 at rotateleafa_reverse
+    show leaf7 at rotateleafa_reverse
+    show leaf8 at rotateleafb_reverse, wave
+    show leaf9 at rotateleafa_reverse
+    show leaf10 at rotateleafa_reverse
+    show warmdark_effect1 at rotatewarmdark
+    show warmdark_effect2 at twinkle
+
     show screen button_input_hacky
     pause
     python:
