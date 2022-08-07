@@ -99,6 +99,12 @@ init:
         linear 0.5 alpha 1.0
         repeat
 
+    transform fakeload:
+        alpha 0.0
+        linear 1.0 alpha 1.0
+        linear 0.5 alpha 0.9
+        repeat
+
     transform rotatewarmdark:
         easein 4 rotate -5
         easeout 4 rotate 0
@@ -165,6 +171,10 @@ init:
         zoom 1.55
         yoffset 490
         xoffset 1350
+    image flower:
+        "gui/window_icon.png"
+        yalign 0.925
+        xalign 0.9575
 
     image bg loading:
         "images/bg/bg_loading.png"
@@ -479,6 +489,7 @@ label start:
         name = name.strip() or "Bill"
     hide screen button_input_hacky
     scene bg loading with dissolve
+    show flower at fakeload
     pause 2
     scene bg beach0 with Dissolve(1.0)
     
