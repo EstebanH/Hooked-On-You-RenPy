@@ -392,85 +392,81 @@ style mainmenubutton:
     xsize 447
     ysize 125
 
+style menubutton:
+    layout "subtitle"
+    hover_color "#0a9e9a"
+    selected_color "#fff"
+    bold True
+    size 40
+
 screen navigation():
 
     vbox:
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        ypos 0
         yalign 0.5
+        xalign -1.8
 
         spacing gui.navigation_spacing
 
         if main_menu:
-            fixed:
-                style "mainmenubutton"
-                imagebutton:
-                    hover "gui/gui_menu_button_new_game_hover.png"
-                    idle "gui/gui_menu_button_new_game_idle.png"
-                    selected "gui/gui_menu_button_new_game_select.png"
-                    action Start()
-                    ypos 650
+            button:
+                xoffset 75
+                action Start()
+                xysize (447, 125)
+                idle_background "gui/gui_menu_button_new_game_idle.png"
+                hover_background "gui/gui_menu_button_new_game_hover.png"
+                selected_background "gui/gui_menu_button_new_game_select.png"
+                has hbox
                 text "NEW GAME":
-                    ypos 650
-                    yoffset 62
-                    xoffset 85
+                    offset (85,62)
+                    style "menubutton"
                     at rotateleft
-
-            fixed:
-                style "mainmenubutton"
-                imagebutton:
-                    hover "gui/gui_menu_button_load_game_hover.png"
-                    idle "gui/gui_menu_button_load_game_idle.png"
-                    selected "gui/gui_menu_button_load_game_select.png"
-                    action ShowMenu("load")
-                    ypos 650
+            button:
+                action ShowMenu("load")
+                xysize (447, 125)
+                idle_background "gui/gui_menu_button_load_game_idle.png"
+                hover_background "gui/gui_menu_button_load_game_hover.png"
+                selected_background "gui/gui_menu_button_load_game_select.png"
+                has hbox
                 text "LOAD GAME":
-                    ypos 650
-                    yoffset 50
-                    xoffset 95
+                    offset (95, 50)
+                    style "menubutton"
                     at rotateright
-
-            fixed:
-                style "mainmenubutton"
-                imagebutton:
-                    hover "gui/gui_menu_button_settings_hover.png"
-                    idle "gui/gui_menu_button_settings_idle.png"
-                    selected "gui/gui_menu_button_settings_select.png"
-                    action ShowMenu("preferences")
-                    ypos 650
+            button:
+                xoffset 40
+                action ShowMenu("preferences")
+                xysize (447, 125)
+                idle_background "gui/gui_menu_button_settings_idle.png"
+                hover_background "gui/gui_menu_button_settings_hover.png"
+                selected_background "gui/gui_menu_button_settings_select.png"
+                has hbox
                 text "SETTINGS":
-                    ypos 650
-                    yoffset 60
-                    xoffset 110
-
-            fixed:
-                style "mainmenubutton"
-                imagebutton:
-                    hover "gui/gui_menu_button_credits_hover.png"
-                    idle "gui/gui_menu_button_credits_idle.png"
-                    selected "gui/gui_menu_button_credits_select.png"
-                    action ShowMenu("about")
-                    ypos 650
+                    offset (95, 50)
+                    style "menubutton"
+            button:
+                action ShowMenu("about")
+                xysize (447, 125)
+                idle_background "gui/gui_menu_button_credits_idle.png"
+                hover_background "gui/gui_menu_button_credits_hover.png"
+                selected_background "gui/gui_menu_button_credits_select.png"
+                has hbox
                 text "CREDITS":
-                    ypos 650
-                    yoffset 60
-                    xoffset 95
+                    offset (95, 50)
+                    style "menubutton"
                     at rotateleft2
-
-            fixed:
-                style "mainmenubutton"
-                imagebutton:
-                    hover "gui/gui_menu_button_quit_hover.png"
-                    idle "gui/gui_menu_button_quit_idle.png"
-                    selected "gui/gui_menu_button_quit_select.png"
-                    action Quit(confirm=not main_menu)
-                    ypos 650
+            button:
+                xoffset 50
+                action Quit(confirm=not main_menu)
+                xysize (447, 125)
+                idle_background "gui/gui_menu_button_quit_idle.png"
+                hover_background "gui/gui_menu_button_quit_hover.png"
+                selected_background "gui/gui_menu_button_quit_select.png"
+                has hbox
                 text "QUIT":
-                    ypos 650
-                    yoffset 65
-                    xoffset 150
+                    offset (150, 60)
+                    style "menubutton"
                     at rotateright2
 
         else:
@@ -479,30 +475,30 @@ screen navigation():
 
             textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+            textbutton _("Load") action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+            textbutton _("Preferences") action ShowMenu("preferences")
 
-        if _in_replay:
+            if _in_replay:
 
-            textbutton _("End Replay") action EndReplay(confirm=True)
+                textbutton _("End Replay") action EndReplay(confirm=True)
 
-        elif not main_menu:
+            elif not main_menu:
 
-            textbutton _("Main Menu") action MainMenu()
+                textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("About") action ShowMenu("about")
+            textbutton _("About") action ShowMenu("about")
 
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+            if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+                ## Help isn't necessary or relevant to mobile devices.
+                textbutton _("Help") action ShowMenu("help")
 
-        if renpy.variant("pc"):
+            if renpy.variant("pc"):
 
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+                ## The quit button is banned on iOS and unnecessary on Android and
+                ## Web.
+                textbutton _("Quit") action Quit(confirm=not main_menu)
 
 
 style navigation_button is gui_button
@@ -510,8 +506,6 @@ style navigation_button_text is gui_button_text
 
 style navigation_text:
     size_group "navigation"
-    bold True
-    size 40
     properties gui.button_properties("navigation_text")
 
 style navigation_button:
@@ -543,16 +537,16 @@ screen main_menu():
     ## contents of the main menu are in the navigation screen.
     use navigation
 
-    if gui.show_name:
-
-        vbox:
-            style "main_menu_vbox"
-
-            text "[config.name!t]":
-                style "main_menu_title"
-
-            text "[config.version]":
-                style "main_menu_version"
+    #if gui.show_name:
+    #
+    #    vbox:
+    #        style "main_menu_vbox"
+    #
+    #        text "[config.name!t]":
+    #            style "main_menu_title"
+    #
+    #        text "[config.version]":
+    #            style "main_menu_version"
 
 
 style main_menu_frame is empty
@@ -562,10 +556,14 @@ style main_menu_title is main_menu_text
 style main_menu_version is main_menu_text
 
 style main_menu_frame:
-    xsize 420
-    yfill True
+    xsize 667
+    ysize 940
+    xalign 0.058
+    yalign 0.45
+    #yfill True
 
-    background "gui/overlay/main_menu.png"
+    background "gui/gui_menu_main_logo.png"
+    #background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
