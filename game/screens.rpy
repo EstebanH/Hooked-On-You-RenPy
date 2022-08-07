@@ -4,6 +4,7 @@
 
 init offset = -1
 
+default pullout = True
 
 ################################################################################
 ## Styles
@@ -281,28 +282,49 @@ style choice_button_text is text:
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
-
+transform pull_out_ribbon:
+    linear .4  xoffset -0 # take .4 seconds to move the menu to its default location
+transform pull_in_ribbon:
+    linear .4 xoffset -770
+        
 screen quick_menu():
-
     ## Ensure this appears on top of other screens.
     zorder 100
 
     if quick_menu:
 
-        hbox:
+        frame:
+            if pullout:
+                at pull_out_ribbon
+            else:
+                at pull_in_ribbon
             style_prefix "quick"
-
-            xalign 0.5
-            yalign 1.0
-
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            has hbox:
+                imagebutton:
+                    ysize 47
+                    xsize 47
+                    if pullout:
+                        hover "gui/gui_menu_pullout_button_select.png"
+                    else:
+                        hover "gui/gui_menu_pullout_button_hover.png"
+                    idle "gui/gui_menu_pullout_button_idle.png"
+                    selected "gui/gui_menu_pullout_button_select.png"
+                    #hover "gui/gui_menu_pullout_button_hover.png"
+                    if pullout:
+                        action [SetVariable("pullout", False)]  
+                    else:
+                        action [SetVariable("pullout", True)] 
+                #textbutton _("Back") action Rollback()
+                #textbutton _("History") action ShowMenu('history')
+                #textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+                #textbutton _("Auto") action Preference("auto-forward", "toggle")
+                text _("  ")
+                textbutton _("SAVE") action ShowMenu('save')
+                textbutton _("LOAD") action ShowMenu('load')
+                #textbutton _("Q.Save") action QuickSave()
+                #textbutton _("Q.Load") action QuickLoad()
+                textbutton _("SETTINGS") action ShowMenu('preferences')
+                textbutton _("MAIN MENU") action MainMenu() 
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -319,7 +341,26 @@ style quick_button:
     properties gui.button_properties("quick_button")
 
 style quick_button_text:
-    properties gui.button_text_properties("quick_button")
+    size 30
+    bold True
+    color "#eedccb" 
+    hover_color "099390"
+    outlines [ (2, "#0e0505", absolute(0), absolute(0)) ]
+    xalign 0.5
+    #properties gui.button_text_properties("quick_button")
+
+style quick_frame:
+    background Frame("gui/gui_menu_pullout_ribbon.png")
+    xalign 1.0
+    yalign 0.06
+    ysize 84
+    xsize 871
+    left_padding 40
+    xoffset 770
+
+style quick_hbox:
+    yalign 0.4
+
 
 
 ################################################################################

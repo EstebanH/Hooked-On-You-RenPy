@@ -188,6 +188,7 @@ label naming:
 # The game starts here.
 label start:
     $ mc_name = "Bill"
+    $ quick_menu = False
     scene bg warmdark
     show screen button_input
     pause
@@ -199,6 +200,8 @@ label start:
     scene bg loading with dissolve
     pause 2
     scene bg beach0 with Dissolve(1.0)
+    
+    $ quick_menu = True
     $ mc_name = name
     mc "*cough* *cough* *cough*"
     nrr "You wake up on the beach, soaking wet, saltwater stinging the inside of your throat, as if you'd nearly drowned."
