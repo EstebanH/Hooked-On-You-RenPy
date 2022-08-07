@@ -371,6 +371,26 @@ style quick_hbox:
 ##
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
+transform rotateleft():
+    anchor (0, 0) transform_anchor 1
+    rotate -5
+
+transform rotateleft2():
+    anchor (0, 0) transform_anchor 1
+    rotate -2
+
+transform rotateright():
+    anchor (0, 0) transform_anchor 1
+    rotate 1
+
+transform rotateright2():
+    anchor (0, 0) transform_anchor 1
+    rotate 2
+
+style mainmenubutton:
+    yoffset 0
+    xsize 447
+    ysize 125
 
 screen navigation():
 
@@ -378,13 +398,80 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
+        ypos 0
         yalign 0.5
 
         spacing gui.navigation_spacing
 
         if main_menu:
+            fixed:
+                style "mainmenubutton"
+                imagebutton:
+                    hover "gui/gui_menu_button_new_game_hover.png"
+                    idle "gui/gui_menu_button_new_game_idle.png"
+                    selected "gui/gui_menu_button_new_game_select.png"
+                    action Start()
+                    ypos 650
+                text "NEW GAME":
+                    ypos 650
+                    yoffset 62
+                    xoffset 85
+                    at rotateleft
 
-            textbutton _("Start") action Start()
+            fixed:
+                style "mainmenubutton"
+                imagebutton:
+                    hover "gui/gui_menu_button_load_game_hover.png"
+                    idle "gui/gui_menu_button_load_game_idle.png"
+                    selected "gui/gui_menu_button_load_game_select.png"
+                    action ShowMenu("load")
+                    ypos 650
+                text "LOAD GAME":
+                    ypos 650
+                    yoffset 50
+                    xoffset 95
+                    at rotateright
+
+            fixed:
+                style "mainmenubutton"
+                imagebutton:
+                    hover "gui/gui_menu_button_settings_hover.png"
+                    idle "gui/gui_menu_button_settings_idle.png"
+                    selected "gui/gui_menu_button_settings_select.png"
+                    action ShowMenu("preferences")
+                    ypos 650
+                text "SETTINGS":
+                    ypos 650
+                    yoffset 60
+                    xoffset 110
+
+            fixed:
+                style "mainmenubutton"
+                imagebutton:
+                    hover "gui/gui_menu_button_credits_hover.png"
+                    idle "gui/gui_menu_button_credits_idle.png"
+                    selected "gui/gui_menu_button_credits_select.png"
+                    action ShowMenu("about")
+                    ypos 650
+                text "CREDITS":
+                    ypos 650
+                    yoffset 60
+                    xoffset 95
+                    at rotateleft2
+
+            fixed:
+                style "mainmenubutton"
+                imagebutton:
+                    hover "gui/gui_menu_button_quit_hover.png"
+                    idle "gui/gui_menu_button_quit_idle.png"
+                    selected "gui/gui_menu_button_quit_select.png"
+                    action Quit(confirm=not main_menu)
+                    ypos 650
+                text "QUIT":
+                    ypos 650
+                    yoffset 65
+                    xoffset 150
+                    at rotateright2
 
         else:
 
@@ -420,6 +507,12 @@ screen navigation():
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
+
+style navigation_text:
+    size_group "navigation"
+    bold True
+    size 40
+    properties gui.button_properties("navigation_text")
 
 style navigation_button:
     size_group "navigation"
