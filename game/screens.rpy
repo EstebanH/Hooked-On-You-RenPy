@@ -62,15 +62,20 @@ style vscrollbar:
     thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
 
 style slider:
-    ysize gui.slider_size
+    ysize gui.slider_size 
     base_bar Frame("gui/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
-    thumb "gui/slider/horizontal_[prefix_]thumb.png"
+    thumb "gui/slider/horizontal_[prefix_]thumb.png" 
+    thumb_offset 23.5
+    left_gutter 23
+    right_gutter 23
+    left_bar Frame("gui/slider/horizontal_left_bar.png")
+    right_bar Frame("gui/slider/horizontal_[prefix_]bar.png")
+    
 
 style vslider:
     xsize gui.slider_size
     base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
     thumb "gui/slider/vertical_[prefix_]thumb.png"
-
 
 style frame:
     padding gui.frame_borders.padding
@@ -569,6 +574,7 @@ init:
         "gui/gui_menu_main_skull.png"
         pause 7
         repeat
+
 screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
@@ -935,85 +941,201 @@ style slot_button_text:
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
 screen preferences():
-
     tag menu
-
-    use game_menu(_("Preferences"), scroll="viewport"):
-
+    #use game_menu(_("Preferences"), scroll="viewport"):
+    frame:
+        image "gui/gui_settings_icon.png":
+            xsize 382
+            ysize 107
+            xalign 2.15
+            yalign 0.15
+        xsize 774
+        ysize 598
+        xpadding 20
+        background Image("gui/gui_menu_settings.png")
         vbox:
-
-            hbox:
-                box_wrap True
-
-                if renpy.variant("pc") or renpy.variant("web"):
-
-                    vbox:
-                        style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
-
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
-
+            xpos 573
+            ypos 134
+            box_wrap True
             null height (4 * gui.pref_spacing)
+            style_prefix "slider"
 
-            hbox:
-                style_prefix "slider"
-                box_wrap True
-
-                vbox:
-
-                    label _("Text Speed")
-
-                    bar value Preference("text speed")
-
-                    label _("Auto-Forward Time")
-
-                    bar value Preference("auto-forward time")
-
-                vbox:
-
+            vbox:
+                hbox:
+                    xalign 1.0
                     if config.has_music:
-                        label _("Music Volume")
-
+                            
+                        label _("MUSIC VOLUME")
+                        null width (gui.pref_spacing)
                         hbox:
                             bar value Preference("music volume")
 
+                hbox:
+                    xalign 1.0
                     if config.has_sound:
 
-                        label _("Sound Volume")
+                        label _("SFX VOLUME")
+                        null width (gui.pref_spacing)
 
                         hbox:
                             bar value Preference("sound volume")
 
                             if config.sample_sound:
                                 textbutton _("Test") action Play("sound", config.sample_sound)
-
-
+                        null height gui.pref_spacing
+                hbox:
+                    xalign 1.0
                     if config.has_voice:
-                        label _("Voice Volume")
+
+                        label _("VOICE VOLUME")
+                        null width (gui.pref_spacing)
 
                         hbox:
                             bar value Preference("voice volume")
 
                             if config.sample_voice:
                                 textbutton _("Test") action Play("voice", config.sample_voice)
-
-                    if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
+                hbox:
+                    xalign 1.0
+                    label _("TEXT SPEED")
+                    null width (gui.pref_spacing)
 
-                        textbutton _("Mute All"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
+                    bar value Preference("text speed")
+                hbox:
+                    xalign 1.0
+                    label _("AUTO SPEED")
+                    null width (gui.pref_spacing)
 
+                    bar value Preference("auto-forward time")
+            hbox:
+                xalign 1.0
+                yoffset 10
+                if renpy.variant("pc") or renpy.variant("web"):
+                    vbox:
+                        #left_margin 10
+                        xalign 1.0
+                        style_prefix "radio"
+                        label _("DISPLAY"):
+                            text_bold True
+                            text_color "#1f100b" 
+                            xalign 0.75
+                            yoffset -5
+                        textbutton _("WINDOW"):
+                            text_color "#1f100b"
+                            text_hover_color "#0a9e9a" 
+                            xalign 0.0
+                            text_xalign 1.0
+                            yoffset 10
+                            xoffset 120
+                            text_yoffset -12
+                            text_xoffset 10
+                            text_size 30 
+                            action Preference("display", "window") 
+                        textbutton _("FULLSCREEN"):
+                            text_color "#1f100b"
+                            text_hover_color "#0a9e9a" 
+                            xalign 0.0
+                            text_xalign 1.0
+                            yoffset 10
+                            xoffset 120
+                            text_yoffset -12
+                            text_xoffset 10
+                            text_size 30  
+                            action Preference("display", "fullscreen") 
+
+                vbox:
+                    xalign 1.0
+                    style_prefix "radio"
+                    label _("SKIP"):
+                        text_bold True
+                        text_color "#1f100b" 
+                        xalign 0.6
+                        yoffset -5
+                    textbutton _("UNSEEN TEXT"):
+                        text_color "#1f100b"
+                        text_hover_color "#0a9e9a" 
+                        xalign 0.0
+                        text_xalign 1.0
+                        yoffset 10
+                        xoffset 50
+                        text_yoffset -12
+                        text_xoffset 10
+                        text_size 30
+                        action Preference("skip", "toggle")
+                    textbutton _("AFTER CHOICES"):
+                        text_color "#1f100b"
+                        text_hover_color "#0a9e9a" 
+                        xalign 0.0
+                        text_xalign 1.0
+                        yoffset 10
+                        xoffset 50
+                        text_yoffset -12
+                        text_xoffset 10
+                        text_size 30
+                        action Preference("after choices", "toggle")
+                    textbutton _("TRANSITIONS"):
+                        text_color "#1f100b"
+                        text_hover_color "#0a9e9a" 
+                        xalign 0.0
+                        text_xalign 1.0
+                        yoffset 10
+                        xoffset 50
+                        text_yoffset -12
+                        text_xoffset 10
+                        text_size 30 
+                        action InvertSelected(Preference("transitions", "toggle"))
+            vbox:
+                xalign -1.0
+                style_prefix "radio"
+                if config.has_music:
+                    textbutton _("MUTE"):
+                        text_bold True
+                        text_color "#0a9e9a" 
+                        yoffset 115
+                        text_yoffset -5
+                        text_size 20
+                        action Preference("music mute", "toggle")
+                if config.has_sound:
+                    textbutton _("MUTE"):
+                        text_bold True
+                        text_color "#0a9e9a" 
+                        yoffset 143
+                        text_yoffset -5
+                        text_size 20
+                        action Preference("sound mute", "toggle")
+                if config.has_voice:
+                    textbutton _("MUTE"):
+                        text_bold True
+                        text_color "#0a9e9a" 
+                        yoffset 172
+                        text_yoffset -5
+                        text_size 20
+                        action Preference("voice mute", "toggle")
+
+            ## Additional vboxes of type "radio_pref" or "check_pref" can be
+            ## added here, to add additional creator-defined preferences.
+        button:
+            xalign 1.55
+            yalign 1.45
+            action Return()
+            xysize (194, 66)
+            idle_background "gui/gui_button_idle.png"
+            hover_background "gui/gui_button_hover.png"
+            selected_background "gui/gui_button_select.png"
+            has hbox
+            text "CLOSE":
+                xalign 0.5
+                yalign 0.5
+                offset (35, 8)
+                style "menubutton"
+                size 30
+                outlines [ (1, "#000", absolute(0), absolute(0)) ]
+        image "gui/gui_menu_settings_skull.png":
+            xysize (211, 270)
+            xalign 0.9
+            yalign 1.5
+            
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -1047,12 +1169,13 @@ style pref_label:
 
 style pref_label_text:
     yalign 1.0
+    size 35
 
 style pref_vbox:
     xsize 338
 
 style radio_vbox:
-    spacing gui.pref_button_spacing
+    spacing gui.pref_button_spacing -5
 
 style radio_button:
     properties gui.button_properties("radio_button")
@@ -1072,7 +1195,8 @@ style check_button_text:
     properties gui.button_text_properties("check_button")
 
 style slider_slider:
-    xsize 525
+    xsize 345
+    yoffset 10
 
 style slider_button:
     properties gui.button_properties("slider_button")
