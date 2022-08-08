@@ -100,6 +100,9 @@ style frame:
 ## and id "window" to apply style properties.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
+
+define config.skip_delay = 300
+
 transform namebox_rotate():
     anchor (0, 0) transform_anchor 1
     rotate -3.5
@@ -118,16 +121,20 @@ screen say(who, what):
                 text who at namebox_rotate id "who"
 
         text what id "what"
-    imagebutton:
-        idle "gui/gui_button_skip_idle.png"
-        hover "gui/gui_button_skip_hover.png"
-        selected "gui/gui_button_skip_select.png"
-        selected_idle "gui/gui_button_skip_idle.png"
-        selected_hover "gui/gui_button_skip_hover.png"
-        action Skip() alternate Skip(fast=True, confirm=True)
+    button:
+        action Skip()
+        if renpy.get_screen("skip_indicator"):
+            unhovered Skip()
+        else:
+            unhovered NullAction()
         xpos 1547
         ypos 932
         xysize (149,120)
+        idle_background "gui/gui_button_skip_idle.png"
+        hover_background "gui/gui_button_skip_hover.png"
+        selected_idle_background "gui/gui_button_skip_idle.png"
+        selected_hover_background "gui/gui_button_skip_hover.png"
+        selected_background "gui/gui_button_skip_select.png"
 
 
     ## If there's a side image, display it above the text. Do not display on the
@@ -306,6 +313,7 @@ screen quick_menu():
     ## Ensure this appears on top of other screens.
     zorder 100
 
+    #if renpy.get_screen("say"):
     if quick_menu:
 
         frame:
@@ -861,32 +869,65 @@ screen load():
 
     use file_slots(_("Load"))
 
+define gui.file_slot_cols = 1
+define gui.file_slot_rows = 3
+define gui.slot_button_width = 1041
+define gui.slot_button_height = 214
+define config.thumbnail_width = 272-20
+define config.thumbnail_height = 173-20
+define gui.slot_button_borders = Borders(15, 15, 15, 15)
+# angled at 9 degrees
+
+transform saves_rotate():
+    anchor (0, 0) transform_anchor 1
+    rotate -9
+    xoffset -169
+    yoffset 36
 
 screen file_slots(title):
 
     default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
 
-    use game_menu(title):
-
+    #use game_menu(title):
+    frame:
+        if title == "Save":
+            image "gui/gui_file_save_icon.png":
+                xsize 224
+                ysize 109
+                xalign 0.5
+                yalign 0.09
+        if title == "Load":
+            image "gui/gui_file_load_icon.png":
+                xsize 224
+                ysize 109
+                xalign 0.5
+                yalign 0.09
+        xsize 1920
+        ysize 1080
+        background Image("gui/game_menu.png")
         fixed:
-
+            xsize 1188
+            ysize 772
+            xpos 366
+            ypos 141
             ## This ensures the input will get the enter event before any of the
             ## buttons do.
             order_reverse True
 
             ## The page name, which can be edited by clicking on a button.
-            button:
-                style "page_label"
-
-                key_events True
-                xalign 0.5
-                action page_name_value.Toggle()
-
-                input:
-                    style "page_label_text"
-                    value page_name_value
+            #button:
+            #    style "page_label"
+            #
+            #    key_events True
+            #    xalign 0.5
+            #    action page_name_value.Toggle()
+            #
+            #    input:
+            #        style "page_label_text"
+            #        value page_name_value
 
             ## The grid of file slots.
+
             grid gui.file_slot_cols gui.file_slot_rows:
                 style_prefix "slot"
 
@@ -904,7 +945,7 @@ screen file_slots(title):
 
                         has vbox
 
-                        add FileScreenshot(slot) xalign 0.5
+                        add FileScreenshot(slot) xalign 0.5 at saves_rotate
 
                         text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
                             style "slot_time_text"
@@ -965,6 +1006,11 @@ style page_button_text:
 
 style slot_button:
     properties gui.button_properties("slot_button")
+    idle_background "gui/gui_file_save_slot_idle.png"
+    hover_background "gui/gui_file_save_empty_hover.png"
+    selected_background "gui/gui_file_save_slot_selected.png"
+    selected_idle_background "gui/gui_file_save_slot_idle.png"
+    selected_hover_background "gui/gui_file_save_slot_hover.png"
 
 style slot_button_text:
     properties gui.button_text_properties("slot_button")
@@ -1585,10 +1631,12 @@ style confirm_button_text:
 screen skip_indicator():
 
     zorder 100
-    image "gui/gui_button_skip_select.png":
-        xpos 1547
-        ypos 932
-        xysize (149,120)
+    
+    if renpy.get_screen("say"):
+        image "gui/gui_button_skip_select.png":
+            xpos 1547
+            ypos 932
+            xysize (149,120)
     #style_prefix "skip"
 
     #frame:
