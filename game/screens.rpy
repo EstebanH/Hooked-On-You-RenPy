@@ -118,6 +118,16 @@ screen say(who, what):
                 text who at namebox_rotate id "who"
 
         text what id "what"
+    imagebutton:
+        idle "gui/gui_button_skip_idle.png"
+        hover "gui/gui_button_skip_hover.png"
+        selected "gui/gui_button_skip_select.png"
+        selected_idle "gui/gui_button_skip_idle.png"
+        selected_hover "gui/gui_button_skip_hover.png"
+        action Skip() alternate Skip(fast=True, confirm=True)
+        xpos 1547
+        ypos 932
+        xysize (149,120)
 
 
     ## If there's a side image, display it above the text. Do not display on the
@@ -1575,18 +1585,22 @@ style confirm_button_text:
 screen skip_indicator():
 
     zorder 100
-    style_prefix "skip"
+    image "gui/gui_button_skip_select.png":
+        xpos 1547
+        ypos 932
+        xysize (149,120)
+    #style_prefix "skip"
 
-    frame:
+    #frame:
 
-        hbox:
-            spacing 9
+        #hbox:
+            #spacing 9
 
-            text _("Skipping")
+            #text _("Skipping")
 
-            text "▸" at delayed_blink(0.0, 1.0) style "skip_triangle"
-            text "▸" at delayed_blink(0.2, 1.0) style "skip_triangle"
-            text "▸" at delayed_blink(0.4, 1.0) style "skip_triangle"
+            #text "▸" at delayed_blink(0.0, 1.0) style "skip_triangle"
+            #text "▸" at delayed_blink(0.2, 1.0) style "skip_triangle"
+            #text "▸" at delayed_blink(0.4, 1.0) style "skip_triangle"
 
 
 ## This transform is used to blink the arrows one after another.
