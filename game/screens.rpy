@@ -433,7 +433,7 @@ screen navigation():
             xalign -1.8
             button:
                 xoffset 75
-                action Start()
+                action Start(),  Hide("the_img1")
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_new_game_idle.png"
                 hover_background "gui/gui_menu_button_new_game_hover.png"
@@ -448,7 +448,7 @@ screen navigation():
                     at rotateleft
                 
             button:
-                action ShowMenu("load")
+                action ShowMenu("load"), Hide("the_img2")
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_load_game_idle.png"
                 hover_background "gui/gui_menu_button_load_game_hover.png"
@@ -461,7 +461,7 @@ screen navigation():
                     at rotateright
             button:
                 xoffset 40
-                action ShowMenu("preferences")
+                action ShowMenu("preferences"), Hide("the_img3")
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_settings_idle.png"
                 hover_background "gui/gui_menu_button_settings_hover.png"
@@ -472,7 +472,7 @@ screen navigation():
                     offset (95, 50)
                     style "menubutton"
             button:
-                action ShowMenu("about")
+                action ShowMenu("about"), Hide("the_img4")
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_credits_idle.png"
                 hover_background "gui/gui_menu_button_credits_hover.png"
@@ -770,6 +770,12 @@ style return_button:
 ##
 ## There's nothing special about this screen, and hence it also serves as an
 ## example of how to make a custom screen.
+init -2:
+    $ style.hyperlink_text = Style(style.say_dialogue) # inherits from the default dialog look, so it'll look like the rest of the dialogue, and we'll just have to change the look of the link hovered
+    #$ style.hyperlink_text.hover_bold = True # make it bold when hovered.
+    $ style.hyperlink_text.size = 18 # make size a bit smaller (? doesn't fix hover issue)
+    $ style.hyperlink_text.color = "#0a9e9a";
+    $ style.hyperlink_text.hover_color = "#0a9e9a"
 
 screen about():
 
@@ -778,21 +784,42 @@ screen about():
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    use game_menu(_("About"), scroll="viewport"):
+    #use game_menu(_("About"), scroll="viewport"):
 
-        style_prefix "about"
-
+    #style_prefix "about"
+    frame:
+        xsize 1920
+        ysize 1080
+        background Image("bg/bg_credits.png")
         vbox:
+            xalign 0.5
+            image "gui/gui_credits_dbd_logo.png":
+                xsize 795
+                ysize 431
+                xalign 0.5
+                yalign 0.1
+            hbox:
+                xalign 0.5
+                image "gui/slider/horizontal_idle_thumb.png" xsize 47 ysize 51 xalign 0.0 yoffset -10 xoffset -5
+                null width (gui.pref_spacing)
+                text "DEVELOPMENT" bold True size 30 xalign 0.5 color "#0a9e9a"
+                null width (gui.pref_spacing)
+                image "gui/slider/horizontal_idle_thumb.png" xsize 47 ysize 51 xalign 1.0 yoffset -10
+            image "gui/gui_credits_logo_psyop.png":
+                xsize 321
+                ysize 330
+                xalign 0.5
+            vbox:
+                yoffset -100
+                text "[config.name!t]" color "#0a9e9a"
+                text _("Version [config.version!t]\n")
 
-            label "[config.name!t]"
-            text _("Version [config.version!t]\n")
+                ## gui.about is usually set in options.rpy.
+                if gui.about:
+                    text "[gui.about!t]\n" color "#0a9e9a"
 
-            ## gui.about is usually set in options.rpy.
-            if gui.about:
-                text "[gui.about!t]\n"
-
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
-
+                text _("Made with {a=https://www.renpy.org/ }{color=#0a9e9a}Ren'Py{/color}{/a} [renpy.version_only].\n\n[renpy.license!t]")
+    key [ 'mouseup_1', 'K_RETURN', 'K_KP_ENTER', 'K_SELECT', 'K_ESCAPE', 'K_MENU', 'K_PAUSE', 'mouseup_3','K_BACKSPACE' ] action Return()
 
 style about_label is gui_label
 style about_label_text is gui_label_text
@@ -1019,7 +1046,7 @@ screen preferences():
                         label _("DISPLAY"):
                             text_bold True
                             text_color "#1f100b" 
-                            xalign 0.75
+                            xalign 0.85
                             yoffset -5
                         textbutton _("WINDOW"):
                             text_color "#1f100b"
@@ -1027,7 +1054,7 @@ screen preferences():
                             xalign 0.0
                             text_xalign 1.0
                             yoffset 10
-                            xoffset 120
+                            xoffset 100
                             text_yoffset -12
                             text_xoffset 10
                             text_size 30 
@@ -1038,7 +1065,7 @@ screen preferences():
                             xalign 0.0
                             text_xalign 1.0
                             yoffset 10
-                            xoffset 120
+                            xoffset 100
                             text_yoffset -12
                             text_xoffset 10
                             text_size 30  
@@ -1133,8 +1160,15 @@ screen preferences():
                 outlines [ (1, "#000", absolute(0), absolute(0)) ]
         image "gui/gui_menu_settings_skull.png":
             xysize (211, 270)
-            xalign 0.9
+            xalign 0.85
             yalign 1.5
+    if gui.show_name:
+        vbox:
+            yalign 0.98
+            xalign 0.02
+            text "Build: [config.version]":
+                color "#ffd600"
+                size 40
             
 
 style pref_label is gui_label
