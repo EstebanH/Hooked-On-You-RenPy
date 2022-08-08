@@ -399,8 +399,22 @@ style menubutton:
     bold True
     size 40
 
-screen navigation():
+screen the_img1(img):
+    add img pos (938-80, 225)
 
+screen the_img2(img):
+    add img pos (885-90, 330)
+
+screen the_img3(img):
+    add img pos (921-80, 475)
+
+screen the_img4(img):
+    add img pos (885-90, 602)
+
+screen the_img5(img):
+    add img pos (941-80, 737)
+
+screen navigation():
     vbox:
         style_prefix "navigation"
 
@@ -410,6 +424,7 @@ screen navigation():
         spacing gui.navigation_spacing
 
         if main_menu:
+
             xalign -1.8
             button:
                 xoffset 75
@@ -417,17 +432,22 @@ screen navigation():
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_new_game_idle.png"
                 hover_background "gui/gui_menu_button_new_game_hover.png"
+                hovered ShowTransient("the_img1", img="gui/window_icon.png") unhovered Hide("the_img1")
+                #hover "gui/window_icon.png"
+                #hovered ("gui/window_icon.png")
                 selected_background "gui/gui_menu_button_new_game_select.png"
                 has hbox
                 text "NEW GAME":
                     offset (85,62)
                     style "menubutton"
                     at rotateleft
+                
             button:
                 action ShowMenu("load")
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_load_game_idle.png"
                 hover_background "gui/gui_menu_button_load_game_hover.png"
+                hovered ShowTransient("the_img2", img="gui/window_icon.png") unhovered Hide("the_img2")
                 selected_background "gui/gui_menu_button_load_game_select.png"
                 has hbox
                 text "LOAD GAME":
@@ -440,6 +460,7 @@ screen navigation():
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_settings_idle.png"
                 hover_background "gui/gui_menu_button_settings_hover.png"
+                hovered ShowTransient("the_img3", img="gui/window_icon.png") unhovered Hide("the_img3")
                 selected_background "gui/gui_menu_button_settings_select.png"
                 has hbox
                 text "SETTINGS":
@@ -450,6 +471,7 @@ screen navigation():
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_credits_idle.png"
                 hover_background "gui/gui_menu_button_credits_hover.png"
+                hovered ShowTransient("the_img4", img="gui/window_icon.png") unhovered Hide("the_img4")
                 selected_background "gui/gui_menu_button_credits_select.png"
                 has hbox
                 text "CREDITS":
@@ -462,6 +484,7 @@ screen navigation():
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_quit_idle.png"
                 hover_background "gui/gui_menu_button_quit_hover.png"
+                hovered ShowTransient("the_img5", img="gui/window_icon.png") unhovered Hide("the_img5")
                 selected_background "gui/gui_menu_button_quit_select.png"
                 has hbox
                 text "QUIT":
