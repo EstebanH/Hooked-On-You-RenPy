@@ -135,6 +135,7 @@ screen say(who, what):
         selected_idle_background "gui/gui_button_skip_idle.png"
         selected_hover_background "gui/gui_button_skip_hover.png"
         selected_background "gui/gui_button_skip_select.png"
+        activate_sound "sounds/sfx_tap.wav"
 
 
     ## If there's a side image, display it above the text. Do not display on the
@@ -332,6 +333,7 @@ screen quick_menu():
                         hover "gui/gui_menu_pullout_button_hover.png"
                     idle "gui/gui_menu_pullout_button_idle.png"
                     selected "gui/gui_menu_pullout_button_select.png"
+                    activate_sound "sounds/sfx_tap.wav"
                     #hover "gui/gui_menu_pullout_button_hover.png"
                     if pullout:
                         action [SetVariable("pullout", False)]  
@@ -342,12 +344,12 @@ screen quick_menu():
                 #textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
                 #textbutton _("Auto") action Preference("auto-forward", "toggle")
                 text _("  ")
-                textbutton _("SAVE") action ShowMenu('save')
-                textbutton _("LOAD") action ShowMenu('load')
+                textbutton _("SAVE") action ShowMenu('save') activate_sound "sounds/sfx_tap.wav"
+                textbutton _("LOAD") action ShowMenu('load') activate_sound "sounds/sfx_tap.wav"
                 #textbutton _("Q.Save") action QuickSave()
                 #textbutton _("Q.Load") action QuickLoad()
-                textbutton _("SETTINGS") action ShowMenu('preferences')
-                textbutton _("MAIN MENU") action MainMenu() 
+                textbutton _("SETTINGS") action ShowMenu('preferences') activate_sound "sounds/sfx_tap.wav"
+                textbutton _("MAIN MENU") action MainMenu() activate_sound "sounds/sfx_tap.wav"
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -451,7 +453,9 @@ screen navigation():
             xalign -1.8
             button:
                 xoffset 75
-                action Start(),  Hide("the_img1")
+                action Start(),  Hide("the_img1") 
+                hover_sound "sounds/sfx_mainmenu_hover.wav"
+                activate_sound "sounds/sfx_mainmenu_hover.wav"
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_new_game_idle.png"
                 hover_background "gui/gui_menu_button_new_game_hover.png"
@@ -467,6 +471,8 @@ screen navigation():
                 
             button:
                 action ShowMenu("load"), Hide("the_img2")
+                hover_sound "sounds/sfx_mainmenu_hover.wav"
+                activate_sound "sounds/sfx_mainmenu_hover.wav"
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_load_game_idle.png"
                 hover_background "gui/gui_menu_button_load_game_hover.png"
@@ -480,6 +486,8 @@ screen navigation():
             button:
                 xoffset 40
                 action ShowMenu("preferences"), Hide("the_img3")
+                hover_sound "sounds/sfx_mainmenu_hover.wav"
+                activate_sound "sounds/sfx_mainmenu_hover.wav"
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_settings_idle.png"
                 hover_background "gui/gui_menu_button_settings_hover.png"
@@ -491,6 +499,8 @@ screen navigation():
                     style "menubutton"
             button:
                 action ShowMenu("about"), Hide("the_img4")
+                hover_sound "sounds/sfx_mainmenu_hover.wav"
+                activate_sound "sounds/sfx_mainmenu_hover.wav"
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_credits_idle.png"
                 hover_background "gui/gui_menu_button_credits_hover.png"
@@ -504,6 +514,8 @@ screen navigation():
             button:
                 xoffset 50
                 action Quit(confirm=not main_menu)
+                hover_sound "sounds/sfx_mainmenu_hover.wav"
+                activate_sound "sounds/sfx_mainmenu_hover.wav"
                 xysize (447, 125)
                 idle_background "gui/gui_menu_button_quit_idle.png"
                 hover_background "gui/gui_menu_button_quit_hover.png"
@@ -734,6 +746,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
             idle_background "gui/gui_button_idle.png"
             hover_background "gui/gui_button_hover.png"
             selected_background "gui/gui_button_select.png"
+            activate_sound "sounds/sfx_tap.wav"
             has hbox
             text "CLOSE":
                 xalign 0.5
@@ -999,6 +1012,7 @@ screen file_slots(title):
                                 xysize (1045,214)
                                 button:
                                     key "save_delete" action FileDelete(slot)
+                                    activate_sound "sounds/sfx_tap.wav"
                                     xysize (1045,214)
                                     if FileLoadable(slot):
                                         idle_background "gui/gui_file_save_slot_idle.png"
@@ -1085,6 +1099,7 @@ screen file_slots(title):
                                     hover_background "gui/gui_file_delete_hover.png"
                                     #hovered ShowTransient("the_img5", img="gui/window_icon.png") unhovered Hide("the_img5")
                                     selected_background "gui/gui_file_delete_selected.png"
+                                    activate_sound "sounds/sfx_tap.wav"
                                     key "save_delete" action FileDelete(slot)
                 ## Buttons to access other pages.
                 hbox:
@@ -1101,6 +1116,7 @@ screen file_slots(title):
                         insensitive "nav_previous_inactive"
                         idle "nav_previous_idle"
                         hover "nav_previous_hover"
+                        activate_sound "sounds/sfx_tap.wav"
                         action FilePagePrevious()
                     if config.has_autosave:
                         textbutton _("{#auto_page}A") action FilePage("auto")
@@ -1132,6 +1148,7 @@ screen file_slots(title):
                         insensitive "gui/gui_menu_next_inactive.png"
                         idle "gui/gui_menu_next_idle.png"
                         hover "gui/gui_menu_next_hover.png"
+                        activate_sound "sounds/sfx_tap.wav"
                         action FilePageNext()
                 add "gui/window_icon.png" xoffset -75 yoffset 655 xsize 162 ysize 162
 
@@ -1271,7 +1288,8 @@ screen preferences():
                                 text_yoffset -12
                                 text_xoffset 10
                                 text_size 30 
-                                action Preference("display", "window") 
+                                action Preference("display", "window")
+                                activate_sound "sounds/sfx_tap.wav"
                             textbutton _("FULLSCREEN"):
                                 text_color "#1f100b"
                                 text_hover_color "#0a9e9a" 
@@ -1282,7 +1300,8 @@ screen preferences():
                                 text_yoffset -12
                                 text_xoffset 10
                                 text_size 30  
-                                action Preference("display", "fullscreen") 
+                                action Preference("display", "fullscreen")
+                                activate_sound "sounds/sfx_tap.wav"
 
                     vbox:
                         xalign 1.0
@@ -1303,6 +1322,7 @@ screen preferences():
                             text_xoffset 10
                             text_size 30
                             action Preference("skip", "toggle")
+                            activate_sound "sounds/sfx_tap.wav"
                         textbutton _("AFTER CHOICES"):
                             text_color "#1f100b"
                             text_hover_color "#0a9e9a" 
@@ -1314,6 +1334,7 @@ screen preferences():
                             text_xoffset 10
                             text_size 30
                             action Preference("after choices", "toggle")
+                            activate_sound "sounds/sfx_tap.wav"
                         textbutton _("TRANSITIONS"):
                             text_color "#1f100b"
                             text_hover_color "#0a9e9a" 
@@ -1325,6 +1346,7 @@ screen preferences():
                             text_xoffset 10
                             text_size 30 
                             action InvertSelected(Preference("transitions", "toggle"))
+                            activate_sound "sounds/sfx_tap.wav"
                 vbox:
                     xalign -1.0
                     style_prefix "radio"
@@ -1336,6 +1358,7 @@ screen preferences():
                             text_yoffset -5
                             text_size 20
                             action Preference("music mute", "toggle")
+                            activate_sound "sounds/sfx_tap.wav"
                     if config.has_sound:
                         textbutton _("MUTE"):
                             text_bold True
@@ -1344,6 +1367,7 @@ screen preferences():
                             text_yoffset -5
                             text_size 20
                             action Preference("sound mute", "toggle")
+                            activate_sound "sounds/sfx_tap.wav"
                     if config.has_voice:
                         textbutton _("MUTE"):
                             text_bold True
@@ -1352,6 +1376,7 @@ screen preferences():
                             text_yoffset -5
                             text_size 20
                             action Preference("voice mute", "toggle")
+                            activate_sound "sounds/sfx_tap.wav"
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
@@ -1363,6 +1388,7 @@ screen preferences():
                 idle_background "gui/gui_button_idle.png"
                 hover_background "gui/gui_button_hover.png"
                 selected_background "gui/gui_button_select.png"
+                activate_sound "sounds/sfx_tap.wav"
                 has hbox
                 text "CLOSE":
                     xalign 0.5
@@ -1427,6 +1453,7 @@ style radio_vbox:
 style radio_button:
     properties gui.button_properties("radio_button")
     foreground "gui/button/radio_[prefix_]foreground.png"
+    activate_sound "sounds/sfx_tap.wav"
 
 style radio_button_text:
     properties gui.button_text_properties("radio_button")
@@ -1437,6 +1464,7 @@ style check_vbox:
 style check_button:
     properties gui.button_properties("check_button")
     foreground "gui/button/check_[prefix_]foreground.png"
+    activate_sound "sounds/sfx_tap.wav"
 
 style check_button_text:
     properties gui.button_text_properties("check_button")
@@ -1449,6 +1477,7 @@ style slider_button:
     properties gui.button_properties("slider_button")
     yalign 0.5
     left_margin 15
+    activate_sound "sounds/sfx_tap.wav"
 
 style slider_button_text:
     properties gui.button_text_properties("slider_button")
@@ -1799,6 +1828,8 @@ style confirm_button:
     idle_background "gui/gui_button_idle.png"
     hover_background "gui/gui_button_hover.png"
     selected_background "gui/gui_button_select.png"
+    activate_sound "sounds/sfx_tap.wav"
+    hover_sound "sounds/sfx_mainmenu_hover.wav"
 
 style confirm_button_text:
     properties gui.button_text_properties("confirm_button")
@@ -2132,3 +2163,108 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+################################################################################
+## Name Input for PlayerName
+################################################################################
+
+init python:
+    fadeconfirm = True
+    def change_name(newstring):                                              
+    #Functions that allow us to store the input
+        store.user_input = newstring
+
+image buttonidlefade:
+    im.MatrixColor('gui/gui_button_idle.png', im.matrix.opacity(.5))
+transform textalpha: 
+    alpha 0.5
+
+default user_input = ""
+
+screen name_input():
+    default input_on = False  
+    style_prefix "userinputname"
+    fixed:
+        button:
+            xysize(1920,1080)  
+            action ToggleScreenVariable("input_on")   
+        add "gui/gui_input_name_frame.png" xalign .5 yalign .5  
+        frame:
+            xoffset 35
+            yoffset 10       
+            vbox:
+                text _("Welcome to your dream vacation!"):
+                    color "#2c948e" 
+                    outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
+                text "Before we get started, what shall we call you?":
+                    size 25
+                frame:
+                    xysize(464,49)  
+                    background "gui/gui_input_name_textbox.png"
+                    if input_on:                                 
+                        input default user_input length 8 allow "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 " changed change_name          
+                    else:
+                        if user_input == "":
+                            text "ENTER YOUR NAME...": 
+                                color "#b1a195"
+                                italic True
+                            $ fadeconfirm = True
+                        else:
+                            text user_input: 
+                                color "#323232" 
+                            $ fadeconfirm = False
+                button:
+                    xysize (194, 66)
+                    if fadeconfirm or input_on:
+                        text "CONFIRM":
+                            style "userinputname_button"
+                            at textalpha
+                        idle_background "buttonidlefade"
+                        hover_background "buttonidlefade"
+                        selected_background "buttonidlefade"
+                        action ToggleScreenVariable("input_on")  
+                    else:
+                        text "CONFIRM":
+                            style "userinputname_button"
+                        idle_background "gui/gui_button_idle.png"
+                        hover_background "gui/gui_button_hover.png"
+                        selected_background "gui/gui_button_selected.png"
+                        action Return()
+style userinputname_vbox:
+    spacing 15
+    yalign .5  
+
+style userinputname_frame:
+    xysize(571,400)  
+    yalign .5  
+    xalign .5
+    background None   
+
+style userinputname_button:
+    size 25
+    xalign 0.5
+    yalign 0.5
+    outlines [ (1, "#000", absolute(0), absolute(0)) ]
+
+style userinputname_input:
+    size 25
+    xalign 0.5
+    yalign 0.5
+    color "#323232" 
+    bold True
+    caret "inputname_caret" 
+
+image inputname_caret:                                              
+    Text("|", color="#323232",size=25)
+    ypos -3
+    linear 0.5 alpha 0.0
+    linear 0.5 alpha 1.0
+    repeat
+
+style userinputname_text:
+    size 29
+    color "#2e1d15"   
+    xalign 0.5
+    yalign 0.5
+    text_align 0.5
+    bold True

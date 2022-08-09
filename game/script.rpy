@@ -1,20 +1,4 @@
 ﻿
-# Declare the characters.
-
-# define e = Character(_('Eileen'), color="#c8ffc8")
-define nrr = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-define mc = DynamicCharacter('mc_name', color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-
-define dw = Character("DWIGHT", color="#bb7d31", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-define cl = Character("CLAUDETTE", color="#b4992e", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-define th = Character("THE HUNTRESS", window_style="window_killer", color="#c64631", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-define ts = Character("THE SPIRIT", window_style="window_killer", color="#d94464", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-define tt = Character("THE TRAPPER", window_style="window_killer", color="#335480", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
-
-
-
 init:
     transform rotation:
         rotate -90
@@ -223,107 +207,23 @@ init:
                 repeat
 
 init python:
-    fadeconfirm = True
-    config.character_id_prefixes.append('namebox')
-    config.character_id_prefixes.append('window')
-    def change_name(newstring):                                              
-    #Functions that allow us to store the input
-        store.user_input = newstring
+    def callbackcontinue(ctc, **kwargs):
+        if ctc == "end":
+            renpy.sound.play("sounds/sfx_tap.wav",channel="sound")
+    renpy.music.register_channel("hauntloop", "music", loop=True)
 
-image buttonidlefade:
-    im.MatrixColor('gui/gui_button_idle.png', im.matrix.opacity(.5))
-transform textalpha: 
-    alpha 0.5
+# Declare the characters.
+define nrr = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define mc = DynamicCharacter('mc_name', color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define dw = Character("DWIGHT", color="#bb7d31", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define cl = Character("CLAUDETTE", color="#b4992e", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define th = Character("THE HUNTRESS", window_style="window_killer", color="#c64631", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define ts = Character("THE SPIRIT", window_style="window_killer", color="#d94464", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define tt = Character("THE TRAPPER", window_style="window_killer", color="#335480", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
 
-default user_input = ""
-
-screen name_input():
-    default input_on = False  
-    style_prefix "userinputname"
-    fixed:
-        button:
-            xysize(1920,1080)  
-            action ToggleScreenVariable("input_on")   
-        add "gui/gui_input_name_frame.png" xalign .5 yalign .5  
-        frame:
-            xoffset 35
-            yoffset 10       
-            vbox:
-                text _("Welcome to your dream vacation!"):
-                    color "#2c948e" 
-                    outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
-                text "Before we get started, what shall we call you?":
-                    size 25
-                frame:
-                    xysize(464,49)  
-                    background "gui/gui_input_name_textbox.png"
-                    if input_on:                                 
-                        input default user_input length 8 allow "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 " changed change_name          
-                    else:
-                        if user_input == "":
-                            text "ENTER YOUR NAME...": 
-                                color "#b1a195"
-                                italic True
-                            $ fadeconfirm = True
-                        else:
-                            text user_input: 
-                                color "#323232" 
-                            $ fadeconfirm = False
-                button:
-                    xysize (194, 66)
-                    if fadeconfirm or input_on:
-                        text "CONFIRM":
-                            style "userinputname_button"
-                            at textalpha
-                        idle_background "buttonidlefade"
-                        hover_background "buttonidlefade"
-                        selected_background "buttonidlefade"
-                        action ToggleScreenVariable("input_on")  
-                    else:
-                        text "CONFIRM":
-                            style "userinputname_button"
-                        idle_background "gui/gui_button_idle.png"
-                        hover_background "gui/gui_button_hover.png"
-                        selected_background "gui/gui_button_selected.png"
-                        action Return()
-style userinputname_vbox:
-    spacing 15
-    yalign .5  
-
-style userinputname_frame:
-    xysize(571,400)  
-    yalign .5  
-    xalign .5
-    background None   
-
-style userinputname_button:
-    size 25
-    xalign 0.5
-    yalign 0.5
-    outlines [ (1, "#000", absolute(0), absolute(0)) ]
-
-style userinputname_input:
-    size 25
-    xalign 0.5
-    yalign 0.5
-    color "#323232" 
-    bold True
-    caret "inputname_caret" 
-
-image inputname_caret:                                              
-    Text("|", color="#323232",size=25)
-    ypos -3
-    linear 0.5 alpha 0.0
-    linear 0.5 alpha 1.0
-    repeat
-
-style userinputname_text:
-    size 29
-    color "#2e1d15"   
-    xalign 0.5
-    yalign 0.5
-    text_align 0.5
-    bold True
+#p = Character('Protagonist', what_prefix="\"", what_suffix="\"", show_two_window=True, color="#000000", ctc = anim.Blink("ctc.png", xpos=600, ypos=450), ctc_position= "fixed", callback=callbackcontinue)
 
 # The game starts here.
 label start:
@@ -358,10 +258,13 @@ label start:
 
     scene bg loading with dissolve
     show flower at fakeload
-    pause 2
+    pause 1
+    play music "audio/sfx_ambience_beach.wav"
+    pause 1
     scene bg beach0 with Dissolve(1.0)
     
     $ quick_menu = True
+
     mc "*cough* *cough* *cough*"
     nrr "You wake up on the beach, soaking wet, saltwater stinging the inside of your throat, as if you'd nearly drowned."
     nrr "Water falls from your mouth as you open it to gasp for air."
@@ -369,12 +272,17 @@ label start:
     nrr "What you do know is that, despite the outrageous beauty of the landscape around you, you feel incredibly sick to your stomach--"
     nrr "Wow, really went down the wrong pipe, huh? You need a minute, or can I go on?"
     mc "..."
-    nrr "Because I can give you a minute. We've got plenty of time. Endles time, really."
+    nrr "Because I can give you a minute. We've got plenty of time. Endless time, really."
+    #play music "audio/sfx_ambience_beach.wav" set_volume(0.25)
     window hide
     scene bg haunting with dissolve
+    play hauntloop("audio/m_Mood_Haunting_Loop_V1.wav") fadein 3.0 loop
+    $ renpy.music.set_volume(0.25,3.0,"music")
     oc "An eternity, if you catch my drift."
     window hide
     scene bg beach0 with dissolve
+    $ renpy.music.set_volume(1,3.0,"music")
+    stop hauntloop fadeout 3.0
     nrr "Woah, not now, Ocean! Sorry, [mc_name]. May I continue?"
     nrr "OK then. As I was--"
     mc "*cough* *cough*"
