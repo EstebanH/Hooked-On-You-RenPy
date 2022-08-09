@@ -367,7 +367,7 @@ style quick_button:
 
 style quick_button_text:
     size 30
-    bold True
+    
     color "#eedccb" 
     hover_color "099390"
     outlines [ (2, "#0e0505", absolute(0), absolute(0)) ]
@@ -397,32 +397,25 @@ style quick_hbox:
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
 transform rotateleft():
-    anchor (0, 0) transform_anchor 1
+    anchor (0.5, 0.5) transform_anchor 1
     rotate -5
 
 transform rotateleft2():
-    anchor (0, 0) transform_anchor 1
+    anchor (0.5, 0.5) transform_anchor 1
     rotate -2
 
+transform rotateleft3():
+    anchor (0.5, 0.5) transform_anchor 1
+    rotate -1
+
 transform rotateright():
-    anchor (0, 0) transform_anchor 1
+    anchor (0.5, 0.5) transform_anchor 1
     rotate 1
 
 transform rotateright2():
-    anchor (0, 0) transform_anchor 1
+    anchor (0.5, 0.5) transform_anchor 1
     rotate 2
 
-style mainmenubutton:
-    yoffset 0
-    xsize 447
-    ysize 125
-
-style menubutton:
-    layout "subtitle"
-    hover_color "#0a9e9a"
-    selected_color "#fff"
-    bold True
-    size 40
 
 screen the_img1(img):
     add img pos (938-80, 225)
@@ -454,76 +447,57 @@ screen navigation():
             button:
                 xoffset 75
                 action Start(),  Hide("the_img1") 
-                hover_sound "sounds/sfx_mainmenu_hover.wav"
-                activate_sound "sounds/sfx_mainmenu_hover.wav"
-                xysize (447, 125)
                 idle_background "gui/gui_menu_button_new_game_idle.png"
                 hover_background "gui/gui_menu_button_new_game_hover.png"
                 hovered ShowTransient("the_img1", img="gui/window_icon.png") unhovered Hide("the_img1")
-                #hover "gui/window_icon.png"
-                #hovered ("gui/window_icon.png")
                 selected_background "gui/gui_menu_button_new_game_select.png"
-                has hbox
                 text "NEW GAME":
-                    offset (85,62)
                     style "menubutton"
+                    yoffset 10
                     at rotateleft
                 
             button:
                 action ShowMenu("load"), Hide("the_img2")
-                hover_sound "sounds/sfx_mainmenu_hover.wav"
-                activate_sound "sounds/sfx_mainmenu_hover.wav"
-                xysize (447, 125)
                 idle_background "gui/gui_menu_button_load_game_idle.png"
                 hover_background "gui/gui_menu_button_load_game_hover.png"
                 hovered ShowTransient("the_img2", img="gui/window_icon.png") unhovered Hide("the_img2")
                 selected_background "gui/gui_menu_button_load_game_select.png"
-                has hbox
                 text "LOAD GAME":
-                    offset (95, 50)
                     style "menubutton"
+                    yoffset 20
                     at rotateright
             button:
                 xoffset 40
                 action ShowMenu("preferences"), Hide("the_img3")
-                hover_sound "sounds/sfx_mainmenu_hover.wav"
-                activate_sound "sounds/sfx_mainmenu_hover.wav"
-                xysize (447, 125)
                 idle_background "gui/gui_menu_button_settings_idle.png"
                 hover_background "gui/gui_menu_button_settings_hover.png"
                 hovered ShowTransient("the_img3", img="gui/window_icon.png") unhovered Hide("the_img3")
                 selected_background "gui/gui_menu_button_settings_select.png"
-                has hbox
                 text "SETTINGS":
-                    offset (95, 50)
+                    yoffset 20
                     style "menubutton"
+                    at rotateleft3
             button:
                 action ShowMenu("about"), Hide("the_img4")
-                hover_sound "sounds/sfx_mainmenu_hover.wav"
-                activate_sound "sounds/sfx_mainmenu_hover.wav"
-                xysize (447, 125)
                 idle_background "gui/gui_menu_button_credits_idle.png"
                 hover_background "gui/gui_menu_button_credits_hover.png"
                 hovered ShowTransient("the_img4", img="gui/window_icon.png") unhovered Hide("the_img4")
                 selected_background "gui/gui_menu_button_credits_select.png"
-                has hbox
                 text "CREDITS":
-                    offset (95, 50)
+                    yoffset 20
+                    xoffset -20
                     style "menubutton"
                     at rotateleft2
             button:
                 xoffset 50
                 action Quit(confirm=not main_menu)
-                hover_sound "sounds/sfx_mainmenu_hover.wav"
-                activate_sound "sounds/sfx_mainmenu_hover.wav"
-                xysize (447, 125)
                 idle_background "gui/gui_menu_button_quit_idle.png"
                 hover_background "gui/gui_menu_button_quit_hover.png"
                 hovered ShowTransient("the_img5", img="gui/window_icon.png") unhovered Hide("the_img5")
                 selected_background "gui/gui_menu_button_quit_select.png"
-                has hbox
                 text "QUIT":
-                    offset (150, 60)
+                    yoffset 30
+                    xoffset -20
                     style "menubutton"
                     at rotateright2
 
@@ -562,6 +536,7 @@ screen navigation():
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
+style menubutton is gui_button_text
 
 style navigation_text:
     size_group "navigation"
@@ -570,10 +545,21 @@ style navigation_text:
 style navigation_button:
     size_group "navigation"
     properties gui.button_properties("navigation_button")
+    xysize (447, 125)
+    hover_sound "sounds/sfx_mainmenu_hover.wav"
+    activate_sound "sounds/sfx_mainmenu_hover.wav"
 
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
 
+style menubutton:
+    layout "subtitle"
+    hover_color "#0a9e9a"
+    selected_color "#fff"
+    size 63
+    color "f3e3d4"
+    text_align 0.5
+    xalign 0.5
 
 ## Main Menu screen ############################################################
 ##
@@ -747,15 +733,10 @@ screen game_menu(title, scroll=None, yinitial=0.0):
             hover_background "gui/gui_button_hover.png"
             selected_background "gui/gui_button_select.png"
             activate_sound "sounds/sfx_tap.wav"
-            has hbox
             text "CLOSE":
-                xalign 0.5
-                yalign 0.5
-                offset (35, 8)
                 style "menubutton"
                 size 30
                 outlines [ (1, "#000", absolute(0), absolute(0)) ]
-
     #label title
 
     if main_menu:
@@ -852,7 +833,7 @@ screen about():
                     xalign 0.5
                     image "gui/slider/horizontal_idle_thumb.png" xsize 47 ysize 51 xalign 0.0 yoffset -10 xoffset -5
                     null width (gui.pref_spacing)
-                    text "DEVELOPMENT" bold True size 30 xalign 0.5 color "#0a9e9a"
+                    text "DEVELOPMENT"  size 30 xalign 0.5 color "#0a9e9a"
                     null width (gui.pref_spacing)
                     image "gui/slider/horizontal_idle_thumb.png" xsize 47 ysize 51 xalign 1.0 yoffset -10
                 image "gui/gui_credits_logo_psyop.png":
@@ -1067,7 +1048,7 @@ screen file_slots(title):
                                                     if hours > 999:
                                                         $ hours = 999
                                                     text "[hours:02d]:[minutes:02d]":
-                                                        bold True
+                                                        
                                                         color "000"
                                                         size 60
                                                         yalign 0.5
@@ -1076,7 +1057,7 @@ screen file_slots(title):
                                                         xalign 1.0
                                                         at text_alpha
                                                     text "PLAYTIME":
-                                                        bold True
+                                                        
                                                         size 25
                                                         color "000"
                                                         yalign 0.5
@@ -1161,6 +1142,7 @@ style slot_button is gui_button
 style slot_button_text is gui_button_text
 style slot_time_text is slot_button_text
 style slot_name_text is slot_button_text
+style slot_text is slot_button_text
 
 style page_label:
     xpadding 75
@@ -1181,11 +1163,12 @@ style slot_button:
     properties gui.button_properties("slot_button")
     xsize 1045
     ysize 214
-
+style slot_text:
+    properties gui.button_text_properties("page_button")
 
 style slot_button_text:
     properties gui.button_text_properties("slot_button")
-    bold True
+    
     size 30
     xalign 0.0
 
@@ -1206,8 +1189,7 @@ screen preferences():
                 ysize 107
                 xalign 2.15
                 yalign 0.15
-            xsize 774
-            ysize 598
+            xysize(774,598)
             xpadding 20
             background Image("gui/gui_menu_settings.png")
             vbox:
@@ -1274,7 +1256,6 @@ screen preferences():
                             xalign 1.0
                             style_prefix "radio"
                             label _("DISPLAY"):
-                                text_bold True
                                 text_color "#1f100b" 
                                 xalign 0.85
                                 yoffset -5
@@ -1307,7 +1288,6 @@ screen preferences():
                         xalign 1.0
                         style_prefix "radio"
                         label _("SKIP"):
-                            text_bold True
                             text_color "#1f100b" 
                             xalign 0.6
                             yoffset -5
@@ -1352,7 +1332,6 @@ screen preferences():
                     style_prefix "radio"
                     if config.has_music:
                         textbutton _("MUTE"):
-                            text_bold True
                             text_color "#0a9e9a" 
                             yoffset 115
                             text_yoffset -5
@@ -1361,7 +1340,6 @@ screen preferences():
                             activate_sound "sounds/sfx_tap.wav"
                     if config.has_sound:
                         textbutton _("MUTE"):
-                            text_bold True
                             text_color "#0a9e9a" 
                             yoffset 143
                             text_yoffset -5
@@ -1370,7 +1348,6 @@ screen preferences():
                             activate_sound "sounds/sfx_tap.wav"
                     if config.has_voice:
                         textbutton _("MUTE"):
-                            text_bold True
                             text_color "#0a9e9a" 
                             yoffset 172
                             text_yoffset -5
@@ -1389,14 +1366,11 @@ screen preferences():
                 hover_background "gui/gui_button_hover.png"
                 selected_background "gui/gui_button_select.png"
                 activate_sound "sounds/sfx_tap.wav"
-                has hbox
                 text "CLOSE":
-                    xalign 0.5
-                    yalign 0.5
-                    offset (35, 8)
                     style "menubutton"
                     size 30
                     outlines [ (1, "#000", absolute(0), absolute(0)) ]
+
             image "gui/gui_menu_settings_skull.png":
                 xysize (211, 270)
                 xalign 0.85
@@ -2251,7 +2225,7 @@ style userinputname_input:
     xalign 0.5
     yalign 0.5
     color "#323232" 
-    bold True
+    
     caret "inputname_caret" 
 
 image inputname_caret:                                              
@@ -2267,4 +2241,4 @@ style userinputname_text:
     xalign 0.5
     yalign 0.5
     text_align 0.5
-    bold True
+    

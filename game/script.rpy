@@ -1,20 +1,7 @@
 ﻿
 init:
-    transform rotation:
-        rotate -90
-        block:
-            easein 1 rotate -60
-            easein .5 rotate -70
-            easeout 2 rotate 0
-            ease .5 rotate -10
-            ease 4 rotate 50
-            block:
-                ease .1 rotate 50
-                easein .2 rotate 51
-                repeat 20
-            easeout 3.5 rotate -90
-            repeat
-
+## warmdark ###########################################################
+##
     transform rotatebacknforth:
         around (.5, .5) alignaround (.5, .5) xalign .5 yalign .5
         rotate 0
@@ -154,17 +141,7 @@ init:
         zoom 1.55
         yoffset 490
         xoffset 1350
-    image flower:
-        "gui/window_icon.png"
-        yalign 0.925
-        xalign 0.9575
 
-    image bg loading:
-        "images/bg/bg_loading.png"
-    image bg beach0:
-        "images/bg/bg_beach_0.png"
-    image bg volley0:
-        "images/bg/bg_volley_0.png"
     image bg warmdark:
         "images/bg/bg_warmdark.png"
         zoom 1.1
@@ -178,10 +155,117 @@ init:
         yalign 0.5 
         "images/bg/bg_warmdark_effect2.png"
         zoom 1.1
-    image bg inner_monologue:
-        "images/bg/bg_inner_monologue.png"
+##
+## warmdark end #################################################################
+
+## haunting ###############################################################
+##
     image bg haunting:
         "images/bg/bg_haunting.png"
+    image ocean1:
+        "images/sprites/ocean/ocean1.png"
+    image ocean2:
+        "images/sprites/ocean/ocean2.png"
+    image ocean3:
+        "images/sprites/ocean/ocean3.png"
+    image ocean4:
+        "images/sprites/ocean/ocean4.png"
+    transform ocean1place:
+        xalign 1.0
+        yalign 1.0
+        yoffset 1070
+        xoffset 700
+        zoom 1.75
+    transform ocean2place:
+        xalign 0.7
+        yalign 1.0
+        yoffset 950
+        xoffset 125
+        zoom 1.75
+    transform ocean3place:
+        xalign .0 
+        yalign 1.0
+        yoffset 925
+        xoffset -450
+        zoom 1.5
+    transform ocean4place:
+        xalign 1.0 
+        yalign 1.0
+        yoffset 1100
+        xoffset 420
+        zoom 1.5
+    transform ocean1rotate:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 3 rotate -5
+        easeout 4 rotate 0
+        easein 6 rotate 5  
+        easeout 4 rotate 0    
+        repeat
+    transform ocean2rotate:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 4 rotate 5
+        easeout 5 rotate 0
+        easein 4 rotate -5  
+        easeout 3 rotate 0    
+        repeat
+    transform ocean3rotate:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 6 rotate -5
+        easeout 4 rotate 0
+        easein 3 rotate 5  
+        easeout 4 rotate 0    
+        repeat
+    transform ocean4rotate:
+        #anchor (1, 1) transform_anchor 1
+        easein 4 rotate -5
+        easeout 3 rotate 0
+        easein 4 rotate 5  
+        easeout 3 rotate 0    
+        repeat
+
+    transform ocean1offset:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 3 xoffset -50
+        easeout 4 xoffset 0
+        easein 6 xoffset 50
+        easeout 4 xoffset 0    
+        repeat
+    transform ocean2offset:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 6 xoffset -50
+        easeout 5 xoffset 0
+        easein 4 xoffset 50  
+        easeout 3 xoffset 0    
+        repeat
+    transform ocean3offset:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 6 xoffset -50
+        easeout 4 xoffset 0
+        easein 3 xoffset 50  
+        easeout 4 xoffset 0    
+        repeat
+    transform ocean4offset:
+        #anchor (1, 1) transform_anchor 1
+        easein 4 xoffset -50
+        easeout 3 xoffset 0
+        easein 4 xoffset 50  
+        easeout 3 xoffset 0    
+        repeat
+    image flower:
+        "gui/window_icon.png"
+        yalign 0.925
+        xalign 0.9575
+
+    image bg loading:
+        "images/bg/bg_loading.png"
+    image bg beach0:
+        "images/bg/bg_beach_0.png"
+    image bg volley0:
+        "images/bg/bg_volley_0.png"
+
+    image bg inner_monologue:
+        "images/bg/bg_inner_monologue.png"
+
     image bg excitement:
         "images/bg/bg_excitement.png"
         zoom 1.11
@@ -278,6 +362,21 @@ label start:
     scene bg haunting with dissolve
     play hauntloop("audio/m_Mood_Haunting_Loop_V1.wav") fadein 3.0 loop
     $ renpy.music.set_volume(0.25,3.0,"music")
+
+
+
+
+    #
+    show ocean1 at ocean1place, ocean1rotate, ocean1offset
+    show ocean2 at ocean2place, ocean2rotate, ocean2offset
+    show ocean3 at ocean3place, ocean3rotate, ocean3offset
+    show ocean4 at ocean4place, ocean4rotate, ocean4offset
+
+
+
+
+
+
     oc "An eternity, if you catch my drift."
     window hide
     scene bg beach0 with dissolve
