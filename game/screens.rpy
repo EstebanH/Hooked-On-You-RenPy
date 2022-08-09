@@ -124,7 +124,7 @@ screen say(who, what):
     button:
         action Skip()
         if renpy.get_screen("skip_indicator"):
-            unhovered Skip()
+            unhovered Skip() alternate Skip(fast=True, confirm=True)
         else:
             unhovered NullAction()
         xpos 1547
@@ -340,16 +340,28 @@ screen quick_menu():
                     else:
                         action [SetVariable("pullout", True)] 
                 #textbutton _("Back") action Rollback()
-                #textbutton _("History") action ShowMenu('history')
                 #textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-                #textbutton _("Auto") action Preference("auto-forward", "toggle")
-                text _("  ")
-                textbutton _("SAVE") action ShowMenu('save') activate_sound "sounds/sfx_tap.wav"
-                textbutton _("LOAD") action ShowMenu('load') activate_sound "sounds/sfx_tap.wav"
+                null width 20
+                textbutton _("SAVE"):
+                    action [[SetVariable("pullout", True)], ShowMenu('save')]
+                    activate_sound "sounds/sfx_tap.wav"
+                #textbutton _("AUTO"): 
+                #    action [[SetVariable("pullout", True)], Preference("auto-forward", "toggle")]  
+                #    activate_sound "sounds/sfx_tap.wav"
+                textbutton _("LOAD"):
+                    action [[SetVariable("pullout", True)], ShowMenu('load')]
+                    activate_sound "sounds/sfx_tap.wav"
                 #textbutton _("Q.Save") action QuickSave()
                 #textbutton _("Q.Load") action QuickLoad()
-                textbutton _("SETTINGS") action ShowMenu('preferences') activate_sound "sounds/sfx_tap.wav"
-                textbutton _("MAIN MENU") action MainMenu() activate_sound "sounds/sfx_tap.wav"
+                textbutton _("SETTINGS"): 
+                    action [[SetVariable("pullout", True)], ShowMenu('preferences')]
+                    activate_sound "sounds/sfx_tap.wav"
+                textbutton _("MAIN MENU"): 
+                    action [[SetVariable("pullout", True)], MainMenu()] 
+                    activate_sound "sounds/sfx_tap.wav"
+                #textbutton _("HISTORY"): 
+                #    action [[SetVariable("pullout", True)], ShowMenu('history')]  
+                #    activate_sound "sounds/sfx_tap.wav"
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -1184,182 +1196,188 @@ screen preferences():
     tag menu
     use game_menu(_("Preferences")):
         frame:
+            background Image("gui/gui_menu_settings.png")
+            xysize(1920,1080)
             image "gui/gui_settings_icon.png":
                 xsize 382
                 ysize 107
-                xalign 2.15
-                yalign 0.15
-            xysize(774,598)
-            xpadding 20
-            background Image("gui/gui_menu_settings.png")
+                xalign 0.5
+                yalign 0.09
+            image "gui/gui_menu_settings_skull.png":
+                xysize (211, 270)
+                xalign 0.271
+                yalign 0.59
             vbox:
-                xpos 573
-                ypos 134
-                box_wrap True
-                null height (4 * gui.pref_spacing)
+                xalign 0.5
+                yalign 0.3
+                xysize(774,598)
+                null height (2 * gui.pref_spacing)
                 style_prefix "slider"
-
                 vbox:
                     hbox:
                         xalign 1.0
                         if config.has_music:
-                                
-                            label _("MUSIC VOLUME")
+                            label _("MUSIC VOLUME"):
+                                text_color "#1f100b" 
                             null width (gui.pref_spacing)
-                            hbox:
+                            vbox:
+                                xysize(345, 51)
                                 bar value Preference("music volume")
+                                style_prefix "radio"
+                                spacing (gui.pref_spacing)
+                                textbutton _("MUTE"):
+                                    ysize 21
+                                    yalign 0.5
+                                    xalign 0.05
+                                    text_color "#0a9e9a"
+                                    text_size 30
+                                    action Preference("music mute", "toggle")
+                                    activate_sound "sounds/sfx_tap.wav"
 
                     hbox:
                         xalign 1.0
                         if config.has_sound:
-
-                            label _("SFX VOLUME")
+                            label _("SFX VOLUME"):
+                                text_color "#1f100b" 
                             null width (gui.pref_spacing)
-
-                            hbox:
+                            vbox:
+                                xysize(345, 51)
                                 bar value Preference("sound volume")
-
-                                if config.sample_sound:
-                                    textbutton _("Test") action Play("sound", config.sample_sound)
-                            null height gui.pref_spacing
+                                style_prefix "radio"
+                                spacing (gui.pref_spacing)
+                                textbutton _("MUTE"):
+                                    ysize 21
+                                    yalign 0.5
+                                    xalign 0.05
+                                    text_color "#0a9e9a"
+                                    text_size 30
+                                    action Preference("sound mute", "toggle")
+                                    activate_sound "sounds/sfx_tap.wav"
                     hbox:
                         xalign 1.0
                         if config.has_voice:
-
-                            label _("VOICE VOLUME")
+                            label _("VOICE VOLUME"):
+                                text_color "#1f100b" 
                             null width (gui.pref_spacing)
-
-                            hbox:
+                            vbox:
+                                xysize(345, 51)
                                 bar value Preference("voice volume")
-
-                                if config.sample_voice:
-                                    textbutton _("Test") action Play("voice", config.sample_voice)
-                            null height gui.pref_spacing
+                                style_prefix "radio"
+                                spacing (gui.pref_spacing)
+                                textbutton _("MUTE"):
+                                    ysize 21
+                                    yalign 0.5
+                                    xalign 0.05
+                                    text_color "#0a9e9a"
+                                    text_size 30
+                                    action Preference("voice mute", "toggle")
+                                    activate_sound "sounds/sfx_tap.wav"
                     hbox:
                         xalign 1.0
-                        label _("TEXT SPEED")
+                        label _("TEXT SPEED"):
+                            text_color "#1f100b" 
                         null width (gui.pref_spacing)
 
                         bar value Preference("text speed")
                     hbox:
                         xalign 1.0
-                        label _("AUTO SPEED")
+                        label _("AUTO SPEED"):
+                            text_color "#1f100b" 
                         null width (gui.pref_spacing)
 
                         bar value Preference("auto-forward time")
-                hbox:
-                    xalign 1.0
-                    yoffset 10
-                    if renpy.variant("pc") or renpy.variant("web"):
+                    null height (gui.pref_spacing)
+                    hbox:
+                        xalign 1.0
+                        yalign .0
+                        if renpy.variant("pc") or renpy.variant("web"):
+                            vbox:
+                                xsize 387
+                                label _("DISPLAY"):
+                                    text_color "#1f100b" 
+                                    xalign 0.7
+                                null height (gui.pref_spacing)
+                                style_prefix "radio"
+                                vbox:
+                                    xalign 0.75
+                                    textbutton _("WINDOW"):
+                                        text_color "#1f100b"
+                                        text_hover_color "#0a9e9a" 
+                                        xalign 0.0
+                                        text_xalign 1.0
+                                        yoffset 10
+                                        xoffset 100
+                                        text_yoffset -12
+                                        text_xoffset 10
+                                        text_size 30 
+                                        action Preference("display", "window")
+                                        activate_sound "sounds/sfx_tap.wav"
+                                    textbutton _("FULLSCREEN"):
+                                        text_color "#1f100b"
+                                        text_hover_color "#0a9e9a" 
+                                        xalign 0.0
+                                        text_xalign 1.0
+                                        yoffset 10
+                                        xoffset 100
+                                        text_yoffset -12
+                                        text_xoffset 10
+                                        text_size 30  
+                                        action Preference("display", "fullscreen")
+                                        activate_sound "sounds/sfx_tap.wav"
+
                         vbox:
-                            #left_margin 10
+                            xsize 300
                             xalign 1.0
-                            style_prefix "radio"
-                            label _("DISPLAY"):
+                            yalign .0
+                            label _("SKIP"):
                                 text_color "#1f100b" 
-                                xalign 0.85
+                                xalign 0.6
                                 yoffset -5
-                            textbutton _("WINDOW"):
+                            style_prefix "radio"
+                            textbutton _("UNSEEN TEXT"):
                                 text_color "#1f100b"
                                 text_hover_color "#0a9e9a" 
                                 xalign 0.0
                                 text_xalign 1.0
                                 yoffset 10
-                                xoffset 100
+                                xoffset 50
+                                text_yoffset -12
+                                text_xoffset 10
+                                text_size 30
+                                action Preference("skip", "toggle")
+                                activate_sound "sounds/sfx_tap.wav"
+                            textbutton _("AFTER CHOICES"):
+                                text_color "#1f100b"
+                                text_hover_color "#0a9e9a" 
+                                xalign 0.0
+                                text_xalign 1.0
+                                yoffset 10
+                                xoffset 50
+                                text_yoffset -12
+                                text_xoffset 10
+                                text_size 30
+                                action Preference("after choices", "toggle")
+                                activate_sound "sounds/sfx_tap.wav"
+                            textbutton _("TRANSITIONS"):
+                                text_color "#1f100b"
+                                text_hover_color "#0a9e9a" 
+                                xalign 0.0
+                                text_xalign 1.0
+                                yoffset 10
+                                xoffset 50
                                 text_yoffset -12
                                 text_xoffset 10
                                 text_size 30 
-                                action Preference("display", "window")
+                                action InvertSelected(Preference("transitions", "toggle"))
                                 activate_sound "sounds/sfx_tap.wav"
-                            textbutton _("FULLSCREEN"):
-                                text_color "#1f100b"
-                                text_hover_color "#0a9e9a" 
-                                xalign 0.0
-                                text_xalign 1.0
-                                yoffset 10
-                                xoffset 100
-                                text_yoffset -12
-                                text_xoffset 10
-                                text_size 30  
-                                action Preference("display", "fullscreen")
-                                activate_sound "sounds/sfx_tap.wav"
-
-                    vbox:
-                        xalign 1.0
-                        style_prefix "radio"
-                        label _("SKIP"):
-                            text_color "#1f100b" 
-                            xalign 0.6
-                            yoffset -5
-                        textbutton _("UNSEEN TEXT"):
-                            text_color "#1f100b"
-                            text_hover_color "#0a9e9a" 
-                            xalign 0.0
-                            text_xalign 1.0
-                            yoffset 10
-                            xoffset 50
-                            text_yoffset -12
-                            text_xoffset 10
-                            text_size 30
-                            action Preference("skip", "toggle")
-                            activate_sound "sounds/sfx_tap.wav"
-                        textbutton _("AFTER CHOICES"):
-                            text_color "#1f100b"
-                            text_hover_color "#0a9e9a" 
-                            xalign 0.0
-                            text_xalign 1.0
-                            yoffset 10
-                            xoffset 50
-                            text_yoffset -12
-                            text_xoffset 10
-                            text_size 30
-                            action Preference("after choices", "toggle")
-                            activate_sound "sounds/sfx_tap.wav"
-                        textbutton _("TRANSITIONS"):
-                            text_color "#1f100b"
-                            text_hover_color "#0a9e9a" 
-                            xalign 0.0
-                            text_xalign 1.0
-                            yoffset 10
-                            xoffset 50
-                            text_yoffset -12
-                            text_xoffset 10
-                            text_size 30 
-                            action InvertSelected(Preference("transitions", "toggle"))
-                            activate_sound "sounds/sfx_tap.wav"
-                vbox:
-                    xalign -1.0
-                    style_prefix "radio"
-                    if config.has_music:
-                        textbutton _("MUTE"):
-                            text_color "#0a9e9a" 
-                            yoffset 115
-                            text_yoffset -5
-                            text_size 20
-                            action Preference("music mute", "toggle")
-                            activate_sound "sounds/sfx_tap.wav"
-                    if config.has_sound:
-                        textbutton _("MUTE"):
-                            text_color "#0a9e9a" 
-                            yoffset 143
-                            text_yoffset -5
-                            text_size 20
-                            action Preference("sound mute", "toggle")
-                            activate_sound "sounds/sfx_tap.wav"
-                    if config.has_voice:
-                        textbutton _("MUTE"):
-                            text_color "#0a9e9a" 
-                            yoffset 172
-                            text_yoffset -5
-                            text_size 20
-                            action Preference("voice mute", "toggle")
-                            activate_sound "sounds/sfx_tap.wav"
+                
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
+            
             button:
-                xalign 1.55
-                yalign 1.45
+                xalign .5
+                yalign .75
                 action Return()
                 xysize (194, 66)
                 idle_background "gui/gui_button_idle.png"
@@ -1370,11 +1388,6 @@ screen preferences():
                     style "menubutton"
                     size 30
                     outlines [ (1, "#000", absolute(0), absolute(0)) ]
-
-            image "gui/gui_menu_settings_skull.png":
-                xysize (211, 270)
-                xalign 0.85
-                yalign 1.5
         if gui.show_name:
             vbox:
                 yalign 0.98
@@ -1442,7 +1455,6 @@ style check_button:
 
 style check_button_text:
     properties gui.button_text_properties("check_button")
-
 style slider_slider:
     xsize 345
     yoffset 10
@@ -1744,16 +1756,11 @@ screen confirm(message, yes_action, no_action):
                 yalign .5
                 spacing 45
                 label _("[message]"):
-                #label _("Are you sure you want to overwrite this save file?"):
-                #label _("blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah"):
                     style "confirm_prompt"
                     xalign 0.5
                 hbox:
                     xalign 0.5
-                    spacing 75
-
-                    #textbutton _("Yes") action yes_action
-                    #textbutton _("No") action no_action            
+                    spacing 75        
                     button:
                         action yes_action
                         text "YES":
@@ -1761,7 +1768,6 @@ screen confirm(message, yes_action, no_action):
                             size 30
                             xalign 0.5
                             yalign 0.5
-                            #outlines [ (1, "#000", absolute(0), absolute(0)) ]
                     button:
                         action no_action
                         text "NO":
@@ -1769,7 +1775,6 @@ screen confirm(message, yes_action, no_action):
                             size 30
                             xalign 0.5
                             yalign 0.5
-                            #outlines [ (1, "#000", absolute(0), absolute(0)) ]
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
