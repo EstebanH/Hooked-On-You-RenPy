@@ -1743,7 +1743,7 @@ screen confirm(message, yes_action, no_action):
                 xalign .5
                 yalign .5
                 spacing 45
-                label _("{b}[message]{/b}"):
+                label _("[message]"):
                 #label _("Are you sure you want to overwrite this save file?"):
                 #label _("blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah"):
                     style "confirm_prompt"
@@ -1761,7 +1761,7 @@ screen confirm(message, yes_action, no_action):
                             size 30
                             xalign 0.5
                             yalign 0.5
-                            outlines [ (1, "#000", absolute(0), absolute(0)) ]
+                            #outlines [ (1, "#000", absolute(0), absolute(0)) ]
                     button:
                         action no_action
                         text "NO":
@@ -1769,7 +1769,7 @@ screen confirm(message, yes_action, no_action):
                             size 30
                             xalign 0.5
                             yalign 0.5
-                            outlines [ (1, "#000", absolute(0), absolute(0)) ]
+                            #outlines [ (1, "#000", absolute(0), absolute(0)) ]
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
