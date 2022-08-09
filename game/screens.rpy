@@ -973,7 +973,7 @@ screen file_slots(title):
                 ## The grid of file slots.
 
                 grid gui.file_slot_cols gui.file_slot_rows:
-                    style_prefix "slot"
+                    
 
                     xalign 0.5
                     yalign 0.5
@@ -981,93 +981,99 @@ screen file_slots(title):
                     #spacing gui.slot_spacing
 
                     for i in range(gui.file_slot_cols * gui.file_slot_rows):
-                        hbox:
-                            $ slot = i + 1
-                            $ playtime = FileJson(slot, "playtime", empty=0, missing=0) 
-                            $ minutes, seconds = divmod(int(playtime), 60)
-                            $ hours, minutes = divmod(minutes, 60)
-                            button:
-                                if FileLoadable(slot):
-                                    idle_background "gui/gui_file_save_slot_idle.png"
-                                    hover_background "gui/gui_file_save_slot_hover.png"
-                                    selected_background "gui/gui_file_save_slot_select2.png"
-                                    #selected_background "gui/gui_file_save_slot_hover.png"
-                                    selected_hover_background "gui/gui_file_save_slot_hover.png"
-                                    action FileAction(slot)
-                                    xoffset -10
-                                else:
-                                    idle_background "gui/gui_file_save_empty_idle.png"
-                                    hover_background "gui/gui_file_save_empty_hover.png"
-                                    #selected_background "gui/gui_file_save_empty_idle.png"
-                                    #selected_hover_background "gui/gui_file_save_empty_hover.png"
-                                    if title == "Save":
-                                        action FileAction(slot)
-                                    else:
-                                        action NullAction()
-
-                                has hbox
-
-                                add FileScreenshot(slot) xalign 0.0 at saves_rotate
-                                if FileLoadable(slot):
-                                    add "gui/gui_menu_save_pin.png" xoffset -160 yoffset -10 xsize 27 ysize 29
-                                vbox:
-                                    #ypadding 100
+                        $ slot = i + 1
+                        $ playtime = FileJson(slot, "playtime", empty=0, missing=0) 
+                        $ minutes, seconds = divmod(int(playtime), 60)
+                        $ hours, minutes = divmod(minutes, 60)
+                        button:
+                            idle_background None
+                            xoffset 0
+                            yoffset -17
+                            xalign 0.5
+                            yalign 0.5
+                            has hbox
+                            style_prefix "slot"
+                            hbox:
+                                button:
                                     if FileLoadable(slot):
-                                        yalign 0.275
-
-                                        text FileSaveName(slot):
-                                            style "slot_time_text"
-                                            color "eedccb"
-                                            hover_color "#20130f"
-                                            size 37
-                                        spacing 3
+                                        idle_background "gui/gui_file_save_slot_idle.png"
+                                        hover_background "gui/gui_file_save_slot_hover.png"
+                                        selected_background "gui/gui_file_save_slot_select2.png"
+                                        #selected_background "gui/gui_file_save_slot_hover.png"
+                                        selected_hover_background "gui/gui_file_save_slot_hover.png"
+                                        action FileAction(slot)
+                                        xoffset -10
                                     else:
-                                        yalign 0.35
-                                        
-                                    text FileTime(slot, format=_("{#file_time}%m/%d/%Y  %I:%M%p"), empty=_( "NEW FILE" if title == "Save" else "  EMPTY " )):
-                                        style "slot_time_text"
-                                        color "07807f"
-                                        if FileLoadable(slot) == False:
-                                            xoffset 140
-                                            yoffset -10
-                                if FileLoadable(slot):
-                                    vbox:
-                                        xoffset 70
-                                        yalign 0.2
-                                        if hours > 999:
-                                            $ hours = 999
-                                        text "[hours:02d]:[minutes:02d]":
-                                            bold True
-                                            color "000"
-                                            size 60
-                                            yalign 0.2
-                                            text_align 1.0
-                                            xalign 1.0
-                                            at text_alpha
-                                        text "PLAYTIME":
-                                            bold True
-                                            color "000"
-                                            yalign 0.2
-                                            text_align 1.0
-                                            xalign 1.0
-                                            at text_alpha
+                                        idle_background "gui/gui_file_save_empty_idle.png"
+                                        hover_background "gui/gui_file_save_empty_hover.png"
+                                        #selected_background "gui/gui_file_save_empty_idle.png"
+                                        #selected_hover_background "gui/gui_file_save_empty_hover.png"
+                                        if title == "Save":
+                                            action FileAction(slot)
+                                        else:
+                                            action NullAction()
 
-                                    #text FileSaveName(slot):
-                                    #    style "slot_name_text"
+                                    has hbox
 
-                                key "save_delete" action FileDelete(slot)
-                                if FileLoadable(slot):
-                                    button:
-                                        xysize (34,49)
-                                        action FileDelete(slot)
-                                        yalign 0.25
-                                        xalign 1.0
-                                        xoffset 165
-                                        yoffset 5
-                                        idle_background "gui/gui_file_delete_idle.png"
-                                        hover_background "gui/gui_file_delete_hover.png"
-                                        #hovered ShowTransient("the_img5", img="gui/window_icon.png") unhovered Hide("the_img5")
-                                        selected_background "gui/gui_file_delete_selected.png"
+                                    add FileScreenshot(slot) xalign 0.0 at saves_rotate
+                                    if FileLoadable(slot):
+                                        add "gui/gui_menu_save_pin.png" xoffset -160 yoffset -10 xsize 27 ysize 29
+                                    vbox:  
+                                        #ypadding 100
+                                        if FileLoadable(slot):
+                                            yalign 0.275
+
+                                            text FileSaveName(slot):
+                                                style "slot_time_text"
+                                                color "eedccb"
+                                                hover_color "#20130f"
+                                                size 37
+                                            spacing 3
+                                        else:
+                                            yalign 0.35
+                                            
+                                        text FileTime(slot, format=_("{#file_time}%m/%d/%Y  %I:%M%p"), empty=_( "NEW FILE" if title == "Save" else "  EMPTY " )):
+                                            style "slot_time_text"
+                                            color "07807f"
+                                            if FileLoadable(slot) == False:
+                                                xoffset 140
+                                                yoffset -10
+                                    if FileLoadable(slot):
+                                        vbox:
+                                            xoffset 70
+                                            yalign 0.2
+                                            if hours > 999:
+                                                $ hours = 999
+                                            text "[hours:02d]:[minutes:02d]":
+                                                bold True
+                                                color "000"
+                                                size 60
+                                                yalign 0.2
+                                                text_align 1.0
+                                                xalign 1.0
+                                                at text_alpha
+                                            text "PLAYTIME":
+                                                bold True
+                                                color "000"
+                                                yalign 0.2
+                                                text_align 1.0
+                                                xalign 1.0
+                                                at text_alpha
+
+                                        #text FileSaveName(slot):
+                                        #    style "slot_name_text"
+
+                                    key "save_delete" action FileDelete(slot)
+                            if FileLoadable(slot):
+                                button:
+                                    xysize (34,49)
+                                    action FileDelete(slot)
+                                    yalign 0.5
+                                    yoffset -3
+                                    idle_background "gui/gui_file_delete_idle.png"
+                                    hover_background "gui/gui_file_delete_hover.png"
+                                    #hovered ShowTransient("the_img5", img="gui/window_icon.png") unhovered Hide("the_img5")
+                                    selected_background "gui/gui_file_delete_selected.png"
                 ## Buttons to access other pages.
                 hbox:
                     style_prefix "page"
