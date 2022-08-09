@@ -462,7 +462,8 @@ label naming:
 # The game starts here.
 label start:
     #image snow = SnowBlossom("particle_dot.png", count=100)
-    $ mc_name = "Bill"
+    $ mc_name = "PlayerName"
+    $ save_name = mc_name
     $ quick_menu = False
     
     scene bg warmdark
@@ -487,6 +488,9 @@ label start:
         while name == "":
             renpy.jump("naming")
         name = name.strip() or "Bill"
+        mc_name = name
+        save_name = name
+
     hide screen button_input_hacky
     scene bg loading with dissolve
     show flower at fakeload
@@ -494,7 +498,6 @@ label start:
     scene bg beach0 with Dissolve(1.0)
     
     $ quick_menu = True
-    $ mc_name = name
     mc "*cough* *cough* *cough*"
     nrr "You wake up on the beach, soaking wet, saltwater stinging the inside of your throat, as if you'd nearly drowned."
     nrr "Water falls from your mouth as you open it to gasp for air."

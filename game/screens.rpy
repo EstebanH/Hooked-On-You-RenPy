@@ -667,13 +667,14 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     style_prefix "game_menu"
 
-    if main_menu:
-        add gui.main_menu_background
-    else:
-        add gui.game_menu_background
+    #if main_menu:
+    #    add gui.main_menu_background
+    #else:
+    #    add gui.game_menu_background
 
     frame:
         style "game_menu_outer_frame"
+        background None
 
         hbox:
 
@@ -682,6 +683,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
                 style "game_menu_navigation_frame"
 
             frame:
+                background None
                 style "game_menu_content_frame"
 
                 if scroll == "viewport":
@@ -717,14 +719,31 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                     transclude
 
-    use navigation
+    #use navigation
 
-    textbutton _("Return"):
-        style "return_button"
-
+    #textbutton _("Return"):
+    #    style "return_button"
+    #
+    #    action Return()
+    
+    button:
+        xalign 0.5
+        yalign 0.9375
         action Return()
+        xysize (194, 66)
+        idle_background "gui/gui_button_idle.png"
+        hover_background "gui/gui_button_hover.png"
+        selected_background "gui/gui_button_select.png"
+        has hbox
+        text "CLOSE":
+            xalign 0.5
+            yalign 0.5
+            offset (35, 8)
+            style "menubutton"
+            size 30
+            outlines [ (1, "#000", absolute(0), absolute(0)) ]
 
-    label title
+    #label title
 
     if main_menu:
         key "game_menu" action ShowMenu("main_menu")
@@ -745,18 +764,18 @@ style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
     bottom_padding 45
-    top_padding 180
+    top_padding 0
 
     background "gui/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
-    xsize 420
+    xsize 0
     yfill True
 
 style game_menu_content_frame:
-    left_margin 60
-    right_margin 30
-    top_margin 15
+    left_margin 0
+    right_margin 0
+    top_margin 0
 
 style game_menu_viewport:
     xsize 1380
@@ -869,6 +888,10 @@ screen load():
 
     use file_slots(_("Load"))
 
+define config.has_autosave = False
+define config.has_quicksave = False
+define config.autosave_on_quit = False
+define config.autosave_on_choice = False
 define gui.file_slot_cols = 1
 define gui.file_slot_rows = 3
 define gui.slot_button_width = 1041
@@ -879,104 +902,219 @@ define gui.slot_button_borders = Borders(15, 15, 15, 15)
 # angled at 9 degrees
 
 transform saves_rotate():
-    anchor (0, 0) transform_anchor 1
+    #anchor (0, 0) transform_anchor 1
     rotate -9
-    xoffset -169
-    yoffset 36
+    xoffset -8
+    yoffset -55
 
+image nav_previous_inactive:
+    im.Flip("gui/gui_menu_next_inactive.png", horizontal=True) 
+
+image nav_previous_idle:
+    im.Flip("gui/gui_menu_next_idle.png", horizontal=True) 
+
+image nav_previous_hover:
+    im.Flip("gui/gui_menu_next_hover.png", horizontal=True) 
+
+default playtime = 0
+
+init 2 python:
+
+    def save_playtime(d):
+        renpy.store.playtime += renpy.get_game_runtime()
+        renpy.clear_game_runtime()
+        d["playtime"] = renpy.store.playtime
+
+    config.save_json_callbacks = [save_playtime]
+
+transform text_alpha:
+    alpha 0.4
 screen file_slots(title):
-
     default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
 
-    #use game_menu(title):
-    frame:
-        if title == "Save":
-            image "gui/gui_file_save_icon.png":
-                xsize 224
-                ysize 109
-                xalign 0.5
-                yalign 0.09
-        if title == "Load":
-            image "gui/gui_file_load_icon.png":
-                xsize 224
-                ysize 109
-                xalign 0.5
-                yalign 0.09
-        xsize 1920
-        ysize 1080
-        background Image("gui/game_menu.png")
-        fixed:
-            xsize 1188
-            ysize 772
-            xpos 366
-            ypos 141
-            ## This ensures the input will get the enter event before any of the
-            ## buttons do.
-            order_reverse True
+    use game_menu(title):
+        frame:
+            if title == "Save":
+                image "gui/gui_file_save_icon.png":
+                    xsize 224
+                    ysize 109
+                    xalign 0.5
+                    yalign 0.09
+            if title == "Load":
+                image "gui/gui_file_load_icon.png":
+                    xsize 224
+                    ysize 109
+                    xalign 0.5
+                    yalign 0.09
+            xsize 1920
+            ysize 1080
+            background Image("gui/game_menu.png")
+            fixed:
+                xsize 1188
+                ysize 772
+                xpos 366
+                ypos 141
+                ## This ensures the input will get the enter event before any of the
+                ## buttons do.
+                order_reverse True
 
-            ## The page name, which can be edited by clicking on a button.
-            #button:
-            #    style "page_label"
-            #
-            #    key_events True
-            #    xalign 0.5
-            #    action page_name_value.Toggle()
-            #
-            #    input:
-            #        style "page_label_text"
-            #        value page_name_value
+                ## The page name, which can be edited by clicking on a button.
+                #button:
+                #    style "page_label"
+                #
+                #    key_events True
+                #    xalign 0.5
+                #    action page_name_value.Toggle()
+                #
+                #    input:
+                #        style "page_label_text"
+                #        value page_name_value
 
-            ## The grid of file slots.
+                ## The grid of file slots.
 
-            grid gui.file_slot_cols gui.file_slot_rows:
-                style_prefix "slot"
+                grid gui.file_slot_cols gui.file_slot_rows:
+                    style_prefix "slot"
 
-                xalign 0.5
-                yalign 0.5
+                    xalign 0.5
+                    yalign 0.5
 
-                spacing gui.slot_spacing
+                    #spacing gui.slot_spacing
 
-                for i in range(gui.file_slot_cols * gui.file_slot_rows):
+                    for i in range(gui.file_slot_cols * gui.file_slot_rows):
+                        hbox:
+                            $ slot = i + 1
+                            $ playtime = FileJson(slot, "playtime", empty=0, missing=0) 
+                            $ minutes, seconds = divmod(int(playtime), 60)
+                            $ hours, minutes = divmod(minutes, 60)
+                            button:
+                                if FileLoadable(slot):
+                                    idle_background "gui/gui_file_save_slot_idle.png"
+                                    hover_background "gui/gui_file_save_slot_hover.png"
+                                    selected_background "gui/gui_file_save_slot_select2.png"
+                                    #selected_background "gui/gui_file_save_slot_hover.png"
+                                    selected_hover_background "gui/gui_file_save_slot_hover.png"
+                                    action FileAction(slot)
+                                    xoffset -10
+                                else:
+                                    idle_background "gui/gui_file_save_empty_idle.png"
+                                    hover_background "gui/gui_file_save_empty_hover.png"
+                                    #selected_background "gui/gui_file_save_empty_idle.png"
+                                    #selected_hover_background "gui/gui_file_save_empty_hover.png"
+                                    if title == "Save":
+                                        action FileAction(slot)
+                                    else:
+                                        action NullAction()
 
-                    $ slot = i + 1
+                                has hbox
 
+                                add FileScreenshot(slot) xalign 0.0 at saves_rotate
+                                if FileLoadable(slot):
+                                    add "gui/gui_menu_save_pin.png" xoffset -160 yoffset -10 xsize 27 ysize 29
+                                vbox:
+                                    #ypadding 100
+                                    if FileLoadable(slot):
+                                        yalign 0.275
+
+                                        text FileSaveName(slot):
+                                            style "slot_time_text"
+                                            color "eedccb"
+                                            hover_color "#20130f"
+                                            size 37
+                                        spacing 3
+                                    else:
+                                        yalign 0.35
+                                        
+                                    text FileTime(slot, format=_("{#file_time}%m/%d/%Y  %I:%M%p"), empty=_( "NEW FILE" if title == "Save" else "  EMPTY " )):
+                                        style "slot_time_text"
+                                        color "07807f"
+                                        if FileLoadable(slot) == False:
+                                            xoffset 140
+                                            yoffset -10
+                                if FileLoadable(slot):
+                                    vbox:
+                                        xoffset 70
+                                        yalign 0.2
+                                        if hours > 999:
+                                            $ hours = 999
+                                        text "[hours:02d]:[minutes:02d]":
+                                            bold True
+                                            color "000"
+                                            size 60
+                                            yalign 0.2
+                                            text_align 1.0
+                                            xalign 1.0
+                                            at text_alpha
+                                        text "PLAYTIME":
+                                            bold True
+                                            color "000"
+                                            yalign 0.2
+                                            text_align 1.0
+                                            xalign 1.0
+                                            at text_alpha
+
+                                    #text FileSaveName(slot):
+                                    #    style "slot_name_text"
+
+                                key "save_delete" action FileDelete(slot)
+                                if FileLoadable(slot):
+                                    button:
+                                        xysize (34,49)
+                                        action FileDelete(slot)
+                                        yalign 0.25
+                                        xalign 1.0
+                                        xoffset 165
+                                        yoffset 5
+                                        idle_background "gui/gui_file_delete_idle.png"
+                                        hover_background "gui/gui_file_delete_hover.png"
+                                        #hovered ShowTransient("the_img5", img="gui/window_icon.png") unhovered Hide("the_img5")
+                                        selected_background "gui/gui_file_delete_selected.png"
+                ## Buttons to access other pages.
+                hbox:
+                    style_prefix "page"
+
+                    xalign 0.5
+                    yalign .972
+
+                    spacing gui.page_spacing 
+
+                    #textbutton _("<") action FilePagePrevious()
+                    imagebutton: 
+                        #idle "nav_previous"
+                        insensitive "nav_previous_inactive"
+                        idle "nav_previous_idle"
+                        hover "nav_previous_hover"
+                        action FilePagePrevious()
+                    if config.has_autosave:
+                        textbutton _("{#auto_page}A") action FilePage("auto")
+
+                    if config.has_quicksave:
+                        textbutton _("{#quick_page}Q") action FilePage("quick")
                     button:
-                        action FileAction(slot)
+                        style "page_label"
+                        #text FilePageName()
+                        #key_events True
+                        xalign 0.5
+                        #action page_name_value.Toggle()
+                        xpadding 30
+                        #style "slot_time_text"
+                        text FilePageName():
+                            color "eedccb"
+                            hover_color "#20130f"
+                            size 37
+                            yoffset -3
+                    
+                        #input:
+                        #    style "page_label_text"
+                        #    value page_name_value
+                    ## range(1, 10) gives the numbers from 1 to 9.
+                    #for page in range(1, 10):
+                    #    textbutton "[page]" action FilePage(page)
 
-                        has vbox
-
-                        add FileScreenshot(slot) xalign 0.5 at saves_rotate
-
-                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
-                            style "slot_time_text"
-
-                        text FileSaveName(slot):
-                            style "slot_name_text"
-
-                        key "save_delete" action FileDelete(slot)
-
-            ## Buttons to access other pages.
-            hbox:
-                style_prefix "page"
-
-                xalign 0.5
-                yalign 1.0
-
-                spacing gui.page_spacing
-
-                textbutton _("<") action FilePagePrevious()
-
-                if config.has_autosave:
-                    textbutton _("{#auto_page}A") action FilePage("auto")
-
-                if config.has_quicksave:
-                    textbutton _("{#quick_page}Q") action FilePage("quick")
-
-                ## range(1, 10) gives the numbers from 1 to 9.
-                for page in range(1, 10):
-                    textbutton "[page]" action FilePage(page)
-
-                textbutton _(">") action FilePageNext()
+                    imagebutton: 
+                        insensitive "gui/gui_menu_next_inactive.png"
+                        idle "gui/gui_menu_next_idle.png"
+                        hover "gui/gui_menu_next_hover.png"
+                        action FilePageNext()
 
 
 style page_label is gui_label
@@ -1006,14 +1144,15 @@ style page_button_text:
 
 style slot_button:
     properties gui.button_properties("slot_button")
-    idle_background "gui/gui_file_save_slot_idle.png"
-    hover_background "gui/gui_file_save_empty_hover.png"
-    selected_background "gui/gui_file_save_slot_selected.png"
-    selected_idle_background "gui/gui_file_save_slot_idle.png"
-    selected_hover_background "gui/gui_file_save_slot_hover.png"
+    xsize 1045
+    ysize 214
+
 
 style slot_button_text:
     properties gui.button_text_properties("slot_button")
+    bold True
+    size 30
+    xalign 0.0
 
 
 ## Preferences screen ##########################################################
