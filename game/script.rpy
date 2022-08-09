@@ -13,7 +13,6 @@ define ts = Character("THE SPIRIT", window_style="window_killer", color="#d94464
 define tt = Character("THE TRAPPER", window_style="window_killer", color="#335480", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
 define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ])
 
-default name = ""
 
 
 init:
@@ -224,240 +223,107 @@ init:
                 repeat
 
 init python:
+    fadeconfirm = True
     config.character_id_prefixes.append('namebox')
     config.character_id_prefixes.append('window')
     def change_name(newstring):                                              
     #Functions that allow us to store the input
-        store.name = newstring
+        store.user_input = newstring
 
-screen button_input_hacky():
-    #Screen variable for input
-    default input_on = False
-    # add "images/overlay.png"    
-    #Prevents user from accidentally clicking out of the screen                                                
-    modal True                     
-    frame:
-        style_prefix "inputname"
-        has vbox:
-            text "Welcome to your dream vacation!" xoffset 25 xalign 0.5 bold True size 25 color "#2c948e" outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
-            text "" size 25
-            text "Before we get started, what shall we" xoffset 25 xalign 0.5 bold True size 25 color "#2e1d15" 
-            text "call you?" xoffset 25 xalign 0.5 bold True size 25 color "#2e1d15"
-            text ""  size 25
-            window:
-                id "input_name_box"
-            text "" size 25
+image buttonidlefade:
+    im.MatrixColor('gui/gui_button_idle.png', im.matrix.opacity(.5))
+transform textalpha: 
+    alpha 0.5
 
-    frame:
-        yoffset -20
-        style_prefix "inputbox"
+default user_input = ""
+
+screen name_input():
+    default input_on = False  
+    style_prefix "userinputname"
+    fixed:
         button:
-            #Only activate input after the user has clicked the button
-            if input_on:   
-                #$ renpy.input("",default=name, allow="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", length=8, screen=u'button_input')                                 
-                input default name length 8 allow "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 " changed change_name color "#323232" bold True xalign 0.5 yalign 0.5575 xoffset 25      
-                action SetScreenVariable("input_on", False)    
-                #Pressing enter turns input back off
-            else:
-                if name == "":
-                    text "ENTER YOUR NAME..." color "#bfaea2" bold True italic True xalign 0.5 yalign 0.5575 xoffset 25 size 27 yoffset -1
-                else:
-                    text name bold True xalign 0.5 yalign 0.5575 xoffset 25       
-                #Activate input
-                action SetScreenVariable("input_on", True)  
-            if name == "":
-                imagebutton: 
-                    xalign 0.5 
-                    yalign 0.625
-                    xoffset 25
-                    idle "gui/gui_button_hover.png"
-                    action SetScreenVariable("input_on", False)
-                text _("CONFIRM") color "#e8d8cd" yalign 0.62 size 25 outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
-            else:
-                imagebutton:
-                    xalign 0.5 
-                    yalign 0.625
-                    xoffset 25
-                    idle "gui/gui_button_hover.png"
-                    selected "gui/gui_button_idle.png"
-                    selected_idle "gui/gui_button_idle.png"
-                    selected_hover "gui/gui_button_selected.png"
-                    hover "gui/gui_button_selected.png"
-                    action [Hide("button_input"), Return()]
-                text _("CONFIRM") color "#e8d8cd" yalign 0.62 size 25 outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]   
+            xysize(1920,1080)  
+            action ToggleScreenVariable("input_on")   
+        add "gui/gui_input_name_frame.png" xalign .5 yalign .5  
+        frame:
+            xoffset 35
+            yoffset 10       
+            vbox:
+                text _("Welcome to your dream vacation!"):
+                    color "#2c948e" 
+                    outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
+                text "Before we get started, what shall we call you?":
+                    size 25
+                frame:
+                    xysize(464,49)  
+                    background "gui/gui_input_name_textbox.png"
+                    if input_on:                                 
+                        input default user_input length 8 allow "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 " changed change_name          
+                    else:
+                        if user_input == "":
+                            text "ENTER YOUR NAME...": 
+                                color "#b1a195"
+                                italic True
+                            $ fadeconfirm = True
+                        else:
+                            text user_input: 
+                                color "#323232" 
+                            $ fadeconfirm = False
+                button:
+                    xysize (194, 66)
+                    if fadeconfirm or input_on:
+                        text "CONFIRM":
+                            style "userinputname_button"
+                            at textalpha
+                        idle_background "buttonidlefade"
+                        hover_background "buttonidlefade"
+                        selected_background "buttonidlefade"
+                        action ToggleScreenVariable("input_on")  
+                    else:
+                        text "CONFIRM":
+                            style "userinputname_button"
+                        idle_background "gui/gui_button_idle.png"
+                        hover_background "gui/gui_button_hover.png"
+                        selected_background "gui/gui_button_selected.png"
+                        action Return()
+style userinputname_vbox:
+    spacing 15
+    yalign .5  
 
-style inputbox_frame:
-    background None
-    ysize 1080
-    xsize 1920
+style userinputname_frame:
+    xysize(571,400)  
+    yalign .5  
+    xalign .5
+    background None   
 
-style inputbox_button:
-    ysize 1080
-    xsize 1920
-    xalign 0.5 
-    yalign 0.5 
+style userinputname_button:
+    size 25
+    xalign 0.5
+    yalign 0.5
+    outlines [ (1, "#000", absolute(0), absolute(0)) ]
 
-style inputbox_text:
+style userinputname_input:
+    size 25
+    xalign 0.5
+    yalign 0.5
     color "#323232" 
-    bold True 
-    xalign 0.5 
-    yalign 0.5575 
-    xoffset 25 
-
-style inputbox_input:
-    caret "inputname_caret"   
+    bold True
+    caret "inputname_caret" 
 
 image inputname_caret:                                              
     Text("|", color="#323232",size=25)
-    ypos 1
+    ypos -3
     linear 0.5 alpha 0.0
     linear 0.5 alpha 1.0
     repeat
 
-style inputname_button_text:
-    size 20
-    hover_color "#323232"
-    idle_color "#b6a699"
-    selected_color "#323232"
-
-style inputname_window:
-    ysize 49
-    xsize 464
-    xoffset 25 
-    yoffset -20
-    xalign 0.5
-    xfill True
-    background Image("gui/gui_input_name_textbox.png", xalign=0.5, yalign=1.0)
-
-style inputname_text:
-    xoffset 25 
-    xalign 0.5 
-    bold True 
-    size 25 
-    color "#2e1d15"
-
-style inputname_frame:
-    background Frame("gui/gui_input_name_frame.png")
-    xpadding 195
-    top_padding 90
-    bottom_padding 40
+style userinputname_text:
+    size 29
+    color "#2e1d15"   
     xalign 0.5
     yalign 0.5
-    ysize 420
-    xsize 921
-
-screen button_input_nonhacky():
-    #Screen variable for input
-    default input_on = False
-    # add "images/overlay.png"    
-    #Prevents user from accidentally clicking out of the screen                                                
-    modal True              
-    zorder 100                                                    
-    key "a" action NullAction()
-    key "b" action NullAction()
-    key "c" action NullAction()
-    key "d" action NullAction()
-    key "e" action NullAction()
-    key "f" action NullAction()
-    key "g" action NullAction()
-    key "h" action NullAction()
-    key "i" action NullAction()
-    key "j" action NullAction()
-    key "k" action NullAction()
-    key "m" action NullAction()
-    key "n" action NullAction()
-    key "o" action NullAction()
-    key "p" action NullAction()
-    key "q" action NullAction()
-    key "r" action NullAction()
-    key "s" action NullAction()
-    key "t" action NullAction()
-    key "u" action NullAction()
-    key "v" action NullAction()
-    key "w" action NullAction()
-    key "x" action NullAction()
-    key "y" action NullAction()
-    key "z" action NullAction()
-    frame:
-        background Frame("gui/gui_input_name_frame.png")
-        xpadding 256
-        top_padding 90
-        bottom_padding 40
-        xalign 0.5
-        yalign 0.5
-        has vbox:
-            text "Welcome to your dream vacation!" xalign 0.5 bold True size 25 color "#2c948e" outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
-            text "" size 25
-            text "Before we get started, what shall we" xalign 0.5 bold True size 25 color "#2e1d15" 
-            text "call you?" xalign 0.5 bold True size 25 color "#2e1d15"
-            text ""  size 25
-            xalign 0.5
-        button style_prefix "namebox":
-            #Only activate input after the user has clicked the button
-            if input_on:   
-                #$ renpy.input("",default=name, allow="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", length=8, screen=u'button_input')                                 
-                input default name length 8 allow "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 " changed change_name color "#323232" bold True xalign 0.5        
-                action SetScreenVariable("input_on", False)    
-                #Pressing enter turns input back off
-            else:
-                if name == "":
-                    text "ENTER YOUR NAME..." bold True xalign 0.5
-                else:
-                    text name color "#323232" bold True xalign 0.5        
-                #Activate input
-                action SetScreenVariable("input_on", True)     
-            xalign 0.5 
-        text "" size 25
-        if name == "":
-            imagebutton:
-                idle "gui/gui_button_hover.png"
-                xalign 0.5
-                action SetScreenVariable("input_on", False)
-            text _("CONFIRM") size 25 xalign 0.5 yoffset -50 outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
-        else:
-            imagebutton:
-                idle "gui/gui_button_hover.png"
-                selected "gui/gui_button_idle.png"
-                selected_idle "gui/gui_button_idle.png"
-                selected_hover "gui/gui_button_selected.png"
-                hover "gui/gui_button_selected.png"
-                xalign 0.5
-                action [Hide("button_input"), Return()]
-            text _("CONFIRM") size 25 xalign 0.5 yoffset -50 outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
-    
-image namebox_caret:                                                                
- #This is for that flashing line thingy next to your input :>
-    Text("|", color="#323232",size=20)
-    ypos -2
-    linear 0.5 alpha 0.0
-    linear 0.5 alpha 1.0
-    repeat
-style namebox_button:                                                               
- #Some styles..
-    background Frame("gui/gui_input_name_textbox.png")
-    xsize 430
-    xpadding 10
-style namebox_text:
-    size 20
-    hover_color "#323232"
-    idle_color "#b6a699"
-    selected_color "#323232"
-style namebox_input:
-    size 20
-    caret "namebox_caret"   
-style namebox_button_input:
-    size 20
-    caret "namebox_caret"
-
-# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define e = Character("Eileen")
-label naming:
-    show screen button_input_hacky
-
+    text_align 0.5
+    bold True
 
 # The game starts here.
 label start:
@@ -482,16 +348,14 @@ label start:
     show warmdark_effect1 at rotatewarmdark
     show warmdark_effect2 at twinkle
 
-    show screen button_input_hacky
-    pause
-    python:
-        while name == "":
-            renpy.jump("naming")
-        name = name.strip() or "Bill"
-        mc_name = name
-        save_name = name
+    while user_input == "":
+        call screen name_input
 
-    hide screen button_input_hacky
+    python:
+        user_input = user_input.strip() or "Bill"
+        mc_name = user_input
+        save_name = user_input
+
     scene bg loading with dissolve
     show flower at fakeload
     pause 2
