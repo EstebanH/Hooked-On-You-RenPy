@@ -725,23 +725,23 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     #    style "return_button"
     #
     #    action Return()
-    
-    button:
-        xalign 0.5
-        yalign 0.9375
-        action Return()
-        xysize (194, 66)
-        idle_background "gui/gui_button_idle.png"
-        hover_background "gui/gui_button_hover.png"
-        selected_background "gui/gui_button_select.png"
-        has hbox
-        text "CLOSE":
+    if not title == "Preferences":
+        button:
             xalign 0.5
-            yalign 0.5
-            offset (35, 8)
-            style "menubutton"
-            size 30
-            outlines [ (1, "#000", absolute(0), absolute(0)) ]
+            yalign 0.9375
+            action Return()
+            xysize (194, 66)
+            idle_background "gui/gui_button_idle.png"
+            hover_background "gui/gui_button_hover.png"
+            selected_background "gui/gui_button_select.png"
+            has hbox
+            text "CLOSE":
+                xalign 0.5
+                yalign 0.5
+                offset (35, 8)
+                style "menubutton"
+                size 30
+                outlines [ (1, "#000", absolute(0), absolute(0)) ]
 
     #label title
 
@@ -821,42 +821,42 @@ screen about():
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    #use game_menu(_("About"), scroll="viewport"):
+    use game_menu(_("About")):
 
     #style_prefix "about"
-    frame:
-        xsize 1920
-        ysize 1080
-        background Image("bg/bg_credits.png")
-        vbox:
-            xalign 0.5
-            image "gui/gui_credits_dbd_logo.png":
-                xsize 795
-                ysize 431
-                xalign 0.5
-                yalign 0.1
-            hbox:
-                xalign 0.5
-                image "gui/slider/horizontal_idle_thumb.png" xsize 47 ysize 51 xalign 0.0 yoffset -10 xoffset -5
-                null width (gui.pref_spacing)
-                text "DEVELOPMENT" bold True size 30 xalign 0.5 color "#0a9e9a"
-                null width (gui.pref_spacing)
-                image "gui/slider/horizontal_idle_thumb.png" xsize 47 ysize 51 xalign 1.0 yoffset -10
-            image "gui/gui_credits_logo_psyop.png":
-                xsize 321
-                ysize 330
-                xalign 0.5
+        frame:
+            xsize 1920
+            ysize 1080
+            background Image("bg/bg_credits.png")
             vbox:
-                yoffset -100
-                text "[config.name!t]" color "#0a9e9a"
-                text _("Version [config.version!t]\n")
+                xalign 0.5
+                image "gui/gui_credits_dbd_logo.png":
+                    xsize 795
+                    ysize 431
+                    xalign 0.5
+                    yalign 0.1
+                hbox:
+                    xalign 0.5
+                    image "gui/slider/horizontal_idle_thumb.png" xsize 47 ysize 51 xalign 0.0 yoffset -10 xoffset -5
+                    null width (gui.pref_spacing)
+                    text "DEVELOPMENT" bold True size 30 xalign 0.5 color "#0a9e9a"
+                    null width (gui.pref_spacing)
+                    image "gui/slider/horizontal_idle_thumb.png" xsize 47 ysize 51 xalign 1.0 yoffset -10
+                image "gui/gui_credits_logo_psyop.png":
+                    xsize 321
+                    ysize 330
+                    xalign 0.5
+                vbox:
+                    yoffset -170
+                    text "[config.name!t]" color "#0a9e9a"
+                    text _("Version [config.version!t]\n")
 
-                ## gui.about is usually set in options.rpy.
-                if gui.about:
-                    text "[gui.about!t]\n" color "#0a9e9a"
+                    ## gui.about is usually set in options.rpy.
+                    if gui.about:
+                        text "[gui.about!t]\n" color "#0a9e9a"
 
-                text _("Made with {a=https://www.renpy.org/ }{color=#0a9e9a}Ren'Py{/color}{/a} [renpy.version_only].\n\n[renpy.license!t]")
-    key [ 'mouseup_1', 'K_RETURN', 'K_KP_ENTER', 'K_SELECT', 'K_ESCAPE', 'K_MENU', 'K_PAUSE', 'mouseup_3','K_BACKSPACE' ] action Return()
+                    text _("Made with {a=https://www.renpy.org/ }{color=#0a9e9a}Ren'Py{/color}{/a} [renpy.version_only].\n\n[renpy.license!t]")
+        #key [ 'mouseup_1', 'K_RETURN', 'K_KP_ENTER', 'K_SELECT', 'K_ESCAPE', 'K_MENU', 'K_PAUSE', 'mouseup_3','K_BACKSPACE' ] action Return()
 
 style about_label is gui_label
 style about_label_text is gui_label_text
@@ -1099,9 +1099,9 @@ screen file_slots(title):
                         #style "slot_time_text"
                         text FilePageName():
                             color "eedccb"
-                            hover_color "#20130f"
                             size 37
-                            yoffset -3
+                            yoffset -4
+                            outlines [ (2, "#187471", absolute(0), absolute(0)) ]
                     
                         #input:
                         #    style "page_label_text"
@@ -1164,206 +1164,206 @@ style slot_button_text:
 
 screen preferences():
     tag menu
-    #use game_menu(_("Preferences"), scroll="viewport"):
-    frame:
-        image "gui/gui_settings_icon.png":
-            xsize 382
-            ysize 107
-            xalign 2.15
-            yalign 0.15
-        xsize 774
-        ysize 598
-        xpadding 20
-        background Image("gui/gui_menu_settings.png")
-        vbox:
-            xpos 573
-            ypos 134
-            box_wrap True
-            null height (4 * gui.pref_spacing)
-            style_prefix "slider"
-
+    use game_menu(_("Preferences")):
+        frame:
+            image "gui/gui_settings_icon.png":
+                xsize 382
+                ysize 107
+                xalign 2.15
+                yalign 0.15
+            xsize 774
+            ysize 598
+            xpadding 20
+            background Image("gui/gui_menu_settings.png")
             vbox:
-                hbox:
-                    xalign 1.0
-                    if config.has_music:
-                            
-                        label _("MUSIC VOLUME")
+                xpos 573
+                ypos 134
+                box_wrap True
+                null height (4 * gui.pref_spacing)
+                style_prefix "slider"
+
+                vbox:
+                    hbox:
+                        xalign 1.0
+                        if config.has_music:
+                                
+                            label _("MUSIC VOLUME")
+                            null width (gui.pref_spacing)
+                            hbox:
+                                bar value Preference("music volume")
+
+                    hbox:
+                        xalign 1.0
+                        if config.has_sound:
+
+                            label _("SFX VOLUME")
+                            null width (gui.pref_spacing)
+
+                            hbox:
+                                bar value Preference("sound volume")
+
+                                if config.sample_sound:
+                                    textbutton _("Test") action Play("sound", config.sample_sound)
+                            null height gui.pref_spacing
+                    hbox:
+                        xalign 1.0
+                        if config.has_voice:
+
+                            label _("VOICE VOLUME")
+                            null width (gui.pref_spacing)
+
+                            hbox:
+                                bar value Preference("voice volume")
+
+                                if config.sample_voice:
+                                    textbutton _("Test") action Play("voice", config.sample_voice)
+                            null height gui.pref_spacing
+                    hbox:
+                        xalign 1.0
+                        label _("TEXT SPEED")
                         null width (gui.pref_spacing)
-                        hbox:
-                            bar value Preference("music volume")
 
-                hbox:
-                    xalign 1.0
-                    if config.has_sound:
-
-                        label _("SFX VOLUME")
+                        bar value Preference("text speed")
+                    hbox:
+                        xalign 1.0
+                        label _("AUTO SPEED")
                         null width (gui.pref_spacing)
 
-                        hbox:
-                            bar value Preference("sound volume")
-
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
-                        null height gui.pref_spacing
+                        bar value Preference("auto-forward time")
                 hbox:
                     xalign 1.0
-                    if config.has_voice:
+                    yoffset 10
+                    if renpy.variant("pc") or renpy.variant("web"):
+                        vbox:
+                            #left_margin 10
+                            xalign 1.0
+                            style_prefix "radio"
+                            label _("DISPLAY"):
+                                text_bold True
+                                text_color "#1f100b" 
+                                xalign 0.85
+                                yoffset -5
+                            textbutton _("WINDOW"):
+                                text_color "#1f100b"
+                                text_hover_color "#0a9e9a" 
+                                xalign 0.0
+                                text_xalign 1.0
+                                yoffset 10
+                                xoffset 100
+                                text_yoffset -12
+                                text_xoffset 10
+                                text_size 30 
+                                action Preference("display", "window") 
+                            textbutton _("FULLSCREEN"):
+                                text_color "#1f100b"
+                                text_hover_color "#0a9e9a" 
+                                xalign 0.0
+                                text_xalign 1.0
+                                yoffset 10
+                                xoffset 100
+                                text_yoffset -12
+                                text_xoffset 10
+                                text_size 30  
+                                action Preference("display", "fullscreen") 
 
-                        label _("VOICE VOLUME")
-                        null width (gui.pref_spacing)
-
-                        hbox:
-                            bar value Preference("voice volume")
-
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
-                        null height gui.pref_spacing
-                hbox:
-                    xalign 1.0
-                    label _("TEXT SPEED")
-                    null width (gui.pref_spacing)
-
-                    bar value Preference("text speed")
-                hbox:
-                    xalign 1.0
-                    label _("AUTO SPEED")
-                    null width (gui.pref_spacing)
-
-                    bar value Preference("auto-forward time")
-            hbox:
-                xalign 1.0
-                yoffset 10
-                if renpy.variant("pc") or renpy.variant("web"):
                     vbox:
-                        #left_margin 10
                         xalign 1.0
                         style_prefix "radio"
-                        label _("DISPLAY"):
+                        label _("SKIP"):
                             text_bold True
                             text_color "#1f100b" 
-                            xalign 0.85
+                            xalign 0.6
                             yoffset -5
-                        textbutton _("WINDOW"):
+                        textbutton _("UNSEEN TEXT"):
                             text_color "#1f100b"
                             text_hover_color "#0a9e9a" 
                             xalign 0.0
                             text_xalign 1.0
                             yoffset 10
-                            xoffset 100
+                            xoffset 50
+                            text_yoffset -12
+                            text_xoffset 10
+                            text_size 30
+                            action Preference("skip", "toggle")
+                        textbutton _("AFTER CHOICES"):
+                            text_color "#1f100b"
+                            text_hover_color "#0a9e9a" 
+                            xalign 0.0
+                            text_xalign 1.0
+                            yoffset 10
+                            xoffset 50
+                            text_yoffset -12
+                            text_xoffset 10
+                            text_size 30
+                            action Preference("after choices", "toggle")
+                        textbutton _("TRANSITIONS"):
+                            text_color "#1f100b"
+                            text_hover_color "#0a9e9a" 
+                            xalign 0.0
+                            text_xalign 1.0
+                            yoffset 10
+                            xoffset 50
                             text_yoffset -12
                             text_xoffset 10
                             text_size 30 
-                            action Preference("display", "window") 
-                        textbutton _("FULLSCREEN"):
-                            text_color "#1f100b"
-                            text_hover_color "#0a9e9a" 
-                            xalign 0.0
-                            text_xalign 1.0
-                            yoffset 10
-                            xoffset 100
-                            text_yoffset -12
-                            text_xoffset 10
-                            text_size 30  
-                            action Preference("display", "fullscreen") 
-
+                            action InvertSelected(Preference("transitions", "toggle"))
                 vbox:
-                    xalign 1.0
+                    xalign -1.0
                     style_prefix "radio"
-                    label _("SKIP"):
-                        text_bold True
-                        text_color "#1f100b" 
-                        xalign 0.6
-                        yoffset -5
-                    textbutton _("UNSEEN TEXT"):
-                        text_color "#1f100b"
-                        text_hover_color "#0a9e9a" 
-                        xalign 0.0
-                        text_xalign 1.0
-                        yoffset 10
-                        xoffset 50
-                        text_yoffset -12
-                        text_xoffset 10
-                        text_size 30
-                        action Preference("skip", "toggle")
-                    textbutton _("AFTER CHOICES"):
-                        text_color "#1f100b"
-                        text_hover_color "#0a9e9a" 
-                        xalign 0.0
-                        text_xalign 1.0
-                        yoffset 10
-                        xoffset 50
-                        text_yoffset -12
-                        text_xoffset 10
-                        text_size 30
-                        action Preference("after choices", "toggle")
-                    textbutton _("TRANSITIONS"):
-                        text_color "#1f100b"
-                        text_hover_color "#0a9e9a" 
-                        xalign 0.0
-                        text_xalign 1.0
-                        yoffset 10
-                        xoffset 50
-                        text_yoffset -12
-                        text_xoffset 10
-                        text_size 30 
-                        action InvertSelected(Preference("transitions", "toggle"))
-            vbox:
-                xalign -1.0
-                style_prefix "radio"
-                if config.has_music:
-                    textbutton _("MUTE"):
-                        text_bold True
-                        text_color "#0a9e9a" 
-                        yoffset 115
-                        text_yoffset -5
-                        text_size 20
-                        action Preference("music mute", "toggle")
-                if config.has_sound:
-                    textbutton _("MUTE"):
-                        text_bold True
-                        text_color "#0a9e9a" 
-                        yoffset 143
-                        text_yoffset -5
-                        text_size 20
-                        action Preference("sound mute", "toggle")
-                if config.has_voice:
-                    textbutton _("MUTE"):
-                        text_bold True
-                        text_color "#0a9e9a" 
-                        yoffset 172
-                        text_yoffset -5
-                        text_size 20
-                        action Preference("voice mute", "toggle")
+                    if config.has_music:
+                        textbutton _("MUTE"):
+                            text_bold True
+                            text_color "#0a9e9a" 
+                            yoffset 115
+                            text_yoffset -5
+                            text_size 20
+                            action Preference("music mute", "toggle")
+                    if config.has_sound:
+                        textbutton _("MUTE"):
+                            text_bold True
+                            text_color "#0a9e9a" 
+                            yoffset 143
+                            text_yoffset -5
+                            text_size 20
+                            action Preference("sound mute", "toggle")
+                    if config.has_voice:
+                        textbutton _("MUTE"):
+                            text_bold True
+                            text_color "#0a9e9a" 
+                            yoffset 172
+                            text_yoffset -5
+                            text_size 20
+                            action Preference("voice mute", "toggle")
 
-            ## Additional vboxes of type "radio_pref" or "check_pref" can be
-            ## added here, to add additional creator-defined preferences.
-        button:
-            xalign 1.55
-            yalign 1.45
-            action Return()
-            xysize (194, 66)
-            idle_background "gui/gui_button_idle.png"
-            hover_background "gui/gui_button_hover.png"
-            selected_background "gui/gui_button_select.png"
-            has hbox
-            text "CLOSE":
-                xalign 0.5
-                yalign 0.5
-                offset (35, 8)
-                style "menubutton"
-                size 30
-                outlines [ (1, "#000", absolute(0), absolute(0)) ]
-        image "gui/gui_menu_settings_skull.png":
-            xysize (211, 270)
-            xalign 0.85
-            yalign 1.5
-    if gui.show_name:
-        vbox:
-            yalign 0.98
-            xalign 0.02
-            text "Build: [config.version]":
-                color "#ffd600"
-                size 40
+                ## Additional vboxes of type "radio_pref" or "check_pref" can be
+                ## added here, to add additional creator-defined preferences.
+            button:
+                xalign 1.55
+                yalign 1.45
+                action Return()
+                xysize (194, 66)
+                idle_background "gui/gui_button_idle.png"
+                hover_background "gui/gui_button_hover.png"
+                selected_background "gui/gui_button_select.png"
+                has hbox
+                text "CLOSE":
+                    xalign 0.5
+                    yalign 0.5
+                    offset (35, 8)
+                    style "menubutton"
+                    size 30
+                    outlines [ (1, "#000", absolute(0), absolute(0)) ]
+            image "gui/gui_menu_settings_skull.png":
+                xysize (211, 270)
+                xalign 0.85
+                yalign 1.5
+        if gui.show_name:
+            vbox:
+                yalign 0.98
+                xalign 0.02
+                text "Build: [config.version]":
+                    color "#ffd600"
+                    size 40
             
 
 style pref_label is gui_label
@@ -1713,25 +1713,42 @@ screen confirm(message, yes_action, no_action):
 
     style_prefix "confirm"
 
-    add "gui/overlay/confirm.png"
+    #add "gui/overlay/confirm.png"
+    fixed:
+        add "gui/gui_input_name_frame.png" xalign .5 yalign .5
+        frame:
+            background None
+            vbox:
+                xalign .5
+                yalign .5
+                spacing 45
+                label _("{b}[message]{/b}"):
+                #label _("Are you sure you want to overwrite this save file?"):
+                #label _("blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblahblahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah"):
+                    style "confirm_prompt"
+                    xalign 0.5
+                hbox:
+                    xalign 0.5
+                    spacing 75
 
-    frame:
-
-        vbox:
-            xalign .5
-            yalign .5
-            spacing 45
-
-            label _(message):
-                style "confirm_prompt"
-                xalign 0.5
-
-            hbox:
-                xalign 0.5
-                spacing 150
-
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                    #textbutton _("Yes") action yes_action
+                    #textbutton _("No") action no_action            
+                    button:
+                        action yes_action
+                        text "YES":
+                            style "menubutton"
+                            size 30
+                            xalign 0.5
+                            yalign 0.5
+                            outlines [ (1, "#000", absolute(0), absolute(0)) ]
+                    button:
+                        action no_action
+                        text "NO":
+                            style "menubutton"
+                            size 30
+                            xalign 0.5
+                            yalign 0.5
+                            outlines [ (1, "#000", absolute(0), absolute(0)) ]
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
@@ -1744,17 +1761,26 @@ style confirm_button is gui_medium_button
 style confirm_button_text is gui_medium_button_text
 
 style confirm_frame:
-    background Frame([ "gui/confirm_frame.png", "gui/frame.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
-    padding gui.confirm_frame_borders.padding
+    #background Frame([ "gui/gui_input_name_frame.png", "gui/frame.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
+    #background "gui/gui_input_name_frame.png"
+    #padding gui.confirm_frame_borders.padding
+    #left_padding 200
     xalign .5
     yalign .5
+    xoffset 30
+    xysize(571,320)
 
 style confirm_prompt_text:
     text_align 0.5
     layout "subtitle"
+    color "#323232"
 
 style confirm_button:
     properties gui.button_properties("confirm_button")
+    xysize (194, 66)
+    idle_background "gui/gui_button_idle.png"
+    hover_background "gui/gui_button_hover.png"
+    selected_background "gui/gui_button_select.png"
 
 style confirm_button_text:
     properties gui.button_text_properties("confirm_button")
