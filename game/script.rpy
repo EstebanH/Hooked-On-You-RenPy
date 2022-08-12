@@ -170,10 +170,6 @@ init:
         "images/sprites/ocean/ocean3.png"
     image ocean4:
         "images/sprites/ocean/ocean4.png"
-    #image nox_neutral_dark = im.MatrixColor(
-    #    "nox_neutral.png", 
-    #    im.matrix.tint(0.45, 0.45, 0.75)
-    #    *im.matrix.brightness(-0.07))
 
     image cloudy1:
         im.MatrixColor("images/cloudlayer1.png", im.matrix.tint(0.45, 0.45, 0.75))
@@ -184,6 +180,39 @@ init:
         im.MatrixColor("images/cloudlayer2.png", im.matrix.tint(0.45, 0.45, 0.75))
         yalign 0.5
         xalign 0.5
+        
+    transform cloudanimx:
+        easein 32 xzoom 1.5
+        easeout 8 xzoom 1.3
+        repeat
+        
+    transform cloudanimy:
+        easein 16 yzoom 1.1
+        easeout 8 yzoom 1.3 
+        repeat
+        
+    transform cloudxoffset:
+        easein 16 xoffset -100
+        easein 16 xoffset -100
+        easeout 32 xoffset 100
+        repeat
+        
+    transform cloudyoffset:
+        easein 16 xoffset -50
+        easein 16 xoffset -50
+        easeout 16 xoffset 50
+        repeat
+        
+    transform cloudxoffset2:
+        easein 16 xoffset -50
+        easein 16 xoffset -50
+        easeout 16 xoffset 50
+        repeat
+        
+    transform cloudyoffset2:
+        easeout 8 yoffset 0
+        repeat
+
     transform ocean1place:
         xalign 1.0
         yalign 1.0
@@ -265,8 +294,24 @@ init:
         easein 4 xoffset 50  
         easeout 3 xoffset 0    
         repeat
+##
+## haunting ###############################################################
+    transform dissolvecenter:
+        yalign 1.0
+        xalign 0.5
+        easein 2 yalign 0.25
+    transform nodissolvecenter:
+        yalign 0.25
+        xalign 0.5
 
-
+    image dreadnoise:
+        contains:
+            parallel:
+                "images/sprites/effects/dreadfear_noise.png"
+                xpan 5400
+                ypan 5400
+                linear 8 xpan 1 ypan 1
+                repeat
 
     image flower:
         "gui/window_icon.png"
@@ -311,10 +356,16 @@ init python:
     def callbackcontinue(ctc, **kwargs):
         if ctc == "end":
             renpy.sound.play("sounds/sfx_tap.wav",channel="sound")
+    def callbackchoice(ctc, **kwargs):
+        if ctc == "end":
+            renpy.sound.play("sounds/sfx_ui_choice_appear.wav",channel="sound")
     renpy.music.register_channel("hauntloop", "music", loop=True)
+    renpy.music.register_channel("choiceloop", "music", loop=True)
+    renpy.music.register_channel("moodloop", "music", loop=True)
 ##https://youtu.be/DPFXHoIBmAo
 # Declare the characters.
-define nrr = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define nrr = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0))], callback=callbackcontinue)
+define cho = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0))],callback=callbackchoice)
 define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
 define mc = DynamicCharacter('mc_name', color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
 define dw = Character("DWIGHT", color="#bb7d31", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
@@ -325,14 +376,8 @@ define tt = Character("THE TRAPPER", window_style="window_killer", color="#33548
 define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
 
 #p = Character('Protagonist', what_prefix="\"", what_suffix="\"", show_two_window=True, color="#000000", ctc = anim.Blink("ctc.png", xpos=600, ypos=450), ctc_position= "fixed", callback=callbackcontinue)
-
-# The game starts here.
-label start:
-    #image snow = SnowBlossom("particle_dot.png", count=100)
-    $ mc_name = "PlayerName"
-    $ save_name = mc_name
-    $ quick_menu = False
-    
+label warmdarkscene:
+    window hide
     scene bg warmdark
     show dots
     show polygon
@@ -348,22 +393,69 @@ label start:
     show leaf10 at rotateleafa_reverse
     show warmdark_effect1 at rotatewarmdark
     show warmdark_effect2 at twinkle
+    with dissolve
+    return
+
+label loadingscene:
+    window hide
+    scene bg loading with dissolve
+    show flower at fakeload
+    pause 1
+    return
+
+label beach0scene:
+    window hide
+    play music "audio/sfx_ambience_beach.wav"
+    scene bg beach0 with dissolve
+    return
+
+label oceanhaunting:
+    window hide
+    play hauntloop("audio/m_Mood_Haunting_Loop_V1.wav") fadein 3.0 loop
+    show cloudy1 at cloudanimx, cloudanimy,cloudxoffset,cloudyoffset
+    show cloudy2 at cloudanimx, cloudanimy,cloudxoffset2,cloudyoffset2
+    show ocean1 at ocean1place, ocean1rotate, ocean1offset
+    show ocean2 at ocean2place, ocean2rotate, ocean2offset
+    show ocean3 at ocean3place, ocean3rotate, ocean3offset
+    show ocean4 at ocean4place, ocean4rotate, ocean4offset 
+    show bg haunting
+    with dissolve
+    return
+
+label inner_monologuescene(image_name=Null, ismoveinbottom = False):
+    window hide
+    #play music "audio/m_Mood_InnerMonologue_Loop_V1.wav"
+    play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.wav") fadein 3.0 loop
+    scene bg inner_monologue
+    show dreadnoise
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter
+        else:
+            show expression image_name at nodissolvecenter
+    with dissolve
+    return
+
+# The game starts here.
+label start:
+    #image snow = SnowBlossom("particle_dot.png", count=100)
+    $ mc_name = "PlayerName"
+    $ save_name = mc_name
+    $ quick_menu = False
+
+    call warmdarkscene
 
     while user_input == "":
         call screen name_input
-
     python:
         user_input = user_input.strip() or "Bill"
         mc_name = user_input
         save_name = user_input
 
-    scene bg loading with dissolve
-    show flower at fakeload
+    call loadingscene
     pause 1
-    play music "audio/sfx_ambience_beach.wav"
-    pause 1
-    scene bg beach0 with Dissolve(1.0)
-    
+    call beach0scene
+
     $ quick_menu = True
 
     mc "*cough* *cough* *cough*"
@@ -374,46 +466,34 @@ label start:
     nrr "Wow, really went down the wrong pipe, huh? You need a minute, or can I go on?"
     mc "..."
     nrr "Because I can give you a minute. We've got plenty of time. Endless time, really."
-    #play music "audio/sfx_ambience_beach.wav" set_volume(0.25)
-    window hide
-    scene bg haunting with dissolve
-    play hauntloop("audio/m_Mood_Haunting_Loop_V1.wav") fadein 3.0 loop
     $ renpy.music.set_volume(0.25,3.0,"music")
-
-
-
-    show cloudy1
-    show cloudy2
-    #
-    show ocean1 at ocean1place, ocean1rotate, ocean1offset
-    show ocean2 at ocean2place, ocean2rotate, ocean2offset
-    show ocean3 at ocean3place, ocean3rotate, ocean3offset
-    show ocean4 at ocean4place, ocean4rotate, ocean4offset
-
-
-
-
-
-
+    call oceanhaunting
     oc "An eternity, if you catch my drift."
-    window hide
-    scene bg beach0 with dissolve
-    $ renpy.music.set_volume(1,3.0,"music")
     stop hauntloop fadeout 3.0
     nrr "Woah, not now, Ocean! Sorry, [mc_name]. May I continue?"
+    call beach0scene
+
+    $ renpy.music.set_volume(1,3.0,"music")
+
     nrr "OK then. As I was--"
     mc "*cough* *cough*"
     nrr "AS I WAS SAYING."
     nrr "You look down at your feet, ankle-deep in the crystal blue water of a newly arrived wave."
     nrr "As the water recedes back into the ocean, it reveals a grotesque discovery!"
-    window hide
-    scene bg inner_monologue with dissolve
+
+    call inner_monologuescene("images/head_idle.png", True)
+
     nrr "A decomposing face stares up at you from beneath the sand. All you can do is vomit--a stream of dark bile, bugs, worms, and other... ick."
     nrr "Questions race through your mind. Where are you? How did you get here? {i}Who is behind this incredibly charming and well-spoken voice in your head?{/i} However, answers don't come easy. Your mind... is completely blank."
+    stop moodloop fadeout 3.0
     window hide
     scene bg beach0 with dissolve
+
+    $ renpy.music.set_volume(0.25,3.0,"music")
+
+    play choiceloop("audio/sfx_time_to_kill.wav") fadein 3.0 loop
     menu:
-        nrr "What will you do?"
+        cho "What will you do?"
         "Run":
             ""
 
@@ -422,16 +502,22 @@ label start:
 
         "Dig up that face!":
             window hide
-            scene bg inner_monologue with dissolve
+            call inner_monologuescene("images/head_idle.png")
             pause 1
             nrr "You brush the sand away from the half-buried human head-embedded in the ground before you."
             window hide
+            call inner_monologuescene("images/head_coin.png")
             pause 1
             nrr "There is no body, just this head. As you pick it up, flakes of skin fall to the ground. The jaw falls open, revealing a gold coin sitting on the rotting tongue of this poor dead soul."
-            scene bg haunting with dissolve
+            call oceanhaunting
             oc "Getting your hands dirty, I see. I like that... You're a take charge type."
+            stop hauntloop fadeout 3.0
             window hide
             pause 1
+    stop choiceloop fadeout 3.0
+
+    $ renpy.music.set_volume(1,3.0,"music")
+
     window hide
     scene bg beach0 with dissolve
     nrr "You examine the gold coin briefly, happily distracted from what has otherwise been an extremely.... confusing morning."

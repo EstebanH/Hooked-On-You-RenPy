@@ -271,11 +271,16 @@ style input:
 
 screen choice(items):
     style_prefix "choice"
-
+    $ count = 1
     vbox:
         for i in items:
-            textbutton i.caption action i.action 
-
+            if count > 4:
+                $ count = 4
+            textbutton i.caption: 
+                action i.action 
+                hover_sound "sounds/sfx_ui_choice_hover"+ str(count) + ".wav"
+                activate_sound "sounds/sfx_ui_choice_select.wav"
+            $ count = count + 1
 
 style choice_vbox is vbox
 style choice_button is button
