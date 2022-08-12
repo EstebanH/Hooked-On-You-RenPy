@@ -1,4 +1,4 @@
-﻿
+
 init:
 ## warmdark ###########################################################
 ##
@@ -170,6 +170,20 @@ init:
         "images/sprites/ocean/ocean3.png"
     image ocean4:
         "images/sprites/ocean/ocean4.png"
+    #image nox_neutral_dark = im.MatrixColor(
+    #    "nox_neutral.png", 
+    #    im.matrix.tint(0.45, 0.45, 0.75)
+    #    *im.matrix.brightness(-0.07))
+
+    image cloudy1:
+        im.MatrixColor("images/cloudlayer1.png", im.matrix.tint(0.45, 0.45, 0.75))
+        yalign 0.5
+        xalign 0.5
+
+    image cloudy2:
+        im.MatrixColor("images/cloudlayer2.png", im.matrix.tint(0.45, 0.45, 0.75))
+        yalign 0.5
+        xalign 0.5
     transform ocean1place:
         xalign 1.0
         yalign 1.0
@@ -251,6 +265,9 @@ init:
         easein 4 xoffset 50  
         easeout 3 xoffset 0    
         repeat
+
+
+
     image flower:
         "gui/window_icon.png"
         yalign 0.925
@@ -295,7 +312,7 @@ init python:
         if ctc == "end":
             renpy.sound.play("sounds/sfx_tap.wav",channel="sound")
     renpy.music.register_channel("hauntloop", "music", loop=True)
-
+##https://youtu.be/DPFXHoIBmAo
 # Declare the characters.
 define nrr = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
 define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
@@ -365,7 +382,8 @@ label start:
 
 
 
-
+    show cloudy1
+    show cloudy2
     #
     show ocean1 at ocean1place, ocean1rotate, ocean1offset
     show ocean2 at ocean2place, ocean2rotate, ocean2offset
