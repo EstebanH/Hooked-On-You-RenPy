@@ -369,6 +369,64 @@ init:
                 yalign 1
                 repeat
 
+## clauddwight ###############################################################
+##
+
+init python:
+    class ClauddwightClass:
+        def __init__(self):
+            self.pose = "close01"
+            self.emotion = "idle"
+            self.whoIsDead = ""
+            self.resetFilenames()
+            ##self.clothingFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + ".png"
+        def resetFilenames(self):
+            self.poseFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + self.whoIsDead + ".png"
+            if self.whoIsDead != "":
+                self.emotionFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + "_" + self.emotion + "_00_" + self.whoIsDead + ".png"
+                self.blinkFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + "_" + self.emotion + "_01_" + self.whoIsDead + ".png"
+            else:
+                self.emotionFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + "_" + self.emotion + "_00.png"
+                self.blinkFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + "_" + self.emotion + "_01.png"
+            if self.emotion == "dead":
+                self.emotionFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + "_dead_00" + self.whoIsDead + ".png"
+                self.blinkFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + "_dead_00" + self.whoIsDead + ".png"
+
+
+
+        def change(self, attribute, value):
+            if attribute == "pose":
+                self.pose = value
+            elif attribute == "emotion":
+                self.emotion = value
+            elif attribute == "whoIsDead":
+                self.whoIsDead = value
+            self.resetFilenames()
+
+
+
+layeredimage clauddwight:
+    always:
+        "[clauddwightObj.poseFilename]"
+    always:
+        "clauddwight_blink"
+
+image clauddwight_blink:
+    "[clauddwightObj.emotionFilename]"
+    choice:
+        pause 3
+    choice:
+        pause 4
+    choice:
+        pause 5
+    "[clauddwightObj.blinkFilename]"
+    pause 0.2
+    repeat
+##
+## clauddwight ###############################################################
+
+
+
 init python:
     def callbackcontinue(ctc, **kwargs):
         if ctc == "end":
@@ -379,6 +437,10 @@ init python:
     renpy.music.register_channel("hauntloop", "music", loop=True)
     renpy.music.register_channel("choiceloop", "music", loop=True)
     renpy.music.register_channel("moodloop", "music", loop=True)
+    renpy.music.register_channel("eventloop", "music", loop=True)
+
+
+
 
 
 ##https://youtu.be/DPFXHoIBmAo
@@ -494,6 +556,7 @@ label start:
     $ mc_name = "PlayerName"
     $ save_name = mc_name
     $ quick_menu = False
+    $ clauddwightObj = ClauddwightClass()
 
     call warmdarkscene
 
@@ -592,13 +655,20 @@ label start:
 
         "\"Why not?\"":
             mc "Why not?"
-            
     stop choiceloop fadeout 3.0
     $ renpy.music.set_volume(1,3.0,"music")
 
+    play eventloop("audio/sfx_banana_hammak.wav") fadein 3.0 loop
+    $ renpy.music.set_volume(.25,3.0,"music")
+    show clauddwight
+    $ clauddwightObj.change("pose", "close02")
+    $ clauddwightObj.change("emotion", "happy")
     dw "Well hello, there! I'm Dwight!"
     cl "And I'm Claudette!"
+    $ clauddwightObj.change("pose", "close01")
+    play sound "sounds/sfx_signature_clauddwight01.wav"
     cl "We'll take that!"
+
     nrr "Claudette quickly relieves you of your gold coin and tosses it to Dwight, who bites down on it like an old-timey prospector before handing it back to her."
     cl "And this..."
     dw  "...is for you!"
