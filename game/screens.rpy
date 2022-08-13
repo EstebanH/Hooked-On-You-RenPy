@@ -213,11 +213,16 @@ style namebox_ocean:
     padding gui.namebox_borders.padding
 
 style say_label:
+    #Putting outlines here applies to all characters, override with who_outlines
+    outlines [(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))]
     properties gui.text_properties("name", accent=True)
     xalign 0.375
     yalign 0.465
 
 style say_dialogue:
+    #Putting outlines here applies to all characters, override with what_outlines
+    outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
+    size 26
     properties gui.text_properties("dialogue")
 
     xpos gui.dialogue_xpos - 70
