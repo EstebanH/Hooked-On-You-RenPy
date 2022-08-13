@@ -383,16 +383,18 @@ init python:
 
 ##https://youtu.be/DPFXHoIBmAo
 # Declare the characters.
-define nrr = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0))], callback=callbackcontinue)
-define cho = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0))],callback=callbackchoice)
-define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
-define mc = DynamicCharacter('mc_name', color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
-define dw = Character("DWIGHT", color="#bb7d31", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
-define cl = Character("CLAUDETTE", color="#b4992e", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
-define th = Character("THE HUNTRESS", window_style="window_killer", color="#c64631", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
-define ts = Character("THE SPIRIT", window_style="window_killer", color="#d94464", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
-define tt = Character("THE TRAPPER", window_style="window_killer", color="#335480", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
-define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define nrr = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0))], callback=callbackcontinue)
+define cho = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0))], callback=callbackchoice)
+define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", what_size=26, what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define mc = DynamicCharacter('mc_name', color="#3a2e55", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+
+define dw = Character("DWIGHT", color="#bb7d31", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+
+define cl = Character("CLAUDETTE", color="#b4992e", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define th = Character("THE HUNTRESS", window_style="window_killer", color="#c64631", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define ts = Character("THE SPIRIT", window_style="window_killer", color="#d94464", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define tt = Character("THE TRAPPER", window_style="window_killer", color="#335480", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
+define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
 ## Character Example
 #p = Character('Protagonist', what_prefix="\"", what_suffix="\"", show_two_window=True, color="#000000", ctc = anim.Blink("ctc.png", xpos=600, ypos=450), ctc_position= "fixed", callback=callbackcontinue)
 label warmdarkscene:
@@ -578,6 +580,10 @@ label start:
     nrr "The sun beats down on you, drying your clothes. You check your pockets, but they're empty. Plenty of room for a gold coin, you suppose, and so you deposit it."
     hide speedlines
     stop moodloop fadeout 3.0
+    scene bg beach0 with dissolve
+
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play choiceloop("audio/sfx_time_to_kill.wav") fadein 3.0 loop
     menu:
         cho "Why that's a nice coin you've got there! What if you were to spend it right now?"
         "\"No, thanks\"":
@@ -585,6 +591,10 @@ label start:
 
         "\"Why not?\"":
             mc "Why not?"
+            
+    stop choiceloop fadeout 3.0
+    $ renpy.music.set_volume(1,3.0,"music")
+
     dw "Well hello, there! I'm Dwight!"
     cl "And I'm Claudette!"
     cl "We'll take that!"
