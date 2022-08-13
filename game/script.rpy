@@ -97,11 +97,11 @@ init:
         yoffset -200
         xalign 1.15
     image leaf3:
-        rotate 180
+        rotate 0
         im.Flip("images/leaf3.png", horizontal="True", vertical="True")
-        zoom 1.5
-        yoffset 250
-        xoffset -175
+        zoom 1
+        yoffset 225
+        xoffset -150
     image leaf4:
         rotate 180
         im.Flip("images/leaf4.png", horizontal="True", vertical="True")
@@ -303,7 +303,10 @@ init:
     transform nodissolvecenter:
         yalign 0.25
         xalign 0.5
-
+    image head_coin:
+        "images/head_coin.png" 
+        xalign 0.5 
+        yalign 0.25
     image dreadnoise:
         contains:
             parallel:
@@ -409,8 +412,9 @@ label beach0scene:
     scene bg beach0 with dissolve
     return
 
-label oceanhaunting:
+label oceanhaunting(image_name=Null, ismoveinbottom = False):
     window hide
+    show bg haunting
     play hauntloop("audio/m_Mood_Haunting_Loop_V1.wav") fadein 3.0 loop
     show cloudy1 at cloudanimx, cloudanimy,cloudxoffset,cloudyoffset
     show cloudy2 at cloudanimx, cloudanimy,cloudxoffset2,cloudyoffset2
@@ -418,7 +422,13 @@ label oceanhaunting:
     show ocean2 at ocean2place, ocean2rotate, ocean2offset
     show ocean3 at ocean3place, ocean3rotate, ocean3offset
     show ocean4 at ocean4place, ocean4rotate, ocean4offset 
-    show bg haunting
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter
+        else:
+            show expression image_name at nodissolvecenter
+            show image ("images/head_coin.png")
+
     with dissolve
     return
 
@@ -430,9 +440,9 @@ label inner_monologuescene(image_name=Null, ismoveinbottom = False):
     show dreadnoise
     if image_name is not Null:
         if ismoveinbottom:
-            show expression image_name at dissolvecenter
+            show expression image_name at dissolvecenter zorder 1
         else:
-            show expression image_name at nodissolvecenter
+            show expression image_name at nodissolvecenter zorder 1
     with dissolve
     return
 
@@ -509,13 +519,16 @@ label start:
             call inner_monologuescene("images/head_coin.png")
             pause 1
             nrr "There is no body, just this head. As you pick it up, flakes of skin fall to the ground. The jaw falls open, revealing a gold coin sitting on the rotting tongue of this poor dead soul."
-            call oceanhaunting
-            oc "Getting your hands dirty, I see. I like that... You're a take charge type."
-            stop hauntloop fadeout 3.0
-            window hide
-            pause 1
+            stop choiceloop fadeout 3.0
     stop choiceloop fadeout 3.0
-
+    
+    call oceanhaunting("images/head_coin.png", True)
+    oc "Getting your hands dirty, I see. I like that... You're a take charge type."
+    stop hauntloop fadeout 3.0
+    window hide
+    call oceanhaunting("images/coin.png", True)
+    pause 1
+    stop oceanhaunting fadeout 3.0
     $ renpy.music.set_volume(1,3.0,"music")
 
     window hide
