@@ -296,6 +296,9 @@ init:
         repeat
 ##
 ## haunting ###############################################################
+
+## inner monologue ###############################################################
+##
     transform dissolvecenter:
         yalign 1.0
         xalign 0.5
@@ -315,7 +318,18 @@ init:
                 ypan 5400
                 linear 8 xpan 1 ypan 1
                 repeat
+##
+## inner monologue ###############################################################
+## speedlines ###############################################################
+##
+    image speedlines = Movie(play="images/sprites/video/speedlines.webm", mask="images/sprites/video/speedlines_mask.webm")
 
+    transform coin_yoffset:
+        yoffset 50
+
+## speedlines ###############################################################
+## other ###############################################################
+##
     image flower:
         "gui/window_icon.png"
         yalign 0.925
@@ -365,6 +379,8 @@ init python:
     renpy.music.register_channel("hauntloop", "music", loop=True)
     renpy.music.register_channel("choiceloop", "music", loop=True)
     renpy.music.register_channel("moodloop", "music", loop=True)
+
+
 ##https://youtu.be/DPFXHoIBmAo
 # Declare the characters.
 define nrr = Character(None, window_style="window_narrator", color="#3a2e55", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0))], callback=callbackcontinue)
@@ -377,7 +393,7 @@ define th = Character("THE HUNTRESS", window_style="window_killer", color="#c646
 define ts = Character("THE SPIRIT", window_style="window_killer", color="#d94464", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
 define tt = Character("THE TRAPPER", window_style="window_killer", color="#335480", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
 define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", what_size=26, who_outlines=[ (absolute(1), "#FFF", absolute(0), absolute(0)) ], what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], callback=callbackcontinue)
-
+## Character Example
 #p = Character('Protagonist', what_prefix="\"", what_suffix="\"", show_two_window=True, color="#000000", ctc = anim.Blink("ctc.png", xpos=600, ypos=450), ctc_position= "fixed", callback=callbackcontinue)
 label warmdarkscene:
     window hide
@@ -406,14 +422,27 @@ label loadingscene:
     pause 1
     return
 
-label beach0scene:
+label beach0scene(keep_images=False):
     window hide
     play music "audio/sfx_ambience_beach.wav"
-    scene bg beach0 with dissolve
+    if keep_images:
+        call hideeffects
+        show bg beach0 with dissolve
+    else:
+        scene bg beach0 with dissolve
     return
-
+label hideeffects:
+    hide cloudy1
+    hide cloudy2
+    hide ocean1
+    hide ocean2
+    hide ocean3
+    hide ocean4
+    hide dreadnoise
+    return
 label oceanhaunting(image_name=Null, ismoveinbottom = False):
     window hide
+    call hideeffects
     show bg haunting
     play hauntloop("audio/m_Mood_Haunting_Loop_V1.wav") fadein 3.0 loop
     show cloudy1 at cloudanimx, cloudanimy,cloudxoffset,cloudyoffset
@@ -424,17 +453,15 @@ label oceanhaunting(image_name=Null, ismoveinbottom = False):
     show ocean4 at ocean4place, ocean4rotate, ocean4offset 
     if image_name is not Null:
         if ismoveinbottom:
-            show expression image_name at dissolvecenter
+            show expression image_name at dissolvecenter,coin_yoffset
         else:
             show expression image_name at nodissolvecenter
-            show image ("images/head_coin.png")
 
     with dissolve
     return
 
-label inner_monologuescene(image_name=Null, ismoveinbottom = False):
+label mood_inner_monologuescene(image_name=Null, ismoveinbottom = False):
     window hide
-    #play music "audio/m_Mood_InnerMonologue_Loop_V1.wav"
     play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.wav") fadein 3.0 loop
     scene bg inner_monologue
     show dreadnoise
@@ -443,6 +470,18 @@ label inner_monologuescene(image_name=Null, ismoveinbottom = False):
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+label mood_speedlines(image_name=Null, ismoveinbottom = False):
+    window hide
+    play moodloop("audio/m_Mood_SpeedLine_Loop-001.wav") fadein 3.0 loop
+    show speedlines
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter,coin_yoffset zorder 1
+        else:
+            show expression image_name at nodissolvecenter,coin_yoffset zorder 1
     with dissolve
     return
 
@@ -491,7 +530,7 @@ label start:
     nrr "You look down at your feet, ankle-deep in the crystal blue water of a newly arrived wave."
     nrr "As the water recedes back into the ocean, it reveals a grotesque discovery!"
 
-    call inner_monologuescene("images/head_idle.png", True)
+    call mood_inner_monologuescene("images/head_idle.png", True)
 
     nrr "A decomposing face stares up at you from beneath the sand. All you can do is vomit--a stream of dark bile, bugs, worms, and other... ick."
     nrr "Questions race through your mind. Where are you? How did you get here? {i}Who is behind this incredibly charming and well-spoken voice in your head?{/i} However, answers don't come easy. Your mind... is completely blank."
@@ -512,31 +551,35 @@ label start:
 
         "Dig up that face!":
             window hide
-            call inner_monologuescene("images/head_idle.png")
+            call mood_inner_monologuescene("images/head_idle.png")
             pause 1
             nrr "You brush the sand away from the half-buried human head-embedded in the ground before you."
             window hide
-            call inner_monologuescene("images/head_coin.png")
+            call mood_inner_monologuescene("images/head_coin.png")
             pause 1
             nrr "There is no body, just this head. As you pick it up, flakes of skin fall to the ground. The jaw falls open, revealing a gold coin sitting on the rotting tongue of this poor dead soul."
             stop choiceloop fadeout 3.0
     stop choiceloop fadeout 3.0
     
-    call oceanhaunting("images/head_coin.png", True)
+    call oceanhaunting
     oc "Getting your hands dirty, I see. I like that... You're a take charge type."
     stop hauntloop fadeout 3.0
     window hide
     call oceanhaunting("images/coin.png", True)
     pause 1
-    stop oceanhaunting fadeout 3.0
+    stop hauntloop fadeout 3.0
+
     $ renpy.music.set_volume(1,3.0,"music")
 
-    window hide
-    scene bg beach0 with dissolve
+    call beach0scene(True)
+    call mood_speedlines("images/coin.png")
+
     nrr "You examine the gold coin briefly, happily distracted from what has otherwise been an extremely.... confusing morning."
     nrr "The sun beats down on you, drying your clothes. You check your pockets, but they're empty. Plenty of room for a gold coin, you suppose, and so you deposit it."
+    hide speedlines
+    stop moodloop fadeout 3.0
     menu:
-        nrr "Why that's a nice coin you've got there! What if you were to spend it right now?"
+        cho "Why that's a nice coin you've got there! What if you were to spend it right now?"
         "\"No, thanks\"":
             ""
 
@@ -553,7 +596,7 @@ label start:
     nrr "Claudette presents you with a tropical drink."
     nrr "When you take a sip, you find that it's incredible. Money well spent, in your estimation."
     menu:
-        nrr "But I gotta ask: Could somebody maybe design the next one of these dating sims to be all-inclusive? It really takes some of the fun out of a fantasy vacation to be watching your wallet the entire time."
+        cho "But I gotta ask: Could somebody maybe design the next one of these dating sims to be all-inclusive? It really takes some of the fun out of a fantasy vacation to be watching your wallet the entire time."
         "Thank them for the delicious drink":
             mc "Thanks for the drink. It's quite delicious!"
 
