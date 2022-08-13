@@ -157,7 +157,6 @@ init:
         zoom 1.1
 ##
 ## warmdark end #################################################################
-
 ## haunting ###############################################################
 ##
     image bg haunting:
@@ -296,7 +295,52 @@ init:
         repeat
 ##
 ## haunting ###############################################################
-
+## excitement ###############################################################
+##
+    transform dots:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 16 rotate -90
+        easeout 8 rotate 0
+        easein 16 rotate 90  
+        easeout 8 rotate 0    
+        repeat
+    transform beam1:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 8 rotate 90
+        easeout 4 rotate 0
+        easein 8 rotate -90  
+        easeout 4 rotate 0    
+        repeat
+    transform beam2:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 8 rotate 180
+        easeout 4 rotate 0
+        easein 8 rotate -180 
+        easeout 4 rotate 0    
+        repeat
+    image excite_dots:
+        "images/dots1.png"
+        zoom 3
+        xalign 0.5
+        yalign 0.5
+    image excite_beam1:
+        "images/excitement4.png"
+        zoom 1.1
+        xalign 0.5
+        yalign 0.5
+    image excite_beam2:
+        "images/excitement5.png"
+        zoom 1.1
+        xalign 0.5
+        yalign 0.5
+    image dots2 = SnowBlossom(At("images/particle_dot.png", slowblink), border=150, count=40, start=0.00000000001, fast=True,  yspeed=(50, -40),  xspeed=(-25,25), horizontal=True)
+    image glow:
+        zoom 1.5
+        "images/glow.png"
+        xalign 0.5 
+        yalign 0.5
+##
+## excitement ###############################################################
 ## inner monologue ###############################################################
 ##
     transform dissolvecenter:
@@ -550,6 +594,23 @@ label mood_speedlines(image_name=Null, ismoveinbottom = False):
     with dissolve
     return
 
+label mood_excitement(image_name=Null, ismoveinbottom = False):
+    window hide
+    play moodloop("audio/m_Mood_Excitement_Loop_V1.wav") fadein 3.0 loop
+    scene bg excitement
+    show dots2
+    show excite_beam2 at beam2
+    show excite_beam1 at beam1
+    show excite_dots at dots
+    show glow
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
 # The game starts here.
 label start:
     #image snow = SnowBlossom("particle_dot.png", count=100)
@@ -668,14 +729,21 @@ label start:
     $ clauddwightObj.change("pose", "close01")
     play sound "sounds/sfx_signature_clauddwight01.wav"
     cl "We'll take that!"
-
+    $ clauddwightObj.change("emotion", "idle")
     nrr "Claudette quickly relieves you of your gold coin and tosses it to Dwight, who bites down on it like an old-timey prospector before handing it back to her."
     cl "And this..."
     dw  "...is for you!"
     window hide
-    scene bg excitement with dissolve
+    #scene bg excitement with dissolve
+    stop eventloop fadeout 3.0
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    call mood_excitement("images/skull.png", True)
+    pause 1
     nrr "Claudette presents you with a tropical drink."
     nrr "When you take a sip, you find that it's incredible. Money well spent, in your estimation."
+    stop moodloop fadeout 3.0
+    call beach0scene
+    play eventloop("audio/sfx_banana_hammak.wav") fadein 3.0 loop
     menu:
         cho "But I gotta ask: Could somebody maybe design the next one of these dating sims to be all-inclusive? It really takes some of the fun out of a fantasy vacation to be watching your wallet the entire time."
         "Thank them for the delicious drink":
@@ -683,6 +751,10 @@ label start:
 
         "This is suspicious, spit that out!":
             ""
+    
+    $ clauddwightObj.change("pose", "far01")
+    $ clauddwightObj.change("emotion", "happy")
+    show clauddwight with Dissolve(0.2)
     cl "You're... welcome!"
     dw "Did someone just thank us?"
     cl "Go with it, Dwight. It's normal to be thanked for doing a good job. Trust me on this one."
