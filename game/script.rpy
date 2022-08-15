@@ -454,13 +454,29 @@ init python:
                 self.emote = value
             self.resetFilenames()
 
+    def play_effect(trans, st, at):
+            renpy.play("sounds/sfx_emotes_hearts_v01.wav", channel="sound")
+
 layeredimage clauddwight:
     always:
         "[clauddwightObj.poseFilename]"
     always:
         "clauddwight_blink"
-    always:
-        "heartboom"
+        
+    if clauddwightObj.emote == "heart" and clauddwightObj.pose == "far01":
+        "heartboom_dwight_far01"
+    if clauddwightObj.emote == "heart" and clauddwightObj.pose == "far02":
+        "heartboom_dwight_far02"
+    if clauddwightObj.emote == "heart" and (clauddwightObj.pose == "far01" or clauddwightObj.pose == "far02"):
+        "heartboom_claud_far"
+
+        
+    if clauddwightObj.emote == "heart" and clauddwightObj.pose == "close01":
+        "heartboom_dwight_close01"
+    if clauddwightObj.emote == "heart" and clauddwightObj.pose == "close02":
+        "heartboom_dwight_close02"
+    if clauddwightObj.emote == "heart" and (clauddwightObj.pose == "close01" or clauddwightObj.pose == "close02"):
+        "heartboom_claud_close"
 
 image clauddwight_blink:
     "[clauddwightObj.emotionFilename]"
@@ -471,17 +487,61 @@ image clauddwight_blink:
     choice:
         pause 5
     "[clauddwightObj.blinkFilename]"
-    pause 0.2
+    pause 0.1
     repeat
 
-image heartboom:
-    xsize = 1920
-    zoom 0.2
-    (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 10,centerZone = 20, fadeWithParticleTime = True).sm) with Dissolve(3, alpha=True)
-    #pause 1.0
-    #linear 0.5 alpha 0.0
+image heartboom_far:
+    function play_effect
+    zoom 0.15
+    (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+
+image heartboom_close:
+    function play_effect
+    zoom 0.25
+    (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+
+image heartboom_claud_far:
+    xalign 0.45
+    yalign 0.15
+    "heartboom_far"
+    pause 1
+    easeout 0.5 alpha 0.0
+
+image heartboom_dwight_far01:
+    xalign 0.65
+    yalign 0.05
+    "heartboom_far"
+    pause 1
+    easeout 0.5 alpha 0.0
+
+image heartboom_dwight_far02:
+    xalign 0.675
+    yalign 0.1
+    "heartboom_far"
+    pause 1
+    easeout 0.5 alpha 0.0
+
+image heartboom_claud_close:
+    xalign 0.4
+    yalign 0.25
+    "heartboom_close"
+    pause 1
+    easeout 0.5 alpha 0.0
+
+image heartboom_dwight_close01:
+    xalign 0.75
+    yalign 0.1
+    "heartboom_close"
+    pause 1
+    easeout 0.5 alpha 0.0
 
 
+image heartboom_dwight_close02:
+    xalign 0.85
+    yalign 0.1
+    "heartboom_close"
+    pause 1
+    easeout 0.5 alpha 0.0
 ##
 ## clauddwight ###############################################################
 ##image heartboom = ParticleBurst([Solid("#%06x"%renpy.random.randint(0, 0xFFFFFF), xysize=(5, 5)) for i in xrange(50)], mouse_sparkle_mode=True)
@@ -513,7 +573,7 @@ init python:
             self.particleTime = particleTime
             self.particleXSpeed = particleXSpeed
             self.particleYSpeed = particleYSpeed
-            self.fadeWithParticleTime = fadeWithParticleTime
+            self.fadeWithParticleTime = fadeWithParticleTime ##Unused
             self.timePassed = 0
            
         def add(self, d, speed, st):
@@ -806,20 +866,18 @@ label start:
 
         "This is suspicious, spit that out!":
             ""
-    
-    $ clauddwightObj.change("pose", "far01")
     $ clauddwightObj.change("emotion", "happy")
-    show clauddwight with Dissolve(0.2)
     $ clauddwightObj.change("emote", "heart")
-    #imageBoundingBox = renpy.get_image_bounds(clauddwight)
-    #transform.xpos = (imageBoundingBox[0] + imageBoundingBox[2]/2) / config.window_width # Note: this is the transform of "e"!
-
-    #show expression (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 10,centerZone = 20).sm) as heartboom at smaller, clauddwightfar with Dissolve(0.1) 
-    ##pause 1
-    #hide heartboom with Dissolve(1) 
+    $ clauddwightObj.change("pose", "far01")
+    show clauddwight with Dissolve(0.2)
+    pause 1
     cl "You're... welcome!"
+    $ clauddwightObj.change("emote", "none")
+    $ clauddwightObj.change("emotion", "sad")
     dw "Did someone just thank us?"
     cl "Go with it, Dwight. It's normal to be thanked for doing a good job. Trust me on this one."
+    hide clauddwight with dissolve
+
     nrr "Your mind doesn't have a chance to linger any longer on your current situation, as you feel something soft bump into your foot."
     window hide
     scene bg speedlinebg_red with dissolve
