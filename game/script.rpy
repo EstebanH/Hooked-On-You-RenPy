@@ -264,7 +264,6 @@ init:
         easein 4 rotate 5  
         easeout 3 rotate 0    
         repeat
-
     transform ocean1offset:
         #anchor (0.5, 0.5) transform_anchor 1
         easein 3 xoffset -50
@@ -412,7 +411,12 @@ init:
                 xalign 1
                 yalign 1
                 repeat
-
+    transform clauddwightfar:
+        xalign 0.5
+        yalign 0.25
+    transform smaller:
+        zoom 0.1
+    
 ## clauddwight ###############################################################
 ##
 
@@ -421,6 +425,7 @@ init python:
         def __init__(self):
             self.pose = "close01"
             self.emotion = "idle"
+            self.emote = "none"
             self.whoIsDead = ""
             self.resetFilenames()
             ##self.clothingFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + ".png"
@@ -445,15 +450,17 @@ init python:
                 self.emotion = value
             elif attribute == "whoIsDead":
                 self.whoIsDead = value
+            elif attribute == "emote":
+                self.emote = value
             self.resetFilenames()
-
-
 
 layeredimage clauddwight:
     always:
         "[clauddwightObj.poseFilename]"
     always:
         "clauddwight_blink"
+    always:
+        "heartboom"
 
 image clauddwight_blink:
     "[clauddwightObj.emotionFilename]"
@@ -466,12 +473,24 @@ image clauddwight_blink:
     "[clauddwightObj.blinkFilename]"
     pause 0.2
     repeat
+
+image heartboom:
+    xsize = 1920
+    zoom 0.2
+    (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 10,centerZone = 20, fadeWithParticleTime = True).sm) with Dissolve(3, alpha=True)
+    #pause 1.0
+    #linear 0.5 alpha 0.0
+
+
 ##
 ## clauddwight ###############################################################
-
+##image heartboom = ParticleBurst([Solid("#%06x"%renpy.random.randint(0, 0xFFFFFF), xysize=(5, 5)) for i in xrange(50)], mouse_sparkle_mode=True)
+#image heartboom = (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=4.0, particleXSpeed = 10, particleYSpeed = 10).sm)
 
 
 init python:
+    import math
+    import random
     def callbackcontinue(ctc, **kwargs):
         if ctc == "end":
             renpy.sound.play("sounds/sfx_tap.wav",channel="sound")
@@ -482,10 +501,46 @@ init python:
     renpy.music.register_channel("choiceloop", "music", loop=True)
     renpy.music.register_channel("moodloop", "music", loop=True)
     renpy.music.register_channel("eventloop", "music", loop=True)
-
-
-
-
+    class ParticleBurst(object):
+        def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 5, particleYSpeed = 5, centerZone = 10, fadeWithParticleTime = False):
+            self.sm = SpriteManager(update=self.update)
+            # A list of (sprite, starting-x, speed).
+            self.stars = [ ]
+            self.displayable = theDisplayable
+            self.centerZone = centerZone
+            self.explodeTime = explodeTime
+            self.particleMax = numParticles
+            self.particleTime = particleTime
+            self.particleXSpeed = particleXSpeed
+            self.particleYSpeed = particleYSpeed
+            self.fadeWithParticleTime = fadeWithParticleTime
+            self.timePassed = 0
+           
+        def add(self, d, speed, st):
+            s = self.sm.create(d)
+            s.x = self.sm.width/2 - (random.random()*self.centerZone)
+            s.y = self.sm.height/2 - (random.random()*self.centerZone)
+            ySpeed = ((random.random() - 0.5) * self.particleYSpeed)
+            xSpeed = ((random.random() - 0.5) * self.particleXSpeed)
+            pTime = (random.random() * self.particleTime ) + st
+            self.stars.append((s, ySpeed, xSpeed, pTime))
+            
+        def update(self, st):
+            sindex=0
+            for s, ySpeed, xSpeed, particleTime in self.stars:
+                if (st < particleTime):
+                    s.x += xSpeed
+                    s.y += ySpeed
+                    #if (self.fadeWithParticleTime):
+                        #trans.alpha = abs(st/self.particleTime)
+                else:
+                    s.destroy()
+                    self.stars.pop(sindex)
+                sindex += 1
+            if len(self.stars) < self.particleMax:
+                if st < self.explodeTime or self.explodeTime == 0:
+                    self.add(self.displayable, 2, st)
+            return 0    
 
 ##https://youtu.be/DPFXHoIBmAo
 # Declare the characters.
@@ -755,6 +810,13 @@ label start:
     $ clauddwightObj.change("pose", "far01")
     $ clauddwightObj.change("emotion", "happy")
     show clauddwight with Dissolve(0.2)
+    $ clauddwightObj.change("emote", "heart")
+    #imageBoundingBox = renpy.get_image_bounds(clauddwight)
+    #transform.xpos = (imageBoundingBox[0] + imageBoundingBox[2]/2) / config.window_width # Note: this is the transform of "e"!
+
+    #show expression (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 10,centerZone = 20).sm) as heartboom at smaller, clauddwightfar with Dissolve(0.1) 
+    ##pause 1
+    #hide heartboom with Dissolve(1) 
     cl "You're... welcome!"
     dw "Did someone just thank us?"
     cl "Go with it, Dwight. It's normal to be thanked for doing a good job. Trust me on this one."
