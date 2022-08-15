@@ -371,6 +371,10 @@ init:
         yoffset 50
 
 ## speedlines ###############################################################
+    transform volleycenter:
+        yalign 0.5
+        xalign 0.5
+        easein 3 yalign 0.25
 ## other ###############################################################
 ##
     image flower:
@@ -455,7 +459,7 @@ init python:
             self.resetFilenames()
 
     def play_effect(trans, st, at):
-            renpy.play("sounds/sfx_emotes_hearts_v01.wav", channel="sound")
+            renpy.play("sounds/sfx_emotes_hearts_v01.ogg", channel="sound")
 
 layeredimage clauddwight:
     always:
@@ -553,10 +557,10 @@ init python:
     import random
     def callbackcontinue(ctc, **kwargs):
         if ctc == "end":
-            renpy.sound.play("sounds/sfx_tap.wav",channel="sound")
+            renpy.sound.play("sounds/sfx_tap.ogg",channel="sound")
     def callbackchoice(ctc, **kwargs):
         if ctc == "end":
-            renpy.sound.play("sounds/sfx_ui_choice_appear.wav",channel="sound")
+            renpy.sound.play("sounds/sfx_ui_choice_appear.ogg",channel="sound")
     renpy.music.register_channel("hauntloop", "music", loop=True)
     renpy.music.register_channel("choiceloop", "music", loop=True)
     renpy.music.register_channel("moodloop", "music", loop=True)
@@ -606,6 +610,8 @@ init python:
 # Declare the characters.
 define nrr = Character(None, window_style="window_narrator", color="#3a2e55",callback=callbackcontinue)
 define cho = Character(None, window_style="window_narrator", color="#3a2e55",  callback=callbackchoice)
+define look = Character(None, window_style="window_look", color="#3a2e55",  callback=callbackchoice)
+
 define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", callback=callbackcontinue)
 define mc = DynamicCharacter('mc_name', color="#3a2e55", callback=callbackcontinue)
 
@@ -648,7 +654,8 @@ label loadingscene:
 
 label beach0scene(keep_images=False):
     window hide
-    play music "audio/sfx_ambience_beach.wav"
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_beach.ogg"
     if keep_images:
         call hideeffects
         show bg beach0 with dissolve
@@ -664,11 +671,13 @@ label hideeffects:
     hide ocean4
     hide dreadnoise
     return
+
 label oceanhaunting(image_name=Null, ismoveinbottom = False):
     window hide
     call hideeffects
+    $ renpy.music.set_volume(0.25,3.0,"music")
     show bg haunting
-    play hauntloop("audio/m_Mood_Haunting_Loop_V1.wav") fadein 3.0 loop
+    play hauntloop("audio/m_Mood_Haunting_Loop_V1.ogg") fadein 3.0 loop
     show cloudy1 at cloudanimx, cloudanimy,cloudxoffset,cloudyoffset
     show cloudy2 at cloudanimx, cloudanimy,cloudxoffset2,cloudyoffset2
     show ocean1 at ocean1place, ocean1rotate, ocean1offset
@@ -684,9 +693,36 @@ label oceanhaunting(image_name=Null, ismoveinbottom = False):
     with dissolve
     return
 
+label speedlinesredscene(image_name=Null, ismoveinbottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_SpeedLine_Loop-003.ogg") fadein 3.0 loop
+    scene bg speedlinebg_red with dissolve
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at volleycenter,coin_yoffset zorder 1
+        else:
+            show expression image_name at nodissolvecenter,coin_yoffset zorder 1
+    with dissolve
+    return
+
+label mood_speedlines(image_name=Null, ismoveinbottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_SpeedLine_Loop-001.ogg") fadein 3.0 loop
+    show speedlines
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter,coin_yoffset zorder 1
+        else:
+            show expression image_name at nodissolvecenter,coin_yoffset zorder 1
+    with dissolve
+    return
+
 label mood_inner_monologuescene(image_name=Null, ismoveinbottom = False):
     window hide
-    play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.wav") fadein 3.0 loop
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.ogg") fadein 3.0 loop
     scene bg inner_monologue
     show dreadnoise
     if image_name is not Null:
@@ -697,21 +733,11 @@ label mood_inner_monologuescene(image_name=Null, ismoveinbottom = False):
     with dissolve
     return
 
-label mood_speedlines(image_name=Null, ismoveinbottom = False):
-    window hide
-    play moodloop("audio/m_Mood_SpeedLine_Loop-001.wav") fadein 3.0 loop
-    show speedlines
-    if image_name is not Null:
-        if ismoveinbottom:
-            show expression image_name at dissolvecenter,coin_yoffset zorder 1
-        else:
-            show expression image_name at nodissolvecenter,coin_yoffset zorder 1
-    with dissolve
-    return
 
 label mood_excitement(image_name=Null, ismoveinbottom = False):
     window hide
-    play moodloop("audio/m_Mood_Excitement_Loop_V1.wav") fadein 3.0 loop
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Excitement_Loop_V1.ogg") fadein 3.0 loop
     scene bg excitement
     show dots2
     show excite_beam2 at beam2
@@ -724,6 +750,74 @@ label mood_excitement(image_name=Null, ismoveinbottom = False):
         else:
             show expression image_name at nodissolvecenter zorder 1
     with dissolve
+    return
+
+label mood_warmdark(image_name=Null, ismoveinbottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_WarmDark_Loop_V1.ogg") fadein 3.0 loop
+    scene bg warmdark
+    show dots
+    show polygon
+    show leaf1 at rotateleafa
+    show leaf2 at rotateleafa
+    show leaf3 at rotateleafb, wave
+    show leaf4 at rotateleafa
+    show leaf5 at rotateleafa
+    show leaf6 at rotateleafa_reverse
+    show leaf7 at rotateleafa_reverse
+    show leaf8 at rotateleafb_reverse, wave
+    show leaf9 at rotateleafa_reverse
+    show leaf10 at rotateleafa_reverse
+    show warmdark_effect1 at rotatewarmdark
+    show warmdark_effect2 at twinkle
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+label mood_warmlight(image_name=Null, ismoveinbottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_WarmLight_Loop_V1.ogg") fadein 3.0 loop
+    scene bg warmlight
+    show dots2
+    show excite_dots at dots
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+label mood_happy(image_name=Null, ismoveinbottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Happy_Loop_V1.ogg") fadein 3.0 loop
+    scene bg happy
+    show dots2
+    show excite_dots at dots
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+
+label event_choices:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play choiceloop("audio/sfx_time_to_kill.ogg") fadein 3.0 loop
+    return
+
+label event_clauddwight:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_banana_hammak.ogg") fadein 3.0 loop
     return
 
 # The game starts here.
@@ -757,14 +851,11 @@ label start:
     nrr "Wow, really went down the wrong pipe, huh? You need a minute, or can I go on?"
     mc "..."
     nrr "Because I can give you a minute. We've got plenty of time. Endless time, really."
-    $ renpy.music.set_volume(0.25,3.0,"music")
     call oceanhaunting
     oc "An eternity, if you catch my drift."
     stop hauntloop fadeout 3.0
     nrr "Woah, not now, Ocean! Sorry, [mc_name]. May I continue?"
     call beach0scene
-
-    $ renpy.music.set_volume(1,3.0,"music")
 
     nrr "OK then. As I was--"
     mc "*cough* *cough*"
@@ -780,9 +871,7 @@ label start:
     window hide
     scene bg beach0 with dissolve
 
-    $ renpy.music.set_volume(0.25,3.0,"music")
-
-    play choiceloop("audio/sfx_time_to_kill.wav") fadein 3.0 loop
+    call event_choices
     menu:
         cho "What will you do?"
         "Run":
@@ -811,8 +900,6 @@ label start:
     pause 1
     stop hauntloop fadeout 3.0
 
-    $ renpy.music.set_volume(1,3.0,"music")
-
     call beach0scene(True)
     call mood_speedlines("images/coin.png")
 
@@ -820,10 +907,9 @@ label start:
     nrr "The sun beats down on you, drying your clothes. You check your pockets, but they're empty. Plenty of room for a gold coin, you suppose, and so you deposit it."
     hide speedlines
     stop moodloop fadeout 3.0
-    scene bg beach0 with dissolve
+    call beach0scene
 
-    $ renpy.music.set_volume(0.25,3.0,"music")
-    play choiceloop("audio/sfx_time_to_kill.wav") fadein 3.0 loop
+    call event_choices
     menu:
         cho "Why that's a nice coin you've got there! What if you were to spend it right now?"
         "\"No, thanks\"":
@@ -832,17 +918,15 @@ label start:
         "\"Why not?\"":
             mc "Why not?"
     stop choiceloop fadeout 3.0
-    $ renpy.music.set_volume(1,3.0,"music")
 
-    play eventloop("audio/sfx_banana_hammak.wav") fadein 3.0 loop
-    $ renpy.music.set_volume(.25,3.0,"music")
+    call event_clauddwight
     show clauddwight
     $ clauddwightObj.change("pose", "close02")
     $ clauddwightObj.change("emotion", "happy")
     dw "Well hello, there! I'm Dwight!"
     cl "And I'm Claudette!"
     $ clauddwightObj.change("pose", "close01")
-    play sound "sounds/sfx_signature_clauddwight01.wav"
+    play sound "sounds/sfx_signature_clauddwight01.ogg"
     cl "We'll take that!"
     $ clauddwightObj.change("emotion", "idle")
     nrr "Claudette quickly relieves you of your gold coin and tosses it to Dwight, who bites down on it like an old-timey prospector before handing it back to her."
@@ -851,14 +935,14 @@ label start:
     window hide
     #scene bg excitement with dissolve
     stop eventloop fadeout 3.0
-    $ renpy.music.set_volume(0.25,3.0,"music")
+
     call mood_excitement("images/skull.png", True)
     pause 1
     nrr "Claudette presents you with a tropical drink."
     nrr "When you take a sip, you find that it's incredible. Money well spent, in your estimation."
     stop moodloop fadeout 3.0
     call beach0scene
-    play eventloop("audio/sfx_banana_hammak.wav") fadein 3.0 loop
+    call event_clauddwight
     menu:
         cho "But I gotta ask: Could somebody maybe design the next one of these dating sims to be all-inclusive? It really takes some of the fun out of a fantasy vacation to be watching your wallet the entire time."
         "Thank them for the delicious drink":
@@ -877,27 +961,35 @@ label start:
     dw "Did someone just thank us?"
     cl "Go with it, Dwight. It's normal to be thanked for doing a good job. Trust me on this one."
     hide clauddwight with dissolve
+    stop eventloop fadeout 3.0
+    $ renpy.music.set_volume(1,3.0,"music")
 
     nrr "Your mind doesn't have a chance to linger any longer on your current situation, as you feel something soft bump into your foot."
     window hide
-    scene bg speedlinebg_red with dissolve
+    call speedlinesredscene("images/volleyball.png", True)
+    pause 3
     nrr "When you look down, you find a volleyball sitting in the sand there next to you."
     nrr "You stare down, frozen. A voice calls out from behind you."
     th "Little help, please?"
     window hide
-    scene bg beach0 with dissolve
+    stop moodloop fadeout 3.0
+    call beach0scene
     nrr "You turn around, and when you see what's waiting for you, your jaw just about hits the ground."
     window hide
-    scene bg happy with dissolve
-    pause 1
-    scene bg excitement with dissolve
-    pause 1
-    scene bg warmlight with dissolve
-    pause 1
-    scene bg warmdark with dissolve
-    pause 1
+    call mood_happy
+    show huntress
+    look "{w=5.0}"
+    call mood_excitement
+    show wraith
+    look "{w=5.0}"
+    call mood_warmlight
+    show spirit
+    look "{w=5.0}" 
+    call mood_warmdark
+    show trapper
+    look "{w=5.0}"
+    stop moodloop fadeout 3.0
     scene bg beach0 with dissolve
-    pause 1
     window hide
     nrr "Four gorgeous monsters stand halfway between you and a well-tended volleyball court."
     nrr "Each of them oozes with undead energy, a magical aura reaching out and penetrating you. Via your eyes."

@@ -62,7 +62,7 @@ define config.has_voice = True
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-define config.main_menu_music = "audio/m_240_SUNNY DBD THEME_LUFS16.wav"
+define config.main_menu_music = "audio/m_240_SUNNY DBD THEME_LUFS16.ogg"
 
 
 ## Transitions #################################################################
