@@ -152,13 +152,16 @@ define config.save_directory = "McGuffin-1659674124"
 
 define config.window_icon = "gui/window_icon.png"
 
-
 ## Build configuration #########################################################
 ##
 ## This section controls how Ren'Py turns your project into distribution files.
 
 init python:
-
+    ## Auto-Forward Toggle ########################################################################
+    ##
+    ## Toggle auto with key-bind
+    config.keymap['toggle_afm'].append('a')
+    
     ## The following functions take file patterns. File patterns are case-
     ## insensitive, and matched against the path relative to the base directory,
     ## with and without a leading /. If multiple patterns match, the first is
@@ -207,3 +210,5 @@ init python:
 ## by a slash.
 
 # define build.itch_project = "renpytom/test-project"
+
+

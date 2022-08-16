@@ -82,78 +82,78 @@ init:
         easeout 4 rotate 0    
         repeat
 
-    image dots = SnowBlossom(At("images/particle_dot.png", slowblink), border=150, count=20, start=0.00000000001, fast=True,  yspeed=(50, -40),  xspeed=(-25,25), horizontal=True)
-    image polygon = SnowBlossom(At("images/polygon.png", rotateslow, slowerblink), border=-500, count=2, start=0.00000000001, fast=True,  yspeed=(10, -10),  xspeed=(-15,15), horizontal=True)
+    image dots = SnowBlossom(At("images/moods/particle_dot.png", slowblink), border=150, count=20, start=0.00000000001, fast=True,  yspeed=(50, -40),  xspeed=(-25,25), horizontal=True)
+    image polygon = SnowBlossom(At("images/moods/polygon.png", rotateslow, slowerblink), border=-500, count=2, start=0.00000000001, fast=True,  yspeed=(10, -10),  xspeed=(-15,15), horizontal=True)
     image leaf1:
         rotate 180
-        im.Flip("images/leaf1.png", horizontal="True", vertical="True")
+        im.Flip("images/moods/leaf1.png", horizontal="True", vertical="True")
         zoom 1.3
         yalign 2.2
         xalign 1.075
     image leaf2:
         rotate 90
-        im.Flip("images/leaf2.png", vertical="True")
+        im.Flip("images/moods/leaf2.png", vertical="True")
         zoom 1.3
         yoffset -200
         xalign 1.15
     image leaf3:
         rotate 0
-        im.Flip("images/leaf3.png", horizontal="True", vertical="True")
+        im.Flip("images/moods/leaf3.png", horizontal="True", vertical="True")
         zoom 1
         yoffset 225
         xoffset -150
     image leaf4:
         rotate 180
-        im.Flip("images/leaf4.png", horizontal="True", vertical="True")
+        im.Flip("images/moods/leaf4.png", horizontal="True", vertical="True")
         zoom 1.3
         yoffset 725
         xoffset 275
     image leaf5:
         rotate -30
-        im.Flip("images/leaf5.png", horizontal="True")
+        im.Flip("images/moods/leaf5.png", horizontal="True")
         zoom 1.55
         yoffset 490
         xoffset -25
     image leaf6:
         rotate 270
-        im.Flip("images/leaf1.png", horizontal="False", vertical="False")
+        im.Flip("images/moods/leaf1.png", horizontal="False", vertical="False")
         zoom 1.3
         yalign 2.2
     image leaf7:
         rotate 270
-        im.Flip("images/leaf2.png", horizontal="True", vertical="True")
+        im.Flip("images/moods/leaf2.png", horizontal="True", vertical="True")
         zoom 1.3
         yoffset -200
         xoffset -150
     image leaf8:
-        im.Flip("images/leaf3.png", horizontal="True")
+        im.Flip("images/moods/leaf3.png", horizontal="True")
         zoom 1.5
         yoffset 325
         xoffset 1475
     image leaf9:
-        im.Flip("images/leaf4.png", horizontal="True")
+        im.Flip("images/moods/leaf4.png", horizontal="True")
         zoom 1.3
         yoffset 825
         xoffset 1125
     image leaf10:
         rotate 70
-        im.Flip("images/leaf5.png", vertical="True")
+        im.Flip("images/moods/leaf5.png", vertical="True")
         zoom 1.55
         yoffset 490
         xoffset 1350
 
     image bg warmdark:
-        "images/bg/bg_warmdark.png"
+        "images/moods/bg_warmdark.png"
         zoom 1.1
     image warmdark_effect1:
         xalign 0.5 
         yalign 0.5 
-        "images/bg/bg_warmdark_effect1.png"
+        "images/moods/bg_warmdark_effect1.png"
         zoom 1.1
     image warmdark_effect2:
         xalign 0.5 
         yalign 0.5 
-        "images/bg/bg_warmdark_effect2.png"
+        "images/moods/bg_warmdark_effect2.png"
         zoom 1.1
 ##
 ## warmdark end #################################################################
@@ -171,12 +171,12 @@ init:
         "images/sprites/ocean/ocean4.png"
 
     image cloudy1:
-        im.MatrixColor("images/cloudlayer1.png", im.matrix.tint(0.45, 0.45, 0.75))
+        im.MatrixColor("images/moods/cloudlayer1.png", im.matrix.tint(0.45, 0.45, 0.75))
         yalign 0.5
         xalign 0.5
 
     image cloudy2:
-        im.MatrixColor("images/cloudlayer2.png", im.matrix.tint(0.45, 0.45, 0.75))
+        im.MatrixColor("images/moods/cloudlayer2.png", im.matrix.tint(0.45, 0.45, 0.75))
         yalign 0.5
         xalign 0.5
         
@@ -318,24 +318,24 @@ init:
         easeout 4 rotate 0    
         repeat
     image excite_dots:
-        "images/dots1.png"
+        "images/moods/dots1.png"
         zoom 3
         xalign 0.5
         yalign 0.5
     image excite_beam1:
-        "images/excitement4.png"
+        "images/moods/excitement4.png"
         zoom 1.1
         xalign 0.5
         yalign 0.5
     image excite_beam2:
-        "images/excitement5.png"
+        "images/moods/excitement5.png"
         zoom 1.1
         xalign 0.5
         yalign 0.5
-    image dots2 = SnowBlossom(At("images/particle_dot.png", slowblink), border=150, count=40, start=0.00000000001, fast=True,  yspeed=(50, -40),  xspeed=(-25,25), horizontal=True)
+    image dots2 = SnowBlossom(At("images/moods/particle_dot.png", slowblink), border=150, count=40, start=0.00000000001, fast=True,  yspeed=(50, -40),  xspeed=(-25,25), horizontal=True)
     image glow:
         zoom 1.5
-        "images/glow.png"
+        "images/moods/glow.png"
         xalign 0.5 
         yalign 0.5
 ##
@@ -356,7 +356,7 @@ init:
     image dreadnoise:
         contains:
             parallel:
-                "images/sprites/effects/dreadfear_noise.png"
+                "images/moods/dreadfear_noise.png"
                 xpan 5400
                 ypan 5400
                 linear 8 xpan 1 ypan 1
@@ -365,7 +365,7 @@ init:
 ## inner monologue ###############################################################
 ## speedlines ###############################################################
 ##
-    image speedlines = Movie(play="images/sprites/video/speedlines.webm", mask="images/sprites/video/speedlines_mask.webm")
+    image speedlines = Movie(play="images/sprites/moods/speedlines.webm", mask="images/sprites/moods/speedlines_mask.webm")
 
     transform coin_yoffset:
         yoffset 50
@@ -383,22 +383,22 @@ init:
         xalign 0.9575
 
     image bg loading:
-        "images/bg/bg_loading.png"
+        "images/bg_loading.png"
     image bg beach0:
-        "images/bg/bg_beach_0.png"
+        "images/bg/bg_beach_day.png"
     image bg volley0:
-        "images/bg/bg_volley_0.png"
+        "images/bg/bg_volleyball_day.png"
 
     image bg inner_monologue:
-        "images/bg/bg_inner_monologue.png"
+        "images/bg/moods/bg_inner_monologue.png"
 
     image bg excitement:
-        "images/bg/bg_excitement.png"
+        "images/bg/moods/bg_excitement.png"
         zoom 1.11
     image bg warmlight:
-        "images/bg/bg_warmlight.png"
+        "images/bg/moods/bg_warmlight.png"
     image bg happy:
-        "images/bg/bg_happy.png"
+        "images/bg/moods/bg_happy.png"
     image bg speedlinebg_red:
         xoffset -3920
         yoffset -1250
@@ -407,7 +407,7 @@ init:
         anchor (0, 0) transform_anchor 1
         contains:
             parallel:
-                Tile("images/bg/bg_speedlinebg_red.png")
+                Tile("images/bg/moods/bg_speedlinebg_red.png")
                 ytile 3
                 xtile 3
                 xpan -5400
@@ -459,7 +459,7 @@ init python:
             self.resetFilenames()
 
     def play_effect(trans, st, at):
-            renpy.play("sounds/sfx_emotes_hearts_v01.ogg", channel="sound")
+            renpy.play("sounds/SFX_Emotes_Hearts_V01.ogg", channel="sound")
 
 layeredimage clauddwight:
     always:
@@ -497,12 +497,12 @@ image clauddwight_blink:
 image heartboom_far:
     function play_effect
     zoom 0.15
-    (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+    (ParticleBurst("images/emotes/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
 
 image heartboom_close:
     function play_effect
     zoom 0.25
-    (ParticleBurst("images/sprites/effects/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+    (ParticleBurst("images/emotes/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
 
 image heartboom_claud_far:
     xalign 0.45
@@ -588,7 +588,7 @@ init python:
             xSpeed = ((random.random() - 0.5) * self.particleXSpeed)
             pTime = (random.random() * self.particleTime ) + st
             self.stars.append((s, ySpeed, xSpeed, pTime))
-            
+
         def update(self, st):
             sindex=0
             for s, ySpeed, xSpeed, particleTime in self.stars:
@@ -610,11 +610,10 @@ init python:
 # Declare the characters.
 define nrr = Character(None, window_style="window_narrator", color="#3a2e55",callback=callbackcontinue)
 define cho = Character(None, window_style="window_narrator", color="#3a2e55",  callback=callbackchoice)
-define look = Character(None, window_style="window_look", color="#3a2e55",  callback=callbackchoice)
 
 define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", callback=callbackcontinue)
 define mc = DynamicCharacter('mc_name', color="#3a2e55", callback=callbackcontinue)
-
+define look = Character(None,window_background=None, button_style = "say_button_none")
 define dw = Character("DWIGHT", color="#bb7d31", callback=callbackcontinue)
 
 define cl = Character("CLAUDETTE", color="#b4992e",  callback=callbackcontinue)
@@ -977,17 +976,17 @@ label start:
     nrr "You turn around, and when you see what's waiting for you, your jaw just about hits the ground."
     window hide
     call mood_happy
-    show huntress
-    look "{w=5.0}"
+    show huntress with dissolve
+    pause 4
     call mood_excitement
-    show wraith
-    look "{w=5.0}"
+    show wraith with dissolve
+    pause 4
     call mood_warmlight
-    show spirit
-    look "{w=5.0}" 
+    show spirit with dissolve
+    pause 4
     call mood_warmdark
-    show trapper
-    look "{w=5.0}"
+    show trapper with dissolve
+    pause 4
     stop moodloop fadeout 3.0
     scene bg beach0 with dissolve
     window hide

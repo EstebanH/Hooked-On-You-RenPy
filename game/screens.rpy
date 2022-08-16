@@ -121,22 +121,13 @@ screen say(who, what):
                 text who at namebox_rotate id "who"
 
         text what id "what"
-    button:
-        action Skip()
-        if renpy.get_screen("skip_indicator"):
-            unhovered Skip() alternate Skip(fast=True, confirm=True)
-        else:
-            unhovered NullAction()
-        xpos 1547
-        ypos 932
-        xysize (149,120)
-        idle_background "gui/gui_button_skip_idle.png"
-        hover_background "gui/gui_button_skip_hover.png"
-        selected_idle_background "gui/gui_button_skip_idle.png"
-        selected_hover_background "gui/gui_button_skip_hover.png"
-        selected_background "gui/gui_button_skip_select.png"
-        activate_sound "sounds/sfx_tap.ogg"
-
+        button:
+            id "button"
+            action Skip()
+            if renpy.get_screen("skip_indicator"):
+                unhovered Skip() alternate Skip(fast=True, confirm=True)
+            else:
+                unhovered NullAction()
 
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
@@ -147,6 +138,7 @@ screen say(who, what):
 ## Make the namebox available for styling through the Character object.
 init python:
     config.character_id_prefixes.append('namebox')
+    config.character_id_prefixes.append('button')
 
 style window is default
 style say_label is default
@@ -180,14 +172,6 @@ style window_narrator:
 
     background Image("gui/gui_dialoguebox_leaf.png", xalign=0.5, yalign=1.0)
 
-style window_look:
-    xalign 0.5
-    xfill True
-    yalign gui.textbox_yalign - 0.06
-    ysize gui.textbox_height 
-
-    background None
-
 style window_killer:
     xalign 0.5
     xfill True
@@ -219,6 +203,28 @@ style namebox_ocean:
 
     background Frame("gui/gui_nameplate_ocean.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
+
+style say_button_none:
+    xalign 0.877
+    yalign 1.125
+    xysize (149,120)
+    idle_background None
+    hover_background None
+    selected_idle_background None
+    selected_hover_background None
+    selected_background None
+    activate_sound None
+
+style say_button:
+    xalign 0.877
+    yalign 1.125
+    xysize (149,120)
+    idle_background "gui/gui_button_skip_idle.png"
+    hover_background "gui/gui_button_skip_hover.png"
+    selected_idle_background "gui/gui_button_skip_idle.png"
+    selected_hover_background "gui/gui_button_skip_hover.png"
+    selected_background "gui/gui_button_skip_select.png"
+    activate_sound "sounds/sfx_tap.ogg"
 
 style say_label:
     #Putting outlines here applies to all characters, override with who_outlines
@@ -1842,13 +1848,13 @@ style confirm_button_text:
 screen skip_indicator():
 
     zorder 100
+    style_prefix "skip"
     
     if renpy.get_screen("say"):
         image "gui/gui_button_skip_select.png":
             xpos 1547
             ypos 932
             xysize (149,120)
-    #style_prefix "skip"
 
     #frame:
 
