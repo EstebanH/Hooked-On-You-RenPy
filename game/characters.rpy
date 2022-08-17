@@ -2,7 +2,7 @@
 
 init:
     transform heartfade:
-        easeout 20.0 alpha 0.0
+        easeout 1.0 alpha 0.0
 
     image heartboom_far:
         function play_effect

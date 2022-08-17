@@ -7,8 +7,205 @@ init:
     transform nodissolvecenter:
         yalign 0.25
         xalign 0.5
+
+## haunting ###############################################################
+##
+init:
+    image bg haunting:
+        "images/bg/moods/bg_haunting.png"
+    image ocean1:
+        "images/sprites/ocean/ocean1.png"
+    image ocean2:
+        "images/sprites/ocean/ocean2.png"
+    image ocean3:
+        "images/sprites/ocean/ocean3.png"
+    image ocean4:
+        "images/sprites/ocean/ocean4.png"
+
+    image cloudy1:
+        im.MatrixColor("images/moods/cloudlayer1.png", im.matrix.tint(0.45, 0.45, 0.75))
+        yalign 0.5
+        xalign 0.5
+
+    image cloudy2:
+        im.MatrixColor("images/moods/cloudlayer2.png", im.matrix.tint(0.45, 0.45, 0.75))
+        yalign 0.5
+        xalign 0.5
+        
+    transform cloudanimx:
+        easein 32 xzoom 1.5
+        easeout 8 xzoom 1.3
+        repeat
+        
+    transform cloudanimy:
+        easein 16 yzoom 1.1
+        easeout 8 yzoom 1.3 
+        repeat
+        
+    transform cloudxoffset:
+        easein 16 xoffset -100
+        easein 16 xoffset -100
+        easeout 32 xoffset 100
+        repeat
+        
+    transform cloudyoffset:
+        easein 16 xoffset -50
+        easein 16 xoffset -50
+        easeout 16 xoffset 50
+        repeat
+        
+    transform cloudxoffset2:
+        easein 16 xoffset -50
+        easein 16 xoffset -50
+        easeout 16 xoffset 50
+        repeat
+        
+    transform cloudyoffset2:
+        easeout 8 yoffset 0
+        repeat
+
+    transform ocean1place:
+        xalign 1.0
+        yalign 1.0
+        yoffset 1070
+        xoffset 700
+        zoom 1.75
+    transform ocean2place:
+        xalign 0.7
+        yalign 1.0
+        yoffset 950
+        xoffset 125
+        zoom 1.75
+    transform ocean3place:
+        xalign .0 
+        yalign 1.0
+        yoffset 925
+        xoffset -450
+        zoom 1.5
+    transform ocean4place:
+        xalign 1.0 
+        yalign 1.0
+        yoffset 1100
+        xoffset 420
+        zoom 1.5
+    transform ocean1rotate:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 3 rotate -5
+        easeout 4 rotate 0
+        easein 6 rotate 5  
+        easeout 4 rotate 0    
+        repeat
+    transform ocean2rotate:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 4 rotate 5
+        easeout 5 rotate 0
+        easein 4 rotate -5  
+        easeout 3 rotate 0    
+        repeat
+    transform ocean3rotate:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 6 rotate -5
+        easeout 4 rotate 0
+        easein 3 rotate 5  
+        easeout 4 rotate 0    
+        repeat
+    transform ocean4rotate:
+        #anchor (1, 1) transform_anchor 1
+        easein 4 rotate -5
+        easeout 3 rotate 0
+        easein 4 rotate 5  
+        easeout 3 rotate 0    
+        repeat
+    transform ocean1offset:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 3 xoffset -50
+        easeout 4 xoffset 0
+        easein 6 xoffset 50
+        easeout 4 xoffset 0    
+        repeat
+    transform ocean2offset:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 6 xoffset -50
+        easeout 5 xoffset 0
+        easein 4 xoffset 50  
+        easeout 3 xoffset 0    
+        repeat
+    transform ocean3offset:
+        #anchor (0.5, 0.5) transform_anchor 1
+        easein 6 xoffset -50
+        easeout 4 xoffset 0
+        easein 3 xoffset 50  
+        easeout 4 xoffset 0    
+        repeat
+    transform ocean4offset:
+        #anchor (1, 1) transform_anchor 1
+        easein 4 xoffset -50
+        easeout 3 xoffset 0
+        easein 4 xoffset 50  
+        easeout 3 xoffset 0    
+        repeat
+
+
+
+label oceanhaunting(image_name=Null, ismovefrombottom = False):
+    window hide
+    call hideeffects
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    show bg haunting
+    play hauntloop("audio/m_Mood_Haunting_Loop_V1.ogg") fadein 3.0 loop
+    show cloudy1 at cloudanimx, cloudanimy,cloudxoffset,cloudyoffset
+    show cloudy2 at cloudanimx, cloudanimy,cloudxoffset2,cloudyoffset2
+    show ocean1 at ocean1place, ocean1rotate, ocean1offset
+    show ocean2 at ocean2place, ocean2rotate, ocean2offset
+    show ocean3 at ocean3place, ocean3rotate, ocean3offset
+    show ocean4 at ocean4place, ocean4rotate, ocean4offset 
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter,coin_yoffset
+        else:
+            show expression image_name at nodissolvecenter
+
+    with dissolve
+    return
+
+##
+## haunting ###############################################################
+
+## inner monologue ###############################################################
+##
+init:
+    image head_coin:
+        "images/head_coin.png" 
+        xalign 0.5 
+        yalign 0.25
+    image dreadnoise:
+        contains:
+            parallel:
+                "images/moods/dreadfear_noise.png"
+                xpan 5400
+                ypan 5400
+                linear 8 xpan 1 ypan 1
+                repeat
+##
+## inner monologue ###############################################################
+## speedlines ###############################################################
+##
+init:
+    image speedlines = Movie(play="images/sprites/moods/speedlines.webm", mask="images/sprites/moods/speedlines_mask.webm")
+
+    transform coin_yoffset:
+        yoffset 50
+    
+    transform volleycenter:
+        yalign 0.5
+        xalign 0.5
+        easein 3 yalign 0.25
+##
+## speedlines ###############################################################
+
 ## warmdark ###########################################################
 ##
+init:
     transform rotatebacknforth:
         around (.5, .5) alignaround (.5, .5) xalign .5 yalign .5
         rotate 0
@@ -162,147 +359,180 @@ init:
         yalign 0.5 
         "images/moods/bg_warmdark_effect2.png"
         zoom 1.1
+
+label mood_warmdark(image_name=Null, ismovefrombottom = False, scenedissolve = True):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_WarmDark_Loop_V1.ogg") fadein 3.0 loop
+    scene bg warmdark
+    show excite_dots
+    show polygon
+    show leaf1 at rotateleafa
+    show leaf2 at rotateleafa
+    show leaf3 at rotateleafb, wave
+    show leaf4 at rotateleafa
+    show leaf5 at rotateleafa
+    show leaf6 at rotateleafa_reverse
+    show leaf7 at rotateleafa_reverse
+    show leaf8 at rotateleafb_reverse, wave
+    show leaf9 at rotateleafa_reverse
+    show leaf10 at rotateleafa_reverse
+    show warmdark_effect1 at rotatewarmdark
+    show warmdark_effect2 at twinkle
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    if scenedissolve:
+        with dissolve
+    return
+
 ##
 ## warmdark end #################################################################
-## haunting ###############################################################
+
+## warmlight ###############################################################
 ##
-    image bg haunting:
-        "images/bg/moods/bg_haunting.png"
-    image ocean1:
-        "images/sprites/ocean/ocean1.png"
-    image ocean2:
-        "images/sprites/ocean/ocean2.png"
-    image ocean3:
-        "images/sprites/ocean/ocean3.png"
-    image ocean4:
-        "images/sprites/ocean/ocean4.png"
+init:
+    image bg warmlight:
+        "images/bg/moods/bg_warmlight.png"
 
-    image cloudy1:
-        im.MatrixColor("images/moods/cloudlayer1.png", im.matrix.tint(0.45, 0.45, 0.75))
-        yalign 0.5
-        xalign 0.5
+    image wlflower1:
+        "images/moods/wl_flower_1.png"
+        xalign 0.15
+        yalign 0.925
+        zoom .7
+    image wlflower2:
+        "images/moods/wl_flower_2.png"
+        xalign 0.175
+        yalign 0.525
+        zoom .7
+    image wlflower3:
+        "images/moods/wl_flower_3.png"
+        xalign 0.15
+        yalign 0.35
+        zoom .7
+    image wlflower4:
+        "images/moods/wl_flower_4.png"
+        xalign 0.1125
+        yalign 0.675
+        zoom .7
 
-    image cloudy2:
-        im.MatrixColor("images/moods/cloudlayer2.png", im.matrix.tint(0.45, 0.45, 0.75))
-        yalign 0.5
-        xalign 0.5
-        
-    transform cloudanimx:
-        easein 32 xzoom 1.5
-        easeout 8 xzoom 1.3
-        repeat
-        
-    transform cloudanimy:
-        easein 16 yzoom 1.1
-        easeout 8 yzoom 1.3 
-        repeat
-        
-    transform cloudxoffset:
-        easein 16 xoffset -100
-        easein 16 xoffset -100
-        easeout 32 xoffset 100
-        repeat
-        
-    transform cloudyoffset:
-        easein 16 xoffset -50
-        easein 16 xoffset -50
-        easeout 16 xoffset 50
-        repeat
-        
-    transform cloudxoffset2:
-        easein 16 xoffset -50
-        easein 16 xoffset -50
-        easeout 16 xoffset 50
-        repeat
-        
-    transform cloudyoffset2:
-        easeout 8 yoffset 0
-        repeat
+    image wlflower5:
+        "images/moods/wl_flower_1.png"
+        xalign 1.035-0.15
+        yalign 0.925
+        yzoom .7
+        xzoom -.7
+    image wlflower6:
+        "images/moods/wl_flower_2.png"
+        xalign 1.035-0.175
+        yalign 0.525
+        yzoom .7
+        xzoom -.7
+    image wlflower7:
+        "images/moods/wl_flower_3.png"
+        xalign 1.035-0.15
+        yalign 0.35
+        yzoom .7
+        xzoom -.7
+    image wlflower8:
+        "images/moods/wl_flower_4.png"
+        xalign 1.035-0.1125
+        yalign 0.675
+        yzoom .7
+        xzoom -.7
 
-    transform ocean1place:
-        xalign 1.0
-        yalign 1.0
-        yoffset 1070
-        xoffset 700
-        zoom 1.75
-    transform ocean2place:
-        xalign 0.7
-        yalign 1.0
-        yoffset 950
-        xoffset 125
-        zoom 1.75
-    transform ocean3place:
-        xalign .0 
-        yalign 1.0
-        yoffset 925
-        xoffset -450
-        zoom 1.5
-    transform ocean4place:
-        xalign 1.0 
-        yalign 1.0
-        yoffset 1100
-        xoffset 420
-        zoom 1.5
-    transform ocean1rotate:
-        #anchor (0.5, 0.5) transform_anchor 1
-        easein 3 rotate -5
+    transform rotateflowera:
+        anchor (0.5, 0.5) transform_anchor 1
+        easein 4 rotate 10
         easeout 4 rotate 0
-        easein 6 rotate 5  
-        easeout 4 rotate 0    
+        easein 4 rotate -10  
+        easeout 2 rotate 0    
         repeat
-    transform ocean2rotate:
-        #anchor (0.5, 0.5) transform_anchor 1
-        easein 4 rotate 5
-        easeout 5 rotate 0
-        easein 4 rotate -5  
-        easeout 3 rotate 0    
+
+    transform rotateflowera_reverse:
+        anchor (0.5, 0.5) transform_anchor 1
+        easein 2 rotate -10
+        easeout 2 rotate 0
+        easein 2 rotate 10  
+        easeout 2 rotate 0    
         repeat
-    transform ocean3rotate:
-        #anchor (0.5, 0.5) transform_anchor 1
-        easein 6 rotate -5
-        easeout 4 rotate 0
-        easein 3 rotate 5  
-        easeout 4 rotate 0    
-        repeat
-    transform ocean4rotate:
-        #anchor (1, 1) transform_anchor 1
-        easein 4 rotate -5
-        easeout 3 rotate 0
-        easein 4 rotate 5  
-        easeout 3 rotate 0    
-        repeat
-    transform ocean1offset:
-        #anchor (0.5, 0.5) transform_anchor 1
-        easein 3 xoffset -50
-        easeout 4 xoffset 0
-        easein 6 xoffset 50
-        easeout 4 xoffset 0    
-        repeat
-    transform ocean2offset:
-        #anchor (0.5, 0.5) transform_anchor 1
-        easein 6 xoffset -50
-        easeout 5 xoffset 0
-        easein 4 xoffset 50  
-        easeout 3 xoffset 0    
-        repeat
-    transform ocean3offset:
-        #anchor (0.5, 0.5) transform_anchor 1
-        easein 6 xoffset -50
-        easeout 4 xoffset 0
-        easein 3 xoffset 50  
-        easeout 4 xoffset 0    
-        repeat
-    transform ocean4offset:
-        #anchor (1, 1) transform_anchor 1
-        easein 4 xoffset -50
-        easeout 3 xoffset 0
-        easein 4 xoffset 50  
-        easeout 3 xoffset 0    
-        repeat
+
+    transform circlesize:
+        zoom .125
+
+    image wl_circle2topright:
+        SnowBlossom(At("images/moods/WL_Circle_2.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(40, 80),  xspeed=(-80,-40), horizontal=True)
+
+    image wl_circle1topright:
+        SnowBlossom(At("images/moods/WL_Circle_1.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(40, 80),  xspeed=(-80,0), horizontal=True)
+
+    image wl_circle2topleft:
+        SnowBlossom(At("images/moods/WL_Circle_2.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(40, 80),  xspeed=(40,80), horizontal=True)
+
+    image wl_circle1topleft:
+        SnowBlossom(At("images/moods/WL_Circle_1.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(40, 80),  xspeed=(40,80), horizontal=True)
+
+    image wl_circle2left:
+        SnowBlossom(At("images/moods/WL_Circle_2.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-40, -80),  xspeed=(40,80), horizontal=True)
+
+    image wl_circle1left:
+        SnowBlossom(At("images/moods/WL_Circle_1.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-40, -80),  xspeed=(40,80), horizontal=True)
+        
+    image wl_circle2right:
+        SnowBlossom(At("images/moods/WL_Circle_2.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-80, -40),  xspeed=(-80,-40), horizontal=True)
+
+    image wl_circle1right:
+        SnowBlossom(At("images/moods/WL_Circle_1.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-80, -40),  xspeed=(-80,-40), horizontal=True)
+
+    image wl_circle1:
+        (ParticleBurst(At("images/moods/WL_Circle_1.png", starsizefade), explodeTime=0, numParticles=3, particleTime=60.0, particleXSpeed = 15, particleYSpeed = 1, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        xzoom .5
+        yzoom 0.1
+    image wl_circle2:
+        (ParticleBurst(At("images/moods/WL_Circle_2.png", starsizefade), explodeTime=0, numParticles=3, particleTime=60.0, particleXSpeed = 1, particleYSpeed = 10, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        zoom .125
+
+label mood_warmlight(image_name=Null, ismovefrombottom = False, scenedissolve = True):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_WarmLight_Loop_V1.ogg") fadein 3.0 loop
+    scene bg warmlight
+    show wlflower3 at rotateflowera_reverse 
+    show wlflower4 at rotateflowera_reverse 
+    show wlflower2 at rotateflowera 
+    show wlflower1 at rotateflowera 
+
+    show wlflower7 at rotateflowera_reverse 
+    show wlflower8 at rotateflowera_reverse 
+    show wlflower6 at rotateflowera 
+    show wlflower5 at rotateflowera 
+
+    show wl_circle1 at truecenter
+    show wl_circle2 at truecenter
+    show wl_circle1topright at topright, bubblesize
+    show wl_circle2topright at topright, circlesize
+    show wl_circle1topleft at topleft, bubblesize
+    show wl_circle2topleft at topleft, circlesize
+    show wl_circle1right at right, bubblesize
+    show wl_circle2right at right, circlesize
+    show wl_circle1left at left, bubblesize
+    show wl_circle2left at left, circlesize
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    if scenedissolve:
+        with dissolve
+    return
 ##
-## haunting ###############################################################
+## warmlight ###############################################################
+
 ## excitement ###############################################################
 ##
+init:
     transform dotsrotate:
         rotate 0
         #anchor (0.5, 0.5) transform_anchor 1
@@ -332,7 +562,15 @@ init:
         easein 5.0 alpha 0.5
         easeout 5.0 alpha 0.25
         repeat
+    transform starsizefade:
+        zoom .5
+        easein 1.0 alpha 1.0
+        easeout 1.0 alpha 0.0
+        repeat
 
+    image bg excitement:
+        "images/bg/moods/bg_excitement.png"
+        zoom 1.11
     image excite_dots:
         "images/moods/dots1.png"
         zoom 3
@@ -348,58 +586,49 @@ init:
         zoom 1.5
         "images/moods/glow.png"
 
+    image excite_stars:
+        (ParticleBurst(At("images/moods/EX_Stars.png", starsizefade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        zoom 0.15
 
-label mood_excitement(image_name=Null, ismoveinbottom = False):
+    layeredimage excite_flower_layers:
+        always:
+            "images/moods/EX_blurflower.png"
+        always:
+            "images/moods/EX_flower.png"
+    transform flowerfade:
+        alpha 0
+        easein 2.0 alpha 1.0
+        easeout 2.0 alpha 0.1
+        linear 5.0 alpha 0.1
+        repeat
+
+    image excite_flower:
+        (ParticleBurst(At("excite_flower_layers", flowerfade), explodeTime=0, numParticles=2, particleTime=60.0, particleXSpeed = 30, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        zoom 0.1
+
+label mood_excitement(image_name=Null, ismovefrombottom = False, scenedissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_Excitement_Loop_V1.ogg") fadein 3.0 loop
     scene bg excitement
     show excite_small_dots
+    show excite_stars at truecenter,dotsrotate
+    show excite_flower at truecenter
     show excite_beam2 at beam2, truecenter, beamfade
     show excite_beam1 at beam1, truecenter, beamfade
     show excite_dots at dotsrotate, truecenter, dotsfade
     show glow at truecenter
     if image_name is not Null:
-        if ismoveinbottom:
+        if ismovefrombottom:
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1
-    with dissolve
+    if scenedissolve:
+        with dissolve
     return
-
 
 ##
 ## excitement ###############################################################
-## inner monologue ###############################################################
-##
-
-    image head_coin:
-        "images/head_coin.png" 
-        xalign 0.5 
-        yalign 0.25
-    image dreadnoise:
-        contains:
-            parallel:
-                "images/moods/dreadfear_noise.png"
-                xpan 5400
-                ypan 5400
-                linear 8 xpan 1 ypan 1
-                repeat
-##
-## inner monologue ###############################################################
-## speedlines ###############################################################
-##
-    image speedlines = Movie(play="images/sprites/moods/speedlines.webm", mask="images/sprites/moods/speedlines_mask.webm")
-
-    transform coin_yoffset:
-        yoffset 50
-    
-    transform volleycenter:
-        yalign 0.5
-        xalign 0.5
-        easein 3 yalign 0.25
-##
-## speedlines ###############################################################
 
 ## happy ###############################################################
 ##
@@ -458,7 +687,7 @@ init:
         (ParticleBurst(At("images/moods/Happy_Starblur.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 5, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
         zoom 0.1
 
-label mood_happy(image_name=Null, ismoveinbottom = False):
+label mood_happy(image_name=Null, ismovefrombottom = False, scenedissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_Happy_Loop_V1.ogg") fadein 3.0 loop
@@ -476,11 +705,12 @@ label mood_happy(image_name=Null, ismoveinbottom = False):
     show happy_bubble4left at left, bubblesize
     #show excite_dots at dots
     if image_name is not Null:
-        if ismoveinbottom:
+        if ismovefrombottom:
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1
-    with dissolve
+    if scenedissolve:
+        with dissolve
     return
 
 
@@ -505,11 +735,7 @@ init:
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
 
-    image bg excitement:
-        "images/bg/moods/bg_excitement.png"
-        zoom 1.11
-    image bg warmlight:
-        "images/bg/moods/bg_warmlight.png"
+
     image bg speedlinebg_red:
         xoffset -3920
         yoffset -1250
@@ -574,104 +800,40 @@ label hideeffects:
     hide dreadnoise
     return
 
-label oceanhaunting(image_name=Null, ismoveinbottom = False):
-    window hide
-    call hideeffects
-    $ renpy.music.set_volume(0.25,3.0,"music")
-    show bg haunting
-    play hauntloop("audio/m_Mood_Haunting_Loop_V1.ogg") fadein 3.0 loop
-    show cloudy1 at cloudanimx, cloudanimy,cloudxoffset,cloudyoffset
-    show cloudy2 at cloudanimx, cloudanimy,cloudxoffset2,cloudyoffset2
-    show ocean1 at ocean1place, ocean1rotate, ocean1offset
-    show ocean2 at ocean2place, ocean2rotate, ocean2offset
-    show ocean3 at ocean3place, ocean3rotate, ocean3offset
-    show ocean4 at ocean4place, ocean4rotate, ocean4offset 
-    if image_name is not Null:
-        if ismoveinbottom:
-            show expression image_name at dissolvecenter,coin_yoffset
-        else:
-            show expression image_name at nodissolvecenter
-
-    with dissolve
-    return
-
-label speedlinesredscene(image_name=Null, ismoveinbottom = False):
+label speedlinesredscene(image_name=Null, ismovefrombottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_SpeedLine_Loop-003.ogg") fadein 3.0 loop
     scene bg speedlinebg_red with dissolve
     if image_name is not Null:
-        if ismoveinbottom:
+        if ismovefrombottom:
             show expression image_name at volleycenter,coin_yoffset zorder 1
         else:
             show expression image_name at nodissolvecenter,coin_yoffset zorder 1
     with dissolve
     return
 
-label mood_speedlines(image_name=Null, ismoveinbottom = False):
+label mood_speedlines(image_name=Null, ismovefrombottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_SpeedLine_Loop-001.ogg") fadein 3.0 loop
     show speedlines
     if image_name is not Null:
-        if ismoveinbottom:
+        if ismovefrombottom:
             show expression image_name at dissolvecenter,coin_yoffset zorder 1
         else:
             show expression image_name at nodissolvecenter,coin_yoffset zorder 1
     with dissolve
     return
 
-label mood_inner_monologuescene(image_name=Null, ismoveinbottom = False):
+label mood_inner_monologuescene(image_name=Null, ismovefrombottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.ogg") fadein 3.0 loop
     scene bg inner_monologue
     show dreadnoise
     if image_name is not Null:
-        if ismoveinbottom:
-            show expression image_name at dissolvecenter zorder 1
-        else:
-            show expression image_name at nodissolvecenter zorder 1
-    with dissolve
-    return
-
-
-label mood_warmdark(image_name=Null, ismoveinbottom = False):
-    window hide
-    $ renpy.music.set_volume(0.25,3.0,"music")
-    play moodloop("audio/m_Mood_WarmDark_Loop_V1.ogg") fadein 3.0 loop
-    scene bg warmdark
-    show dots
-    show polygon
-    show leaf1 at rotateleafa
-    show leaf2 at rotateleafa
-    show leaf3 at rotateleafb, wave
-    show leaf4 at rotateleafa
-    show leaf5 at rotateleafa
-    show leaf6 at rotateleafa_reverse
-    show leaf7 at rotateleafa_reverse
-    show leaf8 at rotateleafb_reverse, wave
-    show leaf9 at rotateleafa_reverse
-    show leaf10 at rotateleafa_reverse
-    show warmdark_effect1 at rotatewarmdark
-    show warmdark_effect2 at twinkle
-    if image_name is not Null:
-        if ismoveinbottom:
-            show expression image_name at dissolvecenter zorder 1
-        else:
-            show expression image_name at nodissolvecenter zorder 1
-    with dissolve
-    return
-
-label mood_warmlight(image_name=Null, ismoveinbottom = False):
-    window hide
-    $ renpy.music.set_volume(0.25,3.0,"music")
-    play moodloop("audio/m_Mood_WarmLight_Loop_V1.ogg") fadein 3.0 loop
-    scene bg warmlight
-    show excite_dots
-    show excite_dots at dots
-    if image_name is not Null:
-        if ismoveinbottom:
+        if ismovefrombottom:
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1

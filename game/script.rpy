@@ -83,7 +83,7 @@ label start:
     nrr "You look down at your feet, ankle-deep in the crystal blue water of a newly arrived wave."
     nrr "As the water recedes back into the ocean, it reveals a grotesque discovery!"
 
-    call mood_inner_monologuescene("images/head_idle.png", True)
+    call mood_inner_monologuescene("images/head_idle.png", ismovefrombottom = True)
 
     nrr "A decomposing face stares up at you from beneath the sand. All you can do is vomit--a stream of dark bile, bugs, worms, and other... ick."
     nrr "Questions race through your mind. Where are you? How did you get here? {i}Who is behind this incredibly charming and well-spoken voice in your head?{/i} However, answers don't come easy. Your mind... is completely blank."
@@ -116,11 +116,11 @@ label start:
     oc "Getting your hands dirty, I see. I like that... You're a take charge type."
     stop hauntloop fadeout 3.0
     window hide
-    call oceanhaunting("images/coin.png", True)
+    call oceanhaunting("images/coin.png", ismovefrombottom = True)
     pause 1
     stop hauntloop fadeout 3.0
 
-    call beach0scene(True)
+    call beach0scene(keep_images=True)
     call mood_speedlines("images/coin.png")
 
     nrr "You examine the gold coin briefly, happily distracted from what has otherwise been an extremely.... confusing morning."
@@ -156,7 +156,7 @@ label start:
     #scene bg excitement with dissolve
     stop eventloop fadeout 3.0
 
-    call mood_excitement("images/skull.png", True)
+    call mood_excitement("images/skull.png", ismovefrombottom = True)
     pause 1
     nrr "Claudette presents you with a tropical drink."
     nrr "When you take a sip, you find that it's incredible. Money well spent, in your estimation."
@@ -186,7 +186,7 @@ label start:
 
     nrr "Your mind doesn't have a chance to linger any longer on your current situation, as you feel something soft bump into your foot."
     window hide
-    call speedlinesredscene("images/volleyball.png", True)
+    call speedlinesredscene("images/volleyball.png", ismovefrombottom = True)
     pause 3
     nrr "When you look down, you find a volleyball sitting in the sand there next to you."
     nrr "You stare down, frozen. A voice calls out from behind you."
@@ -196,26 +196,26 @@ label start:
     call beach0scene
     nrr "You turn around, and when you see what's waiting for you, your jaw just about hits the ground."
     window hide
-    call mood_happy
+    call mood_happy(scenedissolve = False)
     $ huntressObj.change("pose", "close01")
-    show huntress with dissolve
+    show huntress
+    with dissolve
     pause 4
-    ""
-    call mood_excitement
+    call mood_excitement(scenedissolve = False)
     $ wraithObj.change("pose", "close01")
-    show wraith
+    show wraith 
+    with dissolve
     pause 4
-    ""
-    call mood_warmlight
+    call mood_warmlight(scenedissolve = False)
     $ spiritObj.change("pose", "close01")
-    show spirit with dissolve
+    show spirit
+    with dissolve
     pause 4
-    ""
-    call mood_warmdark
+    call mood_warmdark(scenedissolve = False)
     $ trapperObj.change("pose", "close01")
-    show trapper with dissolve
+    show trapper
+    with dissolve
     pause 4
-    ""
     stop moodloop fadeout 3.0
     scene bg beach0 with dissolve
     window hide
