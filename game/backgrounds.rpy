@@ -1,5 +1,12 @@
 
-init:
+init:    
+    transform dissolvecenter:
+        yalign 1.0
+        xalign 0.5
+        easein 2 yalign 0.25
+    transform nodissolvecenter:
+        yalign 0.25
+        xalign 0.5
 ## warmdark ###########################################################
 ##
     transform rotatebacknforth:
@@ -296,12 +303,15 @@ init:
 ## haunting ###############################################################
 ## excitement ###############################################################
 ##
-    transform dots:
+    transform dotsrotate:
+        rotate 0
         #anchor (0.5, 0.5) transform_anchor 1
-        easein 16 rotate -90
-        easeout 8 rotate 0
-        easein 16 rotate 90  
-        easeout 8 rotate 0    
+        easein 64 rotate 360
+        repeat
+    transform dotsfade:
+        alpha 0.7
+        easein 2.0 alpha 1.0
+        easeout 1.0 alpha 0.7
         repeat
     transform beam1:
         #anchor (0.5, 0.5) transform_anchor 1
@@ -317,38 +327,52 @@ init:
         easein 8 rotate -180 
         easeout 4 rotate 0    
         repeat
+    transform beamfade:
+        alpha 0.25
+        easein 5.0 alpha 0.5
+        easeout 5.0 alpha 0.25
+        repeat
+
     image excite_dots:
         "images/moods/dots1.png"
         zoom 3
-        xalign 0.5
-        yalign 0.5
     image excite_beam1:
         "images/moods/excitement4.png"
         zoom 1.1
-        xalign 0.5
-        yalign 0.5
     image excite_beam2:
         "images/moods/excitement5.png"
         zoom 1.1
-        xalign 0.5
-        yalign 0.5
-    image dots2 = SnowBlossom(At("images/moods/particle_dot.png", slowblink), border=150, count=40, start=0.00000000001, fast=True,  yspeed=(50, -40),  xspeed=(-25,25), horizontal=True)
+    image excite_small_dots:
+        SnowBlossom(At("images/moods/particle_dot.png", slowblink), border=150, count=80, start=0.00000000001, fast=True,  yspeed=(50, -40),  xspeed=(-25,25), horizontal=True)
     image glow:
         zoom 1.5
         "images/moods/glow.png"
-        xalign 0.5 
-        yalign 0.5
+
+
+label mood_excitement(image_name=Null, ismoveinbottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Excitement_Loop_V1.ogg") fadein 3.0 loop
+    scene bg excitement
+    show excite_small_dots
+    show excite_beam2 at beam2, truecenter, beamfade
+    show excite_beam1 at beam1, truecenter, beamfade
+    show excite_dots at dotsrotate, truecenter, dotsfade
+    show glow at truecenter
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+
 ##
 ## excitement ###############################################################
 ## inner monologue ###############################################################
 ##
-    transform dissolvecenter:
-        yalign 1.0
-        xalign 0.5
-        easein 2 yalign 0.25
-    transform nodissolvecenter:
-        yalign 0.25
-        xalign 0.5
+
     image head_coin:
         "images/head_coin.png" 
         xalign 0.5 
@@ -369,14 +393,103 @@ init:
 
     transform coin_yoffset:
         yoffset 50
-
-## speedlines ###############################################################
+    
     transform volleycenter:
         yalign 0.5
         xalign 0.5
         easein 3 yalign 0.25
+##
+## speedlines ###############################################################
+
+## happy ###############################################################
+##
+init:
+    transform starfade:
+        alpha 0.0
+        linear 5.0 alpha 1.0
+        easeout 2.0 alpha 0.0
+        repeat
+    transform bubblefade:
+        alpha 0.0
+        easein 10.0 alpha 0.9
+        easeout 10.0 alpha 0.0
+        repeat
+
+    transform bubblesize:
+        xzoom .25
+        yzoom 0.07
+
+    image bg happy:
+        "images/bg/moods/bg_happy.png"
+        
+    image happy_bubble3topright:
+        SnowBlossom(At("images/moods/Happy_bubble3.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(40, 80),  xspeed=(-80,-40), horizontal=True)
+
+    image happy_bubble4topright:
+        SnowBlossom(At("images/moods/Happy_bubble4.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(40, 80),  xspeed=(-80,0), horizontal=True)
+
+    image happy_bubble3topleft:
+        SnowBlossom(At("images/moods/Happy_bubble3.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(40, 80),  xspeed=(40,80), horizontal=True)
+
+    image happy_bubble4topleft:
+        SnowBlossom(At("images/moods/Happy_bubble4.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(40, 80),  xspeed=(40,80), horizontal=True)
+
+    image happy_bubble3left:
+        SnowBlossom(At("images/moods/Happy_bubble3.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-40, -80),  xspeed=(40,80), horizontal=True)
+
+    image happy_bubble4left:
+        SnowBlossom(At("images/moods/Happy_bubble4.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-40, -80),  xspeed=(40,80), horizontal=True)
+        
+    image happy_bubble3right:
+        SnowBlossom(At("images/moods/Happy_bubble3.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-80, -40),  xspeed=(-80,-40), horizontal=True)
+
+    image happy_bubble4right:
+        SnowBlossom(At("images/moods/Happy_bubble4.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-80, -40),  xspeed=(-80,-40), horizontal=True)
+
+    image happy_starwhite:
+        (ParticleBurst(At("images/moods/Happy_StarWhite.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        zoom 0.15
+
+    image happy_stargreen:
+        (ParticleBurst(At("images/moods/Happy_Stargreen.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 15, particleYSpeed = 10, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        zoom 0.25
+        
+    image happy_starblur:
+        (ParticleBurst(At("images/moods/Happy_Starblur.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 5, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        zoom 0.1
+
+label mood_happy(image_name=Null, ismoveinbottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Happy_Loop_V1.ogg") fadein 3.0 loop
+    scene bg happy
+    show happy_stargreen at truecenter
+    show happy_starwhite at truecenter
+    show happy_starblur at truecenter
+    show happy_bubble3topright at topright, bubblesize
+    show happy_bubble4topleft at topright, bubblesize
+    show happy_bubble3topleft at topleft, bubblesize
+    show happy_bubble4topleft at topleft, bubblesize
+    show happy_bubble3right at right, bubblesize
+    show happy_bubble4right at right, bubblesize
+    show happy_bubble3left at left, bubblesize
+    show happy_bubble4left at left, bubblesize
+    #show excite_dots at dots
+    if image_name is not Null:
+        if ismoveinbottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+
+##
+## happy ###############################################################
+
 ## other ###############################################################
 ##
+init:
     image flower:
         "gui/window_icon.png"
         yalign 0.925
@@ -397,8 +510,6 @@ init:
         zoom 1.11
     image bg warmlight:
         "images/bg/moods/bg_warmlight.png"
-    image bg happy:
-        "images/bg/moods/bg_happy.png"
     image bg speedlinebg_red:
         xoffset -3920
         yoffset -1250
@@ -525,24 +636,6 @@ label mood_inner_monologuescene(image_name=Null, ismoveinbottom = False):
     return
 
 
-label mood_excitement(image_name=Null, ismoveinbottom = False):
-    window hide
-    $ renpy.music.set_volume(0.25,3.0,"music")
-    play moodloop("audio/m_Mood_Excitement_Loop_V1.ogg") fadein 3.0 loop
-    scene bg excitement
-    show dots2
-    show excite_beam2 at beam2
-    show excite_beam1 at beam1
-    show excite_dots at dots
-    show glow
-    if image_name is not Null:
-        if ismoveinbottom:
-            show expression image_name at dissolvecenter zorder 1
-        else:
-            show expression image_name at nodissolvecenter zorder 1
-    with dissolve
-    return
-
 label mood_warmdark(image_name=Null, ismoveinbottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
@@ -575,7 +668,7 @@ label mood_warmlight(image_name=Null, ismoveinbottom = False):
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_WarmLight_Loop_V1.ogg") fadein 3.0 loop
     scene bg warmlight
-    show dots2
+    show excite_dots
     show excite_dots at dots
     if image_name is not Null:
         if ismoveinbottom:
@@ -584,19 +677,3 @@ label mood_warmlight(image_name=Null, ismoveinbottom = False):
             show expression image_name at nodissolvecenter zorder 1
     with dissolve
     return
-
-label mood_happy(image_name=Null, ismoveinbottom = False):
-    window hide
-    $ renpy.music.set_volume(0.25,3.0,"music")
-    play moodloop("audio/m_Mood_Happy_Loop_V1.ogg") fadein 3.0 loop
-    scene bg happy
-    show dots2
-    show excite_dots at dots
-    if image_name is not Null:
-        if ismoveinbottom:
-            show expression image_name at dissolvecenter zorder 1
-        else:
-            show expression image_name at nodissolvecenter zorder 1
-    with dissolve
-    return
-

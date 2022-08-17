@@ -1,15 +1,18 @@
 ## Character Emotes ###############################################################
 
 init:
+    transform heartfade:
+        easeout 20.0 alpha 0.0
+
     image heartboom_far:
         function play_effect
         zoom 0.15
-        (ParticleBurst("images/emotes/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/emotes/heart.png", heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
 
     image heartboom_close:
         function play_effect
         zoom 0.25
-        (ParticleBurst("images/emotes/heart.png", explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/emotes/heart.png",heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
 
 init python:
     def play_effect(trans, st, at):
