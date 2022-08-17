@@ -104,7 +104,7 @@ style frame:
 #define config.skip_delay = 300
 
 transform namebox_rotate():
-    anchor (0, 0) transform_anchor 1
+    anchor (0.5, 0.5) transform_anchor 1
     rotate -3.5
 
 screen say(who, what):
@@ -112,13 +112,14 @@ screen say(who, what):
 
     window:
         id "window"
-
         if who is not None:
+
 
             window:
                 id "namebox"
                 style "namebox"
-                text who at namebox_rotate id "who"
+                text who id "who" at namebox_rotate 
+                #background Frame("gui/frame.png")
 
         text what id "what"
         button:
@@ -181,12 +182,12 @@ style window_killer:
     background Image("gui/gui_dialoguebox_black.png", xalign=0.5, yalign=1.0)
 
 style namebox:
-    xpos gui.name_xpos - 238
     xanchor gui.name_xalign
-    #xsize gui.namebox_width
-    xsize 418
+    xpos gui.name_xpos - 238
     ypos gui.name_ypos - 85
+    #xsize gui.namebox_width
     #ysize gui.namebox_height
+    xsize 418
     ysize 159 
 
     background Frame("gui/gui_nameplate.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
@@ -230,8 +231,10 @@ style say_label:
     #Putting outlines here applies to all characters, override with who_outlines
     outlines [(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))]
     properties gui.text_properties("name", accent=True)
-    xalign 0.375
-    yalign 0.465
+    xsize 418
+    ysize 159 
+    xalign 0.6
+    yalign 0.625
 
 style say_dialogue:
     #Putting outlines here applies to all characters, override with what_outlines

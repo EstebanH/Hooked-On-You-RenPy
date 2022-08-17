@@ -197,15 +197,19 @@ label start:
     nrr "You turn around, and when you see what's waiting for you, your jaw just about hits the ground."
     window hide
     call mood_happy
+    $ huntressObj.change("pose", "close01")
     show huntress with dissolve
     pause 4
     call mood_excitement
+    $ wraithObj.change("pose", "close01")
     show wraith with dissolve
     pause 4
     call mood_warmlight
+    $ spiritObj.change("pose", "close01")
     show spirit with dissolve
     pause 4
     call mood_warmdark
+    $ trapperObj.change("pose", "close01")
     show trapper with dissolve
     pause 4
     stop moodloop fadeout 3.0
