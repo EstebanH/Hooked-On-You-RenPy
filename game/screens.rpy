@@ -101,7 +101,7 @@ style frame:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
-define config.skip_delay = 300
+#define config.skip_delay = 300
 
 transform namebox_rotate():
     anchor (0, 0) transform_anchor 1
@@ -857,7 +857,7 @@ screen about():
         frame:
             xsize 1920
             ysize 1080
-            background Image("bg/bg_credits.png")
+            background Image("images/bg_credits.png")
             vbox:
                 xalign 0.5
                 image "gui/gui_credits_dbd_logo.png":
