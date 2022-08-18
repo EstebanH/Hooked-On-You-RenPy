@@ -67,9 +67,7 @@ label start:
     call beachdayscene
 
     $ quick_menu = True
-    
     call prologue
-
     $ quick_menu = True
 
 
