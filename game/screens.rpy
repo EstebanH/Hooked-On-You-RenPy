@@ -2202,8 +2202,9 @@ screen name_input():
                 text _("Welcome to your dream vacation!"):
                     color "#2c948e" 
                     outlines [ (absolute(1), "#000", absolute(0), absolute(0)) ]
+                    size 33
                 text "Before we get started, what shall we call you?":
-                    size 25
+                    size 33
                 frame:
                     xysize(464,49)  
                     background "gui/gui_input_name_textbox.png"
@@ -2225,6 +2226,7 @@ screen name_input():
                         text "CONFIRM":
                             style "userinputname_button"
                             at textalpha
+                            hover_color "#e4dfd8" 
                         idle_background "buttonidlefade"
                         hover_background "buttonidlefade"
                         selected_background "buttonidlefade"
@@ -2232,10 +2234,15 @@ screen name_input():
                     else:
                         text "CONFIRM":
                             style "userinputname_button"
+                            hover_color "#0a9e9a"
                         idle_background "gui/gui_button_idle.png"
                         hover_background "gui/gui_button_hover.png"
                         selected_background "gui/gui_button_selected.png"
                         action Return()
+style userinputname_button is menubutton
+style userinputname_input is gui_medium_button_text
+style userinputname_text is gui_medium_button_text
+
 style userinputname_vbox:
     spacing 15
     yalign .5  
@@ -2250,6 +2257,7 @@ style userinputname_button:
     size 25
     xalign 0.5
     yalign 0.5
+    selected_color "#e4dfd8" 
     outlines [ (1, "#000", absolute(0), absolute(0)) ]
 
 style userinputname_input:
@@ -2257,20 +2265,17 @@ style userinputname_input:
     xalign 0.5
     yalign 0.5
     color "#323232" 
-    
     caret "inputname_caret" 
 
 image inputname_caret:                                              
     Text("|", color="#323232",size=25)
-    ypos -3
+    ypos -1
     linear 0.5 alpha 0.0
     linear 0.5 alpha 1.0
     repeat
-
 style userinputname_text:
     size 29
     color "#2e1d15"   
     xalign 0.5
     yalign 0.5
     text_align 0.5
-    
