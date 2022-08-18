@@ -17,11 +17,11 @@ init:
 ## Character Emotes ###############################################################
 
 init:
-    ## Heart
+    ## Heart ###############################################################
     transform heartfade:
         easeout 1.0 alpha 0.0
 
-    image heartboom_far:
+    image heartboom_pose:
         function play_sfxheart
         zoom 0.15
         (ParticleBurst(At("images/emotes/heart.png", heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000).sm) with Dissolve
@@ -31,7 +31,21 @@ init:
         zoom 0.25
         (ParticleBurst(At("images/emotes/heart.png",heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000).sm) with Dissolve
 
-    ## Question
+    image heart_pose:
+        xalign 0.5
+        yalign 0.5
+        "heartboom_pose"
+        pause 1
+        easeout 0.5 alpha 0.0
+ 
+    image heart_close:
+        xalign 0.5
+        yalign 0.5
+        "heartboom_close"
+        pause 1
+        easeout 0.5 alpha 0.0
+
+    ## Question ###############################################################
     transform question1_rotate:
         rotate -25
         anchor (0.5, 0.5) transform_anchor 1
@@ -80,14 +94,21 @@ init:
         easein .5 alpha 1.00
         pause .6
         easeout 0.5 alpha 0.0
-
-    layeredimage question_pose01:
+    
+    layeredimage question_layers:
         always:
             "question1"
         always:
             "question2"
 
-    ## Star
+    image question_pose:
+        "question_layers"
+        zoom 0.3
+
+    image question_close:
+        "question_layers"
+        zoom 0.3
+    ## Star ###############################################################
     transform star_zoom:
         zoom 0
         easein 1.0 zoom 1.0
@@ -105,24 +126,350 @@ init:
         yalign 0.5
         (ParticleBurst(At("images/emotes/YellowStar_01.png",heartfade), explodeTime=0, numParticles=10, particleTime=3.0, particleXSpeed = 0, particleYSpeed = 0, centerZone = 0, xZone = 2000, yZone = 1000).sm) with Dissolve
         
-    layeredimage stars_close01:
+    layeredimage stars_layers:
         always:
             "goldstars"
         always:
             "yellowstars"
 
+    image stars_pose:
+        "stars_layers"
+
+    image stars_close:
+        "stars_layers"
+
+    ## Exclamation ###############################################################
+    image exclamation:
+        function play_sfxexclamation
+        "images/emotes/exclamation.png"
+        xalign 0.5
+        yalign 0.5
+        alpha 0.00
+        easein .5 alpha 1.00
+        linear 2.0 yoffset -100
+        pause 0.4
+        easeout 0.5 alpha 0.0
+
+    image exclamation_pose:
+        "exclamation"
+        zoom 0.3
+
+    image exclamation_close:
+        "exclamation"
+        zoom 0.3
+
+    ## Lightbulb ###############################################################
+    image lightbulb:
+        function play_sfxlightbulb
+        "images/emotes/lightbulb1.png"
+        xalign 0.5
+        yalign 0.5
+        alpha 0.00
+        easein .5 alpha 1.00
+        linear 2.0 yoffset -100
+        pause 0.2
+        "images/emotes/lightbulb2.png"
+        pause 0.2
+        easeout 0.5 alpha 0.0
+    image lightbulb_flash1:
+        "images/emotes/lightbulb2_flash1.png"
+        xalign 0.1
+        yalign 0.0
+    image lightbulb_flash2:
+        "images/emotes/lightbulb2_flash2.png"
+        xalign 0.0
+        yalign 0.0
+    image lightbulb_flash3:
+        "images/emotes/lightbulb2_flash3.png"
+        xalign 0.9
+        yalign 0.0
+
+    layeredimage lightbulb_layers:
+        always:
+            "lightbulb"
+        always:
+            "lightbulb_flash1"
+        always:
+            "lightbulb_flash2"
+        always:
+            "lightbulb_flash3"
+
+    image lightbulb_pose:
+        "lightbulb_layers"
+        zoom 0.3
+
+    image lightbulb_close:
+        "lightbulb_layers"
+        zoom 0.3
+    ## Sweatdrop ###############################################################
+    image sweat:
+        function play_sfxsweatdrop
+        "images/emotes/sweat.png"
+        xalign 0.5
+        yalign 0.5
+        alpha 0.00
+        easein .5 alpha 1.00
+        linear 2.0 yoffset 100
+        pause 0.4
+        easeout 0.5 alpha 0.0
+
+    image sweat_pose:
+        "sweat"
+        zoom 0.3
+
+    image sweat_close:
+        "sweat"
+        zoom 0.3
+
+    ## Heartbroken ###############################################################
+    image heartbroken:
+        function play_sfxbrokenheart
+        "images/emotes/brokenheart1.png"
+        xalign 0.5
+        yalign 0.5
+        alpha 0.00
+        easein .5 alpha 1.00
+        pause 0.1
+        "images/emotes/brokenheart2.png"
+        pause 0.2
+        "images/emotes/brokenheart3.png"
+        pause 0.2
+        easeout 0.5 alpha 0.0
+
+    image heartbroken_pose:
+        "heartbroken"
+        zoom 0.3
+
+    image heartbroken_close:
+        "heartbroken"
+        zoom 0.3
+
+    ## Dread ###############################################################
+    image dread:
+        function play_sfxdread
+        "images/emotes/dread.png"
+        xalign 0.5
+        yalign 0.5
+        alpha 0.00
+        easein .5 alpha 1.00
+        pause 0.4
+        easeout 0.5 alpha 0.0
+
+    image dread_pose:
+        "dread"
+        zoom 0.3
+
+    image dread_close:
+        "dread"
+        zoom 0.3
+
+    ## Anger ###############################################################
+    transform anger_rotate:
+        anchor (0.5, 0.5) transform_anchor 1
+        rotate 0
+        pause 0.1
+        rotate 90
+        pause 0.1
+        rotate 180
+        pause 0.1
+        rotate 270
+        pause 0.1
+        repeat
+
+    image anger_small:
+        xalign 0.5
+        yalign 0.2
+        xoffset 60
+        "images/emotes/anger.png"
+        linear 2.0 yoffset -100
+        linear 0 yoffset 0
+    
+    image anger_large:
+        xalign 0.5
+        yalign 0.25
+        xoffset -140
+        "images/emotes/anger.png"
+        linear 5.0 yoffset -300
+        linear 0 yoffset 0
+
+    image anger1:
+        function play_sfxanger
+        alpha 0.00
+        At("anger_small", anger_rotate)
+        easein .5 alpha 1.00
+        pause 0.4
+        easeout 0.5 alpha 0.0
+        
+    image anger2:
+        pause .5
+        alpha 0.00
+        At("anger_large", anger_rotate)
+        easein .5 alpha 1.00
+        pause .6
+        easeout 0.5 alpha 0.0
+
+    layeredimage anger_layers:
+        always:
+            "anger1"
+        always:
+            "anger2"
+    
+    image anger_pose:
+        "anger_layers"
+
+    image anger_close:
+        "anger_layers"
+
+    ## Spark ###############################################################
+    image spark_small:
+        "images/emotes/spark1.png"
+        xalign 0.5
+        yalign 0.5
+        linear 1 xoffset -200
+        linear 1 xoffset -100
+        linear .5 xoffset -120
+        linear .5 xoffset -100
+    
+    image spark_large:
+        "images/emotes/spark2.png"
+        xalign 0.5
+        yalign 0.5
+        linear 1 xoffset 200
+        linear 1 xoffset 100
+        linear .5 xoffset 120
+        linear .5 xoffset 100
+
+    image spark1:
+        function play_sfxshock
+        alpha 0.00
+        "spark_small"
+        easein .5 alpha 1.00
+        pause 0.4
+        easeout 0.5 alpha 0.0
+        
+    image spark2:
+        pause .5
+        alpha 0.00
+        "spark_large"
+        easein .5 alpha 1.00
+        pause .6
+        easeout 0.5 alpha 0.0
+
+    layeredimage spark_layers:
+        always:
+            "spark1"
+        always:
+            "spark2"
+
+    image spark_pose:
+        "spark_layers"
+
+    image spark_close:
+        "spark_layers"
+
+    ## Thoughts ###############################################################
+    image thought_bubble:
+        "images/emotes/thought_bubble.png"
+        xalign 0.5
+        yalign 0.5
+    
+    image thought_dot1:
+        "images/emotes/thought_bubble_dot1.png"
+        xalign 1.0
+        yalign 1.0
+
+    image thought_dot2:
+        "images/emotes/thought_bubble_dot1.png"
+        xalign .9
+        yalign .9
+
+    image thought_text1:
+        "images/emotes/thought_bubble_dot_bl.png"
+        xalign 0.6
+        yalign 0.5
+
+    image thought_text2:
+        "images/emotes/thought_bubble_dot_bl.png"
+        xalign 0.5
+        yalign 0.5
+
+    image thought_text3:
+        "images/emotes/thought_bubble_dot_bl.png"
+        xalign 0.4
+        yalign 0.5
+
+    image thought_bubble_dot1:
+        function play_sfxthought
+        alpha 0.00
+        "thought_dot1"
+        easein .5 alpha 1.00
+        pause 1
+        easeout 0.5 alpha 0.0
+        
+    image thought_bubble_dot2:
+        pause 0.2
+        alpha 0.00
+        "thought_dot2"
+        easein .5 alpha 1.00
+        pause .8
+        easeout 0.5 alpha 0.0
+
+    image thought_bubble_base:
+        pause 0.4
+        alpha 0.00
+        "thought_bubble"
+        easein .5 alpha 1.00
+        pause .6
+        easeout 0.5 alpha 0.0
+
+    image thought_bubble_text1:
+        pause 0.6
+        alpha 0.00
+        "thought_text1"
+        easein .5 alpha 1.00
+        pause .4
+        easeout 0.5 alpha 0.0
+
+    image thought_bubble_text1:
+        pause .8
+        alpha 0.00
+        "thought_text2"
+        easein .5 alpha 1.00
+        pause .2
+        easeout 0.5 alpha 0.0
+
+    image thought_bubble_text1:
+        pause 1.0
+        alpha 0.00
+        "thought_text3"
+        easein .5 alpha 1.00
+        pause .2
+        easeout 0.5 alpha 0.0
+
+    layeredimage thoughts_layers:
+        always:
+            "thought_bubble_base"
+        always:
+            "thought_bubble_dot1"
+        always:
+            "thought_bubble_dot2"
+        always:
+            "thought_bubble_text1"
+        always:
+            "thought_bubble_text2"
+        always:
+            "thought_bubble_text3"
+
+    image thoughts_layers:
+        "spark_layers"
+        zoom 0.3
+
+    image thoughts_layers:
+        "spark_layers"
+        zoom 0.3
+
+
 init python:
-    def reset_emotes(trans, st, at):
-        wraithObj.change("emote", "none")
-        huntressObj.change("emote", "none")
-        spiritObj.change("emote", "none")
-        trapperObj.change("emote", "none")    
-        entityObj.change("emote", "none")
-        grandmaObj.change("emote", "none")
-        dadObj.change("emote", "none")
-        momObj.change("emote", "none")
-        oniObj.change("emote", "none")
-        tricksterObj.change("emote", "none")
     def play_sfxheart(trans, st, at):
         renpy.play("sounds/SFX_Emotes_Hearts_V01.ogg", channel="sound")
     def play_sfxquestion(trans, st, at):
@@ -172,7 +519,71 @@ init:
             "heartboom_dwight_close02"
         if clauddwightObj.emote == "heart" and (clauddwightObj.pose == "close01" or clauddwightObj.pose == "close02"):
             "heartboom_claud_close"
+        if clauddwightObj.emote == "heart" and clauddwightObj.state == "pose":
+            "clauddwight_heart_pose"
+            
+        if clauddwightObj.emote == "heart" and clauddwightObj.state == "close":
+            "clauddwight_heart_close"
 
+        if clauddwightObj.emote == "stars" and clauddwightObj.state == "pose":
+            "clauddwight_stars_pose"
+
+        if clauddwightObj.emote == "stars" and clauddwightObj.state == "close":
+            "clauddwight_stars_close"
+
+        if clauddwightObj.emote == "question" and clauddwightObj.state == "pose":
+            "clauddwight_question_pose"
+
+        if clauddwightObj.emote == "question" and clauddwightObj.state == "close":
+            "clauddwight_question_close"
+
+        if clauddwightObj.emote == "anger" and clauddwightObj.state == "pose":
+            "clauddwight_anger_pose"
+
+        if clauddwightObj.emote == "anger" and clauddwightObj.state == "close":
+            "clauddwight_anger_close"
+            
+        if clauddwightObj.emote == "brokenheart" and clauddwightObj.state == "pose":
+            "clauddwight_brokenheart_pose"
+
+        if clauddwightObj.emote == "brokenheart" and clauddwightObj.state == "close":
+            "clauddwight_brokenheart_close"
+
+        if clauddwightObj.emote == "dread" and clauddwightObj.state == "pose":
+            "clauddwight_dread_pose"
+
+        if clauddwightObj.emote == "dread" and clauddwightObj.state == "close":
+            "clauddwight_dread_close"
+            
+        if clauddwightObj.emote == "exclamation" and clauddwightObj.state == "pose":
+            "clauddwight_exclamation_pose"
+
+        if clauddwightObj.emote == "exclamation" and clauddwightObj.state == "close":
+            "clauddwight_exclamation_close"
+
+        if clauddwightObj.emote == "lightbulb" and clauddwightObj.state == "pose":
+            "clauddwight_lightbulb_pose"
+
+        if clauddwightObj.emote == "lightbulb" and clauddwightObj.state == "close":
+            "clauddwight_lightbulb_close"
+            
+        if clauddwightObj.emote == "spark" and clauddwightObj.state == "pose":
+            "clauddwight_spark_pose"
+
+        if clauddwightObj.emote == "spark" and clauddwightObj.state == "close":
+            "clauddwight_spark_close"
+            
+        if clauddwightObj.emote == "sweat" and clauddwightObj.state == "pose":
+            "clauddwight_sweat_pose"
+
+        if clauddwightObj.emote == "sweat" and clauddwightObj.state == "close":
+            "clauddwight_sweat_close"
+            
+        if clauddwightObj.emote == "thoughts" and clauddwightObj.state == "pose":
+            "clauddwight_thoughts_pose"
+
+        if clauddwightObj.emote == "thoughts" and clauddwightObj.state == "close":
+            "clauddwight_thoughts_close"
     image clauddwight_blink:
         "[clauddwightObj.emotionFilename]"
         choice:
@@ -188,21 +599,21 @@ init:
     image heartboom_claud_far:
         xalign 0.45
         yalign 0.15
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
     image heartboom_dwight_far01:
         xalign 0.65
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
     image heartboom_dwight_far02:
         xalign 0.675
         yalign 0.1
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -226,7 +637,120 @@ init:
         "heartboom_close"
         pause 1
         easeout 0.5 alpha 0.0
-        
+    image clauddwight_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image clauddwight_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image clauddwight_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image clauddwight_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
+
     transform clauddwightfar:
         xalign 0.5
         yalign 0.25
@@ -240,6 +764,7 @@ init python:
             self.pose = "close01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "close"
             self.whoIsDead = ""
             self.resetFilenames()
             ##self.clothingFilename = "images/sprites/clauddwight/clauddwight_" + self.pose + ".png"
@@ -259,6 +784,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "whoIsDead":
@@ -282,12 +820,198 @@ init:
         always:
             "grandma_blink"
             
-        if grandmaObj.emote == "heart" and grandmaObj.pose == "pose01":
-            "heartboom_grandma_pose01"
+        if grandmaObj.emote == "heart" and grandmaObj.state == "pose":
+            "grandma_heart_pose"
             
-        if grandmaObj.emote == "heart" and grandmaObj.pose == "close01":
-            "heartboom_grandma_close01"
-        
+        if grandmaObj.emote == "heart" and grandmaObj.state == "close":
+            "grandma_heart_close"
+
+        if grandmaObj.emote == "stars" and grandmaObj.state == "pose":
+            "grandma_stars_pose"
+
+        if grandmaObj.emote == "stars" and grandmaObj.state == "close":
+            "grandma_stars_close"
+
+        if grandmaObj.emote == "question" and grandmaObj.state == "pose":
+            "grandma_question_pose"
+
+        if grandmaObj.emote == "question" and grandmaObj.state == "close":
+            "grandma_question_close"
+
+        if grandmaObj.emote == "anger" and grandmaObj.state == "pose":
+            "grandma_anger_pose"
+
+        if grandmaObj.emote == "anger" and grandmaObj.state == "close":
+            "grandma_anger_close"
+            
+        if grandmaObj.emote == "brokenheart" and grandmaObj.state == "pose":
+            "grandma_brokenheart_pose"
+
+        if grandmaObj.emote == "brokenheart" and grandmaObj.state == "close":
+            "grandma_brokenheart_close"
+
+        if grandmaObj.emote == "dread" and grandmaObj.state == "pose":
+            "grandma_dread_pose"
+
+        if grandmaObj.emote == "dread" and grandmaObj.state == "close":
+            "grandma_dread_close"
+            
+        if grandmaObj.emote == "exclamation" and grandmaObj.state == "pose":
+            "grandma_exclamation_pose"
+
+        if grandmaObj.emote == "exclamation" and grandmaObj.state == "close":
+            "grandma_exclamation_close"
+
+        if grandmaObj.emote == "lightbulb" and grandmaObj.state == "pose":
+            "grandma_lightbulb_pose"
+
+        if grandmaObj.emote == "lightbulb" and grandmaObj.state == "close":
+            "grandma_lightbulb_close"
+            
+        if grandmaObj.emote == "spark" and grandmaObj.state == "pose":
+            "grandma_spark_pose"
+
+        if grandmaObj.emote == "spark" and grandmaObj.state == "close":
+            "grandma_spark_close"
+            
+        if grandmaObj.emote == "sweat" and grandmaObj.state == "pose":
+            "grandma_sweat_pose"
+
+        if grandmaObj.emote == "sweat" and grandmaObj.state == "close":
+            "grandma_sweat_close"
+            
+        if grandmaObj.emote == "thoughts" and grandmaObj.state == "pose":
+            "grandma_thoughts_pose"
+
+        if grandmaObj.emote == "thoughts" and grandmaObj.state == "close":
+            "grandma_thoughts_close"
+
+    image grandma_blink:
+        "[grandmaObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[grandmaObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image grandma_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image grandma_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image grandma_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image grandma_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image grandma_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
+
     image grandma_blink:
         "[grandmaObj.emotionFilename]"
         choice:
@@ -310,7 +1034,7 @@ init:
     image heartboom_grandma_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -320,6 +1044,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.resetFilenames()
             
         def resetFilenames(self):
@@ -330,6 +1055,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -353,15 +1091,72 @@ init:
         always:
             "huntress_blink"
             
-        if huntressObj.emote == "heart" and huntressObj.pose == "pose01":
-            "heartboom_huntress_pose01"
+        if huntressObj.emote == "heart" and huntressObj.state == "pose":
+            "huntress_heart_pose"
             
-        if huntressObj.emote == "heart" and huntressObj.pose == "close01":
-            "heartboom_huntress_close01"
+        if huntressObj.emote == "heart" and huntressObj.state == "close":
+            "huntress_heart_close"
 
-        if huntressObj.emote == "stars" and huntressObj.pose == "close01":
-            "huntress_stars"
-        
+        if huntressObj.emote == "stars" and huntressObj.state == "pose":
+            "huntress_stars_pose"
+
+        if huntressObj.emote == "stars" and huntressObj.state == "close":
+            "huntress_stars_close"
+
+        if huntressObj.emote == "question" and huntressObj.state == "pose":
+            "huntress_question_pose"
+
+        if huntressObj.emote == "question" and huntressObj.state == "close":
+            "huntress_question_close"
+
+        if huntressObj.emote == "anger" and huntressObj.state == "pose":
+            "huntress_anger_pose"
+
+        if huntressObj.emote == "anger" and huntressObj.state == "close":
+            "huntress_anger_close"
+            
+        if huntressObj.emote == "brokenheart" and huntressObj.state == "pose":
+            "huntress_brokenheart_pose"
+
+        if huntressObj.emote == "brokenheart" and huntressObj.state == "close":
+            "huntress_brokenheart_close"
+
+        if huntressObj.emote == "dread" and huntressObj.state == "pose":
+            "huntress_dread_pose"
+
+        if huntressObj.emote == "dread" and huntressObj.state == "close":
+            "huntress_dread_close"
+            
+        if huntressObj.emote == "exclamation" and huntressObj.state == "pose":
+            "huntress_exclamation_pose"
+
+        if huntressObj.emote == "exclamation" and huntressObj.state == "close":
+            "huntress_exclamation_close"
+
+        if huntressObj.emote == "lightbulb" and huntressObj.state == "pose":
+            "huntress_lightbulb_pose"
+
+        if huntressObj.emote == "lightbulb" and huntressObj.state == "close":
+            "huntress_lightbulb_close"
+            
+        if huntressObj.emote == "spark" and huntressObj.state == "pose":
+            "huntress_spark_pose"
+
+        if huntressObj.emote == "spark" and huntressObj.state == "close":
+            "huntress_spark_close"
+            
+        if huntressObj.emote == "sweat" and huntressObj.state == "pose":
+            "huntress_sweat_pose"
+
+        if huntressObj.emote == "sweat" and huntressObj.state == "close":
+            "huntress_sweat_close"
+            
+        if huntressObj.emote == "thoughts" and huntressObj.state == "pose":
+            "huntress_thoughts_pose"
+
+        if huntressObj.emote == "thoughts" and huntressObj.state == "close":
+            "huntress_thoughts_close"
+
     image huntress_blink:
         "[huntressObj.emotionFilename]"
         choice:
@@ -374,24 +1169,124 @@ init:
         pause 0.1
         repeat
 
-    image heartboom_huntress_close01:
-        xalign 0.5
-        yalign 0.1
-        "heartboom_close"
-        pause 1
-        easeout 0.5 alpha 0.0
+    image huntress_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
 
-    image huntress_stars:
-        "stars_close01"
+    image huntress_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_stars_close:
+        "stars_close"
         xoffset 250
         yoffset -300
         pause 3
         easeout 1.0 alpha 0.0
 
+    image huntress_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image huntress_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image huntress_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image huntress_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
+
     image heartboom_huntress_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -401,6 +1296,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.swim = False
             self.resetFilenames()
             
@@ -419,6 +1315,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -441,12 +1350,197 @@ init:
         always:
             "mom_blink"
             
-        if momObj.emote == "heart" and momObj.pose == "pose01":
-            "heartboom_mom_pose01"
+        if momObj.emote == "heart" and momObj.state == "pose":
+            "mom_heart_pose"
             
-        if momObj.emote == "heart" and momObj.pose == "close01":
-            "heartboom_mom_close01"
-        
+        if momObj.emote == "heart" and momObj.state == "close":
+            "mom_heart_close"
+
+        if momObj.emote == "stars" and momObj.state == "pose":
+            "mom_stars_pose"
+
+        if momObj.emote == "stars" and momObj.state == "close":
+            "mom_stars_close"
+
+        if momObj.emote == "question" and momObj.state == "pose":
+            "mom_question_pose"
+
+        if momObj.emote == "question" and momObj.state == "close":
+            "mom_question_close"
+
+        if momObj.emote == "anger" and momObj.state == "pose":
+            "mom_anger_pose"
+
+        if momObj.emote == "anger" and momObj.state == "close":
+            "mom_anger_close"
+            
+        if momObj.emote == "brokenheart" and momObj.state == "pose":
+            "mom_brokenheart_pose"
+
+        if momObj.emote == "brokenheart" and momObj.state == "close":
+            "mom_brokenheart_close"
+
+        if momObj.emote == "dread" and momObj.state == "pose":
+            "mom_dread_pose"
+
+        if momObj.emote == "dread" and momObj.state == "close":
+            "mom_dread_close"
+            
+        if momObj.emote == "exclamation" and momObj.state == "pose":
+            "mom_exclamation_pose"
+
+        if momObj.emote == "exclamation" and momObj.state == "close":
+            "mom_exclamation_close"
+
+        if momObj.emote == "lightbulb" and momObj.state == "pose":
+            "mom_lightbulb_pose"
+
+        if momObj.emote == "lightbulb" and momObj.state == "close":
+            "mom_lightbulb_close"
+            
+        if momObj.emote == "spark" and momObj.state == "pose":
+            "mom_spark_pose"
+
+        if momObj.emote == "spark" and momObj.state == "close":
+            "mom_spark_close"
+            
+        if momObj.emote == "sweat" and momObj.state == "pose":
+            "mom_sweat_pose"
+
+        if momObj.emote == "sweat" and momObj.state == "close":
+            "mom_sweat_close"
+            
+        if momObj.emote == "thoughts" and momObj.state == "pose":
+            "mom_thoughts_pose"
+
+        if momObj.emote == "thoughts" and momObj.state == "close":
+            "mom_thoughts_close"
+
+    image mom_blink:
+        "[momObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[momObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image mom_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image mom_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image mom_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image mom_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image mom_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
     image mom_blink:
         "[momObj.emotionFilename]"
         choice:
@@ -469,7 +1563,7 @@ init:
     image heartboom_mom_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -479,6 +1573,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.resetFilenames()
             
         def resetFilenames(self):
@@ -489,6 +1584,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -511,12 +1619,198 @@ init:
         always:
             "spirit_blink"
             
-        if spiritObj.emote == "heart" and spiritObj.pose == "pose01":
-            "heartboom_spirit_pose01"
+        if spiritObj.emote == "heart" and spiritObj.state == "pose":
+            "spirit_heart_pose"
             
-        if spiritObj.emote == "heart" and spiritObj.pose == "close01":
-            "heartboom_spirit_close01"
-        
+        if spiritObj.emote == "heart" and spiritObj.state == "close":
+            "spirit_heart_close"
+
+        if spiritObj.emote == "stars" and spiritObj.state == "pose":
+            "spirit_stars_pose"
+
+        if spiritObj.emote == "stars" and spiritObj.state == "close":
+            "spirit_stars_close"
+
+        if spiritObj.emote == "question" and spiritObj.state == "pose":
+            "spirit_question_pose"
+
+        if spiritObj.emote == "question" and spiritObj.state == "close":
+            "spirit_question_close"
+
+        if spiritObj.emote == "anger" and spiritObj.state == "pose":
+            "spirit_anger_pose"
+
+        if spiritObj.emote == "anger" and spiritObj.state == "close":
+            "spirit_anger_close"
+            
+        if spiritObj.emote == "brokenheart" and spiritObj.state == "pose":
+            "spirit_brokenheart_pose"
+
+        if spiritObj.emote == "brokenheart" and spiritObj.state == "close":
+            "spirit_brokenheart_close"
+
+        if spiritObj.emote == "dread" and spiritObj.state == "pose":
+            "spirit_dread_pose"
+
+        if spiritObj.emote == "dread" and spiritObj.state == "close":
+            "spirit_dread_close"
+            
+        if spiritObj.emote == "exclamation" and spiritObj.state == "pose":
+            "spirit_exclamation_pose"
+
+        if spiritObj.emote == "exclamation" and spiritObj.state == "close":
+            "spirit_exclamation_close"
+
+        if spiritObj.emote == "lightbulb" and spiritObj.state == "pose":
+            "spirit_lightbulb_pose"
+
+        if spiritObj.emote == "lightbulb" and spiritObj.state == "close":
+            "spirit_lightbulb_close"
+            
+        if spiritObj.emote == "spark" and spiritObj.state == "pose":
+            "spirit_spark_pose"
+
+        if spiritObj.emote == "spark" and spiritObj.state == "close":
+            "spirit_spark_close"
+            
+        if spiritObj.emote == "sweat" and spiritObj.state == "pose":
+            "spirit_sweat_pose"
+
+        if spiritObj.emote == "sweat" and spiritObj.state == "close":
+            "spirit_sweat_close"
+            
+        if spiritObj.emote == "thoughts" and spiritObj.state == "pose":
+            "spirit_thoughts_pose"
+
+        if spiritObj.emote == "thoughts" and spiritObj.state == "close":
+            "spirit_thoughts_close"
+
+    image spirit_blink:
+        "[spiritObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[spiritObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image spirit_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image spirit_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image spirit_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image spirit_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image spirit_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
+
     image spirit_blink:
         "[spiritObj.emotionFilename]"
         choice:
@@ -539,7 +1833,7 @@ init:
     image heartboom_spirit_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -549,6 +1843,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.swim = False
             self.resetFilenames()
             
@@ -581,6 +1876,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -606,14 +1914,198 @@ init:
         always:
             "trapper_blink"
             
-        if trapperObj.emote == "heart" and trapperObj.pose == "pose01":
-            "heartboom_trapper_pose01"
+        if trapperObj.emote == "heart" and trapperObj.state == "pose":
+            "trapper_heart_pose"
             
-        if trapperObj.emote == "heart" and trapperObj.pose == "close01":
-            "heartboom_trapper_close01"
+        if trapperObj.emote == "heart" and trapperObj.state == "close":
+            "trapper_heart_close"
+
+        if trapperObj.emote == "stars" and trapperObj.state == "pose":
+            "trapper_stars_pose"
+
+        if trapperObj.emote == "stars" and trapperObj.state == "close":
+            "trapper_stars_close"
+
+        if trapperObj.emote == "question" and trapperObj.state == "pose":
+            "trapper_question_pose"
+
+        if trapperObj.emote == "question" and trapperObj.state == "close":
+            "trapper_question_close"
+
+        if trapperObj.emote == "anger" and trapperObj.state == "pose":
+            "trapper_anger_pose"
+
+        if trapperObj.emote == "anger" and trapperObj.state == "close":
+            "trapper_anger_close"
             
-        if trapperObj.emote == "question" and trapperObj.pose == "pose01":
-            "question_pose01"
+        if trapperObj.emote == "brokenheart" and trapperObj.state == "pose":
+            "trapper_brokenheart_pose"
+
+        if trapperObj.emote == "brokenheart" and trapperObj.state == "close":
+            "trapper_brokenheart_close"
+
+        if trapperObj.emote == "dread" and trapperObj.state == "pose":
+            "trapper_dread_pose"
+
+        if trapperObj.emote == "dread" and trapperObj.state == "close":
+            "trapper_dread_close"
+            
+        if trapperObj.emote == "exclamation" and trapperObj.state == "pose":
+            "trapper_exclamation_pose"
+
+        if trapperObj.emote == "exclamation" and trapperObj.state == "close":
+            "trapper_exclamation_close"
+
+        if trapperObj.emote == "lightbulb" and trapperObj.state == "pose":
+            "trapper_lightbulb_pose"
+
+        if trapperObj.emote == "lightbulb" and trapperObj.state == "close":
+            "trapper_lightbulb_close"
+            
+        if trapperObj.emote == "spark" and trapperObj.state == "pose":
+            "trapper_spark_pose"
+
+        if trapperObj.emote == "spark" and trapperObj.state == "close":
+            "trapper_spark_close"
+            
+        if trapperObj.emote == "sweat" and trapperObj.state == "pose":
+            "trapper_sweat_pose"
+
+        if trapperObj.emote == "sweat" and trapperObj.state == "close":
+            "trapper_sweat_close"
+            
+        if trapperObj.emote == "thoughts" and trapperObj.state == "pose":
+            "trapper_thoughts_pose"
+
+        if trapperObj.emote == "thoughts" and trapperObj.state == "close":
+            "trapper_thoughts_close"
+
+    image trapper_blink:
+        "[trapperObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[trapperObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image trapper_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image trapper_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image trapper_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image trapper_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image trapper_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
+
     image trapper_blink:
         "[trapperObj.emotionFilename]"
         choice:
@@ -636,7 +2128,7 @@ init:
     image heartboom_trapper_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -646,6 +2138,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.thong = False
             self.resetFilenames()
             
@@ -676,6 +2169,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -700,15 +2206,197 @@ init:
         always:
             "dad_blink"
             
-        if dadObj.emote == "heart" and dadObj.pose == "pose01":
-            "heartboom_dad_pose01"
+        if dadObj.emote == "heart" and dadObj.state == "pose":
+            "dad_heart_pose"
             
-        if dadObj.emote == "heart" and dadObj.pose == "close01":
-            "heartboom_dad_close01"
-            
-        if dadObj.emote == "question" and dadObj.pose == "close01":
-            "heartboom_dad_close01"
+        if dadObj.emote == "heart" and dadObj.state == "close":
+            "dad_heart_close"
 
+        if dadObj.emote == "stars" and dadObj.state == "pose":
+            "dad_stars_pose"
+
+        if dadObj.emote == "stars" and dadObj.state == "close":
+            "dad_stars_close"
+
+        if dadObj.emote == "question" and dadObj.state == "pose":
+            "dad_question_pose"
+
+        if dadObj.emote == "question" and dadObj.state == "close":
+            "dad_question_close"
+
+        if dadObj.emote == "anger" and dadObj.state == "pose":
+            "dad_anger_pose"
+
+        if dadObj.emote == "anger" and dadObj.state == "close":
+            "dad_anger_close"
+            
+        if dadObj.emote == "brokenheart" and dadObj.state == "pose":
+            "dad_brokenheart_pose"
+
+        if dadObj.emote == "brokenheart" and dadObj.state == "close":
+            "dad_brokenheart_close"
+
+        if dadObj.emote == "dread" and dadObj.state == "pose":
+            "dad_dread_pose"
+
+        if dadObj.emote == "dread" and dadObj.state == "close":
+            "dad_dread_close"
+            
+        if dadObj.emote == "exclamation" and dadObj.state == "pose":
+            "dad_exclamation_pose"
+
+        if dadObj.emote == "exclamation" and dadObj.state == "close":
+            "dad_exclamation_close"
+
+        if dadObj.emote == "lightbulb" and dadObj.state == "pose":
+            "dad_lightbulb_pose"
+
+        if dadObj.emote == "lightbulb" and dadObj.state == "close":
+            "dad_lightbulb_close"
+            
+        if dadObj.emote == "spark" and dadObj.state == "pose":
+            "dad_spark_pose"
+
+        if dadObj.emote == "spark" and dadObj.state == "close":
+            "dad_spark_close"
+            
+        if dadObj.emote == "sweat" and dadObj.state == "pose":
+            "dad_sweat_pose"
+
+        if dadObj.emote == "sweat" and dadObj.state == "close":
+            "dad_sweat_close"
+            
+        if dadObj.emote == "thoughts" and dadObj.state == "pose":
+            "dad_thoughts_pose"
+
+        if dadObj.emote == "thoughts" and dadObj.state == "close":
+            "dad_thoughts_close"
+
+    image dad_blink:
+        "[dadObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[dadObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image dad_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image dad_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image dad_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image dad_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image dad_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
     image dad_blink:
         "[dadObj.emotionFilename]"
         choice:
@@ -731,7 +2419,7 @@ init:
     image heartboom_dad_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -741,6 +2429,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.resetFilenames()
             
         def resetFilenames(self):
@@ -754,6 +2443,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -772,16 +2474,201 @@ init:
     layeredimage oni:
         always:
             "[oniObj.poseFilename]"
-            
+
         if oniObj.emotion == "idle":
             "oni_blink"
             
-        if oniObj.emote == "heart" and oniObj.pose == "pose01":
-            "heartboom_oni_pose01"
+        if oniObj.emote == "heart" and oniObj.state == "pose":
+            "oni_heart_pose"
             
-        if oniObj.emote == "heart" and oniObj.pose == "close01":
-            "heartboom_oni_close01"
-        
+        if oniObj.emote == "heart" and oniObj.state == "close":
+            "oni_heart_close"
+
+        if oniObj.emote == "stars" and oniObj.state == "pose":
+            "oni_stars_pose"
+
+        if oniObj.emote == "stars" and oniObj.state == "close":
+            "oni_stars_close"
+
+        if oniObj.emote == "question" and oniObj.state == "pose":
+            "oni_question_pose"
+
+        if oniObj.emote == "question" and oniObj.state == "close":
+            "oni_question_close"
+
+        if oniObj.emote == "anger" and oniObj.state == "pose":
+            "oni_anger_pose"
+
+        if oniObj.emote == "anger" and oniObj.state == "close":
+            "oni_anger_close"
+            
+        if oniObj.emote == "brokenheart" and oniObj.state == "pose":
+            "oni_brokenheart_pose"
+
+        if oniObj.emote == "brokenheart" and oniObj.state == "close":
+            "oni_brokenheart_close"
+
+        if oniObj.emote == "dread" and oniObj.state == "pose":
+            "oni_dread_pose"
+
+        if oniObj.emote == "dread" and oniObj.state == "close":
+            "oni_dread_close"
+            
+        if oniObj.emote == "exclamation" and oniObj.state == "pose":
+            "oni_exclamation_pose"
+
+        if oniObj.emote == "exclamation" and oniObj.state == "close":
+            "oni_exclamation_close"
+
+        if oniObj.emote == "lightbulb" and oniObj.state == "pose":
+            "oni_lightbulb_pose"
+
+        if oniObj.emote == "lightbulb" and oniObj.state == "close":
+            "oni_lightbulb_close"
+            
+        if oniObj.emote == "spark" and oniObj.state == "pose":
+            "oni_spark_pose"
+
+        if oniObj.emote == "spark" and oniObj.state == "close":
+            "oni_spark_close"
+            
+        if oniObj.emote == "sweat" and oniObj.state == "pose":
+            "oni_sweat_pose"
+
+        if oniObj.emote == "sweat" and oniObj.state == "close":
+            "oni_sweat_close"
+            
+        if oniObj.emote == "thoughts" and oniObj.state == "pose":
+            "oni_thoughts_pose"
+
+        if oniObj.emote == "thoughts" and oniObj.state == "close":
+            "oni_thoughts_close"
+
+    image oni_blink:
+        "[oniObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[oniObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image oni_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image oni_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image oni_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image oni_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image oni_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
     image oni_blink:
         "[oniObj.emotionFilename]"
         choice:
@@ -804,7 +2691,7 @@ init:
     image heartboom_oni_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -814,6 +2701,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.resetFilenames()
             
         def resetFilenames(self):
@@ -827,6 +2715,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -847,12 +2748,197 @@ init:
         always:
             "trickster_blink"
             
-        if tricksterObj.emote == "heart" and tricksterObj.pose == "pose01":
-            "heartboom_trickster_pose01"
+        if tricksterObj.emote == "heart" and tricksterObj.state == "pose":
+            "trickster_heart_pose"
             
-        if tricksterObj.emote == "heart" and tricksterObj.pose == "close01":
-            "heartboom_trickster_close01"
-        
+        if tricksterObj.emote == "heart" and tricksterObj.state == "close":
+            "trickster_heart_close"
+
+        if tricksterObj.emote == "stars" and tricksterObj.state == "pose":
+            "trickster_stars_pose"
+
+        if tricksterObj.emote == "stars" and tricksterObj.state == "close":
+            "trickster_stars_close"
+
+        if tricksterObj.emote == "question" and tricksterObj.state == "pose":
+            "trickster_question_pose"
+
+        if tricksterObj.emote == "question" and tricksterObj.state == "close":
+            "trickster_question_close"
+
+        if tricksterObj.emote == "anger" and tricksterObj.state == "pose":
+            "trickster_anger_pose"
+
+        if tricksterObj.emote == "anger" and tricksterObj.state == "close":
+            "trickster_anger_close"
+            
+        if tricksterObj.emote == "brokenheart" and tricksterObj.state == "pose":
+            "trickster_brokenheart_pose"
+
+        if tricksterObj.emote == "brokenheart" and tricksterObj.state == "close":
+            "trickster_brokenheart_close"
+
+        if tricksterObj.emote == "dread" and tricksterObj.state == "pose":
+            "trickster_dread_pose"
+
+        if tricksterObj.emote == "dread" and tricksterObj.state == "close":
+            "trickster_dread_close"
+            
+        if tricksterObj.emote == "exclamation" and tricksterObj.state == "pose":
+            "trickster_exclamation_pose"
+
+        if tricksterObj.emote == "exclamation" and tricksterObj.state == "close":
+            "trickster_exclamation_close"
+
+        if tricksterObj.emote == "lightbulb" and tricksterObj.state == "pose":
+            "trickster_lightbulb_pose"
+
+        if tricksterObj.emote == "lightbulb" and tricksterObj.state == "close":
+            "trickster_lightbulb_close"
+            
+        if tricksterObj.emote == "spark" and tricksterObj.state == "pose":
+            "trickster_spark_pose"
+
+        if tricksterObj.emote == "spark" and tricksterObj.state == "close":
+            "trickster_spark_close"
+            
+        if tricksterObj.emote == "sweat" and tricksterObj.state == "pose":
+            "trickster_sweat_pose"
+
+        if tricksterObj.emote == "sweat" and tricksterObj.state == "close":
+            "trickster_sweat_close"
+            
+        if tricksterObj.emote == "thoughts" and tricksterObj.state == "pose":
+            "trickster_thoughts_pose"
+
+        if tricksterObj.emote == "thoughts" and tricksterObj.state == "close":
+            "trickster_thoughts_close"
+
+    image trickster_blink:
+        "[tricksterObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[tricksterObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image trickster_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image trickster_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image trickster_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image trickster_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image trickster_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
     image trickster_blink:
         "[tricksterObj.emotionFilename]"
         choice:
@@ -875,7 +2961,7 @@ init:
     image heartboom_trickster_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -885,6 +2971,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.resetFilenames()
             
         def resetFilenames(self):
@@ -895,6 +2982,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -917,12 +3017,197 @@ init:
         always:
             "wraith_blink"
             
-        if wraithObj.emote == "heart" and wraithObj.pose == "pose01":
-            "heartboom_wraith_pose01"
+        if wraithObj.emote == "heart" and wraithObj.state == "pose":
+            "wraith_heart_pose"
             
-        if wraithObj.emote == "heart" and wraithObj.pose == "close01":
-            "heartboom_wraith_close01"
-        
+        if wraithObj.emote == "heart" and wraithObj.state == "close":
+            "wraith_heart_close"
+
+        if wraithObj.emote == "stars" and wraithObj.state == "pose":
+            "wraith_stars_pose"
+
+        if wraithObj.emote == "stars" and wraithObj.state == "close":
+            "wraith_stars_close"
+
+        if wraithObj.emote == "question" and wraithObj.state == "pose":
+            "wraith_question_pose"
+
+        if wraithObj.emote == "question" and wraithObj.state == "close":
+            "wraith_question_close"
+
+        if wraithObj.emote == "anger" and wraithObj.state == "pose":
+            "wraith_anger_pose"
+
+        if wraithObj.emote == "anger" and wraithObj.state == "close":
+            "wraith_anger_close"
+            
+        if wraithObj.emote == "brokenheart" and wraithObj.state == "pose":
+            "wraith_brokenheart_pose"
+
+        if wraithObj.emote == "brokenheart" and wraithObj.state == "close":
+            "wraith_brokenheart_close"
+
+        if wraithObj.emote == "dread" and wraithObj.state == "pose":
+            "wraith_dread_pose"
+
+        if wraithObj.emote == "dread" and wraithObj.state == "close":
+            "wraith_dread_close"
+            
+        if wraithObj.emote == "exclamation" and wraithObj.state == "pose":
+            "wraith_exclamation_pose"
+
+        if wraithObj.emote == "exclamation" and wraithObj.state == "close":
+            "wraith_exclamation_close"
+
+        if wraithObj.emote == "lightbulb" and wraithObj.state == "pose":
+            "wraith_lightbulb_pose"
+
+        if wraithObj.emote == "lightbulb" and wraithObj.state == "close":
+            "wraith_lightbulb_close"
+            
+        if wraithObj.emote == "spark" and wraithObj.state == "pose":
+            "wraith_spark_pose"
+
+        if wraithObj.emote == "spark" and wraithObj.state == "close":
+            "wraith_spark_close"
+            
+        if wraithObj.emote == "sweat" and wraithObj.state == "pose":
+            "wraith_sweat_pose"
+
+        if wraithObj.emote == "sweat" and wraithObj.state == "close":
+            "wraith_sweat_close"
+            
+        if wraithObj.emote == "thoughts" and wraithObj.state == "pose":
+            "wraith_thoughts_pose"
+
+        if wraithObj.emote == "thoughts" and wraithObj.state == "close":
+            "wraith_thoughts_close"
+
+    image wraith_blink:
+        "[wraithObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[wraithObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image wraith_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image wraith_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image wraith_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image wraith_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image wraith_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
     image wraith_blink:
         "[wraithObj.emotionFilename]"
         choice:
@@ -945,7 +3230,7 @@ init:
     image heartboom_wraith_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -955,6 +3240,7 @@ init python:
             self.pose = "pose01"
             self.emotion = "idle"
             self.emote = "none"
+            self.state = "pose"
             self.shirtless = False
             self.resetFilenames()
             
@@ -980,6 +3266,19 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emotion":
                 self.emotion = value
             elif attribute == "emote":
@@ -1000,12 +3299,197 @@ init:
         always:
             "[entityObj.poseFilename]"
             
-        if entityObj.emote == "heart" and entityObj.pose == "pose01":
-            "heartboom_entity_pose01"
+        if entityObj.emote == "heart" and entityObj.state == "pose":
+            "entity_heart_pose"
             
-        if entityObj.emote == "heart" and entityObj.pose == "close01":
-            "heartboom_entity_close01"
+        if entityObj.emote == "heart" and entityObj.state == "close":
+            "entity_heart_close"
 
+        if entityObj.emote == "stars" and entityObj.state == "pose":
+            "entity_stars_pose"
+
+        if entityObj.emote == "stars" and entityObj.state == "close":
+            "entity_stars_close"
+
+        if entityObj.emote == "question" and entityObj.state == "pose":
+            "entity_question_pose"
+
+        if entityObj.emote == "question" and entityObj.state == "close":
+            "entity_question_close"
+
+        if entityObj.emote == "anger" and entityObj.state == "pose":
+            "entity_anger_pose"
+
+        if entityObj.emote == "anger" and entityObj.state == "close":
+            "entity_anger_close"
+            
+        if entityObj.emote == "brokenheart" and entityObj.state == "pose":
+            "entity_brokenheart_pose"
+
+        if entityObj.emote == "brokenheart" and entityObj.state == "close":
+            "entity_brokenheart_close"
+
+        if entityObj.emote == "dread" and entityObj.state == "pose":
+            "entity_dread_pose"
+
+        if entityObj.emote == "dread" and entityObj.state == "close":
+            "entity_dread_close"
+            
+        if entityObj.emote == "exclamation" and entityObj.state == "pose":
+            "entity_exclamation_pose"
+
+        if entityObj.emote == "exclamation" and entityObj.state == "close":
+            "entity_exclamation_close"
+
+        if entityObj.emote == "lightbulb" and entityObj.state == "pose":
+            "entity_lightbulb_pose"
+
+        if entityObj.emote == "lightbulb" and entityObj.state == "close":
+            "entity_lightbulb_close"
+            
+        if entityObj.emote == "spark" and entityObj.state == "pose":
+            "entity_spark_pose"
+
+        if entityObj.emote == "spark" and entityObj.state == "close":
+            "entity_spark_close"
+            
+        if entityObj.emote == "sweat" and entityObj.state == "pose":
+            "entity_sweat_pose"
+
+        if entityObj.emote == "sweat" and entityObj.state == "close":
+            "entity_sweat_close"
+            
+        if entityObj.emote == "thoughts" and entityObj.state == "pose":
+            "entity_thoughts_pose"
+
+        if entityObj.emote == "thoughts" and entityObj.state == "close":
+            "entity_thoughts_close"
+
+    image entity_blink:
+        "[entityObj.emotionFilename]"
+        choice:
+            pause 3
+        choice:
+            pause 4
+        choice:
+            pause 5
+        "[entityObj.blinkFilename]"
+        pause 0.1
+        repeat
+
+    image entity_heart_close:
+        "heart_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_heart_pose:
+        "heart_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_stars_close:
+        "stars_close"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image entity_stars_pose:
+        "stars_pose"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
+
+    image entity_question_close:
+        "question_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_question_pose:
+        "question_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_anger_close:
+        "anger_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_anger_pose:
+        "anger_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_heartbroken_close:
+        "heartbroken_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_heartbroken_pose:
+        "heartbroken_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_spark_close:
+        "spark_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_spark_pose:
+        "spark_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_dread_close:
+        "dread_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_dread_pose:
+        "dread_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_exclamation_close:
+        "exclamation_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_exclamation_pose:
+        "exclamation_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_lightbulb_close:
+        "lightbulb_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_lightbulb_pose:
+        "lightbulb_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_sweat_close:
+        "sweat_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_sweat_pose:
+        "sweat_pose"
+        xoffset 250
+        yoffset -300
+
+    image entity_thoughts_close:
+        "thoughts_close"
+        xoffset 250
+        yoffset -300
+
+    image entity_thoughts_pose:
+        "thoughts_pose"
+        xoffset 250
+        yoffset -300
     image heartboom_entity_close01:
         xalign 0.5
         yalign 0.1
@@ -1016,7 +3500,7 @@ init:
     image heartboom_entity_pose01:
         xalign 0.5
         yalign 0.05
-        "heartboom_far"
+        "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
@@ -1033,6 +3517,20 @@ init python:
         def change(self, attribute, value):
             if attribute == "pose":
                 self.pose = value
+                States = {
+                    "close01": "close",
+                    "close02": "close",
+                    "close03": "close",
+                    "close04": "close",
+                    "pose01": "pose",
+                    "pose02": "pose",
+                    "pose03": "pose",
+                    "pose04": "pose",
+                    "far01": "pose",
+                    "far02": "pose",
+                    "mad": "pose"
+                    }
+                self.state = States.get(value)
             elif attribute == "emote":
                 self.emote = value
             self.resetFilenames()

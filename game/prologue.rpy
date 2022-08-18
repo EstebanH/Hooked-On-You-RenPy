@@ -260,9 +260,10 @@ label prologue:
             hide wraith
             hide spirit
             $ trapperObj.change("pose", "close01")
-            $ trapperObj.change("emote", "sparks")
+            $ trapperObj.change("emote", "spark")
             with Dissolve(0.25)
             tt "What a dork."
+            $ trapperObj.change("emote", "none")
             $ trapperObj.change("pose", "pose01")
             $ wraithObj.change("emotion", "idle")
             $ trapperObj.change("emotion", "idle")
@@ -271,10 +272,11 @@ label prologue:
             show trapper at moveright
             show wraith at movecenterleft
             show spirit at movecenterright
-            show huntress at slidetoleft
+            show huntress at moveleft
             $ wraithObj.change("emote", "stars")
             with Dissolve(0.25)
             nrr "You feel so awkward that you can barely see straight, but through the haze of your embarassment you catch Wraith looking at you from the corner of your eye."
+            $ wraithObj.change("emote", "none")
             hide huntress with dissolve
             nrr "Huntress jogs the rest of the way to grab the volleyball, and they all turn and head back to the court."
             hide trapper
@@ -295,12 +297,14 @@ label prologue:
             call oceanhaunting
             with Dissolve(0.25)
             oc "No one tells you what to do..."
+            call beachdayscene
             stop hauntloop fadeout 3.0
             $ huntressObj.change("pose", "close01")
             $ huntressObj.change("emote", "anger")
             show huntress at slidetocenter
             with Dissolve(0.25)
             th "Thanks for nothing, I guess?"
+            $ huntressObj.change("emote", "none")
             $ wraithObj.change("emotion", "idle")
             $ trapperObj.change("emotion", "idle")
             $ huntressObj.change("emotion", "idle")
@@ -334,8 +338,9 @@ label prologue:
             nrr "Is this some kind of display of confidence? Confusion? Sheer awkwardness? You feel judged, but you're not sure how."
             $ spiritObj.change("emotion", "happy")
             $ spiritObj.change("emote", "sweat")
-            $ trapperObj.change("pose", "pose03")
+            $ spiritObj.change("pose", "pose03")
             nrr "Spirit cuts the silence with a giggle that she quickly swallows when she sees that it caught your attention."
+            $ spiritObj.change("emote", "none")
             $ spiritObj.change("emotion", "idle")
             hide huntress
             hide wraith
