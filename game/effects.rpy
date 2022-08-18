@@ -13,24 +13,29 @@ init python:
     renpy.music.register_channel("moodloop", "music", loop=True)
     renpy.music.register_channel("eventloop", "music", loop=True)
     class ParticleBurst(object):
-        def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 5, particleYSpeed = 5, centerZone = 10, fadeWithParticleTime = False):
+        def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 5, particleYSpeed = 5, centerZone = 0, xZone = 10, yZone = 10):
             self.sm = SpriteManager(update=self.update)
             # A list of (sprite, starting-x, speed).
             self.stars = [ ]
             self.displayable = theDisplayable
             self.centerZone = centerZone
+            self.xZone = xZone
+            self.yZone = yZone
             self.explodeTime = explodeTime
             self.particleMax = numParticles
             self.particleTime = particleTime
             self.particleXSpeed = particleXSpeed
             self.particleYSpeed = particleYSpeed
-            self.fadeWithParticleTime = fadeWithParticleTime ##Unused
             self.timePassed = 0
            
         def add(self, d, speed, st):
             s = self.sm.create(d)
-            s.x = self.sm.width/2 - (random.random()*self.centerZone)
-            s.y = self.sm.height/2 - (random.random()*self.centerZone)
+            if (self.centerZone == 0):
+                s.x = self.sm.width/2 - (random.random()*self.xZone)
+                s.y = self.sm.height/2 - (random.random()*self.yZone)
+            else:
+                s.x = self.sm.width/2 - (random.random()*self.centerZone)
+                s.y = self.sm.height/2 - (random.random()*self.centerZone)
             ySpeed = ((random.random() - 0.5) * self.particleYSpeed)
             xSpeed = ((random.random() - 0.5) * self.particleXSpeed)
             pTime = (random.random() * self.particleTime ) + st

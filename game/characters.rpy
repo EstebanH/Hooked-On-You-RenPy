@@ -1,22 +1,151 @@
+
+## Character Positions ###############################################################
+init:
+    transform moveleft:
+        xoffset -620
+    transform moveright:
+        xoffset 690
+    transform movecenterleft:
+        xoffset -235
+    transform movecenterright:
+        xoffset 230
+    transform slidetocenter:
+        linear 0.75 xoffset 0
+    transform slidetoleft:
+        linear 0.75 xoffset -620
+
 ## Character Emotes ###############################################################
 
 init:
+    ## Heart
     transform heartfade:
         easeout 1.0 alpha 0.0
 
     image heartboom_far:
-        function play_effect
+        function play_sfxheart
         zoom 0.15
-        (ParticleBurst(At("images/emotes/heart.png", heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/emotes/heart.png", heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000).sm) with Dissolve
 
     image heartboom_close:
-        function play_effect
+        function play_sfxheart
         zoom 0.25
-        (ParticleBurst(At("images/emotes/heart.png",heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/emotes/heart.png",heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000).sm) with Dissolve
+
+    ## Question
+    transform question1_rotate:
+        rotate -25
+        anchor (0.5, 0.5) transform_anchor 1
+        easein 3 rotate 25
+
+    transform question2_rotate:
+        rotate 10
+        anchor (0.5, 0.5) transform_anchor 1
+        easein 3 rotate -35
+        rotate 10
+
+    transform question_zoom:
+        anchor (0.5, 0.5) transform_anchor 1
+        easein 3.0 zoom 1.3
+
+    image question_small:
+        xalign 0.5
+        yalign 0.2
+        xoffset 60
+        zoom 0.2
+        "images/emotes/question.png"
+        linear 2.0 yoffset -100
+        linear 0 yoffset 0
+    
+    image question_large:
+        xalign 0.5
+        yalign 0.25
+        xoffset -140
+        zoom 0.3
+        "images/emotes/question.png"
+        linear 5.0 yoffset -300
+        linear 0 yoffset 0
+
+    image question1:
+        function play_sfxquestion
+        alpha 0.00
+        At("question_small", question1_rotate,question_zoom)
+        easein .5 alpha 1.00
+        pause 0.4
+        easeout 0.5 alpha 0.0
+        
+    image question2:
+        pause .5
+        alpha 0.00
+        At("question_large", question2_rotate,question_zoom)
+        easein .5 alpha 1.00
+        pause .6
+        easeout 0.5 alpha 0.0
+
+    layeredimage question_pose01:
+        always:
+            "question1"
+        always:
+            "question2"
+
+    ## Star
+    transform star_zoom:
+        zoom 0
+        easein 1.0 zoom 1.0
+        easeout 1.0 zoom 0.0
+    image goldstars:
+        function play_sfxstars
+        zoom 0.2
+        xalign 0.5
+        yalign 0.5
+        (ParticleBurst(At("images/emotes/GoldStar_01.png",heartfade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 0, particleYSpeed = 0, centerZone = 0, xZone = 2000, yZone = 1000).sm) with Dissolve
+    image yellowstars:
+        function play_sfxstars
+        zoom 0.2
+        xalign 0.5
+        yalign 0.5
+        (ParticleBurst(At("images/emotes/YellowStar_01.png",heartfade), explodeTime=0, numParticles=10, particleTime=3.0, particleXSpeed = 0, particleYSpeed = 0, centerZone = 0, xZone = 2000, yZone = 1000).sm) with Dissolve
+        
+    layeredimage stars_close01:
+        always:
+            "goldstars"
+        always:
+            "yellowstars"
 
 init python:
-    def play_effect(trans, st, at):
+    def reset_emotes(trans, st, at):
+        wraithObj.change("emote", "none")
+        huntressObj.change("emote", "none")
+        spiritObj.change("emote", "none")
+        trapperObj.change("emote", "none")    
+        entityObj.change("emote", "none")
+        grandmaObj.change("emote", "none")
+        dadObj.change("emote", "none")
+        momObj.change("emote", "none")
+        oniObj.change("emote", "none")
+        tricksterObj.change("emote", "none")
+    def play_sfxheart(trans, st, at):
         renpy.play("sounds/SFX_Emotes_Hearts_V01.ogg", channel="sound")
+    def play_sfxquestion(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_Questions_V01.ogg", channel="sound")
+    def play_sfxanger(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_Anger_V01.ogg", channel="sound")
+    def play_sfxbrokenheart(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_BrokenHeart_V01.ogg", channel="sound")
+    def play_sfxdread(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_Dread_V01.ogg", channel="sound")
+    def play_sfxexclamation(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_Exclamation_V01.ogg", channel="sound")
+    def play_sfxlightbulb(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_Lightbulb_V01.ogg", channel="sound")
+    def play_sfxshock(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_ShockSpark_V01.ogg", channel="sound")
+    def play_sfxstars(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_Stars_V01.ogg", channel="sound")
+    def play_sfxsweatdrop(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_SweatDrop_V01.ogg", channel="sound")
+    def play_sfxthought(trans, st, at):
+        renpy.play("sounds/SFX_Emotes_Thought_V01.ogg", channel="sound")
+
 
 ## clauddwight ###############################################################
 ## Pose attritubes: close01, close02, far01, far02
@@ -229,6 +358,9 @@ init:
             
         if huntressObj.emote == "heart" and huntressObj.pose == "close01":
             "heartboom_huntress_close01"
+
+        if huntressObj.emote == "stars" and huntressObj.pose == "close01":
+            "huntress_stars"
         
     image huntress_blink:
         "[huntressObj.emotionFilename]"
@@ -248,6 +380,13 @@ init:
         "heartboom_close"
         pause 1
         easeout 0.5 alpha 0.0
+
+    image huntress_stars:
+        "stars_close01"
+        xoffset 250
+        yoffset -300
+        pause 3
+        easeout 1.0 alpha 0.0
 
     image heartboom_huntress_pose01:
         xalign 0.5
@@ -472,7 +611,9 @@ init:
             
         if trapperObj.emote == "heart" and trapperObj.pose == "close01":
             "heartboom_trapper_close01"
-        
+            
+        if trapperObj.emote == "question" and trapperObj.pose == "pose01":
+            "question_pose01"
     image trapper_blink:
         "[trapperObj.emotionFilename]"
         choice:
@@ -564,7 +705,10 @@ init:
             
         if dadObj.emote == "heart" and dadObj.pose == "close01":
             "heartboom_dad_close01"
-        
+            
+        if dadObj.emote == "question" and dadObj.pose == "close01":
+            "heartboom_dad_close01"
+
     image dad_blink:
         "[dadObj.emotionFilename]"
         choice:

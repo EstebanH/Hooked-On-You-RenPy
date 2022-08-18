@@ -164,7 +164,7 @@ label oceanhaunting(image_name=Null, ismovefrombottom = False):
             show expression image_name at dissolvecenter,coin_yoffset
         else:
             show expression image_name at nodissolvecenter
-
+    
     with dissolve
     return
 
@@ -179,11 +179,12 @@ init:
         xalign 0.5 
         yalign 0.25
     image dreadnoise:
+        alpha 0.5
         contains:
             parallel:
                 "images/moods/dreadfear_noise.png"
-                xpan 5400
-                ypan 5400
+                xpan 3400
+                ypan 3400
                 linear 8 xpan 1 ypan 1
                 repeat
 ##
@@ -487,11 +488,11 @@ init:
         SnowBlossom(At("images/moods/WL_Circle_1.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-80, -40),  xspeed=(-80,-40), horizontal=True)
 
     image wl_circle1:
-        (ParticleBurst(At("images/moods/WL_Circle_1.png", starsizefade), explodeTime=0, numParticles=3, particleTime=60.0, particleXSpeed = 15, particleYSpeed = 1, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/moods/WL_Circle_1.png", starsizefade), explodeTime=0, numParticles=3, particleTime=60.0, particleXSpeed = 15, particleYSpeed = 1, centerZone = 1000).sm) with Dissolve
         xzoom .5
         yzoom 0.1
     image wl_circle2:
-        (ParticleBurst(At("images/moods/WL_Circle_2.png", starsizefade), explodeTime=0, numParticles=3, particleTime=60.0, particleXSpeed = 1, particleYSpeed = 10, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/moods/WL_Circle_2.png", starsizefade), explodeTime=0, numParticles=3, particleTime=60.0, particleXSpeed = 1, particleYSpeed = 10, centerZone = 1000).sm) with Dissolve
         zoom .125
 
 label mood_warmlight(image_name=Null, ismovefrombottom = False, scenedissolve = True):
@@ -587,7 +588,7 @@ init:
         "images/moods/glow.png"
 
     image excite_stars:
-        (ParticleBurst(At("images/moods/EX_Stars.png", starsizefade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/moods/EX_Stars.png", starsizefade), explodeTime=0, numParticles=10, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000 ).sm) with Dissolve
         zoom 0.15
 
     layeredimage excite_flower_layers:
@@ -603,7 +604,7 @@ init:
         repeat
 
     image excite_flower:
-        (ParticleBurst(At("excite_flower_layers", flowerfade), explodeTime=0, numParticles=2, particleTime=60.0, particleXSpeed = 30, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("excite_flower_layers", flowerfade), explodeTime=0, numParticles=2, particleTime=60.0, particleXSpeed = 30, particleYSpeed = 15, centerZone = 1000 ).sm) with Dissolve
         zoom 0.1
 
 label mood_excitement(image_name=Null, ismovefrombottom = False, scenedissolve = True):
@@ -676,15 +677,15 @@ init:
         SnowBlossom(At("images/moods/Happy_bubble4.png", bubblefade), border=400, count=1, start=0.00000000001, fast=True,  yspeed=(-80, -40),  xspeed=(-80,-40), horizontal=True)
 
     image happy_starwhite:
-        (ParticleBurst(At("images/moods/Happy_StarWhite.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/moods/Happy_StarWhite.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 20, particleYSpeed = 15, centerZone = 1000 ).sm) with Dissolve
         zoom 0.15
 
     image happy_stargreen:
-        (ParticleBurst(At("images/moods/Happy_Stargreen.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 15, particleYSpeed = 10, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/moods/Happy_Stargreen.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 15, particleYSpeed = 10, centerZone = 1000 ).sm) with Dissolve
         zoom 0.25
         
     image happy_starblur:
-        (ParticleBurst(At("images/moods/Happy_Starblur.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 5, centerZone = 1000, fadeWithParticleTime = True).sm) with Dissolve
+        (ParticleBurst(At("images/moods/Happy_Starblur.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 5, centerZone = 1000 ).sm) with Dissolve
         zoom 0.1
 
 label mood_happy(image_name=Null, ismovefrombottom = False, scenedissolve = True):
@@ -719,6 +720,10 @@ label mood_happy(image_name=Null, ismovefrombottom = False, scenedissolve = True
 
 ## other ###############################################################
 ##
+define mymatrix_normal = Matrix([1.0, 0.0, 0.0, 0.0,
+                                0.0, 1.0, 0.0, 0.0,
+                                0.0, 0.0, 1.0, 0.0,
+                                0.0, 0.0, 0.0, 1.0,])
 init:
     image flower:
         "gui/window_icon.png"
@@ -727,10 +732,12 @@ init:
 
     image bg loading:
         "images/bg_loading.png"
-    image bg beach0:
+    image bg beach_day:
         "images/bg/bg_beach_day.png"
-    image bg volley0:
+        matrixcolor mymatrix_normal
+    image bg volleyball_day:
         "images/bg/bg_volleyball_day.png"
+        matrixcolor mymatrix_normal
 
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
@@ -780,15 +787,15 @@ label loadingscene:
     pause 2
     return
 
-label beach0scene(keep_images=False):
+label beachdayscene(keep_images=False):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
     play music "audio/sfx_ambience_beach.ogg"
     if keep_images:
         call hideeffects
-        show bg beach0 with dissolve
+        show bg beach_day with dissolve
     else:
-        scene bg beach0 with dissolve
+        scene bg beach_day with dissolve
     return
 label hideeffects:
     hide cloudy1
@@ -826,11 +833,12 @@ label mood_speedlines(image_name=Null, ismovefrombottom = False):
     with dissolve
     return
 
-label mood_inner_monologuescene(image_name=Null, ismovefrombottom = False):
+label mood_inner_monologuescene(image_name=Null, ismovefrombottom = False, nobg = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.ogg") fadein 3.0 loop
-    scene bg inner_monologue
+    if not nobg:
+        scene bg inner_monologue
     show dreadnoise
     if image_name is not Null:
         if ismovefrombottom:
@@ -839,3 +847,17 @@ label mood_inner_monologuescene(image_name=Null, ismovefrombottom = False):
             show expression image_name at nodissolvecenter zorder 1
     with dissolve
     return
+
+label show_item(image_name=Null, ismovefrombottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.ogg") fadein 3.0 loop
+    show dreadnoise
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter,coin_yoffset zorder 1
+        else:
+            show expression image_name at nodissolvecenter,coin_yoffset zorder 1
+    with dissolve
+    return
+    
