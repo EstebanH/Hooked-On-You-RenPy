@@ -13,6 +13,8 @@ init:
         linear 0.75 xoffset 0
     transform slidetoleft:
         linear 0.75 xoffset -620
+    transform moverightclose:
+        xoffset 590
 
 ## Character Emotes ###############################################################
 
@@ -134,6 +136,9 @@ init:
 
     image stars_pose:
         "stars_layers"
+        zoom 0.7
+        yoffset 160
+        xoffset 140
 
     image stars_close:
         "stars_layers"
@@ -153,6 +158,7 @@ init:
     image exclamation_pose:
         "exclamation"
         zoom 0.3
+        
 
     image exclamation_close:
         "exclamation"
@@ -264,48 +270,48 @@ init:
         zoom 0.3
 
     ## Anger ###############################################################
-    transform anger_rotate:
-        anchor (0.5, 0.5) transform_anchor 1
-        rotate 0
-        pause 0.1
-        rotate 90
-        pause 0.1
-        rotate 180
-        pause 0.1
-        rotate 270
-        pause 0.1
+    transform anger_translate:
+        linear 2.0 yoffset -1
+        linear 0 yoffset 0
         repeat
 
     image anger_small:
-        xalign 0.5
-        yalign 0.2
-        xoffset 60
-        "images/emotes/anger.png"
-        linear 2.0 yoffset -100
-        linear 0 yoffset 0
+        zoom 0.6
+        "images/emotes/anger1.png"
+        pause .3
+        "images/emotes/anger2.png"
+        pause .3
+        repeat
     
     image anger_large:
-        xalign 0.5
-        yalign 0.25
-        xoffset -140
-        "images/emotes/anger.png"
-        linear 5.0 yoffset -300
-        linear 0 yoffset 0
+        zoom .7
+        "images/emotes/anger2.png"
+        pause .3
+        "images/emotes/anger1.png"
+        pause .3
+        repeat
 
     image anger1:
         function play_sfxanger
         alpha 0.00
-        At("anger_small", anger_rotate)
+        xalign 0.5
+        yalign 0.5
+        xoffset -400
+        yoffset 50
+        At("anger_small", anger_translate)
         easein .5 alpha 1.00
-        pause 0.4
+        pause 1
         easeout 0.5 alpha 0.0
         
     image anger2:
-        pause .5
         alpha 0.00
-        At("anger_large", anger_rotate)
+        xalign 0.5
+        yalign 0.5
+        xoffset 75
+        yoffset -175
+        At("anger_large", anger_translate)
         easein .5 alpha 1.00
-        pause .6
+        pause 1
         easeout 0.5 alpha 0.0
 
     layeredimage anger_layers:
@@ -321,38 +327,49 @@ init:
         "anger_layers"
 
     ## Spark ###############################################################
+    transform xoffsetsparks_small:
+        linear .2 xoffset -300
+        linear .1 xoffset -225
+        linear 5 xoffset -300
+    transform yoffsetsparks_small:
+        linear .2 yoffset 300
+        linear .1 yoffset 225
+        linear 5 yoffset 300
+    transform xoffsetsparks_large:
+        linear .2 xoffset 250
+        linear .1 xoffset 125
+        linear 5 xoffset 250
+    transform yoffsetsparks_large:
+        linear .2 yoffset -250
+        linear .1 yoffset -125
+        linear 5 yoffset -250
+
     image spark_small:
-        "images/emotes/spark1.png"
+        At("images/emotes/spark1.png",xoffsetsparks_small,yoffsetsparks_small)
         xalign 0.5
         yalign 0.5
-        linear 1 xoffset -200
-        linear 1 xoffset -100
-        linear .5 xoffset -120
-        linear .5 xoffset -100
+        yoffset -200
+        zoom .6
     
     image spark_large:
-        "images/emotes/spark2.png"
+        At("images/emotes/spark2.png",xoffsetsparks_large,yoffsetsparks_large)
         xalign 0.5
         yalign 0.5
-        linear 1 xoffset 200
-        linear 1 xoffset 100
-        linear .5 xoffset 120
-        linear .5 xoffset 100
+        zoom .6
 
     image spark1:
         function play_sfxshock
         alpha 0.00
         "spark_small"
         easein .5 alpha 1.00
-        pause 0.4
+        pause 1
         easeout 0.5 alpha 0.0
         
     image spark2:
-        pause .5
         alpha 0.00
         "spark_large"
         easein .5 alpha 1.00
-        pause .6
+        pause 1
         easeout 0.5 alpha 0.0
 
     layeredimage spark_layers:
@@ -363,9 +380,11 @@ init:
 
     image spark_pose:
         "spark_layers"
+        xoffset -175
 
     image spark_close:
         "spark_layers"
+        xoffset -175
 
     ## Thoughts ###############################################################
     image thought_bubble:

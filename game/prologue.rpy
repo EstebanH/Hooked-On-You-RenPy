@@ -261,6 +261,7 @@ label prologue:
             hide spirit
             $ trapperObj.change("pose", "close01")
             $ trapperObj.change("emote", "spark")
+            show trapper at moverightclose
             with Dissolve(0.25)
             tt "What a dork."
             $ trapperObj.change("emote", "none")
