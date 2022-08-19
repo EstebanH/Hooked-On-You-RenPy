@@ -208,6 +208,9 @@ init:
         "lightbulb_layers"
         zoom 0.3
     ## Sweatdrop ###############################################################
+    transform sweat_translate:
+        linear 1.0 yoffset 40
+
     image sweat:
         function play_sfxsweatdrop
         "images/emotes/sweat.png"
@@ -215,17 +218,18 @@ init:
         yalign 0.5
         alpha 0.00
         easein .5 alpha 1.00
-        linear 2.0 yoffset 100
-        pause 0.4
+        pause .5
         easeout 0.5 alpha 0.0
 
     image sweat_pose:
-        "sweat"
-        zoom 0.3
+        At("sweat", sweat_translate)
+        zoom 0.1
+        xoffset -200
+        yoffset 100
 
     image sweat_close:
-        "sweat"
-        zoom 0.3
+        At("sweat", sweat_translate)
+        zoom 0.1
 
     ## Heartbroken ###############################################################
     image heartbroken:
