@@ -106,8 +106,8 @@ style frame:
 transform namebox_rotate():
     anchor (0.5, 0.5) transform_anchor 1
     rotate -3.5
-
-screen say(who, what):
+    
+screen say(who, what, slow_effect = slow_typewriter, slow_effect_delay = 0, always_effect = None):
     style_prefix "say"
 
     window:
@@ -121,7 +121,8 @@ screen say(who, what):
                 text who id "who" at namebox_rotate 
                 #background Frame("gui/frame.png")
 
-        text what id "what"
+        #text what id "what"
+        fancytext what id "what" slow_effect slow_effect slow_effect_delay slow_effect_delay always_effect always_effect
         button:
             id "button"
             action Skip()

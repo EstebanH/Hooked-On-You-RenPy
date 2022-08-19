@@ -353,6 +353,8 @@ label prologue:
             show spirit at slidetocenter
             with Dissolve(0.25)
             nrr "Except for Spirit. She's really staring you down, her expression hardening as you watch her. The longer you hold her gaze, the more angry she seems to become before turning with a huff and floating off to join the others."
+            hide spirit
+            with Dissolve(0.25)
 
     nrr "Alone again, you look across the beach at these strange residents who casually bat a volleyball back and forth, happily ignoring your intrusion onto their private beach."
     nrr "Should you be frightened? Worried? Excited? I did refer to them as Killers, not to give too much away."

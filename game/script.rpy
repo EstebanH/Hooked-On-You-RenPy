@@ -1,18 +1,18 @@
 ##https://youtu.be/DPFXHoIBmAo
 # Declare the characters.
-define nrr = Character(None, window_style="window_narrator", color="#3a2e55",callback=callbackcontinue)
-define cho = Character(None, window_style="window_narrator", color="#3a2e55",  callback=callbackchoice)
+define nrr = Character(None, window_style="window_narrator", color="#3a2e55",callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define cho = Character(None, window_style="window_narrator", color="#3a2e55",  callback=callbackchoice, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 
-define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", callback=callbackcontinue)
-define mc = DynamicCharacter('mc_name', color="#3a2e55", callback=callbackcontinue)
-define look = Character(None,window_background=None, button_style = "say_button_none")
-define dw = Character("DWIGHT", color="#bb7d31", callback=callbackcontinue)
+define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", color="#3a2e55", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define mc = DynamicCharacter('mc_name', color="#3a2e55", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define look = Character(None,window_background=None, button_style = "say_button_none", show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define dw = Character("DWIGHT", color="#bb7d31", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 
-define cl = Character("CLAUDETTE", color="#b4992e",  callback=callbackcontinue)
-define th = Character("THE HUNTRESS", window_style="window_killer", color="#c64631", callback=callbackcontinue)
-define ts = Character("THE SPIRIT", window_style="window_killer", color="#d94464", callback=callbackcontinue)
-define tt = Character("THE TRAPPER", window_style="window_killer", color="#3d567b", callback=callbackcontinue)
-define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", callback=callbackcontinue)
+define cl = Character("CLAUDETTE", color="#b4992e",  callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define th = Character("THE HUNTRESS", window_style="window_killer", color="#c64631", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define ts = Character("THE SPIRIT", window_style="window_killer", color="#d94464", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define tt = Character("THE TRAPPER", window_style="window_killer", color="#3d567b", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define tw = Character("THE WRAITH", window_style="window_killer", color="#58902c", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 ## Character Example
 #p = Character('Protagonist', what_prefix="\"", what_suffix="\"", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))],what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], show_two_window=True, color="#000000", ctc = anim.Blink("ctc.png", xpos=600, ypos=450), ctc_position= "fixed", callback=callbackcontinue)
 
