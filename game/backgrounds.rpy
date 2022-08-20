@@ -815,9 +815,19 @@ label warmdarkscene:
 
 label loadingscene:
     window hide
+    $ quick_menu = False
     scene bg loading with dissolve
     show flower at fakeload
     pause 2
+    $ quick_menu = True
+    return
+label blackscene:
+    window hide
+    $ quick_menu = False
+    stop eventloop fadeout 3.0
+    scene black with dissolve
+    pause 1
+    $ quick_menu = True
     return
 
 label beachdayscene(keep_images=False):

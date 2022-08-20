@@ -533,7 +533,7 @@ init python:
 
 
 ## clauddwight ###############################################################
-## Pose attritubes: close01, close02, far01, far02
+## Pose attritubes: close01, close02, pose01, pose02
 ## Emotion attritubes: idle, mad, sad, scared, disgusted, happy
 ##
 init:
@@ -543,12 +543,12 @@ init:
         always:
             "clauddwight_blink"
             
-        if clauddwightObj.emote == "heart" and clauddwightObj.pose == "far01":
-            "heartboom_dwight_far01"
-        if clauddwightObj.emote == "heart" and clauddwightObj.pose == "far02":
-            "heartboom_dwight_far02"
-        if clauddwightObj.emote == "heart" and (clauddwightObj.pose == "far01" or clauddwightObj.pose == "far02"):
-            "heartboom_claud_far"
+        if clauddwightObj.emote == "heart" and clauddwightObj.pose == "pose01":
+            "heartboom_dwight_pose01"
+        if clauddwightObj.emote == "heart" and clauddwightObj.pose == "pose02":
+            "heartboom_dwight_pose02"
+        if clauddwightObj.emote == "heart" and (clauddwightObj.pose == "pose01" or clauddwightObj.pose == "pose02"):
+            "heartboom_claud_pose"
 
             
         if clauddwightObj.emote == "heart" and clauddwightObj.pose == "close01":
@@ -634,21 +634,21 @@ init:
         pause 0.1
         repeat
 
-    image heartboom_claud_far:
+    image heartboom_claud_pose:
         xalign 0.45
         yalign 0.15
         "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
-    image heartboom_dwight_far01:
+    image heartboom_dwight_pose01:
         xalign 0.65
         yalign 0.05
         "heartboom_pose"
         pause 1
         easeout 0.5 alpha 0.0
 
-    image heartboom_dwight_far02:
+    image heartboom_dwight_pose02:
         xalign 0.675
         yalign 0.1
         "heartboom_pose"
@@ -789,7 +789,7 @@ init:
         xoffset 250
         yoffset -300
 
-    transform clauddwightfar:
+    transform clauddwightpose:
         xalign 0.5
         yalign 0.25
 
@@ -830,9 +830,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -1101,9 +1099,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -1361,9 +1357,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -1630,9 +1624,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -1922,9 +1914,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -2215,9 +2205,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -2489,9 +2477,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -2761,9 +2747,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -3028,9 +3012,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -3312,9 +3294,7 @@ init python:
                     "pose01": "pose",
                     "pose02": "pose",
                     "pose03": "pose",
-                    "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose"
+                    "pose04": "pose"
                     }
                 self.state = States.get(value)
             elif attribute == "emotion":
@@ -3564,8 +3544,6 @@ init python:
                     "pose02": "pose",
                     "pose03": "pose",
                     "pose04": "pose",
-                    "far01": "pose",
-                    "far02": "pose",
                     "mad": "pose"
                     }
                 self.state = States.get(value)

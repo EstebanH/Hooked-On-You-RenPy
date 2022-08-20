@@ -135,7 +135,7 @@ label prologue:
                     ""
             $ clauddwightObj.change("emotion", "happy")
             $ clauddwightObj.change("emote", "heart")
-            $ clauddwightObj.change("pose", "far01")
+            $ clauddwightObj.change("pose", "pose01")
             show clauddwight with Dissolve(0.2)
             pause 1
             cl "You're... welcome!"
