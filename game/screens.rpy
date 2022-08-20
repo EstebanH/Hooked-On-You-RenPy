@@ -999,17 +999,22 @@ screen file_slots(title):
     use game_menu(title):
         frame:
             if title == "Save":
-                image "gui/gui_file_save_icon.png":
+                imagebutton: 
+                    idle "gui/gui_file_save_icon.png"
                     xsize 224
                     ysize 109
                     xalign 0.5
                     yalign 0.09
+                    action ShowMenu("load")
+
             if title == "Load":
-                image "gui/gui_file_load_icon.png":
+                imagebutton: 
+                    idle "gui/gui_file_load_icon.png"
                     xsize 224
                     ysize 109
                     xalign 0.5
                     yalign 0.09
+                    action ShowMenu("save")
             xsize 1920
             ysize 1080
             background Image("gui/game_menu.png")

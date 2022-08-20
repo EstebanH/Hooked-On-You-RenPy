@@ -41,48 +41,6 @@ label event_quiz:
     play eventloop("audio/sfx_killer_flirt.ogg") fadein 3.0 loop
     return
 
-define lastchance = False
-label icecream_warning:
-    nrr "You got a reading comprehension problem? I just told you mint chip was where it's at!"
-    nrr "You almost bought youself a Game Over there, buddy. That's right. I can end your life whenever I want to. I'm in control, so don't you forget it. If I say you like mint chip, you like mint clip. Now try it again."
-    $ lastchance = True
-    call choice_icecream
-    return
-
-label icecream_death:
-    nrr "In case it wasn't clear who is in charge, it's me."
-    oc "You have to understand, it feels very good to end someone else's game. You should try it sometime..."
-    play sound "sounds/sfx_gameover.ogg"
-    call screen game_over("choice_icecream")
-    return
-
-label choice_icecream:
-    menu:
-        nrr "Tell me, what's the best flavor of ice cream?"
-        "Vanilla":
-            mc "The best flavor is... vanilla!"
-            if not lastchance:
-                call icecream_warning
-            else:
-                call icecream_death
-        "Chocolate":
-            mc "The best flavor is... chocolate!"
-            if not lastchance:
-                call icecream_warning
-            else:
-                call icecream_death
-        "Horseflesh":
-            mc "The best flavor is... horseflesh!"
-            if not lastchance:
-                call icecream_warning
-            else:
-                call icecream_death
-        "Mint Chip":
-            mc "The best flavor is... mint chip!"
-            oc "So obedient..."
-            nrr "I think you're gonna do juuuuust fine."
-    return
-
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False
