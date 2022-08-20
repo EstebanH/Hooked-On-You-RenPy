@@ -291,21 +291,45 @@ style input:
 ## and action fields.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
-
+init:
+    $ imagechoice = False
 screen choice(items):
-    style_prefix "choice"
     $ count = 1
-    vbox:
-        for i in items:
-            if count > 4:
-                $ count = 4
-            textbutton i.caption: 
-                action i.action 
-                hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
-                activate_sound "sounds/sfx_ui_choice_select.ogg"
-            $ count = count + 1
+    style_prefix "choice"
+    if imagechoice:
+        hbox:            
+            for i in items:
+                if count > 4:
+                    $ count = 4          
+                if "¦" in i.caption:
+                    $ caption_parts = i.caption.split("¦")
+                    $ cap_len = len(caption_parts)
+                    imagebutton:
+                        ysize 488
+                        xsize 265
+                        if cap_len > 0:
+                            idle str(caption_parts[0])
+                        if cap_len > 1:
+                            hover str(caption_parts[1])
+                        if cap_len > 2:
+                            selected str(caption_parts[2])
+                        action i.action 
+                        hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
+                        activate_sound "sounds/sfx_ui_choice_select.ogg"
+                    $ count = count + 1
+    else:
+        vbox:
+            for i in items:
+                if count > 4:
+                    $ count = 4
+                textbutton i.caption: 
+                    action i.action 
+                    hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
+                    activate_sound "sounds/sfx_ui_choice_select.ogg"
+                $ count = count + 1
 
 style choice_vbox is vbox
+style choice_hbox is hbox
 style choice_button is button
 style choice_button_text is button_text
 
@@ -314,6 +338,12 @@ style choice_vbox:
     ypos 357
     yanchor 0.4
     spacing gui.choice_spacing + 15
+
+style choice_hbox:
+    xoffset -70
+    xalign 0.5
+    yalign 0.1
+    spacing gui.choice_spacing
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
