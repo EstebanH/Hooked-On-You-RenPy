@@ -23,6 +23,11 @@ init:
         xoffset 590
     transform fadeaway:
         linear 0.75 alpha 0.0
+    transform fadenear:
+        alpha 0.0
+        linear 0.75 alpha 1.0
+    transform noalpha:
+        alpha 0.0
     transform slidetocenter:
         linear 0.75 xoffset 0
 

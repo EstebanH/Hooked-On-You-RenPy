@@ -2288,7 +2288,7 @@ screen game_over(yes_action):
     ## Ensure other screens do not get input while this screen is displayed.
     modal True
 
-    zorder 200
+    zorder 199
 
     style_prefix "confirm"
 

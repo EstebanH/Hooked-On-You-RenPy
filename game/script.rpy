@@ -472,6 +472,7 @@ label start:
     tt "I'm Trapper. I pretty much run things around here. I'm the smartest, richest, strongest person on this whole island."
     $ trapperObj.change("emotion", "mad")
     $ trapperObj.change("emote", "stars")
+    show wraith at movecenterleft, noalpha
     tt "I don't like losers. If you want to know what a loser is say hello to Wraith."
     play sound "sounds/sfx_signature_wraith01.ogg"
     $ trapperObj.change("emote", "none")
@@ -480,12 +481,13 @@ label start:
     $ trapperObj.change("emotion", "idle")
     $ trapperObj.change("pose", "pose01")
     show trapper at slidetomoveright, fadeaway
-    show wraith at slidetocenter
+    show wraith at slidetocenter, fadenear
     with dissolve
     hide trapper
     tw "Hi, I'm Wraith. I'm nothing like everyone else."
     $ wraithObj.change("emote", "sweat")
     $ wraithObj.change("emotion", "idle")
+    show spirit at movecenterright, noalpha
     tw "I like nice people and loathe big dumb idiots."
     $ wraithObj.change("emote", "none")
     $ spiritObj.change("emotion", "idle")
@@ -494,7 +496,7 @@ label start:
     $ wraithObj.change("pose", "pose01")
     play sound "sounds/sfx_signature_spirit03.ogg"
     show wraith at slidetomovecenterleft, fadeaway
-    show spirit at slidetocenter
+    show spirit at slidetocenter, fadenear
     with dissolve
     hide wraith
     ts "Hey what's up? I'm Spirit. I don't like... most things."
@@ -506,13 +508,14 @@ label start:
     ts "Based on my personal observations, life is nothing but suffering, and society is a carefully calculated lie to keep everyone subserviant to those in power. It's better to choose to just not take part."
     $ spiritObj.change("emotion", "idle")
     nrr "Jeez, it's like she was downright murdered by society, she hates it so much."
+    show huntress at moveleft, noalpha
     nrr "Oh, no, wait--I'm remembering Spirit's story now, and that's almost exactly what happened."
     play sound "sounds/sfx_signature_huntress01.ogg"
     $ huntressObj.change("emotion", "happy")
     $ huntressObj.change("pose", "close02")
     $ spiritObj.change("pose", "pose03")
     show spirit at slidetomovecenterright, fadeaway
-    show huntress at slidetocenter
+    show huntress at slidetocenter, fadenear
     with dissolve
     hide spirit
     th "Hey! I'm Huntress. Don't let these bummers get you down."
