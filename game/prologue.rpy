@@ -1,4 +1,5 @@
 label prologue:
+    call beachdayscene
     mc "*cough* *cough* *cough*"
     nrr "You wake up on the beach, soaking wet, saltwater stinging the inside of your throat, as if you'd nearly drowned."
     nrr "Water falls from your mouth as you open it to gasp for air."
@@ -242,7 +243,7 @@ label prologue:
             show trapper at moveright
             show wraith at movecenterleft
             show spirit at movecenterright
-            show huntress at slidetoleft
+            show huntress at slidetomoveleft
             with Dissolve(0.25)
             ts "Try hard much? Blech."
             nrr "They're speaking directly to you, but you still can't bring yourself to reply. You're entranced."
@@ -367,6 +368,7 @@ label prologue:
     nrr "With no good reason not to, you decide to head over and see what happens next."
     
     $ quick_menu = False
+    stop eventloop fadeout 3.0
     scene black with dissolve
     pause 1
     return

@@ -9,12 +9,22 @@ init:
         xoffset -235
     transform movecenterright:
         xoffset 230
-    transform slidetocenter:
-        linear 0.75 xoffset 0
-    transform slidetoleft:
+
+    transform slidetomoveleft:
         linear 0.75 xoffset -620
+    transform slidetomoveright:
+        linear 0.75 xoffset 690
+    transform slidetomovecenterleft:
+        linear 0.75 xoffset -235
+    transform slidetomovecenterright:
+        linear 0.75 xoffset 230
+
     transform moverightclose:
         xoffset 590
+    transform fadeaway:
+        linear 0.75 alpha 0.0
+    transform slidetocenter:
+        linear 0.75 xoffset 0
 
 ## Character Emotes ###############################################################
 

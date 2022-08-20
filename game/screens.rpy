@@ -2280,3 +2280,44 @@ style userinputname_text:
     xalign 0.5
     yalign 0.5
     text_align 0.5
+
+
+screen game_over(yes_action):
+
+    ## Ensure other screens do not get input while this screen is displayed.
+    modal True
+
+    zorder 200
+
+    style_prefix "confirm"
+
+    #add "gui/overlay/confirm.png"
+    fixed:
+        frame:
+            xysize(1920,1080)  
+            background "gui/bg_gameover.png"
+            vbox:
+                xalign .5
+                yalign .5
+                spacing 45
+                add "gui/gameover.png" xalign .5
+                hbox:
+                    xalign 0.5
+                    spacing 75        
+                    button:
+                        action yes_action
+                        add "gui/gameover_flower.png" zoom 0.5 xalign .5 yalign .5
+                        text "TRY AGAIN":
+                            style "menubutton"
+                            size 30
+                            xalign 0.5
+                            yalign 0.5
+                    button:
+                        action MainMenu()
+                        add "gui/gameover_skull.png" zoom 0.5 xalign .5 yalign .5
+                        text "GIVE UP":
+                            style "menubutton"
+                            size 30
+                            xalign 0.5
+                            yalign 0.5
+    on "show" action renpy.sound.play("sounds/sfx_gameover.ogg")
