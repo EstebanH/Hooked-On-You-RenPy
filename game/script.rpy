@@ -627,6 +627,7 @@ label start:
             mc ""
         "gui/menu_choice_yacht_idle.png¦gui/menu_choice_yacht_hover.png¦gui/menu_choice_yacht_select.png":
             mc ""
+    $ imagechoice = False
 
             
     nrr "<<<<<<<Ends here>>>>>>>>"

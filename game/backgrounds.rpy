@@ -192,7 +192,39 @@ init:
 ## speedlines ###############################################################
 ##
 init:
-    image speedlines = Movie(play="images/moods/speedlines.webm", mask="images/moods/speedlines_mask.webm")
+    #image speedlines = Movie(play="images/moods/speedlines.webm", mask="images/moods/speedlines_mask.webm")
+    image speedlines:
+        "images/moods/speedlines/Speedlines-20000.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20002.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20004.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20006.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20008.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20010.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20012.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20014.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20016.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20018.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20020.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20022.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20024.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20026.png"
+        pause 0.0625
+        "images/moods/speedlines/Speedlines-20028.png"
+        pause 0.0625
+        repeat
 
     transform coin_yoffset:
         yoffset 50
