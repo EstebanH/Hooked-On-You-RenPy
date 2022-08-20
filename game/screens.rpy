@@ -600,6 +600,7 @@ style menubutton:
     color "f3e3d4"
     text_align 0.5
     xalign 0.5
+    outlines [ (1, "#000", absolute(0), absolute(0)) ]
 
 ## Main Menu screen ############################################################
 ##
@@ -1821,7 +1822,7 @@ style confirm_frame:
     #left_padding 200
     xalign .5
     yalign .5
-    xoffset 30
+    #xoffset 30
     xysize(571,320)
 
 style confirm_prompt_text:
@@ -2292,32 +2293,32 @@ screen game_over(yes_action):
     style_prefix "confirm"
 
     #add "gui/overlay/confirm.png"
-    fixed:
-        frame:
-            xysize(1920,1080)  
-            background "gui/bg_gameover.png"
-            vbox:
-                xalign .5
-                yalign .5
-                spacing 45
-                add "gui/gameover.png" xalign .5
-                hbox:
-                    xalign 0.5
-                    spacing 75        
-                    button:
-                        action yes_action
-                        add "gui/gameover_flower.png" zoom 0.5 xalign .5 yalign .5
-                        text "TRY AGAIN":
-                            style "menubutton"
-                            size 30
-                            xalign 0.5
-                            yalign 0.5
-                    button:
-                        action MainMenu()
-                        add "gui/gameover_skull.png" zoom 0.5 xalign .5 yalign .5
-                        text "GIVE UP":
-                            style "menubutton"
-                            size 30
-                            xalign 0.5
-                            yalign 0.5
-    on "show" action renpy.sound.play("sounds/sfx_gameover.ogg")
+    frame:
+        xysize(1920,1080)  
+        background "gui/bg_gameover.png"
+        xoffset 0
+        vbox:
+            xalign .5
+            yalign .5
+            spacing 45
+            add "gui/gameover.png" xalign .5
+            hbox:
+                xalign 0.5
+                spacing 75        
+                button:
+                    action Call(yes_action)
+                    add "gui/gameover_flower.png" zoom 0.6 xoffset -20 yoffset -5
+                    text "TRY AGAIN":
+                        style "menubutton"
+                        size 30
+                        xalign 0.5
+                        yalign 0.5
+                button:
+                    action MainMenu()
+                    add "gui/gameover_skull.png" zoom 0.725 xoffset -20 yoffset -5
+                    text "GIVE UP":
+                        style "menubutton"
+                        size 30
+                        xalign 0.5
+                        yalign 0.5
+    #on "show" action renpy.sound.play("sounds/sfx_gameover.ogg")

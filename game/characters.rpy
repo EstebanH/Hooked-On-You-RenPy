@@ -2,7 +2,7 @@
 ## Character Positions ###############################################################
 init:
     transform moveleft:
-        xoffset -620
+        xoffset -700
     transform moveright:
         xoffset 690
     transform movecenterleft:
@@ -11,7 +11,7 @@ init:
         xoffset 230
 
     transform slidetomoveleft:
-        linear 0.75 xoffset -620
+        linear 0.75 xoffset -700
     transform slidetomoveright:
         linear 0.75 xoffset 690
     transform slidetomovecenterleft:

@@ -192,7 +192,7 @@ init:
 ## speedlines ###############################################################
 ##
 init:
-    image speedlines = Movie(play="images/sprites/moods/speedlines.webm", mask="images/sprites/moods/speedlines_mask.webm")
+    image speedlines = Movie(play="images/moods/speedlines.webm", mask="images/moods/speedlines_mask.webm")
 
     transform coin_yoffset:
         yoffset 50
@@ -796,6 +796,16 @@ label beachdayscene(keep_images=False):
         show bg beach_day with dissolve
     else:
         scene bg beach_day with dissolve
+    return
+label volleyballscene(keep_images=False):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_beach.ogg"
+    if keep_images:
+        call hideeffects
+        show bg volleyball_day with dissolve
+    else:
+        scene bg volleyball_day with dissolve
     return
 label hideeffects:
     hide cloudy1

@@ -41,7 +41,7 @@ label event_quiz:
     play eventloop("audio/sfx_killer_flirt.ogg") fadein 3.0 loop
     return
 
-$ lastchance = False
+define lastchance = False
 label icecream_warning:
     nrr "You got a reading comprehension problem? I just told you mint chip was where it's at!"
     nrr "You almost bought youself a Game Over there, buddy. That's right. I can end your life whenever I want to. I'm in control, so don't you forget it. If I say you like mint chip, you like mint clip. Now try it again."
@@ -52,7 +52,8 @@ label icecream_warning:
 label icecream_death:
     nrr "In case it wasn't clear who is in charge, it's me."
     oc "You have to understand, it feels very good to end someone else's game. You should try it sometime..."
-    call game_over(choice_icecream())
+    play sound "sounds/sfx_gameover.ogg"
+    call screen game_over("choice_icecream")
     return
 
 label choice_icecream:
@@ -123,7 +124,8 @@ label start:
 
 
     window hide
-    scene bg volleyball_day with dissolve
+    #scene bg volleyball_day with dissolve
+    call volleyballscene
     nrr "It seems like you've derailed the volleyball game just by showing up."
     $ trapperObj.change("pose", "pose01")
     $ trapperObj.change("emote", "angry")
@@ -152,18 +154,22 @@ label start:
     $ trapperObj.change("emotion", "happy")
     tt "You mean they're here to do more than distract from my total domination?"
     tw "*deep sigh*"
-    $ wraithObj.change("emotion", "digusted")
+    $ wraithObj.change("emotion", "disgusted")
     show wraith at movecenterleft
     nrr "That was Wraith. That sign means he was done with the game too."
     nrr "Either that or he saw a butterfly or something."
-    $ trapperObj.change("emotion", "digusted")
+    $ trapperObj.change("emotion", "disgusted")
     tt "Look, I don't care why this slack-jawed moron is here."
     $ trapperObj.change("pose", "close02")
     $ trapperObj.change("emotion", "idle")
-    show trapper with slidetocenter
+    show huntress behind trapper at moveleft
+    show wraith behind trapper  at movecenterleft
+    show spirit behind trapper  at movecenterright
+    show trapper at slidetocenter
     call mood_speedlines
     tt "I just want to know: can I kill them or not?"
     hide speedlines
+    stop moodloop fadeout 3.0
     $ trapperObj.change("pose", "pose03")
     $ trapperObj.change("emotion", "mad")
     $ huntressObj.change("emotion", "disgusted")
@@ -171,7 +177,7 @@ label start:
     $ wraithObj.change("emotion", "idle")
     $ huntressObj.change("pose", "pose02")
     $ huntressObj.change("emotion", "idle")
-    show trapper with slidetomoveright
+    show trapper at slidetomoveright
     hide spirit 
     hide wraith 
     show spirit at movecenterright
@@ -334,6 +340,7 @@ label start:
             $ wraithObj.change("emote", "dread")
             $ wraithObj.change("emotion", "sad")
             tw "Some call it the color of love. But love is just another word for pain."
+            $ wraithObj.change("emote", "none")
         "There-day-old corpse":
             $ wraithObj.change("emote", "none")
             mc "Nobody would expect me to pick this, so I'm gonna say three-day-old corpse. That's a pretty edgy answer, right? I'm pretty dangerous. I talk about corpses. No biggie."
@@ -438,6 +445,10 @@ label start:
 
     nrr "I think mint chip is the greatest flavor ever conceived, myself. But enough about ice cream, am I right?"
     nrr "Hold on a second, this reminds me... I am right. Always. It's a lesson you should learn before we go too much further. Do what I say if you want to survive. Pick mint chip."
+    hide huntress
+    hide trapper
+    hide wraith
+    hide spirit
     call oceanhaunting
     oc "We're teaching lessons now, Narrator? You rascal... Kill or be killed is the rule on this island, even for faceless voices."
     call choice_icecream
@@ -507,6 +518,8 @@ label start:
     th "Hey! I'm Huntress. Don't let these bummers get you down."
     $ huntressObj.change("emote", "spark")
     th "There's lots of fun to be had on this island. Along with lots of love."
+    $ huntressObj.change("emote", "none")
+    $ huntressObj.change("pose", "pose01")
     $ trapperObj.change("emotion", "happy")
     $ huntressObj.change("emotion", "idle")
     show trapper at moveright
@@ -589,14 +602,14 @@ label start:
     ts "I'm tired. And besides, I hate being in the sun."
     menu:
         nrr "Where do you want to go?"
-        "Vanilla":
-            ""
-        "Chocolate":
-            ""
-        "Horseflesh":
-            ""
-        "Mint Chip":
-            ""
+        "{image=gui/menu_choice_bar_idle.png}":
+            mc ""
+        "{image=gui/menu_choice_beach_idle.png}":
+            mc ""
+        "{image=gui/menu_choice_volleyball_idle.png}":
+            mc ""
+        "{image=gui/menu_choice_yachet_idle.png}":
+            mc ""
 
             
     nrr "<<<<<<<Ends here>>>>>>>>"
