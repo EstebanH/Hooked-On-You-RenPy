@@ -193,6 +193,7 @@ init:
 ##
 init:
     #image speedlines = Movie(play="images/moods/speedlines.webm", mask="images/moods/speedlines_mask.webm")
+    ## Less intensive to use image block than webm mask to create effect.
     image speedlines:
         "images/moods/speedlines/Speedlines-20000.png"
         pause 0.0625

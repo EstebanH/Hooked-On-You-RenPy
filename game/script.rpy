@@ -208,13 +208,18 @@ label start:
             nrr "Trapper flexes and his muscles are so tight you can practically see the blood running through his veins."
             $ trapperObj.change("emote", "none")
         "Not at all":
-            ""
+            mc "I've never thought of myself as attractive."
+            nrr "Woah, watch it. That's bullshit. You're beautiful, you hear me?"
             $ trapperObj.change("pose", "pose01")
         "Average":
             mc "I'm pretty average, I think."
-            ts "Just another face in the crowd, another normal, meaningless life in an endless cycle..."
-            th "I think you're quite cute, myself. Like a chipmunk! Or a grizzly bear!"
             $ trapperObj.change("pose", "pose01")
+            $ spiritObj.change("emotion", "disgusted")
+            ts "Just another face in the crowd, another normal, meaningless life in an endless cycle..."
+            $ huntressObj.change("pose", "pose03")
+            th "I think you're quite cute, myself. Like a chipmunk! Or a grizzly bear!"
+            $ huntressObj.change("pose", "pose01")
+            $ spiritObj.change("emotion", "idle")
     hide huntress
     hide trapper
     hide spirit
@@ -231,7 +236,11 @@ label start:
         "Invisibility":
             $ wraithObj.change("emote", "none")
             mc "Umm... invisibility?"
+            $ wraithObj.change("emote", "disgusted")
+            $ wraithObj.change("pose", "pose03")
             tw "Same. Although sometimes I think I already am..."
+            $ wraithObj.change("emote", "idle")
+            $ wraithObj.change("pose", "pose01")
         "Flight":
             $ wraithObj.change("emote", "none")
             $ wraithObj.change("emotion", "happy")
@@ -248,7 +257,14 @@ label start:
             ts "Technically I suppose I can fly. Honestly? It's not all that it's cracked up to be. As far as I go... I'm still not where I want to be."
         "Super strength":
             $ wraithObj.change("emote", "none")
-            mc "Not implemented"
+            mc "Super strength would be cool."
+            $ trapperObj.change("emotion", "happy")
+            tt "Strength isn't all about muscles. True strength is up here."
+            nrr "You expect Trapper to point to his head, but instead he taps one of his bulging shoulders."
+            $ trapperObj.change("emotion", "disgusted")
+            tt "It's specifically in these muscles. Nobody gives a shit about your calves."
+            $ trapperObj.change("emotion", "idle")
+
     hide huntress
     hide trapper
     hide wraith
@@ -265,9 +281,15 @@ label start:
         ts "What was your best subject in school?"
         "Math":
             $ spiritObj.change("emote", "none")
-            mc "Probably math."
-            tw "It's the only thing that makes sense, when you think about it."
             $ spiritObj.change("pose", "pose01")
+            mc "Probably math."
+            $ wraithObj.change("pose", "pose03")
+            $ wraithObj.change("emote", "exclamation")
+            $ wraithObj.change("emotion", "happy")
+            tw "It's the only thing that makes sense, when you think about it."
+            $ wraithObj.change("pose", "pose01")
+            $ wraithObj.change("emote", "none")
+            $ wraithObj.change("emotion", "idle")
         "History":
             $ spiritObj.change("emote", "none")
             $ spiritObj.change("pose", "pose01")
@@ -277,8 +299,11 @@ label start:
             $ spiritObj.change("emote", "none")
         "Skipping Class":
             $ spiritObj.change("emote", "none")
-            mc "Not implemented"
+            mc "You could say I majored in skipping class, hah!"
+            $ huntressObj.change("emotion", "happy")
+            th "If I had ever gone to school, I'm sure I would've done great in skipping class. I prefer skipping over walking almost always."
             $ spiritObj.change("pose", "pose01")
+            $ huntressObj.change("emotion", "idle")
     hide trapper
     hide wraith
     hide spirit
@@ -292,8 +317,12 @@ label start:
     menu:
         th "What's your favorite animal?"
         "Dog":
+            $ huntressObj.change("pose", "pose01")
             mc "Dog?"
+            $ huntressObj.change("emote", "heart")
+            $ huntressObj.change("pose", "pose03")
             th "You'd look absolutely adorable in a little puppy mask!"
+            $ huntressObj.change("emote", "none")
             $ huntressObj.change("pose", "pose01")
         "Cat":
             hide huntress
@@ -312,8 +341,10 @@ label start:
             $ spiritObj.change("emote", "none")
             $ spiritObj.change("emotion", "idle")
         "Mustelid":
-            mc "Not implemented"
             $ huntressObj.change("pose", "pose01")
+            mc "Mustelids, 100%"
+            nrr "Be honest, you have no idea what a mustelid is and you're just hoping it's some secret answer that results in a hilarious Easter egg, right?"
+            nrr "Because there is no Easter egg... it's just another word for ferrets and stuff like that."
     hide huntress
     hide trapper
     hide spirit
@@ -330,8 +361,11 @@ label start:
         tw "What's your favorite color?"
         "Blue":
             $ wraithObj.change("emote", "none")
-            mc "Blue."
             $ wraithObj.change("pose", "pose01")
+            mc "Blue."
+            $ trapperObj.change("emotion", "disgusted")
+            tt "Blue isn't good for productivity. Makes people want to be lazy."
+            $ trapperObj.change("emotion", "idle")
         "Blood red":
             $ wraithObj.change("emote", "none")
             hide huntress
@@ -350,9 +384,9 @@ label start:
             $ wraithObj.change("emote", "none")
         "There-day-old corpse":
             $ wraithObj.change("emote", "none")
+            $ wraithObj.change("pose", "pose01")
             mc "Nobody would expect me to pick this, so I'm gonna say three-day-old corpse. That's a pretty edgy answer, right? I'm pretty dangerous. I talk about corpses. No biggie."
             th "Those are no good to me unless they've been frozen. You'd be surprised by how quick;y good meat can spoil. Or maybe you wouldn't be surprised? I'm still getting to know you."
-            $ wraithObj.change("pose", "pose01")
     hide huntress
     hide trapper
     hide wraith
@@ -369,8 +403,9 @@ label start:
         ts "What's your dream job?"
         "Astronaut":
             $ spiritObj.change("emote", "none")
-            mc "Not implemented"
             $ spiritObj.change("pose", "pose01")
+            mc "It'd be pretty amazing to be an astronaut, I think."
+            tw "It's hard to imagine being farther away from anyone than floating in space. The cold, inky vastness of nothing, forever."
         "Nightclub promoter":
             $ spiritObj.change("emote", "none")
             hide huntress
@@ -395,10 +430,14 @@ label start:
             $ spiritObj.change("emotion", "idle")
         "Not working at all":
             $ spiritObj.change("emote", "none")
+            $ spiritObj.change("pose", "pose01")
             mc "If we get to do what we really want, why work at all?"
             ts "It takes a lot of courage to break free from society's expectations to climb the ladder."
+            $ trapperObj.change("emote", "anger")
+            $ trapperObj.change("emotion", "mad")
             tt "Only she could spin laziness into some kind of grand crusade. These damned millenials..."
-            $ spiritObj.change("pose", "pose01")
+            $ trapperObj.change("emote", "none")
+            $ trapperObj.change("emotion", "idle")
     hide huntress
     hide wraith
     hide spirit
@@ -413,49 +452,40 @@ label start:
     menu:
         tt "Best flavor of ice cream?"
         "Vanilla":
-            mc "Not implemented"
-            $ trapperObj.change("pose", "pose01")
+            mc "Vanilla?"
         "Chocolate":
             mc "Chocolate."
-
-            hide huntress
-            hide trapper
-            hide wraith
-            hide spirit
-            $ spiritObj.change("emotion", "disgusted")
-            $ trapperObj.change("emote", "exclamation")
-            $ trapperObj.change("pose", "pose02")
-            show huntress at moveleft
-            show trapper at moveright
-            show wraith at movecenterleft
-            show spirit at movecenterright
-            tt "My favorite flavor is Pain."
-            $ huntressObj.change("emotion", "happy")
-            th "Same."
-            $ spiritObj.change("emotion", "happy")
-            ts "Same here."
-            $ wraithObj.change("emotion", "disgusted")
-            $ trapperObj.change("emote", "thoughts")
-            tw "..."
-            $ wraithObj.change("emotion", "idle")
-            tw "...Mine is vanilla. Swiriled with Pain."
-            $ wraithObj.change("emote", "none")
-            $ spiritObj.change("emotion", "idle")
-            $ huntressObj.change("emotion", "idle")
-            $ trapperObj.change("pose", "pose01")
         "Horseflesh":
-            mc "Not implemented"
+            mc "Horse... flesh?"
+            call oceanhaunting
+            oc "MMMMmmmmm, horseflesh."
+            stop hauntloop fadeout 3.0
             $ trapperObj.change("pose", "pose01")
-    
     hide huntress
     hide trapper
     hide wraith
     hide spirit
+    $ trapperObj.change("emote", "exclamation")
+    $ trapperObj.change("pose", "pose02")
     show huntress at moveleft
     show trapper at moveright
     show wraith at movecenterleft
     show spirit at movecenterright
-
+    tt "My favorite flavor is Pain."
+    $ trapperObj.change("emote", "none")
+    $ huntressObj.change("emotion", "happy")
+    th "Same."
+    $ spiritObj.change("emotion", "happy")
+    ts "Same here."
+    $ wraithObj.change("emotion", "disgusted")
+    $ trapperObj.change("emote", "thoughts")
+    tw "..."
+    $ wraithObj.change("emotion", "idle")
+    tw "...Mine is vanilla. Swiriled with Pain."
+    $ wraithObj.change("emote", "none")
+    $ spiritObj.change("emotion", "idle")
+    $ huntressObj.change("emotion", "idle")
+    $ trapperObj.change("pose", "pose01")
     nrr "I think mint chip is the greatest flavor ever conceived, myself. But enough about ice cream, am I right?"
     nrr "Hold on a second, this reminds me... I am right. Always. It's a lesson you should learn before we go too much further. Do what I say if you want to survive. Pick mint chip."
     hide huntress
@@ -544,6 +574,14 @@ label start:
     show huntress at slidetomoveleft
     with Dissolve(0.25)
     tt "Yeah there is! If you know what I mean!"
+    hide huntress
+    hide trapper
+    hide wraith
+    hide spirit
+    show huntress at moveleft
+    show trapper at moveright
+    show wraith at movecenterleft
+    show spirit at movecenterright
     $ spiritObj.change("emotion", "disgusted")
     $ spiritObj.change("pose", "pose01")
     ts "Grow up."
@@ -591,6 +629,7 @@ label start:
     $ trapperObj.change("emote", "lightbulb")
     $ trapperObj.change("emotion", "happy")
     tt "I say we go to my yacht. It's the massive boat docked nearby."
+    $ trapperObj.change("emote", "none")
     $ wraithObj.change("emotion", "disgusted")
     $ wraithObj.change("pose", "pose03")
     $ trapperObj.change("emotion", "mad")
@@ -606,12 +645,14 @@ label start:
     $ wraithObj.change("emotion", "happy")
     $ wraithObj.change("emote", "question")
     tw "What about hanging out by the pool?"
+    $ wraithObj.change("emote", "none")
     $ wraithObj.change("emotion", "sad")
     tw "I find the water calming. Simple. Beautiful."
     $ huntressObj.change("emote", "exclamation")
     $ huntressObj.change("pose", "pose02")
     $ wraithObj.change("emotion", "disgusted")
     th "Hey! What about our volleyball game?"
+    $ huntressObj.change("emote", "none")
     th "We can exercise and have some fun as a group!"
     ts "Are you all serious? There's a perfectly good lounge to chill out at right here."
     $ spiritObj.change("emotion", "disgusted")
