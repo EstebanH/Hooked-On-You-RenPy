@@ -152,10 +152,10 @@ label chapter1:
         "Invisibility":
             $ wraithObj.change("emote", "none")
             mc "Umm… invisibility?"
-            $ wraithObj.change("emote", "disgusted")
+            $ wraithObj.change("emotion", "disgusted")
             $ wraithObj.change("pose", "pose03")
             tw "Same. Although sometimes I think I already am…"
-            $ wraithObj.change("emote", "idle")
+            $ wraithObj.change("emotion", "idle")
             $ wraithObj.change("pose", "pose01")
         "Flight":
             $ wraithObj.change("emote", "none")
@@ -592,8 +592,9 @@ label chapter1:
             ts "I mean, what kind of fool, what kind of monster, what kind of mask-wearing psychopath would finally be granted a break from the constant grind of chasing and fighting to get ahead, and then choose to exert themselves in, quite frankly, any way whatsoever?"
             $ spiritObj.change("emotion", "mad")
             $ spiritObj.change("emote", "anger")
-            ts "Why am I the only one who gets it?! It’s time to stop living by THEIR RULES! I WON’T DO IT ANY LONGER!"
+            ts "Why am I the only one who gets it?! It's time to stop living by THEIR RULES! I WON’T DO IT ANY LONGER!"
             nrr "Yeah, we should probably give her a second to calm down."
+            $ spiritObj.change("emote", "none")
             show spirit at slidetomovecenterright, fadeaway
             with dissolve
             hide spirit
@@ -708,14 +709,14 @@ label chapter1:
     mc "It seemed like Dwight was asking for help to \"get off this island\" though."
     nrr "Oh, right, that. Yes, that's true, he was. But he just meant that he wanted to get to the other vacation island getaway. A couple miles south of here. It has much fancier accommodations than this island."
     nrr "It's one of those big corporate outfits, quite exclusive, where all the famous celebrities hang out. Very luxurious. Doesn't quite have the charm that this island has, though. Trust me, you wouldn't want to go there. With all that money comes a lot of restrictions."
-    nrr "This is where you belong. Now now, off you go. It's time for an activity! On this island, your decisions matter–mostly. When I agree with them. Not like that other island…"
+    nrr "This is where you belong. Now now, off you go. It's time for an activity! On this island, your decisions matter--mostly. When I agree with them. Not like that other island…"
     
     $ imagechoice = True
     menu:
         cho "So what'll it be?"
         "gui/menu_choice_bar_idle.png¦gui/menu_choice_bar_hover.png¦gui/menu_choice_bar_select.png":
             $ imagechoice = False
-            call spiritch1
+            call spirit_ch1
         "gui/menu_choice_beach_idle.png¦gui/menu_choice_beach_hover.png¦gui/menu_choice_beach_select.png":
             $ imagechoice = False
             call wraith_ch1
@@ -731,7 +732,7 @@ label spirit_ch1:
     call blackscene
     call event_clauddwight
     call bardayscene
-    $ spiritObj.change("pose", "close03")
+    $ spiritObj.change("pose", "pose03")
     $ spiritObj.change("emotion", "happy")
     show spirit at slidetocenter
     ts "Finally! Freedom from the preposterous premise that the four of us would be engaged in some sort of thrilling two-on-two volleyball match."
@@ -846,7 +847,7 @@ label spirit_ch1:
             nrr "Claudette uncorks a very expensive-looking bottle of top shelf liquor and pours you a glass."
             cl "Do enjoy!"
             hide clauddwight
-            $ wraithObj.change("pose", "pose02")
+            $ wraithObj.change("pose", "pose03")
             $ wraithObj.change("emotion", "disgusted")
             show wraith at movecenterleft
             with Dissolve(0.25)
@@ -854,7 +855,7 @@ label spirit_ch1:
             $ trapperObj.change("pose", "close01")
             $ trapperObj.change("emotion", "mad")
             $ trapperObj.change("emote", "exclamation")
-            show trapper
+            show trapper at movecenterright
             with Dissolve(0.25)
             tt "You need to embrace the burning!"
             $ trapperObj.change("emote", "none")
@@ -884,6 +885,8 @@ label spirit_ch1:
             $ trapperObj.change("pose", "pose01")
             $ trapperObj.change("emotion", "idle")
             nrr "Trapper guzzles half the bottle and burps. It'd be disgusting if it wan't so… No, disgusting is exactly what it is." 
+            hide wraith
+            hide trapper
 
         "Virgin Daiquiri":
             mc "I didn't come here to party, I'm just trying to make the best of a… very strange situation. I dunno, how about a daiquiri?"
@@ -907,7 +910,7 @@ label spirit_ch1:
             ts "Besides, alchol just numbs you to the painful realities of the world--I choose to face them head-on."
             $ spiritObj.change("emotion", "disgusted")
             $ spiritObj.change("pose", "pose02")
-            $ trapperObj.change("emotion", "question")
+            $ trapperObj.change("emote", "question")
             $ trapperObj.change("pose", "pose01")
             tt "You'd never do something like, I don't know, hide from it all behind the world's largest hat, or anything."
             $ trapperObj.change("emote", "none")
@@ -1014,6 +1017,7 @@ label spirit_ch1:
             $ wraithObj.change("emote", "dread")
             $ wraithObj.change("emotion", "disgusted")
             tw "...crap"
+            $ wraithObj.change("emote", "none")
             $ wraithObj.change("pose", "pose01")
             show wraith at slidetomovecenterright
             $ trapperObj.change("pose", "pose01")
@@ -1082,7 +1086,7 @@ label spirit_ch1:
             show trapper with Dissolve(0.25)
             tt "Doesn't make you dumb? Shit, that makes you smart."
             $ trapperObj.change("emote", "none")
-            $ trapperObj.change("emote", "mad")
+            $ trapperObj.change("emotion", "mad")
             tt "Reading is for nerds and the French."
             $ trapperObj.change("pose", "close04")
             $ trapperObj.change("emotion", "happy")
@@ -1110,23 +1114,146 @@ label spirit_ch1:
             tt "Shut up, nerd."
             hide wraith
             hide trapper
-$ huntressObj.change("pose", "pose04")
-$ huntressObj.change("emotion", "disgusted")
-show huntress
-with Dissolve(0.25)
-th "Enough about those old stories that belong to someone else. I think it's time to make up some new stories of our own!"
-$ huntressObj.change("pose", "pose02")
-$ huntressObj.change("emotion", "idle")
-nrr "Before you know what's going on, Huntress is waving an empty vodka bottle in the air, a devilish twinkle in her half-mask-covered eye."
+    $ huntressObj.change("pose", "pose04")
+    $ huntressObj.change("emotion", "disgusted")
+    show huntress
+    with Dissolve(0.25)
+    th "Enough about those old stories that belong to someone else. I think it's time to make up some new stories of our own!"
+    $ huntressObj.change("pose", "pose02")
+    $ huntressObj.change("emotion", "idle")
+    nrr "Before you know what's going on, Huntress is waving an empty vodka bottle in the air, a devilish twinkle in her half-mask-covered eye."
+    $ huntressObj.change("emotion", "happy")
+    $ huntressObj.change("emote", "lightbulb")
+    th "May I suggest something a little naughty? Let's all get in a circle and spin this bad boy!"
+    $ huntressObj.change("emote", "none")
+    $ huntressObj.change("pose", "pose01")
+    show huntress at slidetomoveleft
+    $ tricksterObj.change("pose", "pose02")
+    show trickster
+    with Dissolve(0.75)
+    play sound "sounds/sfx_signature_trickster01.ogg"
+    tr "Great idea!"
+    nrr "Trickster?! Isn't it a bit late to introduce a new character? I thought I was the one who gets to make the rules so… I'm not sure who I'm asking."
+    nrr "But I wasn't ready for this!"
+    $ tricksterObj.change("emotion", "happy")
+    $ tricksterObj.change("emote", "heart")
+    $ tricksterObj.change("pose", "pose01")
+    tr "Well hello. And who is this new fan in the waiting?"
+    $ tricksterObj.change("emote", "none")
+    $ tricksterObj.change("emotion", "disgusted")
+    $ trapperObj.change("emotion", "mad")
+    show trapper at moveright
+    tt "Beat it, hack."
+    mc "I don't know, what's the harm in inviting one more person to join the circle for our game?"
+    $ tricksterObj.change("pose", "pose02")
+    $ tricksterObj.change("emotion", "idle")
+    tr "Oh I can't stay. I was just saying it's a great idea, while also teasing the secret Trickster ending."
+    $ tricksterObj.change("emotion", "mad")
+    tr "I've got much, much better things to do than hang out here. I'm famous."
+    $ tricksterObj.change("emote", "stars")
+    $ tricksterObj.change("emotion", "happy")
+    tr "Toodle-oo!"
+    $ tricksterObj.change("emote", "none")
+    hide trapper
+    hide huntress
+    hide trickster
+    $ clauddwightObj.change("emotion", "happy")
+    $ clauddwightObj.change("pose", "pose01")
+    show clauddwight
+    with Dissolve(0.75)
+    dw "The rules are simple: FIrst you spin, then you swap--spit, that is!"
+    $ clauddwightObj.change("emotion", "disgusted")
+    cl "But let's be clear, this ain't a peep show. We're here to have a good time, bit… in a classy way."
+    dw "All make-outs will happen out of view of the public eye. Real romantic like."
+    $ clauddwightObj.change("emotion", "happy")
+    cl "Yes, romance is the goal. So we'll all be waiting here in complete silence trying to listen in and use our imaginations while you make out on the other side of the bar. But not watching."
+    $ clauddwightObj.change("emotion", "sad")
+    dw "Like adults. Romantic, well-adjusted adults."
+    $ clauddwightObj.change("emotion", "happy")
+    $ clauddwightObj.change("pose", "pose02")
+    cl "[mc_name], you're up!"
+    hide clauddwight with dissolve
+    nrr "You grip the bottle in your hand…"
+    nrr "...and put your fate in the hands of the empty-bottle gods."
+    call instructions_spinbottle
+    nrr "Away we go!"
+    nrr "Spin the bottle and see who you're gonna smooch!"
+    call start_spinthebottle_minigame
+    if spinthebottle_section == 1:
+        $ spinthebottle_spirit = spinthebottle_spirit + 1
+        nrr "You got Spirit! You two are meant to be..."
+    elif spinthebottle_section == 2:
+        $ spinthebottle_trapper = spinthebottle_trapper + 1
+        nrr "You got Trapper! You two are meant to be..."
+    elif spinthebottle_section == 3:
+        $ spinthebottle_huntress = spinthebottle_huntress + 1
+        nrr "You got Huntress! You two are meant to be..."
+    elif spinthebottle_section == 4:
+        $ spinthebottle_wraith = spinthebottle_wraith + 1
+        nrr "You got Wraith! You two are meant to be..."
+    else:
+        $ spinthebottle_spirit = spinthebottle_spirit + 1
+        nrr "You got Spirit! You two are meant to be..."
 
-
-return
+    nrr "Psyche! You have to actually spin multiple times to get your real result. First to get to three times is your true match. That's how we play Hardcore Spin The Bottle on this here island!"
+    nrr "Now get your spin on!"
+    call spinthebottle
+    nrr "You got Trapper!"
+    call spinthebottle
+    nrr "You got Spirit!"
+    call spinthebottle
+    nrr "You got Trapper!"
+    nrr "Trapper is your true match!"
+    everyone "OOOoooOOOoooohhhh!" 
+    nrr "Just this morning, you were waking up on a strange beach, surrounded by strangers with murderous intent..."
+    $ trapperObj.change("emote", "stars")
+    $ trapperObj.change("pose", "close01")
+    show trapper with dissolve
+    nrr "Now you're looking across a beach towel at Trapper, lust in his eyes, sweat glistening on his skin."
+    $ trapperObj.change("emote", "none")
+    nrr "Your heart races. You can feel your pulse pounding in your ears."
+    call mood_butterflies
+    nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    return
+init python:
+    spinthebottle_spirit = 0
+    spinthebottle_trapper = 0
+    spinthebottle_huntress = 0
+    spinthebottle_wraith = 0
 label wraith_ch1:
     call blackscene
-return
+    return
 label huntress_ch1:
     call blackscene
-return
+    return
 label trapper_ch1:
     call blackscene
-return
+    return
+image emptyspin:
+    "images/spin_instruction_empty.png"
+image targetspin:
+    "images/spin_instruction_target.png"
+image gridspin:
+    "images/spin_instruction_grid.png"
+    
+label instructions_spinbottle:
+    show emptyspin at top
+    nrr "Minigames consist of two parts! On top, a pointer which rotates in a clockwise direction."
+    hide emptyspin
+    show targetspin at top
+    nrr "And on the bottom, a target you're going to be pointing at."
+    hide targetspin
+    show gridspin at top
+    nrr "This here upcoming minigame is a special minigame! Perfect for the less coordinated because there is no winning or losing!"
+    nrr "Well, noy technically. Whenever the pointer stops, that's your result."
+    nrr "I suppose if it doesn't stop where you want it to, that's a bit like losing, but no one has to know if you don't tell them."
+    hide gridspin with dissolve
+    menu:
+        cho "Ok, ready to play? Or would you like me to repeat that?"
+        "Ready":
+            mc "Ready!"
+        "Repeat the instructions":
+            mc "Would you please repeat the instructions?"
+            nrr "My pleasure!"
+            call instructions_spinbottle
+    return

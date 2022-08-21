@@ -7,7 +7,48 @@ init:
     transform nodissolvecenter:
         yalign 0.25
         xalign 0.5
+init:
+    image bg butterflies:
+        "images/bg/moods/bg_butterflies.png"
+    image butterfly:
+        "images/moods/butterflies/butterflies01.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies02.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies03.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies04.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies05.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies06.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies07.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies08.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies09.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies10.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies11.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies12.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies13.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies14.png"
+        pause 0.0625
+        "images/moods/butterflies/butterflies15.png"
+        pause 0.0625
+        repeat
+    
+    transform butterflyfade:
+        easein 3.0 alpha 1.0
+        easeout 1 alpha 0.0
+        repeat
 
+    image butterfliesrise = SnowBlossom(At("butterfly", butterflyfade), border=357, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -40),  xspeed=(-25,25), horizontal=True)
 ## haunting ###############################################################
 ##
 init:
@@ -859,9 +900,9 @@ label bardayscene(keep_images=False):
     play music "audio/sfx_ambience_dining_area.ogg"
     if keep_images:
         call hideeffects
-        show bg volleyball_day with dissolve
+        show bg bar_day with dissolve
     else:
-        scene bg volleyball_day with dissolve
+        scene bg bar_day with dissolve
     return
 label hideeffects:
     hide cloudy1
@@ -906,6 +947,21 @@ label mood_inner_monologuescene(image_name=Null, ismovefrombottom = False, nobg 
     if not nobg:
         scene bg inner_monologue
     show dreadnoise
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+label mood_butterflies(image_name=Null, ismovefrombottom = False, nobg = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Butterflies_Loop_V1.ogg") fadein 3.0 loop
+    if not nobg:
+        scene bg butterflies
+    show butterfliesrise
     if image_name is not Null:
         if ismovefrombottom:
             show expression image_name at dissolvecenter zorder 1

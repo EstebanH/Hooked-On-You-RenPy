@@ -1,5 +1,17 @@
 ##https://youtu.be/DPFXHoIBmAo
 # Declare the characters.
+init python:
+    def callbackcontinue(ctc, **kwargs):
+        if ctc == "end":
+            renpy.sound.play("sounds/sfx_tap.ogg",channel="sound")
+    def callbackchoice(ctc, **kwargs):
+        if ctc == "end":
+            renpy.sound.play("sounds/sfx_ui_choice_appear.ogg",channel="sound")
+    renpy.music.register_channel("hauntloop", "music", loop=True)
+    renpy.music.register_channel("choiceloop", "music", loop=True)
+    renpy.music.register_channel("moodloop", "music", loop=True)
+    renpy.music.register_channel("eventloop", "music", loop=True)
+
 define nrr = Character(None, window_style="window_narrator", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define cho = Character(None, window_style="window_narrator",  callback=callbackchoice, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 
@@ -12,20 +24,10 @@ define th = Character("THE HUNTRESS", window_style="window_killer", color="#d94b
 define ts = Character("THE SPIRIT", window_style="window_killer", color="#ee496a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define tt = Character("THE TRAPPER", window_style="window_killer", color="#385b8d", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define tw = Character("THE WRAITH", window_style="window_killer", color="#5f9b2a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define tr = Character("THE TRICKSTER", window_style="window_killer", color="#ae6cdd", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define everyone = Character("EVERYONE", window_style="window_killer", color="#d94b2a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 ## Character Example
 #p = Character('Protagonist', what_prefix="\"", what_suffix="\"", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))],what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], show_two_window=True, color="#000000", ctc = anim.Blink("ctc.png", xpos=600, ypos=450), ctc_position= "fixed", callback=callbackcontinue)
-
-init python:
-    def callbackcontinue(ctc, **kwargs):
-        if ctc == "end":
-            renpy.sound.play("sounds/sfx_tap.ogg",channel="sound")
-    def callbackchoice(ctc, **kwargs):
-        if ctc == "end":
-            renpy.sound.play("sounds/sfx_ui_choice_appear.ogg",channel="sound")
-    renpy.music.register_channel("hauntloop", "music", loop=True)
-    renpy.music.register_channel("choiceloop", "music", loop=True)
-    renpy.music.register_channel("moodloop", "music", loop=True)
-    renpy.music.register_channel("eventloop", "music", loop=True)
 
 label event_choices:
     $ renpy.music.set_volume(0.25,3.0,"music")
@@ -83,14 +85,11 @@ label start:
     $ tricksterObj = TricksterClass()
     $ wraithObj = WraithClass()
     call namePlayer
-    call loadingscene
+    #call loadingscene
 
     #call prologue
     call chapter1
 
-
-    #scene bg volleyball_day with dissolve
- 
     nrr "<<<<<<<Ends here>>>>>>>>"
     # This ends the game.
     return

@@ -802,7 +802,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
             xysize (194, 66)
             idle_background "gui/gui_button_idle.png"
             hover_background "gui/gui_button_hover.png"
-            selected_background "gui/gui_button_select.png"
+            selected_background "gui/gui_button_selected.png"
             activate_sound "sounds/sfx_tap.ogg"
             text "CLOSE":
                 style "menubutton"
@@ -1446,7 +1446,7 @@ screen preferences():
                 xysize (194, 66)
                 idle_background "gui/gui_button_idle.png"
                 hover_background "gui/gui_button_hover.png"
-                selected_background "gui/gui_button_select.png"
+                selected_background "gui/gui_button_selected.png"
                 activate_sound "sounds/sfx_tap.ogg"
                 text "CLOSE":
                     style "menubutton"
@@ -1870,7 +1870,7 @@ style confirm_button:
     xysize (194, 66)
     idle_background "gui/gui_button_idle.png"
     hover_background "gui/gui_button_hover.png"
-    selected_background "gui/gui_button_select.png"
+    selected_background "gui/gui_button_selected.png"
     activate_sound "sounds/sfx_tap.ogg"
     hover_sound "sounds/sfx_mainmenu_hover.ogg"
 
@@ -2357,3 +2357,60 @@ screen game_over(yes_action):
                         xalign 0.5
                         yalign 0.5
     #on "show" action renpy.sound.play("sounds/sfx_gameover.ogg")
+
+init 15 python:
+    position = 0
+    spinthebottle_section = 0
+init:
+    transform spinthebottle_arrow_move(cur_arrow):
+        subpixel True
+        rotate_pad True
+        rotate cur_arrow
+    image spinthebottle_arrow:
+        "images/minigames/spinthebottle/spinthebottle_arrow.png"
+        align(0.5,0.5)
+        yoffset -40
+    image spinthebottle_bg:
+        "images/minigames/spinthebottle/bg_spinthebottle.png"
+        align(0.5,0.5)
+screen spinthebottle_minigame:
+    add "spinthebottle_bg"
+    add "spinthebottle_arrow" at spinthebottle_arrow_move(position)
+    button:
+        xalign .5
+        yalign .9
+        xysize (194, 66)
+        idle_background "gui/gui_button_idle.png"
+        hover_background "gui/gui_button_hover.png"
+        selected_idle_background "gui/gui_button_idle.png"
+        selected_hover_background "gui/gui_button_hover.png"
+        selected_background "gui/gui_button_selected.png"
+        activate_sound "sounds/sfx_tap.ogg"
+        text "STOP":
+            style "menubutton"
+            size 30
+            outlines [ (1, "#000", absolute(0), absolute(0)) ]
+        if position >= 0 and position <= 90:
+                action [SetVariable("spinthebottle_section", 1),Hide("spinthebottle_timer")]
+        elif position >= 91 and position <= 180:
+                action [SetVariable("spinthebottle_section", 2),Hide("spinthebottle_timer")]
+        elif position >= 181 and position <= 270:
+                action [SetVariable("spinthebottle_section", 3),Hide("spinthebottle_timer")]
+        elif position >= 271 and position <= 360:
+                action [SetVariable("spinthebottle_section", 4),Hide("spinthebottle_timer")]
+        else:
+            ## If somehow over 360, assume it's within 0 to 90
+            action [SetVariable("spinthebottle_section", 1),Hide("spinthebottle_timer")]
+
+screen spinthebottle_timer:
+    timer 0.0001 repeat True action [If(position <= 360, SetVariable("position", position + 3)),If(position >= 360, SetVariable("position", 0))]
+
+################################################################################
+label start_spinthebottle_minigame:
+    show screen spinthebottle_timer
+    call screen spinthebottle_minigame
+    return
+################################################################################
+label end_spinthebottle_minigame: #End minigame.
+    pause 10
+    return
