@@ -2,16 +2,6 @@
 init python:
     import math
     import random
-    def callbackcontinue(ctc, **kwargs):
-        if ctc == "end":
-            renpy.sound.play("sounds/sfx_tap.ogg",channel="sound")
-    def callbackchoice(ctc, **kwargs):
-        if ctc == "end":
-            renpy.sound.play("sounds/sfx_ui_choice_appear.ogg",channel="sound")
-    renpy.music.register_channel("hauntloop", "music", loop=True)
-    renpy.music.register_channel("choiceloop", "music", loop=True)
-    renpy.music.register_channel("moodloop", "music", loop=True)
-    renpy.music.register_channel("eventloop", "music", loop=True)
     class ParticleBurst(object):
         def __init__(self, theDisplayable, explodeTime=0, numParticles=20, particleTime = 0.500, particleXSpeed = 5, particleYSpeed = 5, centerZone = 0, xZone = 10, yZone = 10):
             self.sm = SpriteManager(update=self.update)
