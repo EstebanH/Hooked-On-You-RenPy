@@ -9,6 +9,8 @@ init:
         xoffset -235
     transform movecenterright:
         xoffset 230
+    transform movebetweenmoveleftmovecenterleft:
+        xoffset -467
 
     transform slidetomoveleft:
         linear 0.75 xoffset -700
@@ -30,6 +32,8 @@ init:
         alpha 0.0
     transform slidetocenter:
         linear 0.75 xoffset 0
+    transform slightzoom:
+        zoom 1.2
 
 ## Character Emotes ###############################################################
 
@@ -605,10 +609,10 @@ init:
         if clauddwightObj.emote == "lightbulb" and clauddwightObj.state == "close":
             "clauddwight_lightbulb_close"
             
-        if clauddwightObj.emote == "spark" and clauddwightObj.state == "pose":
+        if clauddwightObj.emote == "sparks" and clauddwightObj.state == "pose":
             "clauddwight_spark_pose"
 
-        if clauddwightObj.emote == "spark" and clauddwightObj.state == "close":
+        if clauddwightObj.emote == "sparks" and clauddwightObj.state == "close":
             "clauddwight_spark_close"
             
         if clauddwightObj.emote == "sweat" and clauddwightObj.state == "pose":
@@ -904,10 +908,10 @@ init:
         if grandmaObj.emote == "lightbulb" and grandmaObj.state == "close":
             "grandma_lightbulb_close"
             
-        if grandmaObj.emote == "spark" and grandmaObj.state == "pose":
+        if grandmaObj.emote == "sparks" and grandmaObj.state == "pose":
             "grandma_spark_pose"
 
-        if grandmaObj.emote == "spark" and grandmaObj.state == "close":
+        if grandmaObj.emote == "sparks" and grandmaObj.state == "close":
             "grandma_spark_close"
             
         if grandmaObj.emote == "sweat" and grandmaObj.state == "pose":
@@ -1173,10 +1177,10 @@ init:
         if huntressObj.emote == "lightbulb" and huntressObj.state == "close":
             "huntress_lightbulb_close"
             
-        if huntressObj.emote == "spark" and huntressObj.state == "pose":
+        if huntressObj.emote == "sparks" and huntressObj.state == "pose":
             "huntress_spark_pose"
 
-        if huntressObj.emote == "spark" and huntressObj.state == "close":
+        if huntressObj.emote == "sparks" and huntressObj.state == "close":
             "huntress_spark_close"
             
         if huntressObj.emote == "sweat" and huntressObj.state == "pose":
@@ -1430,10 +1434,10 @@ init:
         if momObj.emote == "lightbulb" and momObj.state == "close":
             "mom_lightbulb_close"
             
-        if momObj.emote == "spark" and momObj.state == "pose":
+        if momObj.emote == "sparks" and momObj.state == "pose":
             "mom_spark_pose"
 
-        if momObj.emote == "spark" and momObj.state == "close":
+        if momObj.emote == "sparks" and momObj.state == "close":
             "mom_spark_close"
             
         if momObj.emote == "sweat" and momObj.state == "pose":
@@ -1697,10 +1701,10 @@ init:
         if spiritObj.emote == "lightbulb" and spiritObj.state == "close":
             "spirit_lightbulb_close"
             
-        if spiritObj.emote == "spark" and spiritObj.state == "pose":
+        if spiritObj.emote == "sparks" and spiritObj.state == "pose":
             "spirit_spark_pose"
 
-        if spiritObj.emote == "spark" and spiritObj.state == "close":
+        if spiritObj.emote == "sparks" and spiritObj.state == "close":
             "spirit_spark_close"
             
         if spiritObj.emote == "sweat" and spiritObj.state == "pose":
@@ -1990,10 +1994,10 @@ init:
         if trapperObj.emote == "lightbulb" and trapperObj.state == "close":
             "trapper_lightbulb_close"
             
-        if trapperObj.emote == "spark" and trapperObj.state == "pose":
+        if trapperObj.emote == "sparks" and trapperObj.state == "pose":
             "trapper_spark_pose"
 
-        if trapperObj.emote == "spark" and trapperObj.state == "close":
+        if trapperObj.emote == "sparks" and trapperObj.state == "close":
             "trapper_spark_close"
             
         if trapperObj.emote == "sweat" and trapperObj.state == "pose":
@@ -2280,10 +2284,10 @@ init:
         if dadObj.emote == "lightbulb" and dadObj.state == "close":
             "dad_lightbulb_close"
             
-        if dadObj.emote == "spark" and dadObj.state == "pose":
+        if dadObj.emote == "sparks" and dadObj.state == "pose":
             "dad_spark_pose"
 
-        if dadObj.emote == "spark" and dadObj.state == "close":
+        if dadObj.emote == "sparks" and dadObj.state == "close":
             "dad_spark_close"
             
         if dadObj.emote == "sweat" and dadObj.state == "pose":
@@ -2550,10 +2554,10 @@ init:
         if oniObj.emote == "lightbulb" and oniObj.state == "close":
             "oni_lightbulb_close"
             
-        if oniObj.emote == "spark" and oniObj.state == "pose":
+        if oniObj.emote == "sparks" and oniObj.state == "pose":
             "oni_spark_pose"
 
-        if oniObj.emote == "spark" and oniObj.state == "close":
+        if oniObj.emote == "sparks" and oniObj.state == "close":
             "oni_spark_close"
             
         if oniObj.emote == "sweat" and oniObj.state == "pose":
@@ -2818,10 +2822,10 @@ init:
         if tricksterObj.emote == "lightbulb" and tricksterObj.state == "close":
             "trickster_lightbulb_close"
             
-        if tricksterObj.emote == "spark" and tricksterObj.state == "pose":
+        if tricksterObj.emote == "sparks" and tricksterObj.state == "pose":
             "trickster_spark_pose"
 
-        if tricksterObj.emote == "spark" and tricksterObj.state == "close":
+        if tricksterObj.emote == "sparks" and tricksterObj.state == "close":
             "trickster_spark_close"
             
         if tricksterObj.emote == "sweat" and tricksterObj.state == "pose":
@@ -3085,10 +3089,10 @@ init:
         if wraithObj.emote == "lightbulb" and wraithObj.state == "close":
             "wraith_lightbulb_close"
             
-        if wraithObj.emote == "spark" and wraithObj.state == "pose":
+        if wraithObj.emote == "sparks" and wraithObj.state == "pose":
             "wraith_spark_pose"
 
-        if wraithObj.emote == "spark" and wraithObj.state == "close":
+        if wraithObj.emote == "sparks" and wraithObj.state == "close":
             "wraith_spark_close"
             
         if wraithObj.emote == "sweat" and wraithObj.state == "pose":
@@ -3365,10 +3369,10 @@ init:
         if entityObj.emote == "lightbulb" and entityObj.state == "close":
             "entity_lightbulb_close"
             
-        if entityObj.emote == "spark" and entityObj.state == "pose":
+        if entityObj.emote == "sparks" and entityObj.state == "pose":
             "entity_spark_pose"
 
-        if entityObj.emote == "spark" and entityObj.state == "close":
+        if entityObj.emote == "sparks" and entityObj.state == "close":
             "entity_spark_close"
             
         if entityObj.emote == "sweat" and entityObj.state == "pose":

@@ -8,7 +8,7 @@ label icecream_warning:
 
 label icecream_death:
     nrr "In case it wasn't clear who is in charge, it's me."
-    oc "You have to understand, it feels very good to end someone else's game. You should try it sometime..."
+    oc "You have to understand, it feels very good to end someone else's game. You should try it sometime…"
     play sound "sounds/sfx_gameover.ogg"
     call screen game_over("choice_icecream")
     return
@@ -17,26 +17,26 @@ label choice_icecream:
     menu:
         nrr "Tell me, what's the best flavor of ice cream?"
         "Vanilla":
-            mc "The best flavor is... vanilla!"
+            mc "The best flavor is… vanilla!"
             if not lastchance:
                 call icecream_warning
             else:
                 call icecream_death
         "Chocolate":
-            mc "The best flavor is... chocolate!"
+            mc "The best flavor is… chocolate!"
             if not lastchance:
                 call icecream_warning
             else:
                 call icecream_death
         "Horseflesh":
-            mc "The best flavor is... horseflesh!"
+            mc "The best flavor is… horseflesh!"
             if not lastchance:
                 call icecream_warning
             else:
                 call icecream_death
         "Mint Chip":
-            mc "The best flavor is... mint chip!"
-            oc "So obedient..."
+            mc "The best flavor is… mint chip!"
+            oc "So obedient…"
             nrr "I think you're gonna do juuuuust fine."
     return
 
@@ -131,7 +131,7 @@ label chapter1:
             mc "I'm pretty average, I think."
             $ trapperObj.change("pose", "pose01")
             $ spiritObj.change("emotion", "disgusted")
-            ts "Just another face in the crowd, another normal, meaningless life in an endless cycle..."
+            ts "Just another face in the crowd, another normal, meaningless life in an endless cycle…"
             $ huntressObj.change("pose", "pose03")
             th "I think you're quite cute, myself. Like a chipmunk! Or a grizzly bear!"
             $ huntressObj.change("pose", "pose01")
@@ -151,10 +151,10 @@ label chapter1:
         tw "If you could have any superpower what would it be?"
         "Invisibility":
             $ wraithObj.change("emote", "none")
-            mc "Umm... invisibility?"
+            mc "Umm… invisibility?"
             $ wraithObj.change("emote", "disgusted")
             $ wraithObj.change("pose", "pose03")
-            tw "Same. Although sometimes I think I already am..."
+            tw "Same. Although sometimes I think I already am…"
             $ wraithObj.change("emote", "idle")
             $ wraithObj.change("pose", "pose01")
         "Flight":
@@ -170,7 +170,7 @@ label chapter1:
             show wraith at movecenterleft
             show spirit at movecenterright
             mc "Flight, for sure."
-            ts "Technically I suppose I can fly. Honestly? It's not all that it's cracked up to be. As far as I go... I'm still not where I want to be."
+            ts "Technically I suppose I can fly. Honestly? It's not all that it's cracked up to be. As far as I go… I'm still not where I want to be."
         "Super strength":
             $ wraithObj.change("emote", "none")
             mc "Super strength would be cool."
@@ -211,7 +211,7 @@ label chapter1:
             $ spiritObj.change("pose", "pose01")
             mc "History?"
             $ spiritObj.change("emote", "exclamation")
-            mc "Nice. It's important to know what came before so that we are not doomed to repeat humanity's mistakes. I mean... we will always, but still."
+            mc "Nice. It's important to know what came before so that we are not doomed to repeat humanity's mistakes. I mean… we will always, but still."
             $ spiritObj.change("emote", "none")
         "Skipping Class":
             $ spiritObj.change("emote", "none")
@@ -251,7 +251,7 @@ label chapter1:
             show wraith at movecenterleft
             show spirit at movecenterright
             mc "Definitely a cat."
-            $ spiritObj.change("emote", "spark")
+            $ spiritObj.change("emote", "sparks")
             $ spiritObj.change("emotion", "disgusted")
             ts "What? Why is everyone looking at me? You think just because I'm the typical cute goth girl I have some specific love of all things cats, and more specifically, black cats? Well I do but you can all go to hell anyway."
             $ spiritObj.change("emote", "none")
@@ -260,7 +260,7 @@ label chapter1:
             $ huntressObj.change("pose", "pose01")
             mc "Mustelids, 100%"
             nrr "Be honest, you have no idea what a mustelid is and you're just hoping it's some secret answer that results in a hilarious Easter egg, right?"
-            nrr "Because there is no Easter egg... it's just another word for ferrets and stuff like that."
+            nrr "Because there is no Easter egg… it's just another word for ferrets and stuff like that."
     hide huntress
     hide trapper
     hide spirit
@@ -339,7 +339,7 @@ label chapter1:
             $ huntressObj.change("emotion", "disgusted")
             $ spiritObj.change("emotion", "disgusted")
             nrr "Everyone groans, and--let's be honest--they're right to do so."
-            tt "Luring folks into the dark? Not just anyone can do that..."
+            tt "Luring folks into the dark? Not just anyone can do that…"
             $ wraithObj.change("emotion", "idle")
             $ trapperObj.change("emotion", "idle")
             $ huntressObj.change("emotion", "idle")
@@ -351,7 +351,7 @@ label chapter1:
             ts "It takes a lot of courage to break free from society's expectations to climb the ladder."
             $ trapperObj.change("emote", "anger")
             $ trapperObj.change("emotion", "mad")
-            tt "Only she could spin laziness into some kind of grand crusade. These damned millenials..."
+            tt "Only she could spin laziness into some kind of grand crusade. These damned millenials…"
             $ trapperObj.change("emote", "none")
             $ trapperObj.change("emotion", "idle")
     hide huntress
@@ -372,7 +372,7 @@ label chapter1:
         "Chocolate":
             mc "Chocolate."
         "Horseflesh":
-            mc "Horse... flesh?"
+            mc "Horse… flesh?"
             call oceanhaunting
             oc "MMMMmmmmm, horseflesh."
             stop hauntloop fadeout 3.0
@@ -395,21 +395,21 @@ label chapter1:
     ts "Same here."
     $ wraithObj.change("emotion", "disgusted")
     $ trapperObj.change("emote", "thoughts")
-    tw "..."
+    tw "…"
     $ wraithObj.change("emotion", "idle")
-    tw "...Mine is vanilla. Swiriled with Pain."
+    tw "…Mine is vanilla. Swiriled with Pain."
     $ wraithObj.change("emote", "none")
     $ spiritObj.change("emotion", "idle")
     $ huntressObj.change("emotion", "idle")
     $ trapperObj.change("pose", "pose01")
     nrr "I think mint chip is the greatest flavor ever conceived, myself. But enough about ice cream, am I right?"
-    nrr "Hold on a second, this reminds me... I am right. Always. It's a lesson you should learn before we go too much further. Do what I say if you want to survive. Pick mint chip."
+    nrr "Hold on a second, this reminds me… I am right. Always. It's a lesson you should learn before we go too much further. Do what I say if you want to survive. Pick mint chip."
     hide huntress
     hide trapper
     hide wraith
     hide spirit
     call oceanhaunting
-    oc "We're teaching lessons now, Narrator? You rascal... Kill or be killed is the rule on this island, even for faceless voices."
+    oc "We're teaching lessons now, Narrator? You rascal… Kill or be killed is the rule on this island, even for faceless voices."
     call choice_icecream
     stop hauntloop fadeout 3.0
     call beachdayscene
@@ -458,7 +458,7 @@ label chapter1:
     show spirit at slidetocenter, fadenear
     with dissolve
     hide wraith
-    ts "Hey what's up? I'm Spirit. I don't like... most things."
+    ts "Hey what's up? I'm Spirit. I don't like… most things."
     $ spiritObj.change("emote", "dread")
     $ spiritObj.change("emotion", "disgusted")
     ts "I don't really hate most things either. It's not worth my time. But the things I do hate I really hate, you know?"
@@ -478,7 +478,7 @@ label chapter1:
     with dissolve
     hide spirit
     th "Hey! I'm Huntress. Don't let these bummers get you down."
-    $ huntressObj.change("emote", "spark")
+    $ huntressObj.change("emote", "sparks")
     th "There's lots of fun to be had on this island. Along with lots of love."
     $ huntressObj.change("emote", "none")
     $ huntressObj.change("pose", "pose01")
@@ -521,7 +521,7 @@ label chapter1:
     tw "Eww, really? That's disgusting."
     $ trapperObj.change("pose", "pose01")
     $ trapperObj.change("emotion", "happy")
-    $ trapperObj.change("emote", "spark")
+    $ trapperObj.change("emote", "sparks")
     $ huntressObj.change("emotion", "idle")
     tt "That's why she likes it!"
     $ trapperObj.change("emote", "none")
@@ -584,7 +584,7 @@ label chapter1:
             $ spiritObj.change("emotion", "idle")
             $ spiritObj.change("pose", "close01")
             show spirit at slidetocenter
-            ts "To kick up your feet, look out over the ocean, and relax on your own terms..."
+            ts "To kick up your feet, look out over the ocean, and relax on your own terms…"
             $ spiritObj.change("emotion", "happy")
             ts "Who would want anything else? Dry, comfortable, enjoying a cool drink on a hot day. It's the best."
             $ spiritObj.change("pose", "close03")
@@ -607,7 +607,7 @@ label chapter1:
             $ wraithObj.change("emote", "question")
             $ wraithObj.change("pose", "close01")
             show wraith at slidetocenter
-            tw "Whoa. The pool? You...you actually want to go to the pool?"
+            tw "Whoa. The pool? You…you actually want to go to the pool?"
             $ wraithObj.change("emote", "none")
             $ wraithObj.change("emotion", "disgusted")
             $ wraithObj.change("pose", "close01")
@@ -668,8 +668,8 @@ label chapter1:
     $ clauddwightObj.change("emotion", "scared")
     $ clauddwightObj.change("pose", "close02")
     show clauddwight with Dissolve(0.75)
-    cl "Hold on..."
-    dw "...for just one moment!"
+    cl "Hold on…"
+    dw "…for just one moment!"
     $ clauddwightObj.change("emotion", "idle")
     $ clauddwightObj.change("pose", "close01")
     nrr "This is Dwight and Claudette, our Activities Coordinators."
@@ -729,6 +729,218 @@ return
 
 label spirit_ch1:
     call blackscene
+    call event_clauddwight
+    call bardayscene
+    $ spiritObj.change("pose", "close03")
+    $ spiritObj.change("emotion", "happy")
+    show spirit at slidetocenter
+    ts "Finally! Freedom from the preposterous premise that the four of us would be engaged in some sort of thrilling two-on-two volleyball match."
+    $ spiritObj.change("emotion", "idle")
+    show spirit at slightzoom
+    nrr "Spirit looks at you from beneath her gigantic sun hat. She takes a conspiratorial tone."
+    $ spiritObj.change("emotion", "disgusted")
+    $ spiritObj.change("emote", "anger")
+    ts "I don't know whose idea volleyball was in the first place, but I hate them."
+    $ spiritObj.change("emote", "none")
+    ts "I tried to feign a sprained ankle, but everyone already knows that I technically float above the foreund, so nobody believed I was even putting any pressure on my joints in the first place."
+    ts "Then I tried to annoy everyone by not giving a crap, and when that didn;t work I tried whining, and when that didn't work…"
+    $ spiritObj.change("emotion", "mad")
+    $ spiritObj.change("emote", "sparks")
+    $ spiritObj.change("pose", "close02")
+    ts "I threatened to KILL EVERY SINGLE PERSON ON THIS ISLAND! But…"
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("emotion", "idle")
+    ts "It turns out I'm not the first to toss those kinds of threats around on this island."
+    $ spiritObj.change("emotion", "happy")
+    $ spiritObj.change("emote", "stars")
+    ts "Sooooooooo thanks, I guess, for getting it called off."
+    $ spiritObj.change("emote", "none")
+    cl "Are we threatening to end each other again? Aha, ha, ha…"
+    hide spirit
+    $ clauddwightObj.change("pose", "pose02")
+    $ clauddwightObj.change("emotion", "sad")
+    show clauddwight
+    with Dissolve(0.25)
+    nrr "Now it's Dwight who takes on a conspiratorial tone, his eyes shifting as he slips into a loud whisper."
+    $ clauddwightObj.change("pose", "close02")
+    $ clauddwightObj.change("emotion", "scared")
+    dw "Please! Just make it quick!"
+    $ clauddwightObj.change("pose", "close01")
+    cl "…"
+    $ clauddwightObj.change("emotion", "sad")
+    cl "…is what you'll be saying when we get behind the bar to make you the drink of your dreams!"
+    $ clauddwightObj.change("emotion", "scared")
+    dw "AHHHH!"
+    $ clauddwightObj.change("emotion", "sad")
+    cl "…"
+    $ clauddwightObj.change("emotion", "happy")
+    cl "…ahhhhhhhhhhhhhha ha ha ha! Hilarious, right? Right, Dwight?"
+    $ clauddwightObj.change("pose", "close02")
+    menu:
+        dw "Yeah. Right. Right. So, what'll you be having?"
+        "Vodka Soda":
+            mc "Vodka Soda?"
+            cl "Coming right up!"
+            hide clauddwight
+            $ huntressObj.change("emotion", "happy")
+            $ huntressObj.change("pose", "close01")
+            show huntress
+            with Dissolve(0.25)
+            th "Really takes me back home. You know, vodka is a very special drink to me. Warms the blood on a cold night in the woods. On occasion I would, hmmm, how do you say… bump into the occasional soldier while hiking acrss The Motherland."
+            th "They always had a nip of vodka tucked away in a special little silver package in a special little hidden pocket."
+            $ huntressObj.change("emotion", "idle")
+            $ huntressObj.change("pose", "close02")
+            th "…but no one hides from me."
+            $ huntressObj.change("pose", "pose02")
+            $ spiritObj.change("pose", "close02")
+            $ huntressObj.change("emotion", "disgusted")
+            $ spiritObj.change("emotion", "disgusted")
+            show spirit at slidetomovecenterleft
+            show huntress behind spirit at slidetomovecenterright
+            ts "A bit basic to be drinking vodka on a tropical island, no? And you're mixing it with soda? Really?"
+            ts "Being passionate about being passionless is so last year. It's also my thing and you're making it look bad. That's two strikes."
+            hide spirit
+            hide huntress
+        "Sangria":
+            mc "Something fruity, but refreshing. Hold the coconut rum. A sangria, maybe?"
+            dw "My pleasure!"
+            hide clauddwight
+            $ wraithObj.change("emotion", "happy")
+            $ wraithObj.change("pose", "close01")
+            show wraith
+            with Dissolve(0.25)
+            tw "That sounds nice. We used to make drinks like that back home."
+            tw "Well not, \"we,\" exactly. I watched someone drink a drink like that, once"
+            $ wraithObj.change("emotion", "disgusted")
+            $ wraithObj.change("emote", "dread")
+            tw "They looked happy."
+            $ wraithObj.change("emote", "none")
+            mc "Now's your chance to be the one with the drink. What do you say?"
+            $ wraithObj.change("pose", "pose01")
+            $ huntressObj.change("emotion", "happy")
+            $ huntressObj.change("pose", "pose01")
+            show huntress at slidetomovecenterleft
+            show wraith behind huntress at slidetomovecenterright
+            th "This is some sort of juice for a child? Are there children hiding about?!"
+            tw "No, it's for adults. The kind who like, you know, tropical fun."
+            $ huntressObj.change("emotion", "sad")
+            th "Oh… I see."
+            nrr "Huntress really seemed to perk up at the idea of kids being around and is bummed to hear there aren't any, but I'm quite glad it's just grown-ups on this island, personally. Little ones should definitely not be exposed to this."
+            $ huntressObj.change("emotion", "happy")
+            th "Not my cup of tea, but OK, sure. We can still use it for a toast, yeah? To new adventures!"
+            mc "To new friends!"
+            $ wraithObj.change("pose", "pose02")
+            $ wraithObj.change("emotion", "happy")
+            tw "To, uhhh…"
+            tw "*Clink*"
+            $ huntressObj.change("emotion", "disgusted")
+            $ huntressObj.change("emote", "question")
+            th "Did you just say \"clink\"?"
+            $ huntressObj.change("emote", "none")
+            $ wraithObj.change("emotion", "disgusted")
+            tw "No…"
+            hide spirit
+            hide huntress
+        "Scotch, Rocks":
+            mc "On a day like today? I could use something strong. Scotch on the rocks."
+            nrr "Claudette uncorks a very expensive-looking bottle of top shelf liquor and pours you a glass."
+            cl "Do enjoy!"
+            hide clauddwight
+            $ wraithObj.change("pose", "pose02")
+            $ wraithObj.change("emotion", "disgusted")
+            show wraith at movecenterleft
+            with Dissolve(0.25)
+            tw "Who would drink that? Smells like kerosene!"
+            $ trapperObj.change("pose", "close01")
+            $ trapperObj.change("emotion", "mad")
+            $ trapperObj.change("emote", "exclamation")
+            show trapper
+            with Dissolve(0.25)
+            tt "You need to embrace the burning!"
+            $ trapperObj.change("emote", "none")
+            $ wraithObj.change("emotion", "scared")
+            $ wraithObj.change("emote", "sweat")
+            tw "The… the burning?"
+            $ wraithObj.change("emote", "none")
+            $ trapperObj.change("pose", "pose01")
+            $ trapperObj.change("emotion", "happy")
+            tt "Oh yeah!"
+            tw "Why would you embrace that? Burning is…"
+            nrr "Wraith stifles a sob."
+            $ wraithObj.change("emotion", "sad")
+            tw "No… I can't even think about it…"
+            $ wraithObj.change("emotion", "disgusted")
+            $ trapperObj.change("emotion", "disgusted")
+            tt "Well then don't. No skin off my back, you weirdo."
+            $ trapperObj.change("pose", "close01")
+            $ trapperObj.change("emotion", "idle")
+            tt "Come to think of it…"
+            $ trapperObj.change("pose", "close02")
+            tt "Strong. Expensive. Better the longer you leave it locked in the basement…"
+            $ trapperObj.change("emotion", "sparks")
+            $ trapperObj.change("emotion", "happy")
+            tt "Scotch is the best."
+            $ trapperObj.change("emotion", "none")
+            $ trapperObj.change("pose", "pose01")
+            $ trapperObj.change("emotion", "idle")
+            nrr "Trapper guzzles half the bottle and burps. It'd be disgusting if it wan't so… No, disgusting is exactly what it is." 
+
+        "Virgin Daiquiri":
+            mc "I didn't come here to party, I'm just trying to make the best of a… very strange situation. I dunno, how about a daiquiri?"
+            dw "I know how to make that!"
+            mc "But skip the liquor, I'll have mine virgin."
+            hide clauddwight
+            $ trapperObj.change("pose", "pose02")
+            $ trapperObj.change("emotion", "happy")
+            show trapper at moveright
+            with Dissolve(0.25)
+            nrr "Trapper snickers at your choice of words."
+            tt "Sure you will, kid."
+            $ spiritObj.change("emotion", "disgusted")
+            $ spiritObj.change("emote", "dread")
+            $ spiritObj.change("pose", "close01")
+            show spirit at movebetweenmoveleftmovecenterleft with Dissolve(0.25)
+            ts "Don't mind him, we don't need to soak ourselves in booze just to please someone else's expectations. If you ask me, there's enough Spirits here already."
+            $ spiritObj.change("emote", "none")
+            $ spiritObj.change("pose", "close02")
+            $ spiritObj.change("emotion", "idle")
+            ts "Besides, alchol just numbs you to the painful realities of the world--I choose to face them head-on."
+            $ spiritObj.change("emotion", "disgusted")
+            $ spiritObj.change("pose", "pose02")
+            $ trapperObj.change("emotion", "question")
+            $ trapperObj.change("pose", "pose01")
+            tt "You'd never do something like, I don't know, hide from it all behind the world's largest hat, or anything."
+            $ trapperObj.change("emote", "none")
+            $ trapperObj.change("emotion", "disgusted")
+            ts "Please allow me to ignore any fashion advice from the man wearing a doll's face as a mask."
+            $ trapperObj.change("emotion", "mad")
+            $ trapperObj.change("pose", "pose02")
+            tt "…Not a doll's face. Jerk."
+            hide spirit
+            hide trapper
+    show clauddwight
+    with dissolve
+    cl "Since we've fulfilled your requests…"
+    $ clauddwightObj.change("pose", "close02")
+    $ clauddwightObj.change("emotion", "happy")
+    dw "It's time for you to return the favor!"
+    mc "I should have known there was a catch…"
+    cl "Ice-breaker time!"
+    ts "I swear, had I known they'd pull this king of faux-enthusiastic community-building crap, I'd have suggested we attempt to walk to the lowest point of the ocean before I ever set foot near this bar."
+    tw "You don't think it could be kinda fun? A little fun? Nevermind. I hate it. This sucks. But… it could be fine? Or whatever you say. Has anyone seen my hat?"
+    nrr "I've literally never seen him in a hat."
+    ts "If we must make small talk, I'm at least picking a topic before we end up being forced to do some lame improv game that nerds learn at their non-sports after-school activities that I definitely never did because I'm no nerd."
+    nrr "Methinks a certain someone doth protest too much."
+    ts "Sitting here on this beautiful sunny afternoon, warm sand beneath the fool fog beneath my severed feet…"
+    ts "The topic I choose is books! Novels, comics, fiction or non. Reading is the only real escape from the inescapable horror of life–the escape into your own mind."
+    nrr "A groan rolls through the crowd. Not a lot of readers here, I'd imagine, based on that response. They were much more enthusiastic about drinking."
+    ts "Considering the situation we're in, it seems an appropriate time to ask you…"
+    ts "[mc_name], what's your desert island book? The one book you'd bring with you if you were, well, on an island like this."
+    ts "Oh, and it has to be classic horror. For reasons that should be obvious."
+    nrr "She means because this is an island of horror villains. And also those books are all in the public domain."
+    ts "Nothing too modern. Humanity has really gotten soft these past hundred years. So what's your favorite?"
+        
+
 return
 label wraith_ch1:
     call blackscene

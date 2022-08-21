@@ -771,6 +771,9 @@ init:
     image bg volleyball_day:
         "images/bg/bg_volleyball_day.png"
         matrixcolor mymatrix_normal
+    image bg bar_day:
+        "images/bg/bg_bar_sunset.png"
+        matrixcolor mymatrix_normal
 
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
@@ -844,6 +847,16 @@ label volleyballscene(keep_images=False):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
     play music "audio/sfx_ambience_beach.ogg"
+    if keep_images:
+        call hideeffects
+        show bg volleyball_day with dissolve
+    else:
+        scene bg volleyball_day with dissolve
+    return
+label bardayscene(keep_images=False):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_dining_area.ogg"
     if keep_images:
         call hideeffects
         show bg volleyball_day with dissolve
