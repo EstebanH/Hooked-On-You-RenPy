@@ -437,8 +437,7 @@ style quick_button:
 
 style quick_button_text:
     size 30
-    
-    color "#eedccb" 
+    selected_color"#e4dfd8" 
     hover_color "099390"
     outlines [ (2, "#0e0505", absolute(0), absolute(0)) ]
     xalign 0.5
@@ -624,10 +623,13 @@ style navigation_button_text:
 
 style menubutton:
     layout "subtitle"
-    hover_color "#0a9e9a"
-    selected_color "#fff"
     size 63
-    color "f3e3d4"
+    color "#e4dfd8" 
+    selected_color "#e4dfd8" 
+    selected_hover_color "#0a9e9a"
+    selected_idle_color "#e4dfd8"
+    hover_color "#0a9e9a"
+    idle_color "#e4dfd8"
     text_align 0.5
     xalign 0.5
     outlines [ (1, "#000", absolute(0), absolute(0)) ]
@@ -1106,14 +1108,14 @@ screen file_slots(title):
                                                 if FileLoadable(slot):
                                                     text FileSaveName(slot):
                                                         style "slot_time_text"
-                                                        color "eedccb"
+                                                        color"#e4dfd8" 
                                                         hover_color "#20130f"
                                                         size 37
                                                         yoffset 20
                                                     
                                                 text FileTime(slot, format=_("{#file_time}%m/%d/%Y  %I:%M%p"), empty=_( "NEW FILE" if title == "Save" else "  EMPTY " )):
                                                     style "slot_time_text"
-                                                    color "07807f"
+                                                    color "#07807f"
                                                     if FileLoadable(slot) == False:
                                                         xoffset 125
                                             vbox:
@@ -1189,7 +1191,7 @@ screen file_slots(title):
                         xpadding 30
                         #style "slot_time_text"
                         text FilePageName():
-                            color "eedccb"
+                            color"#e4dfd8" 
                             size 37
                             yoffset -4
                             outlines [ (2, "#187471", absolute(0), absolute(0)) ]
@@ -2391,13 +2393,13 @@ screen spinthebottle_minigame:
             size 30
             outlines [ (1, "#000", absolute(0), absolute(0)) ]
         if position >= 0 and position <= 90:
-                action [SetVariable("spinthebottle_section", 1),Hide("spinthebottle_timer")]
+                action [SetVariable("spinthebottle_section", 1),Hide("spinthebottle_timer"), Call("results_spinthebottle_minigame")]
         elif position >= 91 and position <= 180:
-                action [SetVariable("spinthebottle_section", 2),Hide("spinthebottle_timer")]
+                action [SetVariable("spinthebottle_section", 2),Hide("spinthebottle_timer"), Call("results_spinthebottle_minigame")]
         elif position >= 181 and position <= 270:
-                action [SetVariable("spinthebottle_section", 3),Hide("spinthebottle_timer")]
+                action [SetVariable("spinthebottle_section", 3),Hide("spinthebottle_timer"), Call("results_spinthebottle_minigame")]
         elif position >= 271 and position <= 360:
-                action [SetVariable("spinthebottle_section", 4),Hide("spinthebottle_timer")]
+                action [SetVariable("spinthebottle_section", 4),Hide("spinthebottle_timer"), Call("results_spinthebottle_minigame")]
         else:
             ## If somehow over 360, assume it's within 0 to 90
             action [SetVariable("spinthebottle_section", 1),Hide("spinthebottle_timer")]
@@ -2408,9 +2410,16 @@ screen spinthebottle_timer:
 ################################################################################
 label start_spinthebottle_minigame:
     show screen spinthebottle_timer
-    call screen spinthebottle_minigame
+    call screen spinthebottle_minigame with Dissolve(0.25)
     return
 ################################################################################
 label end_spinthebottle_minigame: #End minigame.
-    pause 10
+    hide screen spinthebottle_minigame
+    hide screen spinthebottle_timer
+    return
+label results_spinthebottle_minigame:
+    show screen spinthebottle_minigame
+    pause 1
+    hide screen spinthebottle_minigame
+    with Dissolve(0.25)
     return

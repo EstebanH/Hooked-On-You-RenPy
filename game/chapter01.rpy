@@ -1180,32 +1180,41 @@ label spirit_ch1:
     nrr "Spin the bottle and see who you're gonna smooch!"
     call start_spinthebottle_minigame
     if spinthebottle_section == 1:
+        call end_spinthebottle_minigame
         $ spinthebottle_spirit = spinthebottle_spirit + 1
         nrr "You got Spirit! You two are meant to be..."
     elif spinthebottle_section == 2:
+        call end_spinthebottle_minigame
         $ spinthebottle_trapper = spinthebottle_trapper + 1
         nrr "You got Trapper! You two are meant to be..."
     elif spinthebottle_section == 3:
+        call end_spinthebottle_minigame
         $ spinthebottle_huntress = spinthebottle_huntress + 1
         nrr "You got Huntress! You two are meant to be..."
     elif spinthebottle_section == 4:
+        call end_spinthebottle_minigame
         $ spinthebottle_wraith = spinthebottle_wraith + 1
         nrr "You got Wraith! You two are meant to be..."
     else:
+        call end_spinthebottle_minigame
         $ spinthebottle_spirit = spinthebottle_spirit + 1
         nrr "You got Spirit! You two are meant to be..."
 
     nrr "Psyche! You have to actually spin multiple times to get your real result. First to get to three times is your true match. That's how we play Hardcore Spin The Bottle on this here island!"
     nrr "Now get your spin on!"
-    call spinthebottle
-    nrr "You got Trapper!"
-    call spinthebottle
-    nrr "You got Spirit!"
-    call spinthebottle
-    nrr "You got Trapper!"
-    nrr "Trapper is your true match!"
-    everyone "OOOoooOOOoooohhhh!" 
-    nrr "Just this morning, you were waking up on a strange beach, surrounded by strangers with murderous intent..."
+    call choice_spinthebottle
+    if spinthebottle_spirit > 2:
+        call spinthebottle_win_spirit
+    elif spinthebottle_trapper > 2:
+        call spinthebottle_win_trapper
+    elif spinthebottle_huntress > 2:
+        call spinthebottle_win_huntress
+    elif spinthebottle_wraith > 2:
+        call spinthebottle_win_wraith
+    else:
+        call spinthebottle_win_spirit
+    return
+label spinthebottle_win_spirit:
     $ trapperObj.change("emote", "stars")
     $ trapperObj.change("pose", "close01")
     show trapper with dissolve
@@ -1214,6 +1223,73 @@ label spirit_ch1:
     nrr "Your heart races. You can feel your pulse pounding in your ears."
     call mood_butterflies
     nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    return
+label spinthebottle_win_trapper:
+    $ trapperObj.change("emote", "stars")
+    $ trapperObj.change("pose", "close01")
+    show trapper with dissolve
+    nrr "Now you're looking across a beach towel at Trapper, lust in his eyes, sweat glistening on his skin."
+    $ trapperObj.change("emote", "none")
+    nrr "Your heart races. You can feel your pulse pounding in your ears."
+    call mood_butterflies
+    nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    return
+label spinthebottle_win_huntress:
+    $ trapperObj.change("emote", "stars")
+    $ trapperObj.change("pose", "close01")
+    show trapper with dissolve
+    nrr "Now you're looking across a beach towel at Trapper, lust in his eyes, sweat glistening on his skin."
+    $ trapperObj.change("emote", "none")
+    nrr "Your heart races. You can feel your pulse pounding in your ears."
+    call mood_butterflies
+    nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    return
+label spinthebottle_win_wraith:
+    $ trapperObj.change("emote", "stars")
+    $ trapperObj.change("pose", "close01")
+    show trapper with dissolve
+    nrr "Now you're looking across a beach towel at Trapper, lust in his eyes, sweat glistening on his skin."
+    $ trapperObj.change("emote", "none")
+    nrr "Your heart races. You can feel your pulse pounding in your ears."
+    call mood_butterflies
+    nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    return
+label choice_spinthebottle:
+    nrr "[spinthebottle_spirit] + [spinthebottle_trapper] + [spinthebottle_huntress] + [spinthebottle_wraith]"
+    while (int(spinthebottle_spirit) < 3) and (int(spinthebottle_trapper) < 3) and (int(spinthebottle_huntress) < 3) and (int(spinthebottle_wraith) < 3):
+        call start_spinthebottle_minigame
+        if spinthebottle_section == 1:
+            call end_spinthebottle_minigame
+            $ spinthebottle_spirit = spinthebottle_spirit + 1
+            nrr "You got Spirit!"
+        elif spinthebottle_section == 2:
+            call end_spinthebottle_minigame
+            $ spinthebottle_trapper = spinthebottle_trapper + 1
+            nrr "You got Trapper!"
+        elif spinthebottle_section == 3:
+            call end_spinthebottle_minigame
+            $ spinthebottle_huntress = spinthebottle_huntress + 1
+            nrr "You got Huntress!"
+        elif spinthebottle_section == 4:
+            call end_spinthebottle_minigame
+            $ spinthebottle_wraith = spinthebottle_wraith + 1
+            nrr "You got Wraith!"
+        else:
+            call end_spinthebottle_minigame
+            $ spinthebottle_spirit = spinthebottle_spirit + 1
+            nrr "You got Spirit!"
+    if spinthebottle_spirit > 2:
+        nrr "Spirit is your true match!"
+    elif spinthebottle_trapper > 2:
+        nrr "Trapper is your true match!"
+    elif spinthebottle_huntress > 2:
+        nrr "Huntress is your true match!"
+    elif spinthebottle_wraith > 2:
+        nrr "Wraith is your true match!"
+    else:
+        nrr "Spirit is your true match!"
+    everyone "OOOoooOOOoooohhhh!" 
+    nrr "Just this morning, you were waking up on a strange beach, surrounded by strangers with murderous intent..."
     return
 init python:
     spinthebottle_spirit = 0
