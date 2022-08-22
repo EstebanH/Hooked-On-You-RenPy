@@ -822,6 +822,27 @@ init:
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
 
+    image mystery_top:
+        "images/bg/moods/bg_mystery_top.png"
+        xalign 0.5
+        yalign 0.5
+    image bg mystery:
+        At("images/bg/moods/bg_mystery_bottom.png",mysteryxwarp,mysteryywarp)
+        xalign 0.5
+        yalign 0.5
+    transform mysteryywarp:
+        easein 8 yzoom 1.0
+        pause 0.25
+        easein 10 yzoom 1.3
+        pause 0.25
+        repeat
+    transform mysteryxwarp:
+        easein 8 xzoom 1.2
+        pause 0.25
+        easein 10 xzoom 1.0
+        pause 0.25
+        repeat
+    
 
     image bg speedlinebg_red:
         xoffset -3920
@@ -839,7 +860,22 @@ init:
                 xalign 1
                 yalign 1
                 repeat
-
+    image bg speedlinebg_blue:
+        xoffset -3920
+        yoffset -1250
+        zoom 2
+        rotate -45
+        anchor (0, 0) transform_anchor 1
+        contains:
+            parallel:
+                Tile("images/bg/moods/bg_speedlinebg_blue.png")
+                ytile 3
+                xtile 3
+                xpan -5400
+                linear 8 xpan 180
+                xalign 1
+                yalign 1
+                repeat
 label warmdarkscene:
     window hide
     scene bg warmdark
@@ -910,7 +946,7 @@ label bardayscene(keep_images=False):
 label towelscene(keep_images=False):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
-    play music "audio/sfx_red_sauce.ogg"
+    play music "audio/sfx_ambience_dining_area_night.ogg"
     if keep_images:
         call hideeffects
         show bg towel_day with dissolve
@@ -928,6 +964,19 @@ label hideeffects:
     return
 
 label speedlinesredscene(image_name=Null, ismovefrombottom = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_SpeedLine_Loop-003.ogg") fadein 3.0 loop
+    scene bg speedlinebg_red with dissolve
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at volleycenter,coin_yoffset zorder 1
+        else:
+            show expression image_name at nodissolvecenter,coin_yoffset zorder 1
+    with dissolve
+    return
+
+label speedlinesbluescene(image_name=Null, ismovefrombottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_SpeedLine_Loop-003.ogg") fadein 3.0 loop
@@ -975,6 +1024,22 @@ label mood_butterflies(image_name=Null, ismovefrombottom = False, nobg = False):
     if not nobg:
         scene bg butterflies
     show butterfliesrise
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+label mood_mystery(image_name=Null, ismovefrombottom = False, nobg = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Mystery_Loop_V1.ogg") fadein 3.0 loop
+    if not nobg:
+        scene bg mystery
+    show dots
+    show mystery_top
     if image_name is not Null:
         if ismovefrombottom:
             show expression image_name at dissolvecenter zorder 1

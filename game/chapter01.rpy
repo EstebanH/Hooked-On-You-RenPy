@@ -1388,7 +1388,6 @@ label spinthebottle_win_wraith:
     show wraith at slidetomovecenterleft, fadeaway
     return
 label choice_spinthebottle:
-    nrr "[spinthebottle_spirit] + [spinthebottle_trapper] + [spinthebottle_huntress] + [spinthebottle_wraith]"
     while (int(spinthebottle_spirit) < 3) and (int(spinthebottle_trapper) < 3) and (int(spinthebottle_huntress) < 3) and (int(spinthebottle_wraith) < 3):
         call start_spinthebottle_minigame
         if spinthebottle_section == 1:

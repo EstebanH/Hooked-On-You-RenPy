@@ -58,6 +58,7 @@ label event_dinner:
     $ renpy.music.set_volume(0.25,3.0,"music")
     play eventloop("audio/sfx_red_sauce.ogg") fadein 3.0 loop
     return 
+
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False
@@ -67,10 +68,11 @@ label namePlayer:
     while user_input == "":
         call screen name_input
     python:
-        user_input = user_input.strip() or "Bill"
+        user_input = user_input.strip() or "Player"
         mc_name = user_input
         save_name = user_input
     return
+
 
 # The game starts here.
 label start:
@@ -89,11 +91,11 @@ label start:
     $ tricksterObj = TricksterClass()
     $ wraithObj = WraithClass()
     call namePlayer
-    #call loadingscene
-
-    #call prologue
+    call loadingscene
+    call prologue
     call chapter1
+    call chapter2
 
-    nrr "<<<<<<<Ends here>>>>>>>>"
+    nrr "<<<<<<<Ends here for now>>>>>>>>"
     # This ends the game.
     return
