@@ -54,6 +54,10 @@ label event_quiz:
     play eventloop("audio/sfx_killer_flirt.ogg") fadein 3.0 loop
     return
 
+label event_dinner:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_red_sauce.ogg") fadein 3.0 loop
+    return 
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False

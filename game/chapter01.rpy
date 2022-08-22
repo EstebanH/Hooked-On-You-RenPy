@@ -1213,19 +1213,73 @@ label spirit_ch1:
         call spinthebottle_win_wraith
     else:
         call spinthebottle_win_spirit
+    
+    $ clauddwightObj.change("emotion", "sad")
+    $ clauddwightObj.change("pose", "close02")
+    show clauddwight
+    with Dissolve(0.25)
+    dw "I hate to break up such a passionate moment..."
+    $ clauddwightObj.change("emotion", "disgusted")
+    cl "That we only assume was passionate because we'd never spy on you constantly while you stay on this island."
+    $ clauddwightObj.change("emotion", "idle")
+    $ clauddwightObj.change("pose", "pose01")
+    play sound "sounds/sfx_signature_clauddwight04.ogg"
+    dw "But dinner is being served right away and we must insist that you join us!"
+    $ clauddwightObj.change("emotion", "disgusted")
+    cl "We wouldn't want anyone dying of starvation."
+    $ clauddwightObj.change("emotion", "happy")
+    dw "When there are so many more interesting things to die from!"
+    
+    call blackscene
     return
+
 label spinthebottle_win_spirit:
-    $ trapperObj.change("emote", "stars")
-    $ trapperObj.change("pose", "close01")
-    show trapper with dissolve
-    nrr "Now you're looking across a beach towel at Trapper, lust in his eyes, sweat glistening on his skin."
-    $ trapperObj.change("emote", "none")
+    $ spiritObj.change("emote", "stars")
+    $ spiritObj.change("pose", "pose03")
+    $ spiritObj.change("emotion", "idle")
+    show spirit with dissolve
+    nrr "Now you're looking across a beach towel at Spirit, lust in her eyes, sweat glistening on her skin."
+    $ spiritObj.change("emote", "none")
     nrr "Your heart races. You can feel your pulse pounding in your ears."
     call mood_butterflies
-    nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    $ spiritObj.change("pose", "close04")
+    nrr "Spirit takes you by the hand and you sit face-to-face at a private section of the bar."
+    nrr "She begins to reach for you, putting her hands on your shoulders. You're sweating, but not in the sexy way he is. You're sweating in the gross way you'd sweat at the interview for a job you're not even remotely qualified for."
+    nrr "You don't know what to do. If you try and lock lips in this state, you might gross her out so completely that she'll never be able to look at you romantically again!"
+    mc "Huntress, I... you... we..."
+    $ spiritObj.change("emotion", "disgusted")
+    ts "I have some bad news for you."
+    mc "I have something in my teeth, don't I? I think it might be seaweed. I have no idea how long I was in that ocean."
+    $ spiritObj.change("emote", "dread")
+    $ spiritObj.change("pose", "close01")
+    ts "No. Well, maybe. But that's not what I was going to say. This--it's not happening. Not now, maybe not ever."
+    $ spiritObj.change("emote", "anger")
+    $ spiritObj.change("pose", "close02")
+    $ spiritObj.change("emotion", "mad")
+    ts "If they think I'm going to make out with some stranger just because a bottle told me to? They've got another thing coming. And so do you. Namely a katana, into your heart, if you even try to make a move under such absurd circumstances."
+    $ spiritObj.change("emote", "none")
+    mc "I wasn't gonna..."
+    $ spiritObj.change("emotion", "disgusted")
+    ts "Yeah, I know. You seem pretty harmless. And not at all that bad to kiss, IF I were interested, which I'm not at this moment in time."
+    $ spiritObj.change("pose", "close03")
+    $ spiritObj.change("emotion", "idle")
+    ts "Are we going to tell them we kissed? We are. I'm not above lying to get what I want."
+    mc "So that thing about me being not that bad to kiss... was that a lie, to get me to play along?"
+    $ spiritObj.change("pose", "pose03")
+    $ spiritObj.change("emotion", "disgusted")
+    ts "If you want to know the truth, figure it out for yourself. But don't expect this life to just hand you gifts like me. All I was ever handed was pain and suffering."
+    $ spiritObj.change("pose", "pose01")
+    $ spiritObj.change("emotion", "happy")
+    ts "Treat me well, and I'll return the favor."
+    $ spiritObj.change("emote", "sparks")
+    $ spiritObj.change("emotion", "mad")
+    ts "Otherwise... try a different route and see what happens."
+    $ spiritObj.change("emote", "none")
+    show spirit at slidetomovecenterright, fadeaway
     return
 label spinthebottle_win_trapper:
     $ trapperObj.change("emote", "stars")
+    $ trapperObj.change("emotion", "idle")
     $ trapperObj.change("pose", "close01")
     show trapper with dissolve
     nrr "Now you're looking across a beach towel at Trapper, lust in his eyes, sweat glistening on his skin."
@@ -1233,26 +1287,105 @@ label spinthebottle_win_trapper:
     nrr "Your heart races. You can feel your pulse pounding in your ears."
     call mood_butterflies
     nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    nrr "He begins to reach for you, putting his hands on your shoulders. You're sweating, but not in the sexy way he is. You're sweating in the gross way you'd sweat at the interview for a job you're not even remotely qualified for."
+    nrr "You don't know what to do. If you try and lock lips in this state, you might gross him out so completely that he'll never be able to look at you romantically again!"
+    mc "Trapper, I... you... we...{w=2.0}{nw}"
+    $ trapperObj.change("emote", "anger")
+    $ trapperObj.change("emotion", "disgusted")
+    tt "Save it. It's not happening."
+    $ trapperObj.change("emote", "none")
+    nrr "..."
+    $ trapperObj.change("pose", "close03")
+    $ trapperObj.change("emotion", "mad")
+    tt "Don't cry. I know, to get this close to a living god, and then feel the sting of his rejection, it must hurt bad."
+    $ trapperObj.change("emotion", "disgusted")
+    tt "But don't take it personally. We, do, but use it to make yourself stronger."
+    tt "It's not because I don't want to, it's because you haven't earned it yet. You might... later..."
+    $ trapperObj.change("pose", "close01")
+    tt "For now, it can't be that easy. Sure, maybe with one of the others. They're weak. Sad. Lonely. Not me. I don't need this. It's mine to give or to withhold."
+    nrr "You really dodged a bullet. This means you'll have a chance to present yourself in a bit more flattering of a light later. Assuming you survive."
+    $ trapperObj.change("emotion", "idle")
+    tt "I'm not ashamed to tell you that I think you're cute. I would make out with you so hard your heart would cave in, if I wanted to, and I do, but I still won't."
+    $ trapperObj.change("pose", "close02")
+    $ trapperObj.change("emotion", "mad")
+    tt "Tell anyone I told you this and you die, they die, and then I have you all revived and kill you again."
+    $ trapperObj.change("pose", "pose01")
+    $ trapperObj.change("emotion", "happy")
+    tt "If anyone asks, I was the best you ever had. Which I might just be... another time."
+    show trapper at slidetomoveright, fadeaway
     return
 label spinthebottle_win_huntress:
-    $ trapperObj.change("emote", "stars")
-    $ trapperObj.change("pose", "close01")
-    show trapper with dissolve
-    nrr "Now you're looking across a beach towel at Trapper, lust in his eyes, sweat glistening on his skin."
-    $ trapperObj.change("emote", "none")
+    $ huntressObj.change("emote", "stars")
+    $ huntressObj.change("pose", "close03")
+    $ huntressObj.change("emotion", "idle")
+    show huntress with dissolve
+    nrr "Now you're looking across a beach towel at Huntress, lust in her eyes, sweat glistening on her skin."
+    $ huntressObj.change("emote", "none")
     nrr "Your heart races. You can feel your pulse pounding in your ears."
     call mood_butterflies
-    nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    nrr "Huntress takes you by the hand and you sit face-to-face at a private section of the bar."
+    nrr "She begins to reach for you, putting her hands on your shoulders. You're sweating, but not in the sexy way he is. You're sweating in the gross way you'd sweat at the interview for a job you're not even remotely qualified for."
+    nrr "You don't know what to do. If you try and lock lips in this state, you might gross her out so completely that she'll never be able to look at you romantically again!"
+    mc "Huntress, I... you... we..."
+    $ huntressObj.change("emote", "dread")
+    $ huntressObj.change("emotion", "disgusted")
+    th "I'm sorry, but I can't kiss you right now."
+    $ huntressObj.change("emote", "none")
+    nrr "Whaaat? You're relieved, but also maybe a little hurt?"
+    $ huntressObj.change("emotion", "idle")
+    $ huntressObj.change("pose", "close01")
+    th "It's not you. Well, it is you, but in a good way. I think you're great, maybe too great. I don't trust easily, and I'm afraid of what it might mean to connect with you so early."
+    $ huntressObj.change("emotion", "disgusted")
+    th "It's not that I don't want to, I just don't think it's the right thing right now."
+    mc "I understand."
+    $ huntressObj.change("emotion", "happy")
+    $ huntressObj.change("pose", "pose02")
+    th "Amazing! But also, understand this: If you tell anyone I got so soft... I'll break you in half. K?"
+    mc "I'll tell 'em you almost chewed my whole face clean off."
+    th "Oh, I like that."
+    show huntress at slidetomoveleft, fadeaway
     return
 label spinthebottle_win_wraith:
-    $ trapperObj.change("emote", "stars")
-    $ trapperObj.change("pose", "close01")
-    show trapper with dissolve
-    nrr "Now you're looking across a beach towel at Trapper, lust in his eyes, sweat glistening on his skin."
-    $ trapperObj.change("emote", "none")
+    $ wraithObj.change("emote", "stars")
+    $ wraithObj.change("pose", "close01")
+    $ wraithObj.change("emotion", "idle")
+    show wraith with dissolve
+    nrr "Now you're looking across a beach towel at Wraith, lust in his eyes, sweat glistening on his skin."
+    $ wraithObj.change("emote", "none")
     nrr "Your heart races. You can feel your pulse pounding in your ears."
     call mood_butterflies
-    nrr "Trapper takes you by the hand and you sit face-to-face at a private section of the bar."
+    $ wraithObj.change("pose", "close03")
+    nrr "Wraith takes you by the hand and you sit face-to-face at a private section of the bar."
+    nrr "He begins to reach for you, putting his hands on your shoulders. You're sweating, but not in the sexy way he is. You're sweating in the gross way you'd sweat at the interview for a job you're not even remotely qualified for."
+    nrr "You don't know what to do. If you try and lock lips in this state, you might gross him out so completely that he'll never be able to look at you romantically again!"
+    mc "Wraith, I... you... we..."
+    $ wraithObj.change("pose", "close01")
+    $ wraithObj.change("emote", "sweat")
+    $ wraithObj.change("emotion", "scared")
+    tw "Look, umm. You're great. But also terrifying."
+    $ wraithObj.change("emote", "none")
+    nrr "Did he just steal your line?"
+    tw "I want to be kissed by you, but, well, I'm maaaaybe not even sure how. Is that sad?"
+    $ wraithObj.change("emote", "dread")
+    $ wraithObj.change("pose", "close03")
+    tw "Great, now I look sad. I'm, well, if the tropical shorts fit..."
+    $ wraithObj.change("emote", "none")
+    mc "You make me... happy. To be around. I think. It's still so new, all of this. We can figure it out together."
+    $ wraithObj.change("emotion", "idle")
+    tw "Really? You'd..."
+    mc "Really! I'd... like to get to know you. And, ya know, the kissing thing sounds great, in theory."
+    tw "It sure doesn't sound, umm, painful."
+    mc "So, then, for now..."
+    nrr "Wraith reaches out and gives you a vigourous handshake."
+    $ wraithObj.change("emote", "question")
+    $ wraithObj.change("pose", "pose03")
+    tw "We're acquantainces going on friends... going on lovers? I'm sorry, ugh."
+    $ wraithObj.change("emote", "none")
+    mc "Great handshake, by the way."
+    $ wraithObj.change("emotion", "happy")
+    tw "Really?!"
+    mc "Truly."
+    show wraith at slidetomovecenterleft, fadeaway
     return
 label choice_spinthebottle:
     nrr "[spinthebottle_spirit] + [spinthebottle_trapper] + [spinthebottle_huntress] + [spinthebottle_wraith]"
@@ -1297,12 +1430,15 @@ init python:
     spinthebottle_huntress = 0
     spinthebottle_wraith = 0
 label wraith_ch1:
+    call spirit_ch1
     call blackscene
     return
 label huntress_ch1:
+    call spirit_ch1
     call blackscene
     return
 label trapper_ch1:
+    call spirit_ch1
     call blackscene
     return
 image emptyspin:

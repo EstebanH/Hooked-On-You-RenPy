@@ -815,6 +815,9 @@ init:
     image bg bar_day:
         "images/bg/bg_bar_sunset.png"
         matrixcolor mymatrix_normal
+    image bg towel_day:
+        "images/bg/bg_towel_sunset.png"
+        matrixcolor mymatrix_normal
 
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
@@ -903,6 +906,16 @@ label bardayscene(keep_images=False):
         show bg bar_day with dissolve
     else:
         scene bg bar_day with dissolve
+    return
+label towelscene(keep_images=False):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_red_sauce.ogg"
+    if keep_images:
+        call hideeffects
+        show bg towel_day with dissolve
+    else:
+        scene bg towel_day with dissolve
     return
 label hideeffects:
     hide cloudy1

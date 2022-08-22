@@ -367,8 +367,5 @@ label prologue:
     stop hauntloop fadeout 3.0
     nrr "With no good reason not to, you decide to head over and see what happens next."
     
-    $ quick_menu = False
-    stop eventloop fadeout 3.0
-    scene black with dissolve
-    pause 1
+    call blackscene
     return

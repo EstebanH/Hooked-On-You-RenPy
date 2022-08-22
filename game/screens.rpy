@@ -438,7 +438,8 @@ style quick_button:
 style quick_button_text:
     size 30
     selected_color"#e4dfd8" 
-    hover_color "099390"
+    color "#e4dfd8"
+    hover_color "#099390"
     outlines [ (2, "#0e0505", absolute(0), absolute(0)) ]
     xalign 0.5
     #properties gui.button_text_properties("quick_button")
