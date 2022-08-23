@@ -70,6 +70,15 @@ label event_speeddating:
     play eventloop("audio/sfx_slash_speed_dating.ogg") fadein 3.0 loop
     return 
 
+label event_storytime:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_boarding_pass.ogg") fadein 3.0 loop
+    return 
+
+label event_papercutbolsa:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_papercut_bolsa.ogg") fadein 3.0 loop
+    return 
 
 label namePlayer:
     # No quick menu in name input screen
@@ -108,7 +117,7 @@ label start:
     call chapter1
     call chapter2
     call chapter3
-
+    call chapter4
     nrr "<<<<<<<Ends here for now>>>>>>>>"
     # This ends the game.
     return

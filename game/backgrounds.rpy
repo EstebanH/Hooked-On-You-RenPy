@@ -844,6 +844,10 @@ init:
         "images/bg/bg_campfire.png"
         matrixcolor mymatrix_normal
 
+    image bg pool_night:
+        "images/bg/bg_pool_night.png"
+        matrixcolor mymatrix_normal
+
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
 
@@ -983,26 +987,44 @@ label bardayscene(keep_images=False):
     else:
         scene bg bar_day with dissolve
     return
-label towelscene(keep_images=False):
+label towelscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
     play music "audio/sfx_ambience_dining_area_night.ogg"
     if keep_images:
         call hideeffects
-        show bg towel_day with dissolve
+        show bg towel_day
     else:
-        scene bg towel_day with dissolve
+        scene bg towel_day
+    if withDissolve:
+        with dissolve
     return
-label campfirescene(keep_images=False):
+label campfirescene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
-    play music "audio/sfx_ambience_fire_pit.ogg.ogg"
+    play music "audio/sfx_ambience_fire_pit.ogg"
     if keep_images:
         call hideeffects
-        show bg campfire with dissolve
+        show bg campfire
     else:
-        scene bg campfire with dissolve
+        scene bg campfire
+    if withDissolve:
+        with dissolve
     return
+label poolnightscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_pool_night.ogg"
+    if keep_images:
+        call hideeffects
+        show bg pool_night
+    else:
+        scene bg pool_night
+    if withDissolve:
+        with dissolve
+    return
+
+
 label hideeffects:
     hide cloudy1
     hide cloudy2

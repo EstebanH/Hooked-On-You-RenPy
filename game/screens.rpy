@@ -314,7 +314,8 @@ screen choice(items):
                             hover str(caption_parts[1])
                         if cap_len > 2:
                             selected str(caption_parts[2])
-                        action i.action 
+                        ##action i.action 
+                        action [i.action, [SetVariable("imagechoice", False)]]
                         hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
                         activate_sound "sounds/sfx_ui_choice_select.ogg"
                     $ count = count + 1
@@ -352,7 +353,8 @@ screen choice(items):
                                     (-76, -76),  str(caption_parts[1])
                                     )
 
-                        action i.action 
+                        action [i.action, [SetVariable("diamondchoice", False)]]
+                        ##action i.action 
                         hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
                         activate_sound "sounds/sfx_ui_choice_select.ogg"
                     $ count = count + 1
