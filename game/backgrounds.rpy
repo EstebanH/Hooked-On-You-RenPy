@@ -8,6 +8,27 @@ init:
         yalign 0.25
         xalign 0.5
 init:
+    transform butterflyfade:
+        easein 3.0 alpha 1.0
+        easeout 1 alpha 0.0
+        repeat
+
+    image romantic_pinkheart:
+        "images/moods/Romantic_PinkHeart_Multiply.png"
+    image romantic_whiteflower:
+        "images/moods/Romantic_PinkHeart_Multiply.png"
+    image romaantic_yellowheart1:
+        "images/moods/Romantic_PinkHeart_Multiply.png"
+    image romantic_yellowheart2:
+        "images/moods/Romantic_PinkHeart_Multiply.png"
+    image romantic_bubble:
+        "images/moods/Romantic_bubble4.png"
+    image romanticrisepinkheart = SnowBlossom(At("romantic_pinkheart", butterflyfade), border=357, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -40),  xspeed=(-25,25), horizontal=True)
+    image romanticrisebubble = SnowBlossom(At("romantic_bubble", butterflyfade), border=357, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -40),  xspeed=(-25,25), horizontal=True)
+    image romanticrisewhiteheart = SnowBlossom(At("romantic_whiteflower", butterflyfade), border=357, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -40),  xspeed=(-25,25), horizontal=True)
+    image romanticriseyellowheart1 = SnowBlossom(At("romantic_yellowheart1", butterflyfade), border=357, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -40),  xspeed=(-25,25), horizontal=True)
+    image romanticriseyellowheart2 = SnowBlossom(At("romantic_yellowheart2", butterflyfade), border=357, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -40),  xspeed=(-25,25), horizontal=True)
+
     image bg butterflies:
         "images/bg/moods/bg_butterflies.png"
     image butterfly:
@@ -43,11 +64,6 @@ init:
         pause 0.0625
         repeat
     
-    transform butterflyfade:
-        easein 3.0 alpha 1.0
-        easeout 1 alpha 0.0
-        repeat
-
     image butterfliesrise = SnowBlossom(At("butterfly", butterflyfade), border=357, count=10, start=0.00000000001, fast=False,  yspeed=(-100, -40),  xspeed=(-25,25), horizontal=True)
 ## haunting ###############################################################
 ##
@@ -64,12 +80,15 @@ init:
         "images/sprites/ocean/ocean4.png"
 
     image cloudy1:
-        im.MatrixColor("images/moods/cloudlayer1.png", im.matrix.tint(0.45, 0.45, 0.75))
+        "images/moods/cloudlayer1.png"
+        matrixcolor TintMatrix(Color((0.45, 0.45, 0.75)))
         yalign 0.5
         xalign 0.5
 
     image cloudy2:
-        im.MatrixColor("images/moods/cloudlayer2.png", im.matrix.tint(0.45, 0.45, 0.75))
+        "images/moods/cloudlayer2.png"
+        matrixcolor TintMatrix(Color((0.45, 0.45, 0.75)))
+        #im.MatrixColor(, im.matrix.tint(0.45, 0.45, 0.75))
         yalign 0.5
         xalign 0.5
         
@@ -809,6 +828,9 @@ init:
     image bg beach_day:
         "images/bg/bg_beach_day.png"
         matrixcolor mymatrix_normal
+    image bg beach_evening:
+        "images/bg/bg_beach_sunset.png.png"
+        matrixcolor mymatrix_normal
     image bg volleyball_day:
         "images/bg/bg_volleyball_day.png"
         matrixcolor mymatrix_normal
@@ -817,6 +839,9 @@ init:
         matrixcolor mymatrix_normal
     image bg towel_day:
         "images/bg/bg_towel_sunset.png"
+        matrixcolor mymatrix_normal
+    image bg campfire:
+        "images/bg/bg_campfire.png"
         matrixcolor mymatrix_normal
 
     image bg inner_monologue:
@@ -842,6 +867,11 @@ init:
         easein 10 xzoom 1.0
         pause 0.25
         repeat
+
+    image bg romantic:
+        "images/bg/moods/bg_romantic.png"
+        xalign 0.5
+        yalign 0.5
     
 
     image bg speedlinebg_red:
@@ -923,6 +953,16 @@ label beachdayscene(keep_images=False):
     else:
         scene bg beach_day with dissolve
     return
+label beacheveningscene(keep_images=False):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_beach_evening.ogg"
+    if keep_images:
+        call hideeffects
+        show bg beach_evening with dissolve
+    else:
+        scene bg beach_evening with dissolve
+    return
 label volleyballscene(keep_images=False):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
@@ -952,6 +992,16 @@ label towelscene(keep_images=False):
         show bg towel_day with dissolve
     else:
         scene bg towel_day with dissolve
+    return
+label campfirescene(keep_images=False):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_fire_pit.ogg.ogg"
+    if keep_images:
+        call hideeffects
+        show bg campfire with dissolve
+    else:
+        scene bg campfire with dissolve
     return
 label hideeffects:
     hide cloudy1
@@ -1017,7 +1067,7 @@ label mood_inner_monologuescene(image_name=Null, ismovefrombottom = False, nobg 
     with dissolve
     return
 
-label mood_butterflies(image_name=Null, ismovefrombottom = False, nobg = False):
+label mood_butterflies(image_name=Null, ismovefrombottom = False, nobg = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_Butterflies_Loop_V1.ogg") fadein 3.0 loop
@@ -1029,8 +1079,29 @@ label mood_butterflies(image_name=Null, ismovefrombottom = False, nobg = False):
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1
+    if withDissolve:
+        with dissolve
+    return
+
+label mood_romantic(image_name=Null, ismovefrombottom = False, nobg = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Romantic_Loop_V1.ogg.ogg") fadein 3.0 loop
+    if not nobg:
+        scene bg romantic
+    show romanticriseyellowheart1
+    show romanticriseyellowheart2
+    show romanticrisewhiteheart
+    show romanticrisepinkheart
+    show romanticrisebubble
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
     with dissolve
     return
+
 
 label mood_mystery(image_name=Null, ismovefrombottom = False, nobg = False):
     window hide

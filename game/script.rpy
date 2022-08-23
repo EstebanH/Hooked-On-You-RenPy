@@ -18,8 +18,9 @@ define cho = Character(None, window_style="window_narrator",  callback=callbackc
 define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define mc = DynamicCharacter('mc_name', color="#3e3458", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 ##define look = Character(None,window_background=None, button_style = "say_button_none", show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
-define dw = Character("DWIGHT", color="#cb8830", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
-define cl = Character("CLAUDETTE", color="#cba530",  callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define dw = Character("DWIGHT", window_style="window_killer", color="#cb8830", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define nb = Character("NOBODY", window_style="window_killer", color="#cb8830", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define cl = Character("CLAUDETTE", window_style="window_killer", color="#cba530",  callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define th = Character("THE HUNTRESS", window_style="window_killer", color="#d94b2a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define ts = Character("THE SPIRIT", window_style="window_killer", color="#ee496a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define tt = Character("THE TRAPPER", window_style="window_killer", color="#385b8d", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
@@ -59,6 +60,17 @@ label event_dinner:
     play eventloop("audio/sfx_red_sauce.ogg") fadein 3.0 loop
     return 
 
+label event_bloodconfident:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_blood_confident.ogg") fadein 3.0 loop
+    return 
+
+label event_speeddating:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_slash_speed_dating.ogg") fadein 3.0 loop
+    return 
+
+
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False
@@ -95,6 +107,7 @@ label start:
     call prologue
     call chapter1
     call chapter2
+    call chapter3
 
     nrr "<<<<<<<Ends here for now>>>>>>>>"
     # This ends the game.

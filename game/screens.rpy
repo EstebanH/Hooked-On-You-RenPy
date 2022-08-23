@@ -293,11 +293,12 @@ style input:
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 init:
     $ imagechoice = False
+    $ diamondchoice = False
 screen choice(items):
     $ count = 1
     style_prefix "choice"
     if imagechoice:
-        hbox:            
+        hbox:          
             for i in items:
                 if count > 4:
                     $ count = 4          
@@ -317,6 +318,45 @@ screen choice(items):
                         hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
                         activate_sound "sounds/sfx_ui_choice_select.ogg"
                     $ count = count + 1
+    elif diamondchoice:
+        vbox:
+            box_wrap True
+            ymaximum 202*2
+            spacing -0
+            box_wrap_spacing -0
+            at diamondbutton            
+            for i in items:
+                if count > 4:
+                    $ count = 4          
+                if "¦" in i.caption:
+                    $ caption_parts = i.caption.split("¦")
+                    $ cap_len = len(caption_parts)
+                    imagebutton:
+                        xalign 0.5
+                        yalign 0.5
+                        xanchor 0.5
+                        yanchor 0.5
+                        anchor (0.5,0.5)
+                        xysize(202,202)
+                        if cap_len > 0:
+                            idle str(caption_parts[0])
+                        if cap_len > 1:
+                            hover Composite(
+                                    (202, 202),
+                                    (-76, -76),  str(caption_parts[1])
+                                    )
+                                   
+                        if cap_len > 2:
+                            selected Composite(
+                                    (202, 202),
+                                    (-76, -76),  str(caption_parts[1])
+                                    )
+
+                        action i.action 
+                        hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
+                        activate_sound "sounds/sfx_ui_choice_select.ogg"
+                    $ count = count + 1
+
     else:
         vbox:
             for i in items:
@@ -332,7 +372,9 @@ style choice_vbox is vbox
 style choice_hbox is hbox
 style choice_button is button
 style choice_button_text is button_text
-
+init:
+    transform diamondbutton:
+        rotate -45
 style choice_vbox:
     xalign 0.5
     ypos 357

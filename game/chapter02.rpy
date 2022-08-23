@@ -281,15 +281,202 @@ label chapter2:
         call oceanhaunting
         oc "Perfect! You know just when to play the part of harmless. They'll never see you coming..."
         stop hauntloop fadeout 3.0
-        stop moodloop fadeout 3.0
-        call event_dinner
-        call towelscene
-        $ clauddwightObj.change("pose", "close02")
-        $ clauddwightObj.change("emotion", "idle")
-        show clauddwight
-        cl "Dinner is finally served."
-        dw "For real."
+    stop moodloop fadeout 3.0
+    call event_dinner
+    call towelscene
+    $ clauddwightObj.change("pose", "close02")
+    $ clauddwightObj.change("emotion", "idle")
+    show clauddwight
+    cl "Dinner is finally served."
+    $ clauddwightObj.change("pose", "close01")
+    $ clauddwightObj.change("emotion", "disgusted")
+    dw "For real."
+    hide clauddwight with Dissolve(0.25)
+    nrr "The sounds, especially coming from the masked killers while they eat (which involves lifting their masks and shoving food up behind them) are {i}nasty{/i}."
+    nrr "Spirit, meanwhile, doesn't even eat. She's the only one who seems to really be embracing being dead. They're all dead, right? This is obviously hell? I mean--"
+    call oceanhaunting
+    oc "Come on. We're still trying to be mysterious, here. You think mystery comes easy? Claudette and Dwight aren't the only ones who've been working their asses off to make this night perfect."
+    stop hauntloop fadeout 3.0
+    nrr "Well, at least they're lifting their masks. This is only 99% as disgusting as it could be if they just tried to mash stuff through there."
+    mc "Spirit, why aren't you hungry?"
+    $ spiritObj.change("pose","pose03")
+    $ spiritObj.change("emotion","idle")
+    show spirit
+    ts "The two best things about being dead is not having to eat."
+    mc "That's only one thing."
+    $ spiritObj.change("pose","close03")
+    $ spiritObj.change("emotion","disgusted")
+    $ spiritObj.change("emote","lightbulb")
+    ts "Think about it, [mc_name]. Number two... is no number two. One less thing to think about in the afterlife."
+    $ spiritObj.change("emote","none")
+    ts "Even if I wanted to eat I have no idea what would actually follow."
+    ts "You might have noticed, but I'm mostly just a brunch of dismembered body part floating in a spectral form."
+    $ spiritObj.change("emote","sweat")
+    $ spiritObj.change("emotion","happy")
+    ts "Do you see how deep this cut on my abdomen is? I don't think my digestive tract connects anymore."
+    $ spiritObj.change("emote","none")
+    show spirit at slidetomovecenterright, fadeaway
+    nrr "Between the food and the behavior of the group this might be the worst meal in history."
+    hide spirit
+    $ wraithObj.change("emotion", "disgusted")
+    $ trapperObj.change("emotion", "disgusted")
+    $ huntressObj.change("emotion", "disgusted")
+    $ spiritObj.change("emotion", "disgusted")
+    $ wraithObj.change("pose", "pose01")
+    $ trapperObj.change("pose", "pose01")
+    $ huntressObj.change("pose", "pose01")
+    $ spiritObj.change("pose", "pose01")
+    show huntress at moveleft
+    show trapper at moveright
+    show wraith at movecenterleft
+    show spirit at movecenterright
+    nrr "But evem worse is they're staring at you. You're not eating. They don't like that."
+    menu:
+        nrr "I think they want an explanation why. What do you want to tell them?"
+        "\"This is gross.\"":
+            mc "This is gross."
+        "\"I'm sorry.\"":
+            mc "I'm sorry."
+        "\"Look at that seagull!\"":
+            mc "Wow! You ever see a seagull that big? I haven't! That's incredible! Anyway, what were we talking about?"
+            th "Lame misdirect."
+            ts "Yeah, she's right, [mc_name]. Pretty lame. Own who you are. Never compromise."
+            $ trapperObj.change("emotion", "idle")
+            $ trapperObj.change("emote", "question")
+            tt "Didn't you wash up on this island with no memory of who you are and how you got here?"
+            $ trapperObj.change("emote", "none")
+            $ wraithObj.change("emotion", "sad")
+            tw "Yes. You did. Poor thing."
+            $ trapperObj.change("emotion", "disgusted")
+            tt "You have no idea the last time you ate a real meal. And you've been standing in the sun."
+            mc "But the seagull..."
+    nrr "Uh oh. He just made a lot of good points."
+    mc "I swear..."
+    nrr "You're beginning to feel light headed."
+    mc "It waved at me..."
+    show bg towel_day at Transform(matrixcolor=TintMatrix('#737373ff'))
+    nrr "Maybe you need to eat to survive here."
+    nrr "Either that or someone poisoned you."
+    stop moodloop fadeout 3.0
+    stop eventloop fadeout 3.0
+    scene black with dissolve
+    nrr "No, wait. You haven't eaten, so you can't be poisoned. Hmm... Whatever the answer, you're cleatly about to pass out."
+    call oceanhaunting
+    oc "Oh hey, it's me again!"
+    oc "Your friend, mentor, and guide. Narrator to The Narrator, {i}The Ocean{/i}."
+    nrr "Not sure how I feel about that characterization, but I'll allow it."
+    oc "I brought you here. And I might be the only one who can help you now."
+    oc "There's only one thing you must do to survive: you have to figure out why you're really here."
+    oc "No one can tell you. Not unless you follow the right path. Or at least \"a\" right path."
+    oc "There's too many of those to count. Hopefully you pick at least one of them."
+    oc "Because there are even more wrong paths. Many of them lead to your demise. Others lead to something even worse."
+    nrr "Starting scenes over and having to fast-forward back to where you were, amiright???"
+    oc "For this place holds many secrets. Even from itself. But the one that truly matters can only be learned if you answer the most important question:"
+    oc "Why are you here?"
+    oc "{i}Why are you here?{/i}"
+    oc "Answer that and you'll learn the truth."
+    oc "The ultimate truth."
+    stop hauntloop fadeout 3.0
+    scene black with dissolve
+    nrr "Vague. Mysterious. I gotta give it up to this Ocean character. That's some quality early-game storytelling."
+    call oceanhaunting
+    oc "Hold on, I'm back."
+    oc "One more piece of advice. You've made many choices by now. Some of them I liked, some of them I did not."
+    oc "It's in your best interest to make more choices that I like."
+    stop hauntloop fadeout 3.0
+    call beacheveningscene 
+    with dissolve
+    nrr "You wake up to find Spirit holding your limp body, gingerly pouring cool water into your mouth."
+    $ spiritObj.change("emotion", "idle")
+    $ spiritObj.change("pose", "close03")
+    call mood_romantic(withDissolve = False)
+    show spirit
+    with dissolve
+    ts "Don't you just love the ocean at night? I do..."
+    $ spiritObj.change("emotion", "mad")
+    $ spiritObj.change("emote", "sparks")
+    ts "Staring out over the vast darkness of the ocean really validates the feelings inside me that we're all truly insignificant AND THE ONLY THING WORTH PURSUING IS REVENGE."
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("emotion", "idle")
+    ts "I have to wonder, how could anyone believe anything else?"
+    nrr "You look out into the darkness of night and ponder her question."
+    $ spiritObj.change("emote", "question")
+    $ spiritObj.change("emotion", "happy")
+    menu:
+        ts "Well? It's a simple question. How could they? How could anyone not feel small and alone in the face of such massive nothingness?"
+        "You're always been alone":
+            $ spiritObj.change("emote", "none")
+            mc ""
+        "You found someone special":
+            $ spiritObj.change("emote", "none")
+            mc "I used to feel that way. Small, unimportant, alone. But lately, I'm not so sure."
+            mc "I've started to feel different. I've started to actually think that maybe this island is where I might meet someone special."
+            nrr "You look at Spirit, who has turned from the ocean to look at you while you speak on this topic she's clearly so passionate about."
+            mc "A friend, perhaps something more? I don't know what this island has planned for me."
+            $ spiritObj.change("emote", "exclamation")
+            $ spiritObj.change("emotion", "digusted")
+            ts "Hah! A \"friend?\" Friends are just cowards who seek comfort in numbers!"
+            $ spiritObj.change("emote", "none")
+    call beacheveningscene 
+    stop moodloop fadeout 3.0
+    with dissolve
+    ts "I had friends, once. Back before I was chopped into a bunch of pieces by my father!"
+    $ spiritObj.change("emote", "sparks")
+    $ spiritObj.change("pose", "close02")
+    $ spiritObj.change("emotion", "mad")
+    ts "Friends aren't what's keeping me held together, I'm floating in a cloud of rage!"
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("emotion", "digusted")
+    $ spiritObj.change("pose", "close03")
+    call event_bloodconfident
+    ts "Ugh, I was so dumb! So busy trying to please everyone and be the perfect student, the perfect employee, the perfect daughter, I didn't take care of myself! And now I'm all I've got."
+    ts "Worse of all, I got distracted from my true purpose. My destiny! The purpose that was sitting inside me my whole life."
+    $ spiritObj.change("emotion", "idle")
+    ts "Ok, so, this might sound a bit silly, but..."
+    nrr "Spirit looks around to see if there's anyone else on the beach. When she's convinced that it's only you two, she continues."
+    $ spiritObj.change("pose", "pose03")
+    ts "There's a dragon that lives inside me. I've always known, but I've tried to ignore it. When I couldn't ignore it, I tried to push it down. I'm so stupid!"
+    mc "You're not stupid, that sounds badass!"
+    $ spiritObj.change("emotion", "happy")
+    ts "Right??? But I didn't let it out, and then I, ya know... CHOP CHOP... and now that dragon is pretty much a one-track revenge beast."
+    $ spiritObj.change("pose", "pose01")
+    menu:
+        ts "But enough about me... what's inside of you, stranger?"
+        "Nothing but darkness":
+            mc "I'd kill to have a dragon--"
+            nrr "Maybe not the best choice of words."
+            mc "I mean, a dragon sounds {i}awesome{/i}. Honestly, though, I don't feel like I've got anything inside me at all. Just... darkness, never ending darkness."
+            nrr "And here I thought Spirit was the biggest goth on the island until YOU arrived!"
+            $ spiritObj.change("emotion", "happy")
+            $ spiritObj.change("emote", "stars")
+            ts "Perhaps I could light a torch and search through that darkness..."
+            $ spiritObj.change("emote", "none")
 
+        "No dragon, just a lot of fire":
+            mc ""
+    hide spirit with Dissolve(0.25)
+    nrr "Just as things are really heating up, you hear a flurry of footsteps behind you and you quickly spin around, ready to fend off whatever new danger has popped up on this strange island..."
+    $ clauddwightObj.change("pose", "pose02")
+    $ clauddwightObj.change("emotion", "disgusted")
+    show clauddwight
+    show speedlines
+    with dissolve
+    nrr "...only to find that it's Dwight and Claudette sprinting across the beach, clipboards in hand which they're waving in the air above their heads."
+    dw "It's very important that we stick to the itinerary!"
+    $ clauddwightObj.change("emotion", "happy")
+    cl "And attend each event as scheduled!"
+    $ clauddwightObj.change("pose", "close01")
+    $ clauddwightObj.change("emotion", "disgusted")
+    dw "Playing sick for cute flirt points was {i}not{/i} a part of this evening's activites."
+    $ clauddwightObj.change("emotion", "mad")
+    cl "That's strictly slotted in for {i}after{/i} campfire storytime. At this rate we'll be late!"
+    mc "Playing sick? No, I was--"
+    $ clauddwightObj.change("emotion", "happy")
+    dw "No time for excuses."
+    cl "Well, there is, but that's scheduled for after what comes after the flirting."
+    $ clauddwightObj.change("pose", "close02")
+    dw "GO GO GO GO!"
+    call blackscene
     return
 
 init python:
