@@ -80,6 +80,11 @@ label event_papercutbolsa:
     play eventloop("audio/sfx_papercut_bolsa.ogg") fadein 3.0 loop
     return 
 
+label event_deadnightstand:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_deadnight_stand.ogg") fadein 3.0 loop
+    return 
+
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False

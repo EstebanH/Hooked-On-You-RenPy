@@ -85,7 +85,7 @@ label chapter2:
     ts "Hey! You didn't actually tell is what you're serving. What are we eating?"
     $ spiritObj.change("emote", "none")
     $ clauddwightObj.change("emotion", "idle")
-    call mood_excitement(scenedissolve = False)
+    call mood_excitement(withDissolve = False)
     show clauddwight
     with Dissolve(0.25)
     dw "It's meat."

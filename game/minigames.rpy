@@ -182,3 +182,94 @@ label results_meatcarving_minigame:
     hide screen meatcarving_bar_background
     with Dissolve(0.25)
     return
+################################################################################
+## Radio
+################################################################################
+init 15 python:
+    radio_position = 0
+    radio_section = 0
+init:
+    transform radio_arrow_move(cur_arrow):
+        subpixel True
+        rotate_pad True
+        rotate cur_arrow
+    image radio_arrow:
+        "images/minigames/radio/radio_arrow.png"
+        align(0.5,0.5)
+        yoffset -40
+    image radio_bg:
+        "images/minigames/radio/bg_radio.png"
+        align(0.5,0.5)
+screen radio_minigame:
+    add "radio_bg"
+    add "radio_arrow" at radio_arrow_move(radio_position)
+    button:
+        xalign .5
+        yalign .9
+        xysize (194, 66)
+        idle_background "gui/gui_button_idle.png"
+        hover_background "gui/gui_button_hover.png"
+        selected_idle_background "gui/gui_button_idle.png"
+        selected_hover_background "gui/gui_button_hover.png"
+        selected_background "gui/gui_button_selected.png"
+        activate_sound "sounds/sfx_tap.ogg"
+        text "STOP":
+            style "menubutton"
+            size 30
+            outlines [ (1, "#000", absolute(0), absolute(0)) ]
+        if radio_position >= 0 and radio_position <= 45:
+                action [SetVariable("radio_section", 1),Hide("radio_timer"), Call("results_radio_minigame")]
+        elif radio_position >= 46 and radio_position <= 90:
+                action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
+        elif radio_position >= 91 and radio_position <= 135:
+                action [SetVariable("radio_section", 3),Hide("radio_timer"), Call("results_radio_minigame")]
+        elif radio_position >= 136 and radio_position <= 180:
+                action [SetVariable("radio_section", 4),Hide("radio_timer"), Call("results_radio_minigame")]
+        elif radio_position >= 181 and radio_position <= 225:
+                action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
+        elif radio_position >= 226 and radio_position <= 270:
+                action [SetVariable("radio_section", 3),Hide("radio_timer"), Call("results_radio_minigame")]
+        elif radio_position >= 271 and radio_position <= 315:
+                action [SetVariable("radio_section", 4),Hide("radio_timer"), Call("results_radio_minigame")]
+        elif radio_position >= 316 and radio_position <= 360:
+                action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
+        else:
+            action [SetVariable("radio_section", 1),Hide("radio_timer"), Call("results_radio_minigame")]
+    if radio_position >= 0 and radio_position <= 45:
+            key "K_SPACE" action [SetVariable("radio_section", 1),Hide("radio_timer"), Call("results_radio_minigame")]
+    elif radio_position >= 46 and radio_position <= 90:
+            key "K_SPACE" action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
+    elif radio_position >= 91 and radio_position <= 135:
+            key "K_SPACE" action [SetVariable("radio_section", 3),Hide("radio_timer"), Call("results_radio_minigame")]
+    elif radio_position >= 136 and radio_position <= 180:
+            key "K_SPACE" action [SetVariable("radio_section", 4),Hide("radio_timer"), Call("results_radio_minigame")]
+    elif radio_position >= 181 and radio_position <= 225:
+            key "K_SPACE" action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
+    elif radio_position >= 226 and radio_position <= 270:
+            key "K_SPACE" action [SetVariable("radio_section", 3),Hide("radio_timer"), Call("results_radio_minigame")]
+    elif radio_position >= 271 and radio_position <= 315:
+            key "K_SPACE" action [SetVariable("radio_section", 4),Hide("radio_timer"), Call("results_radio_minigame")]
+    elif radio_position >= 316 and radio_position <= 360:
+            key "K_SPACE" action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
+    else:
+        key "K_SPACE" action [SetVariable("radio_section", 1),Hide("radio_timer"), Call("results_radio_minigame")]
+
+screen radio_timer:
+    timer 0.0001 repeat True action [If(radio_position <= 360, SetVariable("radio_position", radio_position + 3)),If(radio_position >= 360, SetVariable("radio_position", 0))]
+
+################################################################################
+label start_radio_minigame:
+    show screen radio_timer
+    call screen radio_minigame with Dissolve(0.25)
+    return
+################################################################################
+label end_radio_minigame: #End minigame.
+    hide screen radio_minigame
+    hide screen radio_timer
+    return
+label results_radio_minigame:
+    show screen radio_minigame
+    pause 1
+    hide screen radio_minigame
+    with Dissolve(0.25)
+    return

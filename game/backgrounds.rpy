@@ -297,6 +297,182 @@ init:
 ##
 ## speedlines ###############################################################
 
+## Unsettling ###########################################################
+##
+init:
+    image bloodplatter:
+        zoom 5
+        "images/moods/bloodplatter/bloodplatter_01.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_02.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_03.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_04.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_05.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_06.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_07.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_08.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_09.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_10.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_11.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_12.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_13.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_14.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_15.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_16.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_17.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_18.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_19.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_20.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_21.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_22.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_23.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_24.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_25.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_26.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_27.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_28.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_29.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_30.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_31.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_32.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_33.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_34.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_35.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_36.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_37.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_38.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_39.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_40.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_41.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_42.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_43.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_44.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_45.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_46.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_47.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_48.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_49.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_50.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_51.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_52.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_53.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_54.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_55.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_56.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_57.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_58.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_59.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_60.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_61.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_62.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_63.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_64.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_65.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_66.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_67.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_68.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_69.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_70.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_71.png"
+        pause 0.0625
+        "images/moods/bloodplatter/bloodplatter_72.png"
+        pause 0.0625
+        repeat
+    
+    image bg unsettling:
+        "images/bg/moods/bg_unsettling_bottom.png"
+    image unsettling_top:
+        "images/bg/moods/bg_unsettling_top.png"
+##
+## Unsettling ###############################################################
+
+## Murder ###########################################################
+##
+
+
+init:
+    transform murderwarp:
+        easein 10 yzoom 1.1
+        easeout 5 yzoom 1.3
+        easein 10 yzoom 1.2
+        repeat
+    image bg murder:
+        At("images/bg/moods/bg_murder_bottom.png", murderwarp)
+    image murder_top:
+        "images/bg/moods/bg_murder_top.png"
+
+##
+## Murder ###############################################################
+
 ## warmdark ###########################################################
 ##
 init:
@@ -454,7 +630,7 @@ init:
         "images/moods/bg_warmdark_effect2.png"
         zoom 1.1
 
-label mood_warmdark(image_name=Null, ismovefrombottom = False, scenedissolve = True):
+label mood_warmdark(image_name=Null, ismovefrombottom = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_WarmDark_Loop_V1.ogg") fadein 3.0 loop
@@ -478,7 +654,7 @@ label mood_warmdark(image_name=Null, ismovefrombottom = False, scenedissolve = T
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1
-    if scenedissolve:
+    if withDissolve:
         with dissolve
     return
 
@@ -588,7 +764,7 @@ init:
         (ParticleBurst(At("images/moods/WL_Circle_2.png", starsizefade), explodeTime=0, numParticles=3, particleTime=60.0, particleXSpeed = 1, particleYSpeed = 10, centerZone = 1000).sm) with Dissolve
         zoom .125
 
-label mood_warmlight(image_name=Null, ismovefrombottom = False, scenedissolve = True):
+label mood_warmlight(image_name=Null, ismovefrombottom = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_WarmLight_Loop_V1.ogg") fadein 3.0 loop
@@ -618,7 +794,7 @@ label mood_warmlight(image_name=Null, ismovefrombottom = False, scenedissolve = 
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1
-    if scenedissolve:
+    if withDissolve:
         with dissolve
     return
 ##
@@ -700,7 +876,7 @@ init:
         (ParticleBurst(At("excite_flower_layers", flowerfade), explodeTime=0, numParticles=2, particleTime=60.0, particleXSpeed = 30, particleYSpeed = 15, centerZone = 1000 ).sm) with Dissolve
         zoom 0.1
 
-label mood_excitement(image_name=Null, ismovefrombottom = False, scenedissolve = True):
+label mood_excitement(image_name=Null, ismovefrombottom = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_Excitement_Loop_V1.ogg") fadein 3.0 loop
@@ -717,7 +893,7 @@ label mood_excitement(image_name=Null, ismovefrombottom = False, scenedissolve =
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1
-    if scenedissolve:
+    if withDissolve:
         with dissolve
     return
 
@@ -781,7 +957,7 @@ init:
         (ParticleBurst(At("images/moods/Happy_Starblur.png", starfade), explodeTime=0, numParticles=3, particleTime=20.0, particleXSpeed = 10, particleYSpeed = 5, centerZone = 1000 ).sm) with Dissolve
         zoom 0.1
 
-label mood_happy(image_name=Null, ismovefrombottom = False, scenedissolve = True):
+label mood_happy(image_name=Null, ismovefrombottom = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
     play moodloop("audio/m_Mood_Happy_Loop_V1.ogg") fadein 3.0 loop
@@ -803,7 +979,7 @@ label mood_happy(image_name=Null, ismovefrombottom = False, scenedissolve = True
             show expression image_name at dissolvecenter zorder 1
         else:
             show expression image_name at nodissolvecenter zorder 1
-    if scenedissolve:
+    if withDissolve:
         with dissolve
     return
 
@@ -848,17 +1024,19 @@ init:
         "images/bg/bg_pool_night.png"
         matrixcolor mymatrix_normal
 
+    image bg fireplace:
+        "images/bg/bg_fireplace.png"
+        matrixcolor mymatrix_normal
+
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
 
     image mystery_top:
         "images/bg/moods/bg_mystery_top.png"
-        xalign 0.5
-        yalign 0.5
     image bg mystery:
-        At("images/bg/moods/bg_mystery_bottom.png",mysteryxwarp,mysteryywarp)
         xalign 0.5
         yalign 0.5
+        At("images/bg/moods/bg_mystery_bottom.png",mysteryxwarp,mysteryywarp)
     transform mysteryywarp:
         easein 8 yzoom 1.0
         pause 0.25
@@ -1024,6 +1202,19 @@ label poolnightscene(keep_images=False, withDissolve=True):
         with dissolve
     return
 
+label fireplacescene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_cool_outfit.ogg"
+    if keep_images:
+        call hideeffects
+        show bg fireplace
+    else:
+        scene bg fireplace
+    if withDissolve:
+        with dissolve
+    return
+
 
 label hideeffects:
     hide cloudy1
@@ -1133,6 +1324,38 @@ label mood_mystery(image_name=Null, ismovefrombottom = False, nobg = False):
         scene bg mystery
     show dots
     show mystery_top
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+
+label mood_unsettling(image_name=Null, ismovefrombottom = False, nobg = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Unsettling_Loop_V1.ogg") fadein 3.0 loop
+    if not nobg:
+        scene bg unsettling
+    show bloodplatter
+    show unsettling_top
+    if image_name is not Null:
+        if ismovefrombottom:
+            show expression image_name at dissolvecenter zorder 1
+        else:
+            show expression image_name at nodissolvecenter zorder 1
+    with dissolve
+    return
+
+label mood_murder(image_name=Null, ismovefrombottom = False, nobg = False):
+    window hide
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play moodloop("audio/m_Mood_Murder_Loop_V1.ogg") fadein 3.0 loop
+    if not nobg:
+        scene bg murder
+    show murder_top
     if image_name is not Null:
         if ismovefrombottom:
             show expression image_name at dissolvecenter zorder 1
