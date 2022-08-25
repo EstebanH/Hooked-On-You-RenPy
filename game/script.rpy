@@ -45,6 +45,11 @@ label event_hell:
     play eventloop("audio/sfx_welcome_to_hell_nosolo.ogg") fadein 3.0 loop
     return
 
+label event_hell_solo:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_welcome_to_hell.ogg") fadein 3.0 loop
+    return
+
 label event_tikitiki:
     $ renpy.music.set_volume(0.25,3.0,"music")
     play eventloop("audio/sfx_tikitiki_youredead.ogg") fadein 3.0 loop

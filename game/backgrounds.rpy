@@ -1024,6 +1024,10 @@ init:
         "images/bg/bg_pool_night.png"
         matrixcolor mymatrix_normal
 
+    image bg pool_day:
+        "images/bg/bg_pool_day.png"
+        matrixcolor mymatrix_normal
+
     image bg fireplace:
         "images/bg/bg_fireplace.png"
         matrixcolor mymatrix_normal
@@ -1119,6 +1123,8 @@ label loadingscene:
 label blackscene:
     window hide
     $ quick_menu = False
+    stop hauntloop fadeout 3.0
+    stop moodloop fadeout 3.0
     stop eventloop fadeout 3.0
     scene black with dissolve
     pause 1
@@ -1198,6 +1204,18 @@ label poolnightscene(keep_images=False, withDissolve=True):
         show bg pool_night
     else:
         scene bg pool_night
+    if withDissolve:
+        with dissolve
+    return
+label pooldayscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_pool.ogg"
+    if keep_images:
+        call hideeffects
+        show bg pool_day
+    else:
+        scene bg pool_day
     if withDissolve:
         with dissolve
     return

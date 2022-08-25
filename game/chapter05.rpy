@@ -102,7 +102,187 @@ label chapter05:
     call oceanhaunting
     oc "Hey wait a second. How did a possibly omniscient, possibly unreliable Narrator physically just knock that coffee out of your hand?"
     nrr "This is not Parliament and the floor does not recognize the Ocean to speak out of turn at this moment!"
-
+    oc "I need no recognition! For I am The Ocean, I dominate the land. I submerge those who defy me, and become their watery grave."
+    oc "Actually, speaking of graves, I would like to say something. Something of {i}grave{/i} importance."
+    nrr "Fine, go ahead."
+    oc "Even if this place is an eternal prison of pain---and I'm not saying it is---even a place of extreme horror can still receive a 5/5, 10/10, thumbs up review, if it was crafted with love and/or that's the type of thing you're into."
+    stop hauntloop fadeout 3.0
+    call beachdayscene
+    nrr "You know, the Ocean is right. A lot of hard work goes into a place like this."
+    nrr "You should really judge it on the artist's intent. And whenever possible, start from the mindset of giving them the benefit of the doubt. Constructing these elaborate simulations -- uh, I mean vacations -- is not easy to do."
+    nrr "Sometimes there are some small bugs or inconsistencies, but that's just the nature of the process! Perfection is overrated. The universe is filled with mysteries."
+    nrr "We ought to celebrate those who venture to bare their souls as part of a creative process with the ultimate intent of making things for our enjoyment, not be overly critical of them."
+    mc "Are you two trying to sell me on this place actually being good?"
+    nrr "You don't have to say it like that! Especially after I saved you from that poorly made cup of coffee!"
+    $ clauddwightObj.change("pose", "pose02")
+    $ clauddwightObj.change("emotion", "sad")
+    show clauddwight with dissolve
+    cl "Sorry, we should have been here five minutes ago."
+    dw "They always do this on the second morning."
+    cl "Sad, really."
+    dw "Even if they do make some great points."
+    $ clauddwightObj.change("emotion", "happy")
+    cl "Oh, sure, they make great points. I agree."
+    $ clauddwightObj.change("emotion", "disgusted")
+    mc "Can we PLEASE move on?"
+    cl "Yes, of course. Apologies, [mc_name]."
+    $ clauddwightObj.change("emotion", "happy")
+    $ clauddwightObj.change("pose", "close01")
+    menu:
+        dw "The last few minutes aside, have you been enjoying your time here on the island?"
+        "\"Yes, I've been having a lovely time!\"":
+            mc "If I were to summarize my time here, I'd call it a lovely time!"
+            $ clauddwightObj.change("emote", "heart")
+            cl "Aww, \"lovely.\" We love to hear that. Because isn't that what this place is all about? Finding love?"
+            $ clauddwightObj.change("emote", "none")
+            $ clauddwightObj.change("emotion", "disgusted")
+            dw "No."
+            $ clauddwightObj.change("emotion", "scared")
+            cl "Shut up, Dwight. You'll get us all killed. Again. And again and again."
+        "\"Yes, It's been really entertaining!\"":
+            mc ""
+        "\"Yes, I'm not suspicious there's no 'no' option!\"":
+            mc ""
+    
+    $ clauddwightObj.change("emotion", "happy")
+    cl "We do need to ask you one more question though. We all had to sign away our rights to say anything negative about this place."
+    $ clauddwightObj.change("emotion", "sad")
+    menu:
+        dw "Would you please sign this non-disparagement agreement?"
+        "Yes":
+            mc ""
+        "No":
+            $ clauddwightObj.change("emotion", "happy")
+            mc "No, I will not say anything negative about this island. You have my word that I, [mc_name], agree with the terms of this verbal contract!"
+    play sound "sounds/sfx_signature_clauddwight04.ogg"
+    $ clauddwightObj.change("pose", "close02")
+    dw "Perfect!"
+    cl "Delightful."
+    call oceanhaunting
+    oc "Excellent."
+    stop hauntloop fadeout 3.0
+    call beachdayscene(withDissolve=False)
+    show clauddwight
+    with Dissolve(0.25)
+    nrr "Yes. YES."
+    nrr "Hey, [mc_name], it's still totally cool if you have constructive feedback. The place to leave that is in a positive review, because we all know that nobody reads negative reviews of games--errrr--resorts like this."
+    nrr "Anyway. I see Dwight and Claudette have gone into a trance. And with the grumbling I hear form your belly, that can mean only one thing."
+    call oceanhaunting
+    oc "Breakfast."
+    stop hauntloop fadeout 3.0
+    call blackscene
+    call towelscene
+    call event_speeddating
+    nrr "Perfect timing. Everyone rolls into the dining area to lard up those sexy little bellies with pancakes and bacon and-"
+    nrr "So much for maintaining these beach bods. We're all half naked in a tropical paradise! Can we get some strawberries here? A yogurt? Magic powers will only get you so far. Even Killers watch their sodium intake."
+    nrr "You take your plate and sit down, thinking about yesterday and the whirlwind of feelings you experienced."
+    nrr "Danger, dread, disorientation--it was like going through puberty again, except all in one day on a beautiful and mysterious island."
+    nrr "It looks like you're not the only one doing some introspection, though. Trapper stands up to talk about how his day went, in case anyone was wondering."
+    nrr "Personally, I wasn't."
+    ## This is obviously a check for how well the player tracked with killers
+    $ trapperObj.change("pose", "close01")
+    $ trapperObj.change("emotion", "disgusted")
+    show trapper with dissolve
+    tt "I'll be honest, I didn't expect you to survive yesterday. So congrats. I guess."
+    $ trapperObj.change("emotion", "idle")
+    tt "Whether you survive today is 50/50 at best. Good luck?"
+    hide trapper with dissolve
+    nrr "Well, that was bizarre. Back to your breakf--nope."
+    nrr "Now Huntress steps up to talk about her feelings."
+    $ huntressObj.change("pose", "close02")
+    $ huntressObj.change("emotion", "disgusted")
+    $ huntressObj.change("emote", "anger")
+    show huntress at movecenterleft with dissolve 
+    th "This island is treacherous. I don't know what the newcomer thinks they are doing here but it certainly isn't helping any of us."
+    $ huntressObj.change("emote", "none")
+    $ huntressObj.change("pose", "close01")
+    nrr "Whoa. Huntress pretends to be all independent, but is she secretly kinda miffed you and her aren't getting along?"
+    hide huntress with dissolve
+    nrr "Ah well, that surely must be it. No one else would weirdly stand up during breakfast to--"
+    nrr "And just like that, here comes Spirit."
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("pose", "close01")
+    $ spiritObj.change("emotion", "idle")
+    show spirit with dissolve
+    ts "Did everyone sleep well? I did, or should I say did not? I haven't slept in 20 years on account of the whole burning quest for familial revenge thing, and last night was no different, so in that case it was exactly how it should be. Got a lot of reading done, though."
+    $ spiritObj.change("pose", "close03")
+    ts "Now, if you don't mind, I'm going to go back to quietly resenting being trapped here with you all, while looking cute doing so."
+    hide spirit with dissolve
+    nrr "Guessing Wraith has had enough time to work up the courage to speak in front a group."
+    nrr "Ah, perfect, there he is. Take us home, Wraith."
+    $ wraithObj.change("pose", "close02")
+    $ wraithObj.change("emotion", "idle")
+    show wraith at movecenterleft with dissolve 
+    tw "I'm glad the introduction of [mc_name] to our \"island paradise\"--and yeah that was in quotations-- didn't distract me from my normal routine: ignoring all of you and vice versa."
+    $ wraithObj.change("emote", "anger")
+    $ wraithObj.change("emotion", "disgusted")
+    tw "This place is an eternal prison of suspicion and suffering and no one cares. I'm still the only one asking any questions."
+    $ wraithObj.change("emote", "none")
+    $ trapperObj.change("emotion", "idle")
+    $ trapperObj.change("pose", "close01")
+    $ trapperObj.change("emote", "question")
+    show trapper at movecenterright with Dissolve(0.25)
+    tt "I'm asking a question too. It's \"When will Wraith shut up?\""
     $ trapperObj.change("emote", "none")
+    $ wraithObj.change("emote", "none")
+    hide wraith 
+    hide trapper
+    with dissolve
+    nrr "And now they're all looking at you expectantly. Wait, are YOU supposed to stand up and explain how yesterday made you feel?"
+    mc "Uh... I think I need to process everything by myself. I'll see you all soon!"
+    nrr "Damn. What a power play. Keep 'em wanting more. You're getting good at this game--er, uh... sexy true-to-life experience."
+    nrr "Shame you didn't get to eat any breakfast, but so be it."
+    call blackscene
+    call pooldayscene
+    call event_hell_solo
+    nrr "After breakfast, you head to the hot tub by yourself to clear your head. Yesterday was, in short, a lot."
+    mc "Well, yeah, I guess. That is OK, right? You know, I might be pursuing a relationship with one of these four fine Killers, but it feels like the person I'm getting to know the most... is you, Narrator."
+    nrr "It's only \"OK\" insomuch as it serves to illustrate that you're lost your mind, seeing how I'm not real and all."
+    nrr "Yeah, I heard it this time. I think it's coming from behind the pool shed."
+    dw "No, no. Stick it in there. A little more. A little more. Oh YEAH! That's it, yes."
+    cl "How does that feel?"
+    dw "Intense."
+    cl "Nice"
+    dw "Yeah, that feels right."
+    nrr "This... this is uncomfortable."
+    cl "Now I want you to take that and put it right... yeah, you know what I'm talking about."
+    dw "Just like that?"
+    cl "Exactly like that."
+    nrr "I swear I had no idea these two even do... uh... whatever it is they are doing."
+    nrr "I'm afraid to look."
+    nrr "Please say something so they know you're close by and can hear everything."
+    mc "Uh... {i}OH WOW{/i}! Look at this super cool bottle of Trickster-brand suntan lotion someone left on a chair. Anyone know where I can buy some?"
+    cl "Dammit!"
+    dw "Aw, c'mon! A little privacy please!"
+    $ clauddwightObj.change("pose","close02")
+    $ clauddwightObj.change("emotion","mad")
+    show speedlines
+    show clauddwight
+    with Dissolve(0.25)
+    nrr "Dwight is panting and Claudette has a crazed look in her eyes."
+    mc "Sorry! I didn't know how else to let you know I was here. And that I could hear you... well, {i}you know{/i}."
+    $ clauddwightObj.change("emotion","disgusted")
+    hide speedlines
+    cl "Know what? What do you think we were doing?"
+    mc "You were doing... I don't know exactly what you were doing, but it sounded like... uh... fun?"
+    $ clauddwightObj.change("pose","close01")
+    cl "You think two people trying to find new ways to kill each other in a desperate search to make their own death permanent is fun?"
+    nrr "Oops."
+    $ clauddwightObj.change("pose","pose01")
+    $ clauddwightObj.change("emotion","sad")
+    dw "We get five minutes to ourselves every day. And we spend it hoping if we stab each other in juuuust the right spot we won't get resurrected."
+    $ clauddwightObj.change("emotion","happy")
+    cl "I've come to believe that the key is finding the exact place we need to bleed out from. And I believe that place is in our appendix! Why else would it be there?"
+    nrr "Makes sense to me."
+    $ clauddwightObj.change("emotion","mad")
+    cl "Did you actually think we were... me and {i}him{/i}? Dwight? Ahahahah! AHAHAHAHAHAHAHA!"
+    dw "You don't have to laugh that hard. They get it."
+    $ clauddwightObj.change("pose","pose02")
+    cl "{i}AHAHAHAHAHAHAHAHAHAHAHAHAH!{/i}"
+    $ clauddwightObj.change("emotion","scared")
+    dw "My life is a nightmare and yey somehow it's never been worse than right now."
+
+
+
     call blackscene
     return
