@@ -90,6 +90,11 @@ label event_deadnightstand:
     play eventloop("audio/sfx_deadnight_stand.ogg") fadein 3.0 loop
     return 
 
+label event_frunkyzombie:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_funky_zombie.ogg") fadein 3.0 loop
+    return 
+
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False
@@ -108,7 +113,7 @@ label namePlayer:
 # The game starts here.
 label start:
     # Initialize important variables
-    $ mc_name = "PlayerName"
+    $ mc_name = "Player"
     $ save_name = mc_name
     $ clauddwightObj = ClauddwightClass()
     $ entityObj = EntityClass()
@@ -124,10 +129,12 @@ label start:
     call namePlayer
     call loadingscene
     call prologue
-    call chapter1
-    call chapter2
-    call chapter3
-    call chapter4
+    call chapter01
+    call chapter02
+    call chapter03
+    call chapter04
+    call chapter05
+    call chapter06
     nrr "<<<<<<<Ends here for now>>>>>>>>"
     # This ends the game.
     return

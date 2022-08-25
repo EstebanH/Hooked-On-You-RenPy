@@ -1,4 +1,4 @@
-label chapter4:
+label chapter04:
     call poolnightscene
     call event_papercutbolsa
     nrr "It's just the right temperature for an eventing dip. Plus, if some jealous shark comes along and manages to jump from the ocean into the pool, you're also pretty sure your Killer companion could handle it."
@@ -127,12 +127,12 @@ label chapter4:
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
             $ diamondchoice = False
             call summon_spirit
-        "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
-            $ diamondchoice = False
-            call summon_wraith
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False
             call summon_trapper
+        "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
+            $ diamondchoice = False
+            call summon_wraith
         "gui/button_huntress_idle.png¦gui/button_huntress_hover.png¦gui/button_huntress_select.png":
             $ diamondchoice = False
             call summon_huntress

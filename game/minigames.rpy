@@ -273,3 +273,97 @@ label results_radio_minigame:
     hide screen radio_minigame
     with Dissolve(0.25)
     return
+################################################################################
+## sunscreen_minigame
+################################################################################
+
+init 15 python:
+    sunscreen_position = 0
+    sunscreen_section = 0
+    sunscreen_barpos = 0
+    sunscreen_speed = 1
+    sunscreen_bar_start_offset = 64
+    startpos_sunscreen = sunscreen_bar_start_offset
+    endpos_perfect_sunscreen = (sunscreen_bar_start_offset+30)
+    endpos_sunscreen = (sunscreen_bar_start_offset+80)
+init:
+    transform sunscreen_arrow_move(cur_arrow):
+        subpixel True
+        rotate_pad True
+        rotate cur_arrow
+    image sunscreen_arrow:
+        "images/minigames/sunscreen/sunscreen_arrow.png"
+        align(0.5,0.5)
+        yoffset -40
+    image sunscreen_bg:
+        "images/minigames/sunscreen/bg_sunscreen.png"
+        align(0.5,0.5)
+    image sunscreen_bar:
+        "images/minigames/sunscreen/sunscreen_bar.png"
+        align(0.5,0.5)
+        yoffset -40
+        
+screen sunscreen_minigame:
+    add "sunscreen_arrow" at sunscreen_arrow_move(sunscreen_position)
+    button:
+        xalign .5
+        yalign .9
+        xysize (194, 66)
+        idle_background "gui/gui_button_idle.png"
+        hover_background "gui/gui_button_hover.png"
+        selected_idle_background "gui/gui_button_idle.png"
+        selected_hover_background "gui/gui_button_hover.png"
+        selected_background "gui/gui_button_selected.png"
+        activate_sound "sounds/sfx_tap.ogg"
+        text "STOP":
+            style "menubutton"
+            size 30
+            outlines [ (1, "#000", absolute(0), absolute(0)) ]
+        if sunscreen_position >= startpos_sunscreen and sunscreen_position <= endpos_perfect_sunscreen:
+                action [SetVariable("sunscreen_section", 1),Hide("sunscreen_timer"), Call("results_sunscreen_minigame")]
+        elif sunscreen_position >= endpos_perfect_sunscreen and sunscreen_position <= endpos_sunscreen:
+                action [SetVariable("sunscreen_section", 2),Hide("sunscreen_timer"), Call("results_sunscreen_minigame")]
+        else:
+            action [SetVariable("sunscreen_section", 0),Hide("sunscreen_timer"), Call("results_sunscreen_minigame")]
+
+    if sunscreen_position >= 0 and sunscreen_position <= 90:
+        key "K_SPACE" action [SetVariable("sunscreen_section", 1),Hide("sunscreen_timer"), Call("results_sunscreen_minigame")]
+    else:
+        key "K_SPACE" action [SetVariable("sunscreen_section", 1),Hide("sunscreen_timer"), Call("results_sunscreen_minigame")]
+screen sunscreen_bar_background:
+    add "sunscreen_bg"
+    add "sunscreen_bar" at sunscreen_arrow_move(sunscreen_barpos)
+
+screen sunscreen_timer:
+    timer 0.01 repeat True action [If(sunscreen_position <= 360, SetVariable("sunscreen_position", sunscreen_position + sunscreen_speed)),If(sunscreen_position >= 360, SetVariable("sunscreen_position", 0))]
+
+
+################################################################################
+label start_sunscreen_minigame:
+    #Get a new bar position at startup
+    $ sunscreen_barpos = renpy.random.randint(0, 216)
+    #Start of bar
+    $ startpos_sunscreen = (sunscreen_barpos + sunscreen_bar_start_offset)
+    #End of Perfect on bar
+    $ endpos_perfect_sunscreen = (startpos_sunscreen+30)
+    #End of bar
+    $ endpos_sunscreen = (startpos_sunscreen+80)
+    
+    show screen sunscreen_timer
+    show screen sunscreen_bar_background
+    call screen sunscreen_minigame with Dissolve(0.25)
+    return
+################################################################################
+label end_sunscreen_minigame: #End minigame.
+    hide screen sunscreen_minigame
+    hide screen sunscreen_timer
+    hide screen sunscreen_bar_background
+    return
+label results_sunscreen_minigame:
+    show screen sunscreen_bar_background
+    show screen sunscreen_minigame
+    pause 1
+    hide screen sunscreen_minigame
+    hide screen sunscreen_bar_background
+    with Dissolve(0.25)
+    return

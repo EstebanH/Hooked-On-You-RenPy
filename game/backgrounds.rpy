@@ -1032,6 +1032,30 @@ init:
         "images/bg/bg_fireplace.png"
         matrixcolor mymatrix_normal
 
+    image bg lighthouse_day:
+        "images/bg/bg_lighthouse_day.png"
+        matrixcolor mymatrix_normal
+
+    image bg lighthouse_night:
+        "images/bg/bg_lighthouse_night.png"
+        matrixcolor mymatrix_normal
+
+    image bg lighthouse_night_light:
+        "images/bg/bg_lighthouse_night_light.png"
+        matrixcolor mymatrix_normal
+
+    image bg lighthouse_inside_day:
+        "images/bg/bg_lighthouse_inside_day.png"
+        matrixcolor mymatrix_normal
+
+    image bg lighthouse_inside_night:
+        "images/bg/bg_lighthouse_inside_night.png"
+        matrixcolor mymatrix_normal
+
+    image bg lighthouse_inside_night_light:
+        "images/bg/bg_lighthouse_inside_night_light.png"
+        matrixcolor mymatrix_normal
+
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
 
@@ -1232,6 +1256,86 @@ label fireplacescene(keep_images=False, withDissolve=True):
     if withDissolve:
         with dissolve
     return
+
+label lighthousedayscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_lighthouse.ogg"
+    if keep_images:
+        call hideeffects
+        show bg lighthouse_day
+    else:
+        scene bg lighthouse_day
+    if withDissolve:
+        with dissolve
+    return
+
+label lighthousenightscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_lighthouse_night_off.ogg"
+    if keep_images:
+        call hideeffects
+        show bg lighthouse_night
+    else:
+        scene bg lighthouse_night
+    if withDissolve:
+        with dissolve
+    return
+
+label lighthousenighteyescene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_lighthouse_night_on.ogg"
+    if keep_images:
+        call hideeffects
+        show bg lighthouse_night_light
+    else:
+        scene bg lighthouse_night_light
+    if withDissolve:
+        with dissolve
+    return
+
+label lighthousedayinsidescene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_lighthouse.ogg"
+    if keep_images:
+        call hideeffects
+        show bg lighthouse_inside_day
+    else:
+        scene bg lighthouse_inside_day
+    if withDissolve:
+        with dissolve
+    return
+
+label lighthouseinsidenighteyescene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_lighthouse_eye_on.ogg"
+    if keep_images:
+        call hideeffects
+        show bg lighthouse_inside_night_light
+    else:
+        scene bg lighthouse_inside_night_light
+    if withDissolve:
+        with dissolve
+    return
+
+
+label lighthouseinsidenightscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_lighthouse_eye_off.ogg"
+    if keep_images:
+        call hideeffects
+        show bg lighthouse_inside_night
+    else:
+        scene bg lighthouse_inside_night
+    if withDissolve:
+        with dissolve
+    return
+
 
 
 label hideeffects:

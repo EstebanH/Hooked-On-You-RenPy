@@ -281,8 +281,127 @@ label chapter05:
     cl "{i}AHAHAHAHAHAHAHAHAHAHAHAHAH!{/i}"
     $ clauddwightObj.change("emotion","scared")
     dw "My life is a nightmare and yey somehow it's never been worse than right now."
+    $ clauddwightObj.change("emotion","disgusted")
+    cl "Let's go, loverboy. I noted all our entry wounds and our five minutes is up anyway. Good luck, [mc_name]. You're going to need it."
+    $ clauddwightObj.change("emotion","sad")
+    $ clauddwightObj.change("pose","pose01")
+    dw "And hey, if you figure out how to escape this island please make sure your ghost tells us how."
+    hide clauddwight with dissolve
+    nrr "That was both a tragedy and a comedy. A Cragemdy."
+    mc "..."
+    nrr "Shut up, I like it. Anyway, where were we? Oh yeah!"
+    nrr "You're heading to the hot tub by yourself to clear your head. Yesterday was, in short, a lot. So far today has been exhausting too."
+    nrr "But you're dedicated to achieving a true, centered, sense of calm."
+    nrr "No drama, no bullshit, just soaking up sun in a heated pool."
+    nrr "Today you're on a date with {i}you{/i}."
+    call oceanhaunting
+    oc "Ooooh, I like that. I want to be on a date with me."
+    call pooldayscene
+    nrr "And aside from that disturbing thought, all is going to plan until a shadow blocks your precious sun."
+    nrr "Spiky-tipped. Like a palm tree is bending over to screw with you."
+    nrr "But it's no tree at all. It's..."
+    play sound "sounds/sfx_signature_trickster01.ogg"
+    $ tricksterObj.change("emotion","idle")
+    $ tricksterObj.change("pose","pose02")
+    show trickster with dissolve
+    tr "Hey babe."
+    $ tricksterObj.change("emotion","disgusted")
+    tr "Breakfast was weird, huh? Everyone just getting up and announcing how they're feeling?"
+    $ tricksterObj.change("pose","pose01")
+    tr "What's that about? Some forced kind of check-in with the group? I don't like it. Fishy. Kinda lazy."
+    $ tricksterObj.change("emotion","happy")
+    tr "Whatever though. Breakfast is dumb. No one should eat before noon, or after 4pm."
+    $ tricksterObj.change("emote","stars")
+    tr "Yeah, I do intermittent fasting. You seen my abs, by the way?"
+    $ tricksterObj.change("emote","none")
+    $ tricksterObj.change("pose","close02")
+    tr "Maybe you can seen them later at my private stage on the other island--you know IP Island--where all the Hollywood celebs hand out. If you play your cards right..."
+    $ tricksterObj.change("emotion","mad")
+    $ tricksterObj.change("emote","sweat")
+    tr "...I could give you a private show."
+    $ tricksterObj.change("emote","none")
+    tr "Catch ya around."
+    hide trickster with dissolve
+    mc "His abs {i}are{/i} pretty amazing, you gotta give him that. And the blow-up bat? Threatening but adorable. Makes for an interesting silhouette. Genius design."
+    nrr "He's a psychopath, just like the rest of them. You don't {i}gotta give him{/i} anything. And we're not best friends. Just because we had a little talk about doing a little talking, it's not an open invitation to go smashing the fourth wall every 5 seconds."
+    nrr "Ok, now that that guy is gone and we've got some ground rules established that we're definitely going to abide by, it's time to lay back, take some deep, slow breaths, and--"
+    nrr "Nope. Another shadow. These people will not leave you alone."
+    nrr "Let's see who it is this time."
+    play sound "sounds/sfx_signature_spirit03.ogg"
+    $ spiritObj.change("pose", "pose01")
+    $ spiritObj.change("emotion", "idle")
+    show spirit at movecenterright with dissolve
+    nrr "Oh, it's Spirit. That checks out. You two {i}have{/i} gotten pretty cozy..."
+    $ spiritObj.change("emotion", "happy")
+    $ spiritObj.change("emote", "thoughts")
+    ts "We should get out of here. I know a place that brings a bit of welcome darkness to this tropical nightmare. Best of all, I'm the only one that seems to know about it, so we won't be bothered there."
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("pose", "close03")
+    $ spiritObj.change("emotion", "idle")
+    ts "I don't even know why I'm telling you, really. It's my private spot. But I guess I've got a feeling that you'll appreciate it in the way that I do. Not like these other Killers. They don't get me."
+    $ spiritObj.change("emote", "anger")
+    $ spiritObj.change("pose", "close02")
+    $ spiritObj.change("emotion", "mad")
+    ts "But I'll get them. Oh, I'll get them all, and I'll get my {i}father too! And I'll PUNISH HIM FOR WHAT HE DID TO MY MOTHER AND ME!{/i}"
+    $ spiritObj.change("emote", "none")
+    nrr "Spirit radiates a menacing aura, waving her sword around in the air as she threatens, well, the entire universe. It's scary, and... more than a little hot, if you get turned on by menacing."
+    $ spiritObj.change("pose", "pose01")
+    nrr "Look... all this time on Murderer's Island has got us both a little confused about things. I'm choosing to lean into it. I'd suggest you do the same."
+    nrr "You've seen her get mad, which is probably enough to scare you into compliance. But you've also seen that there's a more sensitive side hiding within her... Which one do you think will win out?"
+    $ spiritObj.change("emotion", "idle")
+    nrr "You consider her offer, but..."
+    $ spiritObj.change("emotion", "disgusted")
+    nrr "Before you can decide if you want to go off with Spirit, The Trapper interjects."
+    $ spiritObj.change("emotion", "mad")
+    play sound "sounds/sfx_signature_trapper03.ogg"
+    $ trapperObj.change("emotion", "mad")
+    $ trapperObj.change("pose", "pose01")
+    show trapper at movecenterleft with dissolve
+    tt "I demand that you reconsider. Actually, I strongly, strongly suggest it. Especially if you're choosing between me, a walking mountain with a rich ore of gold running through it, and a literal wisp of air."
+    tt "Literally. Air. Spirit is held together by air. I wouldn't put my faith in anyone who can be defeated by a strong breeze."
+    $ spiritObj.change("pose", "pose03")
+    $ spiritObj.change("emotion", "idle")
+    nrr "Tough choice. You weigh your options quickly, because you can only go on one date today and you also don't want to be hacked to pieces for saying the wrong thing."
+    nrr "It's always good to remember that these are all cold-blooded Killers. But you know what they say when life gives you lemons, you make lemonade."
+    nrr "And then die a horrible, wretching writhing death after drinking it because the lemons were poisoned all along."
+    nrr "Sorry, this island has really got me tilted."
+    hide spirit
+    hide trapper
+    with dissolve
+    $ diamondchoice = True
+    menu:
+        cho "So who will it be?"
+        "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
+            $ diamondchoice = False
+            call date_spirit
+        "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
+            $ diamondchoice = False
+            call date_trapper
 
-
-
+    nrr "Before you ask Claudette and Dwight to clarify, I'll just let you know that yes, it is too late to change your answer now."
+    stop eventloop fadeout 3.0
     call blackscene
+    return
+
+label date_spirit
+    mc "I... I gotta go with Spirit."
+    $ spiritObj.change("pose", "pose04")
+    $ spiritObj.change("emotion", "idle")
+    $ spiritObj.change("emote", "stars")
+    show spirit with dissolve
+    ts "You've made the correct decision. But know this: just because you picked me, doesn't mean I'm going to slobber all over you like a dog, understand?"
+    $ spiritObj.change("emote", "none")
+    mc "Welll, of course, I--"
+    $ spiritObj.change("pose", "pose03")
+    $ spiritObj.change("emotion", "disgusted")
+    ts "You've still got a lot to prove to me. I want to believe that our connection is real, but I've been hurt before. Literally. With a katana."
+    $ spiritObj.change("emote", "anger")
+    $ spiritObj.change("pose", "pose02")
+    ts "A katana that I now wield--in spectral form--you feel me? Because you will feel me, if you try any of that macho Trapper crap."
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("emotion", "idle")
+    mc "Yeah, I \"feel you.\""
+    return
+    
+label date_trapper
     return

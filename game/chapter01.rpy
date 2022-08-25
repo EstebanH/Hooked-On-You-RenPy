@@ -40,7 +40,7 @@ label choice_icecream:
             nrr "I think you're gonna do juuuuust fine."
     return
 
-label chapter1:
+label chapter01:
     call volleyballscene
     nrr "It seems like you've derailed the volleyball game just by showing up."
     $ trapperObj.change("pose", "pose01")

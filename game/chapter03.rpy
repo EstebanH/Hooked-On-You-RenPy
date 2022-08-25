@@ -1,4 +1,4 @@
-label chapter3:
+label chapter03:
     call campfirescene
     call event_speeddating
     nrr "Once everyone has gathered at the firepit, Dwight and Claudette quickly make an announcement."

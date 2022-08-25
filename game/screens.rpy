@@ -320,9 +320,9 @@ screen choice(items):
                         activate_sound "sounds/sfx_ui_choice_select.ogg"
                     $ count = count + 1
     elif diamondchoice:
-        vbox:
+        hbox:
             box_wrap True
-            ymaximum 202*2
+            xmaximum 202*2
             spacing -0
             box_wrap_spacing -0
             at diamondbutton            

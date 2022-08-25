@@ -1,4 +1,4 @@
-label chapter2:
+label chapter02:
     call towelscene
     call event_dinner
     mc "Seems like the next activity is...meal-time? How quaint."
@@ -223,11 +223,11 @@ label chapter2:
     nrr "Slice!"
     while (int(meatcarving_turn) < 5):
         call start_meatcarving_minigame
-        if spinthebottle_section == 1:
+        if meatcarving_section == 1:
             call end_meatcarving_minigame
             $ meatcarving_perfects = meatcarving_perfects + 1
             nrr "Perfect!"
-        elif spinthebottle_section == 2:
+        elif meatcarving_section == 2:
             call end_meatcarving_minigame
             $ meatcarving_good = meatcarving_good + 1
             nrr "Not bad..."
