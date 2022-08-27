@@ -247,16 +247,16 @@ label chapter08:
         cho "You look from killer to killer, trying to decide who might be the most entertaining."
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
             $ diamondchoice = False
-            call summon_spirit
+            call storytime_spirit
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False
-            call summon_trapper
+            call storytime_spirit
         "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
             $ diamondchoice = False
-            call summon_wraith
+            call storytime_spirit
         "gui/button_huntress_idle.png¦gui/button_huntress_hover.png¦gui/button_huntress_select.png":
             $ diamondchoice = False
-            call summon_huntress
+            call storytime_spirit
 
     stop eventloop fadeout 3.0
     $ clauddwightObj.change("pose", "pose02")
@@ -278,19 +278,117 @@ label chapter08:
     $ clauddwightObj.change("emotion", "disgusted")
     dw "OK OK! You have fun tonight, and try not to--\"wink wink\"--end up dead!"
     mc "Why did you say the words \"wink wink\" out loud and what kind of double entendre are you getting at with the \"end up dead\" thing?"
+    $ clauddwightObj.change("emotion", "idle")
+    cl "Dwight is physically incapable of winking. Not since... the accident. And you {i}do{/i} know that all of these people are despicable criminals with double-digit kill counts, right?"
+    $ clauddwightObj.change("emotion", "sad")
+    $ clauddwightObj.change("pose", "pose01")
+    dw "Well, except for Spirit. She really doesn't belong here. She's strictly a victim, not a perpetrator! No wonder she's pissed."
+    hide clauddwight
+    $ trapperObj.change("emotion", "happy")
+    $ spiritObj.change("emotion", "disgusted")
+    $ trapperObj.change("pose", "pose01")
+    $ spiritObj.change("pose", "pose01")
+    show spirit at movecenterright
+    show trapper behind spirit at moveright
+    with dissolve
+    tt "Did I hear somebody trash-talking Spirit? Deal me in."
+    $ trapperObj.change("emotion", "mad")
+    $ spiritObj.change("emotion", "idle")
+    $ trapperObj.change("pose", "pose03")
+    $ trapperObj.change("emote", "stars")
+    tt "What do you say we take this talk to the hot tub so I can soak this bod while I roast that ghost with some killer hot takes?"
+    $ trapperObj.change("emote", "none")
+    $ trapperObj.change("emotion", "disgusted")
+    $ wraithObj.change("emote", "sweat")
+    $ wraithObj.change("pose", "pose02")
+    $ wraithObj.change("emotion", "scared")
+    show wraith behind spirit at movecenterleft with dissolve
+    tw "Please, enough talk of \"burns,\" things that are \"lit,\" or getting \"blazed.\" It enough that these activities have to be set next to a literal fire, must I be surrounded by figurative flames as well?"
+    $ wraithObj.change("emote", "none")
+    $ wraithObj.change("emotion", "idle")
+    tw "What if we turned and ran as far away from this place as we could, just you and me?"
+    $ wraithObj.change("emotion", "disgusted")
+    $ huntressObj.change("emotion", "disgusted")
+    $ trapperObj.change("emotion", "idle")
+    $ huntressObj.change("pose", "pose01")
+    $ trapperObj.change("pose", "pose01")
+    show huntress behind wraith at moveleft with dissolve
+    th "On those spindly legs? You'd probably tire before you got too far. If it's running away to someplace more secluded [mc_name] is after, they should obviously join me. Have you seen these legs? Pure power."
+    $ huntressObj.change("emotion", "happy")
+    th "Not that my walk speed really reflects my giant stature... but that's because I choose to move slowly for stealthy reasons. It's my own choice and it's completely logical!"
+    $ huntressObj.change("emotion", "disgusted")
+    $ spiritObj.change("emotion", "disgusted")
+    $ wraithObj.change("emotion", "idle")
+    $ spiritObj.change("emote", "question")
+    ts "Why is everyone so obsessed with comparing themselves to each other and creating drama? I'm so over all that."
+    $ spiritObj.change("emote", "none")
+    ts "Why is everyone so obsessed with comparing themselves to each other and creating drama? I'm over all that."
+    ts "Don't you get it? Society wants to trick you into fighting with each other so that corporations can swoop in and sell you fake solutions to all your fabricated problems!"
+    $ spiritObj.change("pose", "pose03")
+    $ spiritObj.change("emotion", "idle")
+    ts "I'll be sitting in the shade and drinking something locally sourced while thumbing through a public domain novella printed on recycled paper because I refuse to play {i}their{/i} game anymore!"
+    $ huntressObj.change("emotion", "idle")
+    $ trapperObj.change("emotion", "happy")
+    $ spiritObj.change("emotion", "disgusted")
+    $ wraithObj.change("emotion", "disgusted")
+    $ huntressObj.change("pose", "pose01")
+    tt "It's like she's actively trying to be as unappealing as possible. Does it REALLY turn anyone else on or just me?"
+    nrr "Despite Trapper's... insatiable appetite, it seems his attention--along with the attention of everyone else--is still on you. For the moment."
+    $ wraithObj.change("emote", "question")
+    $ trapperObj.change("emotion", "idle")
+    $ spiritObj.change("emotion", "idle")
+    $ wraithObj.change("emotion", "idle")
+    $ spiritObj.change("pose", "pose01")
+    tw "If you could, I dunno, just pick one of us maybe we could all move on with our lives, or, um, you know... some special projects we might have going?"
+    $ wraithObj.change("emote", "none")
+    nrr "You heard him. Who will it be? Who will you head off with for an evening activity?"
+    nrr "I'm just saying... you may not get a ton of chances to date around like this before your time on Murderer's Island comes to a close."
+    nrr "And no, I'm not satisfied with that name, either, but with this streaming reality TV dating show boom happening, it's pretty much all that wasn't taken."
     
-
-
-
-
-
-
-
-
-
-
+    $ diamondchoice = True
+    menu:
+        cho "Which Killer will you pick? And yes, we're back to excluding Trickster, because, ugh, that guy."
+        "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
+            $ diamondchoice = False
+            call finaldate_spirit
+        "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
+            $ diamondchoice = False
+            call finaldate_spirit
+        "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
+            $ diamondchoice = False
+            call finaldate_spirit
+        "gui/button_huntress_idle.png¦gui/button_huntress_hover.png¦gui/button_huntress_select.png":
+            $ diamondchoice = False
+            call finaldate_spirit
     call blackscene
     return 
+
+
+label finaldate_spirit:
+    hide trapper
+    hide wraith
+    hide huntress
+    with Dissolve(0.25)
+    mc "Spirit?"
+    show spirit at slidetocenter
+    $ spiritObj.change("emotion", "disgusted")
+    ts "Oh... you picked me... yaaay..."
+    $ spiritObj.change("emotion", "scared")
+    $ spiritObj.change("emote", "sweat")
+    ts "Sorry, that was rude of me. I despite phoniness, so I should be honest with you."
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("emotion", "idle")
+    ts "You make for interesting company, and I love the idea of winning over these other Killers at all costs, even when I hate the game and the price... but I had a long day."
+    ts "Floating, subverting expectations, grinding my teeth as I imagine sweet sweet revenge--it takes a lot out of me."
+    $ spiritObj.change("pose", "pose03")
+    ts "So don't stop bringing your A-game, alright? It might seem like I hate everything, and getting to really know who I am is an impossible task not worth trying, but too bad."
+    ts "You won't know unless you search deep inside yourself and bring everything you've got."
+    ts "Or just say the extract right thing at the right time and melt my cold heart in an instant. I don't know the rules here any better than you do."
+    $ spiritObj.change("emote", "thoughts")
+    ts "See you at the bar, I guess."
+    $ spiritObj.change("emote", "none")
+    return 
+
 label storytime_spirit:
     $ spiritObj.change("pose", "pose01")
     $ spiritObj.change("emotion", "idle")

@@ -142,6 +142,7 @@ label start:
     call chapter06
     call chapter07
     call chapter08
+    call chapter09
     nrr "<<<<<<<Ends here for now>>>>>>>>"
     # This ends the game.
     return

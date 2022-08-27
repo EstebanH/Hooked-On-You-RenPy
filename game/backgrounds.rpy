@@ -1013,6 +1013,9 @@ init:
     image bg bar_day:
         "images/bg/bg_bar_sunset.png"
         matrixcolor mymatrix_normal
+    image bg bar_night:
+        "images/bg/bg_bar_night.png"
+        matrixcolor mymatrix_normal
     image bg towel_day:
         "images/bg/bg_towel_sunset.png"
         matrixcolor mymatrix_normal
@@ -1197,6 +1200,16 @@ label bardayscene(keep_images=False):
         show bg bar_day with dissolve
     else:
         scene bg bar_day with dissolve
+    return
+label barnightscene(keep_images=False):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    play music "audio/sfx_ambience_dining_area_night.ogg"
+    if keep_images:
+        call hideeffects
+        show bg bar_night with dissolve
+    else:
+        scene bg bar_night with dissolve
     return
 label towelscene(keep_images=False, withDissolve=True):
     window hide
