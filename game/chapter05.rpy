@@ -383,7 +383,7 @@ label chapter05:
     call blackscene
     return
 
-label date_spirit
+label date_spirit:
     mc "I... I gotta go with Spirit."
     $ spiritObj.change("pose", "pose04")
     $ spiritObj.change("emotion", "idle")
@@ -403,5 +403,5 @@ label date_spirit
     mc "Yeah, I \"feel you.\""
     return
     
-label date_trapper
+label date_trapper:
     return

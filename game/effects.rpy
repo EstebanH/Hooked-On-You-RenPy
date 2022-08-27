@@ -1,3 +1,61 @@
+init: 
+    transform defaultrotate:
+        linear 4.0 matrixtransform RotateMatrix(0.0, 0.0, 0.0)
+        repeat
+    transform zrotate:
+        linear 4.0 matrixtransform RotateMatrix(0.0, 0.0, 360.0)
+        repeat
+
+    transform yrotate:
+        linear 4.0 matrixtransform RotateMatrix(0.0, 360.0, 0.0)
+        repeat
+
+    transform yzrotate:
+        linear 4.0 matrixtransform RotateMatrix(0.0, 360.0, 360.0)
+        repeat
+
+    transform xrotate:
+        linear 4.0 matrixtransform RotateMatrix(360.0, 0.0, 0.0)
+        repeat
+
+    transform zxrotate:
+        linear 4.0 matrixtransform RotateMatrix(360.0, 0.0, 360.0)
+        repeat
+
+    transform xyrotate:
+        linear 4.0 matrixtransform RotateMatrix(360.0, 360.0, 0.0)
+        repeat
+
+    transform xyzrotate:
+        linear 4.0 matrixtransform RotateMatrix(360.0, 360.0, 360.0)
+        repeat
+
+
+    image petal:
+        choice:
+            pause 1
+        choice:
+            At("images/petal.png", defaultrotate)
+        choice:
+            At("images/petal.png", zrotate)
+        choice:
+            At("images/petal.png", yrotate)
+        choice:
+            At("images/petal.png", yzrotate)
+        choice:
+            At("images/petal.png", xrotate)
+        choice:
+            At("images/petal.png", zxrotate)
+        choice:
+            At("images/petal.png", xyrotate)
+        choice:
+            At("images/petal.png", xyzrotate)
+        pause 1
+        repeat
+
+    image petals = SnowBlossom("petal", count=200, border=60, xspeed=(-40, -20), yspeed=(20, 40), start=1.5, fast=False, horizontal=True)
+
+
 
 init python:
     import math

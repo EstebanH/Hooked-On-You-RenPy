@@ -1155,15 +1155,18 @@ label blackscene:
     $ quick_menu = True
     return
 
-label beachdayscene(keep_images=False):
+label beachdayscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
     play music "audio/sfx_ambience_beach.ogg"
     if keep_images:
         call hideeffects
-        show bg beach_day with dissolve
+        show bg beach_day
     else:
-        scene bg beach_day with dissolve
+        scene bg beach_day
+    if withDissolve:
+        with dissolve
+    
     return
 label beacheveningscene(keep_images=False):
     window hide

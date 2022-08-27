@@ -350,12 +350,13 @@ screen choice(items):
                         if cap_len > 2:
                             selected Composite(
                                     (202, 202),
-                                    (-76, -76),  str(caption_parts[1])
+                                    (-76, -76),  str(caption_parts[2])
                                     )
 
                         action [i.action, [SetVariable("diamondchoice", False)]]
                         ##action i.action 
-                        hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
+                        if cap_len < 3:
+                                hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
                         activate_sound "sounds/sfx_ui_choice_select.ogg"
                     $ count = count + 1
 

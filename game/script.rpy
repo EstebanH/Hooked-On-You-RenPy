@@ -95,6 +95,11 @@ label event_frunkyzombie:
     play eventloop("audio/sfx_funky_zombie.ogg") fadein 3.0 loop
     return 
 
+label event_darkash:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_dark_ash.ogg") fadein 3.0 loop
+    return 
+
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False
