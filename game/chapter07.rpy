@@ -151,9 +151,71 @@ label chapter07:
     $ spiritObj.change("pose", "close01")
     $ spiritObj.change("emotion", "idle")
     ts "For many people, being among cherry blossoms is like being at a celebration of life. People travel great distances just to be near their vibrant beauty."
-    
+    $ spiritObj.change("emotion", "disgusted")
+    $ spiritObj.change("emote", "dread")
+    ts "However, as beautiful as they might be... they aren't magical, they're simply flowers. They quickly die and fade away, and for this reason they are also a symbol of the fleeing nature of life, of our fragile mortality."
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("pose", "close03")
+    ts "In a way, it's the specter of looming death that calls attention to this special moment; to see and appreciate life."
+    $ spiritObj.change("emotion", "idle")
+    menu:
+        ts "The does that duality make you feel, [mc_name]?"
+        "Empowered":
+            mc "The knowledge that life and death are a cycle has always given me peace."
+            mc "Accepting the fleeting nature of life, like the beauty of a flower in bloom, allows me to appreciate the moment without being too hung up on what comes next."
+        "Frustrated":
+            mc ""
+        "Unsure":
+            mc ""
 
-    
+    $ spiritObj.change("emotion", "sad")
+    nrr "As you explain, Spirit's face begins to look sad to you. You're not sure why... it's not the happiest topic, life and death, but why should that matter?"
+    nrr "And then it dawns on you, Spirit has been trapped in this ghastly state of death with no hope to cycle back, no rebirth, her moment of blossoming life long gone. That scary time of death and decay that comes after the good part, that's Spirit's eternity."
+    $ spiritObj.change("pose", "close01")
+    mc "I feel like an idiot. I wasn't talking about you! I wasn't even thinking about you, I just..."
+    $ spiritObj.change("emotion", "disgusted")
+    ts "You just answered from the heart. I can't let that bother me. Our priorities are not the same. I have my mission..."
+    $ spiritObj.change("emotion", "idle")
+    ts "Once, the fallen cherry blossoms represented the souls of samurai warriors. Those with noble characters, those who did not fear death, those who were killed in the greatest sacrifice: to honor their Emperor."
+    $ spiritObj.change("pose", "close04")
+    ts "Their lives were short, but their purpose gave them beauty. Those warriors saw death coming, but they never despaired. They stood and faced it. They held their swords and struck down their fear."
+    $ spiritObj.change("emotion", "disgusted")
+    $ spiritObj.change("pose", "close01")
+    ts "But, despite the samurai spirit that lives on in me, in my noble bloodline..."
+    ts "My life has ended, but my death continues to stretch on. The cycle is frozen."
+    $ spiritObj.change("pose", "close02")
+    ts "This cherry tree? It's not real. Though its petals fall, they soon replenish. It's as if it were installed here by someone..."
+    nrr "You watch as Spirit chooses her words very carefully."
+    $ spiritObj.change("emotion", "mad")
+    $ spiritObj.change("emote", "dread")
+    ts "...by {i}something{/i} with no respect for the balance of life and death."
+    $ spiritObj.change("emote", "none")
+    $ spiritObj.change("pose", "pose01")
+    $ clauddwightObj.change("pose", "pose02")
+    $ clauddwightObj.change("emotion", "happy")
+    play sound "sounds/sfx_signature_clauddwight04.ogg"
+    show clauddwight behind spirit at movecenterleft with dissolve
+    show spirit at slidetomovecenterright
+    dw "We're sorry to interrupt!"
+    $ spiritObj.change("pose", "pose03")
+    $ spiritObj.change("emotion", "disgusted")
+    ts "You know we don't believe you, right?"
+    $ clauddwightObj.change("pose", "close01")
+    cl "Yep!"
+    dw "But this time we've got a really good reason!"
+    $ clauddwightObj.change("pose", "pose01")
+    $ clauddwightObj.change("emotion", "sad")
+    cl "And it has nothing to do with us being manipulated by an unseen force! Because that's definitely not happening!"
+    $ spiritObj.change("pose", "pose01")
+    $ spiritObj.change("emotion", "idle")
+    mc "Nobody accused you of that, but ok..."
+    $ clauddwightObj.change("emotion", "happy")
+    dw "We're just here to tell you that it's time for dinner, silly!"
+    cl "Get it while it's hot!"
+    $ clauddwightObj.change("pose", "pose04")
+    ts "I guess it's time to go, or whatever. Thanks for spending time with me today. I enjoyed it."
+    hide spirit
+    mc "Me... too."
     call blackscene
     return
 
