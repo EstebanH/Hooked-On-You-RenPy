@@ -353,8 +353,8 @@ screen choice(items):
                                     (-76, -76),  str(caption_parts[2])
                                     )
 
-                        action [i.action, [SetVariable("diamondchoice", False)]]
-                        ##action i.action 
+                        #action [i.action, [SetVariable("diamondchoice", False)]]
+                        action i.action 
                         if cap_len < 3:
                                 hover_sound "sounds/sfx_ui_choice_hover0"+ str(count) + ".ogg"
                         activate_sound "sounds/sfx_ui_choice_select.ogg"

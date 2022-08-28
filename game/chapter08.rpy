@@ -247,16 +247,16 @@ label chapter08:
         cho "You look from killer to killer, trying to decide who might be the most entertaining."
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
             $ diamondchoice = False
-            call storytime_spirit
+            call storytime2_spirit
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False
-            call storytime_spirit
+            call storytime2_spirit
         "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
             $ diamondchoice = False
-            call storytime_spirit
+            call storytime2_spirit
         "gui/button_huntress_idle.png¦gui/button_huntress_hover.png¦gui/button_huntress_select.png":
             $ diamondchoice = False
-            call storytime_spirit
+            call storytime2_spirit
 
     stop eventloop fadeout 3.0
     $ clauddwightObj.change("pose", "pose02")
@@ -389,7 +389,7 @@ label finaldate_spirit:
     $ spiritObj.change("emote", "none")
     return 
 
-label storytime_spirit:
+label storytime2_spirit:
     $ spiritObj.change("pose", "pose01")
     $ spiritObj.change("emotion", "idle")
     $ spiritObj.change("emote", "dread")

@@ -152,6 +152,13 @@ define config.save_directory = "McGuffin-1659674124"
 
 define config.window_icon = "gui/window_icon.png"
 
+## Volume ########################################################################
+##
+## Default user volume
+define config.default_music_volume = 0.7
+define config.default_sfx_volume = 0.7
+define config.default_voice_volume = 0.7
+
 ## Build configuration #########################################################
 ##
 ## This section controls how Ren'Py turns your project into distribution files.

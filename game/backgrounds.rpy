@@ -633,6 +633,7 @@ init:
 label mood_warmdark(image_name=Null, ismovefrombottom = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_WarmDark_Loop_V1.ogg") fadein 3.0 loop
     scene bg warmdark
     show excite_dots
@@ -767,6 +768,7 @@ init:
 label mood_warmlight(image_name=Null, ismovefrombottom = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_WarmLight_Loop_V1.ogg") fadein 3.0 loop
     scene bg warmlight
     show wlflower3 at rotateflowera_reverse 
@@ -879,6 +881,7 @@ init:
 label mood_excitement(image_name=Null, ismovefrombottom = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_Excitement_Loop_V1.ogg") fadein 3.0 loop
     scene bg excitement
     show excite_small_dots
@@ -960,6 +963,7 @@ init:
 label mood_happy(image_name=Null, ismovefrombottom = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_Happy_Loop_V1.ogg") fadein 3.0 loop
     scene bg happy
     show happy_stargreen at truecenter
@@ -1004,11 +1008,17 @@ init:
     image bg beach_day:
         "images/bg/bg_beach_day.png"
         matrixcolor mymatrix_normal
+    image bg beach_tiki:
+        "images/bg/bg_beach_tiki.png"
+        matrixcolor mymatrix_normal
     image bg beach_evening:
         "images/bg/bg_beach_sunset.png.png"
         matrixcolor mymatrix_normal
     image bg volleyball_day:
         "images/bg/bg_volleyball_day.png"
+        matrixcolor mymatrix_normal
+    image bg volleyball_sunset:
+        "images/bg/bg_volleyball_sunset.png"
         matrixcolor mymatrix_normal
     image bg bar_day:
         "images/bg/bg_bar_sunset.png"
@@ -1022,41 +1032,44 @@ init:
     image bg campfire:
         "images/bg/bg_campfire.png"
         matrixcolor mymatrix_normal
-
     image bg pool_night:
         "images/bg/bg_pool_night.png"
         matrixcolor mymatrix_normal
-
     image bg pool_day:
         "images/bg/bg_pool_day.png"
         matrixcolor mymatrix_normal
-
     image bg fireplace:
         "images/bg/bg_fireplace.png"
         matrixcolor mymatrix_normal
-
     image bg lighthouse_day:
         "images/bg/bg_lighthouse_day.png"
         matrixcolor mymatrix_normal
-
     image bg lighthouse_night:
         "images/bg/bg_lighthouse_night.png"
         matrixcolor mymatrix_normal
-
     image bg lighthouse_night_light:
         "images/bg/bg_lighthouse_night_light.png"
         matrixcolor mymatrix_normal
-
     image bg lighthouse_inside_day:
         "images/bg/bg_lighthouse_inside_day.png"
         matrixcolor mymatrix_normal
-
     image bg lighthouse_inside_night:
         "images/bg/bg_lighthouse_inside_night.png"
         matrixcolor mymatrix_normal
-
     image bg lighthouse_inside_night_light:
         "images/bg/bg_lighthouse_inside_night_light.png"
+        matrixcolor mymatrix_normal
+    image bg yacht_day:
+        "images/bg/bg_yacht_day.png"
+        matrixcolor mymatrix_normal
+    image bg yacht_night:
+        "images/bg/bg_yacht_night.png"
+        matrixcolor mymatrix_normal
+    image bg runes:
+        "images/bg/bg_runes.png"
+        matrixcolor mymatrix_normal
+    image bg runes_light:
+        "images/bg/bg_runes_light.png"
         matrixcolor mymatrix_normal
 
     image bg inner_monologue:
@@ -1161,6 +1174,7 @@ label blackscene:
 label beachdayscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_beach.ogg"
     if keep_images:
         call hideeffects
@@ -1169,11 +1183,82 @@ label beachdayscene(keep_images=False, withDissolve=True):
         scene bg beach_day
     if withDissolve:
         with dissolve
+    return
+    
+label yachtdayscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_beach.ogg"
+    if keep_images:
+        call hideeffects
+        show bg yacht_day
+    else:
+        scene bg yacht_day
+    if withDissolve:
+        with dissolve
+    return
+        
+label yachtnightscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_beach_night.ogg"
+    if keep_images:
+        call hideeffects
+        show bg yacht_night
+    else:
+        scene bg yacht_night
+    if withDissolve:
+        with dissolve
+    return
+        
+label runesscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_ritual_site.ogg"
+    if keep_images:
+        call hideeffects
+        show bg runes
+    else:
+        scene bg runes
+    if withDissolve:
+        with dissolve
+    return
+        
+label runeslightscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_ritual_site.ogg"
+    if keep_images:
+        call hideeffects
+        show bg runes_light
+    else:
+        scene bg runes_light
+    if withDissolve:
+        with dissolve
+    return
+
+label beachtikiscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_beach.ogg"
+    if keep_images:
+        call hideeffects
+        show bg beach_tiki
+    else:
+        scene bg beach_tiki
+    if withDissolve:
+        with dissolve
     
     return
 label beacheveningscene(keep_images=False):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_beach_evening.ogg"
     if keep_images:
         call hideeffects
@@ -1181,9 +1266,21 @@ label beacheveningscene(keep_images=False):
     else:
         scene bg beach_evening with dissolve
     return
+label volleyballsunsetscene(keep_images=False):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_beach_evening.ogg"
+    if keep_images:
+        call hideeffects
+        show bg volleyball_sunset with dissolve
+    else:
+        scene bg volleyball_sunset with dissolve
+    return
 label volleyballscene(keep_images=False):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_beach.ogg"
     if keep_images:
         call hideeffects
@@ -1194,6 +1291,7 @@ label volleyballscene(keep_images=False):
 label bardayscene(keep_images=False):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_dining_area.ogg"
     if keep_images:
         call hideeffects
@@ -1204,6 +1302,7 @@ label bardayscene(keep_images=False):
 label barnightscene(keep_images=False):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_dining_area_night.ogg"
     if keep_images:
         call hideeffects
@@ -1214,6 +1313,7 @@ label barnightscene(keep_images=False):
 label towelscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_dining_area_night.ogg"
     if keep_images:
         call hideeffects
@@ -1226,6 +1326,7 @@ label towelscene(keep_images=False, withDissolve=True):
 label campfirescene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_fire_pit.ogg"
     if keep_images:
         call hideeffects
@@ -1238,6 +1339,7 @@ label campfirescene(keep_images=False, withDissolve=True):
 label poolnightscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_pool_night.ogg"
     if keep_images:
         call hideeffects
@@ -1250,6 +1352,7 @@ label poolnightscene(keep_images=False, withDissolve=True):
 label pooldayscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_pool.ogg"
     if keep_images:
         call hideeffects
@@ -1263,6 +1366,7 @@ label pooldayscene(keep_images=False, withDissolve=True):
 label fireplacescene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_cool_outfit.ogg"
     if keep_images:
         call hideeffects
@@ -1276,6 +1380,7 @@ label fireplacescene(keep_images=False, withDissolve=True):
 label lighthousedayscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_lighthouse.ogg"
     if keep_images:
         call hideeffects
@@ -1289,6 +1394,7 @@ label lighthousedayscene(keep_images=False, withDissolve=True):
 label lighthousenightscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_lighthouse_night_off.ogg"
     if keep_images:
         call hideeffects
@@ -1302,6 +1408,7 @@ label lighthousenightscene(keep_images=False, withDissolve=True):
 label lighthousenighteyescene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_lighthouse_night_on.ogg"
     if keep_images:
         call hideeffects
@@ -1315,6 +1422,7 @@ label lighthousenighteyescene(keep_images=False, withDissolve=True):
 label lighthousedayinsidescene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_lighthouse.ogg"
     if keep_images:
         call hideeffects
@@ -1328,6 +1436,7 @@ label lighthousedayinsidescene(keep_images=False, withDissolve=True):
 label lighthouseinsidenighteyescene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_lighthouse_eye_on.ogg"
     if keep_images:
         call hideeffects
@@ -1342,6 +1451,7 @@ label lighthouseinsidenighteyescene(keep_images=False, withDissolve=True):
 label lighthouseinsidenightscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
     play music "audio/sfx_ambience_lighthouse_eye_off.ogg"
     if keep_images:
         call hideeffects
@@ -1367,6 +1477,7 @@ label hideeffects:
 label speedlinesredscene(image_name=Null, ismovefrombottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_SpeedLine_Loop-003.ogg") fadein 3.0 loop
     scene bg speedlinebg_red with dissolve
     if image_name is not Null:
@@ -1380,6 +1491,7 @@ label speedlinesredscene(image_name=Null, ismovefrombottom = False):
 label speedlinesbluescene(image_name=Null, ismovefrombottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_SpeedLine_Loop-003.ogg") fadein 3.0 loop
     scene bg speedlinebg_red with dissolve
     if image_name is not Null:
@@ -1393,6 +1505,7 @@ label speedlinesbluescene(image_name=Null, ismovefrombottom = False):
 label mood_speedlines(image_name=Null, ismovefrombottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_SpeedLine_Loop-001.ogg") fadein 3.0 loop
     show speedlines
     if image_name is not Null:
@@ -1406,6 +1519,7 @@ label mood_speedlines(image_name=Null, ismovefrombottom = False):
 label mood_inner_monologuescene(image_name=Null, ismovefrombottom = False, nobg = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.ogg") fadein 3.0 loop
     if not nobg:
         scene bg inner_monologue
@@ -1421,6 +1535,7 @@ label mood_inner_monologuescene(image_name=Null, ismovefrombottom = False, nobg 
 label mood_butterflies(image_name=Null, ismovefrombottom = False, nobg = False, withDissolve = True):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_Butterflies_Loop_V1.ogg") fadein 3.0 loop
     if not nobg:
         scene bg butterflies
@@ -1437,6 +1552,7 @@ label mood_butterflies(image_name=Null, ismovefrombottom = False, nobg = False, 
 label mood_romantic(image_name=Null, ismovefrombottom = False, nobg = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_Romantic_Loop_V1.ogg.ogg") fadein 3.0 loop
     if not nobg:
         scene bg romantic
@@ -1457,6 +1573,7 @@ label mood_romantic(image_name=Null, ismovefrombottom = False, nobg = False):
 label mood_mystery(image_name=Null, ismovefrombottom = False, nobg = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_Mystery_Loop_V1.ogg") fadein 3.0 loop
     if not nobg:
         scene bg mystery
@@ -1474,6 +1591,7 @@ label mood_mystery(image_name=Null, ismovefrombottom = False, nobg = False):
 label mood_unsettling(image_name=Null, ismovefrombottom = False, nobg = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_Unsettling_Loop_V1.ogg") fadein 3.0 loop
     if not nobg:
         scene bg unsettling
@@ -1490,6 +1608,7 @@ label mood_unsettling(image_name=Null, ismovefrombottom = False, nobg = False):
 label mood_murder(image_name=Null, ismovefrombottom = False, nobg = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_Murder_Loop_V1.ogg") fadein 3.0 loop
     if not nobg:
         scene bg murder
@@ -1505,6 +1624,7 @@ label mood_murder(image_name=Null, ismovefrombottom = False, nobg = False):
 label show_item(image_name=Null, ismovefrombottom = False):
     window hide
     $ renpy.music.set_volume(0.25,3.0,"music")
+    $ renpy.music.set_volume(0.25,3.0,"eventloop")
     play moodloop("audio/m_Mood_InnerMonologue_Loop_V1.ogg") fadein 3.0 loop
     show dreadnoise
     if image_name is not Null:

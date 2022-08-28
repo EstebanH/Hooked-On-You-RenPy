@@ -119,14 +119,12 @@ label chapter07:
             ts "I've got enough revenging to do without having to kill you and Wraith, too."
             $ spiritObj.change("emote", "none")
         "gui/button_empty_idle.png¦gui/button_empty_idle.png¦gui/button_empty_idle.png¦Disable":
-            $ diamondchoice = False
             jump chosen_killer
         "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
             $ diamondchoice = False
             ##Missing Choice
             jump chosen_killer
         "gui/button_empty_idle.png¦gui/button_empty_idle.png¦gui/button_empty_idle.png¦Disable":
-            $ diamondchoice = False
             jump chosen_killer
     stop eventloop fadeout 3.0
     call blackscene

@@ -100,6 +100,16 @@ label event_darkash:
     play eventloop("audio/sfx_dark_ash.ogg") fadein 3.0 loop
     return 
 
+label event_confess:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_hard_time.ogg") fadein 3.0 loop
+    return 
+
+label event_monkeybytes:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_monkey_bytes.ogg") fadein 3.0 loop
+    return 
+
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False
@@ -143,6 +153,7 @@ label start:
     call chapter07
     call chapter08
     call chapter09
+    call chapter10
     nrr "<<<<<<<Ends here for now>>>>>>>>"
     # This ends the game.
     return
