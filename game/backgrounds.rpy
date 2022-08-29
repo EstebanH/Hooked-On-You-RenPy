@@ -1002,11 +1002,18 @@ init:
         "gui/window_icon.png"
         yalign 0.925
         xalign 0.9575
+    image correct:
+        "images/correct.png"
+    image incorrect:
+        "images/incorrect.png"
 
     image bg loading:
         "images/bg_loading.png"
     image bg beach_day:
         "images/bg/bg_beach_day.png"
+        matrixcolor mymatrix_normal
+    image bg beach_night:
+        "images/bg/bg_beach_night.png"
         matrixcolor mymatrix_normal
     image bg beach_tiki:
         "images/bg/bg_beach_tiki.png"
@@ -1071,10 +1078,16 @@ init:
     image bg runes_light:
         "images/bg/bg_runes_light.png"
         matrixcolor mymatrix_normal
+    image bg mine:
+        "images/bg/bg_mine.png"
+        matrixcolor mymatrix_normal
 
     image bg inner_monologue:
         "images/bg/moods/bg_inner_monologue.png"
-
+    image bg volleyball:
+        "images/cg/cg_volleyball.png"
+    image bg end:
+        "images/bg/bg_theend.png.png"
     image mystery_top:
         "images/bg/moods/bg_mystery_top.png"
     image bg mystery:
@@ -1171,6 +1184,26 @@ label blackscene:
     $ quick_menu = True
     return
 
+label cgvolleyball:
+    window hide
+    stop hauntloop fadeout 3.0
+    stop moodloop fadeout 3.0
+    stop eventloop fadeout 3.0
+    scene bg volleyball with dissolve
+    pause 1
+    return
+
+label theend(keep_images=False, withDissolve=True):
+    window hide
+    if keep_images:
+        call hideeffects
+        show bg theend
+    else:
+        scene bg theend
+    if withDissolve:
+        with dissolve
+    return
+
 label beachdayscene(keep_images=False, withDissolve=True):
     window hide
     $ renpy.music.set_volume(1,3.0,"music")
@@ -1265,6 +1298,17 @@ label beacheveningscene(keep_images=False):
         show bg beach_evening with dissolve
     else:
         scene bg beach_evening with dissolve
+    return
+label beachnightscene(keep_images=False):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_beach_night.ogg"
+    if keep_images:
+        call hideeffects
+        show bg beach_night with dissolve
+    else:
+        scene bg beach_night with dissolve
     return
 label volleyballsunsetscene(keep_images=False):
     window hide
@@ -1462,7 +1506,33 @@ label lighthouseinsidenightscene(keep_images=False, withDissolve=True):
         with dissolve
     return
 
+label darknessscene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_darkness.ogg"
+    if keep_images:
+        call hideeffects
+        show black
+    else:
+        scene black
+    if withDissolve:
+        with dissolve
+    return
 
+label minescene(keep_images=False, withDissolve=True):
+    window hide
+    $ renpy.music.set_volume(1,3.0,"music")
+    $ renpy.music.set_volume(1,3.0,"eventloop")
+    play music "audio/sfx_ambience_tunnel.ogg"
+    if keep_images:
+        call hideeffects
+        show bg mine
+    else:
+        scene bg mine
+    if withDissolve:
+        with dissolve
+    return
 
 label hideeffects:
     hide cloudy1

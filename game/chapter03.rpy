@@ -73,7 +73,9 @@ label chapter03:
     dw "I renounce my name! Who's Donald? Who's Dwight? Who even knows anymore? Call me Nobody!"
     $ clauddwightObj.change("pose", "pose01")
     $ clauddwightObj.change("emotion", "disgusted")
-    nb "But we still gotta get started on storytime so..."
+    $ dwight_name = "NOBODY"
+    dw "But we still gotta get started on storytime so..."
+    $ dwight_name = "DWIGHT"
     $ clauddwightObj.change("emotion", "idle")
     cl "[mc_name], who do you think should go? Ahhh damnit, that's a name."
     hide clauddwight

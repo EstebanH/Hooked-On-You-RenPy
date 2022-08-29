@@ -18,15 +18,15 @@ define cho = Character(None, window_style="window_narrator",  callback=callbackc
 define oc = Character("", window_style="window_ocean", namebox_style="namebox_ocean", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define mc = DynamicCharacter('mc_name', color="#3e3458", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 ##define look = Character(None,window_background=None, button_style = "say_button_none", show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
-define dw = Character("DWIGHT", window_style="window_killer", color="#cb8830", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
-define nb = Character("NOBODY", window_style="window_killer", color="#cb8830", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define dw = Character('dwight_name', window_style="window_killer", color="#cb8830", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define cl = Character("CLAUDETTE", window_style="window_killer", color="#cba530",  callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define th = Character("THE HUNTRESS", window_style="window_killer", color="#d94b2a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
-define ts = Character("THE SPIRIT", window_style="window_killer", color="#ee496a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define ts = Character('spirit_name', window_style="window_killer", color="#ee496a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define tt = Character("THE TRAPPER", window_style="window_killer", color="#385b8d", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define tw = Character("THE WRAITH", window_style="window_killer", color="#5f9b2a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define tr = Character("THE TRICKSTER", window_style="window_killer", color="#ae6cdd", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 define everyone = Character("EVERYONE", window_style="window_killer", color="#d94b2a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
+define to = Character("THE ONI", window_style="window_killer", color="#a5090a", callback=callbackcontinue, show_slow_effect = slow_fade, show_slow_effect_delay = 0.1)
 ## Character Example
 #p = Character('Protagonist', what_prefix="\"", what_suffix="\"", what_size=26, who_outlines=[(4, "#004035", -5, 3),(2, "#0a9e9a", -5, 3), (3, "#252118", absolute(-2), absolute(0)), (absolute(1), "#FFF", absolute(0), absolute(0))],what_outlines=[ (absolute(1), "#000", absolute(0), absolute(0)) ], show_two_window=True, color="#000000", ctc = anim.Blink("ctc.png", xpos=600, ypos=450), ctc_position= "fixed", callback=callbackcontinue)
 
@@ -110,6 +110,31 @@ label event_monkeybytes:
     play eventloop("audio/sfx_monkey_bytes.ogg") fadein 3.0 loop
     return 
 
+label event_freshflesh:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_sfx_fresh_flesh.ogg") fadein 3.0 loop
+    return 
+
+label event_nextvictim:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_next_victim.ogg") fadein 3.0 loop
+    return 
+
+label event_badslinky:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_bad_slinky.ogg") fadein 3.0 loop
+    return 
+
+label event_sex:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_virtual_sexual.ogg") fadein 3.0 loop
+    return 
+    
+label event_cooloutfit:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_cool_outfit.ogg") fadein 3.0 loop
+    return 
+    
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False
@@ -129,6 +154,8 @@ label namePlayer:
 label start:
     # Initialize important variables
     $ mc_name = "Player"
+    $ spirit_name = "THE SPIRIT"
+    $ dwight_name = "DWIGHT"
     $ save_name = mc_name
     $ clauddwightObj = ClauddwightClass()
     $ entityObj = EntityClass()
@@ -154,6 +181,9 @@ label start:
     call chapter08
     call chapter09
     call chapter10
+    call chapter11
+    call theend
+    call blackscene
     nrr "<<<<<<<Ends here for now>>>>>>>>"
     # This ends the game.
     return

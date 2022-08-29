@@ -367,3 +367,98 @@ label results_sunscreen_minigame:
     hide screen sunscreen_bar_background
     with Dissolve(0.25)
     return
+
+################################################################################
+## spirithideandseek_minigame
+################################################################################
+
+init 15 python:
+    spirithideandseek_position = 0
+    spirithideandseek_section = 0
+    spirithideandseek_barpos = 0
+    spirithideandseek_speed = 1
+    spirithideandseek_bar_start_offset = 64
+    startpos_spirithideandseek = spirithideandseek_bar_start_offset
+    endpos_perfect_spirithideandseek = (spirithideandseek_bar_start_offset+30)
+    endpos_spirithideandseek = (spirithideandseek_bar_start_offset+80)
+init:
+    transform spirithideandseek_arrow_move(cur_arrow):
+        subpixel True
+        rotate_pad True
+        rotate cur_arrow
+    image spirithideandseek_arrow:
+        "images/minigames/spirithideandseek/spirithideandseek_arrow.png"
+        align(0.5,0.5)
+        yoffset -40
+    image spirithideandseek_bg:
+        "images/minigames/spirithideandseek/bg_spirithideandseek.png"
+        align(0.5,0.5)
+    image spirithideandseek_bar:
+        "images/minigames/spirithideandseek/spirithideandseek_bar.png"
+        align(0.5,0.5)
+        yoffset -40
+        
+screen spirithideandseek_minigame:
+    add "spirithideandseek_arrow" at spirithideandseek_arrow_move(spirithideandseek_position)
+    button:
+        xalign .5
+        yalign .9
+        xysize (194, 66)
+        idle_background "gui/gui_button_idle.png"
+        hover_background "gui/gui_button_hover.png"
+        selected_idle_background "gui/gui_button_idle.png"
+        selected_hover_background "gui/gui_button_hover.png"
+        selected_background "gui/gui_button_selected.png"
+        activate_sound "sounds/sfx_tap.ogg"
+        text "STOP":
+            style "menubutton"
+            size 30
+            outlines [ (1, "#000", absolute(0), absolute(0)) ]
+        if spirithideandseek_position >= startpos_spirithideandseek and spirithideandseek_position <= endpos_perfect_spirithideandseek:
+                action [SetVariable("spirithideandseek_section", 1),Hide("spirithideandseek_timer"), Call("results_spirithideandseek_minigame")]
+        elif spirithideandseek_position >= endpos_perfect_spirithideandseek and spirithideandseek_position <= endpos_spirithideandseek:
+                action [SetVariable("spirithideandseek_section", 2),Hide("spirithideandseek_timer"), Call("results_spirithideandseek_minigame")]
+        else:
+            action [SetVariable("spirithideandseek_section", 0),Hide("spirithideandseek_timer"), Call("results_spirithideandseek_minigame")]
+
+    if spirithideandseek_position >= 0 and spirithideandseek_position <= 90:
+        key "K_SPACE" action [SetVariable("spirithideandseek_section", 1),Hide("spirithideandseek_timer"), Call("results_spirithideandseek_minigame")]
+    else:
+        key "K_SPACE" action [SetVariable("spirithideandseek_section", 1),Hide("spirithideandseek_timer"), Call("results_spirithideandseek_minigame")]
+screen spirithideandseek_bar_background:
+    add "spirithideandseek_bg"
+    add "spirithideandseek_bar" at spirithideandseek_arrow_move(spirithideandseek_barpos)
+
+screen spirithideandseek_timer:
+    timer 0.01 repeat True action [If(spirithideandseek_position <= 360, SetVariable("spirithideandseek_position", spirithideandseek_position + spirithideandseek_speed)),If(spirithideandseek_position >= 360, SetVariable("spirithideandseek_position", 0))]
+
+
+################################################################################
+label start_spirithideandseek_minigame:
+    #Get a new bar position at startup
+    $ spirithideandseek_barpos = renpy.random.randint(0, 216)
+    #Start of bar
+    $ startpos_spirithideandseek = (spirithideandseek_barpos + spirithideandseek_bar_start_offset)
+    #End of Perfect on bar
+    $ endpos_perfect_spirithideandseek = (startpos_spirithideandseek+30)
+    #End of bar
+    $ endpos_spirithideandseek = (startpos_spirithideandseek+80)
+    
+    show screen spirithideandseek_timer
+    show screen spirithideandseek_bar_background
+    call screen spirithideandseek_minigame with Dissolve(0.25)
+    return
+################################################################################
+label end_spirithideandseek_minigame: #End minigame.
+    hide screen spirithideandseek_minigame
+    hide screen spirithideandseek_timer
+    hide screen spirithideandseek_bar_background
+    return
+label results_spirithideandseek_minigame:
+    show screen spirithideandseek_bar_background
+    show screen spirithideandseek_minigame
+    pause 1
+    hide screen spirithideandseek_minigame
+    hide screen spirithideandseek_bar_background
+    with Dissolve(0.25)
+    return
