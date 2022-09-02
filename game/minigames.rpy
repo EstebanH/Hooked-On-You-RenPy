@@ -217,39 +217,39 @@ screen radio_minigame:
             style "menubutton"
             size 30
             outlines [ (1, "#000", absolute(0), absolute(0)) ]
-        if radio_position >= 0 and radio_position <= 45:
+        if radio_position >= 0 and radio_position <= 45-22:
                 action [SetVariable("radio_section", 1),Hide("radio_timer"), Call("results_radio_minigame")]
-        elif radio_position >= 46 and radio_position <= 90:
+        elif radio_position >= 46-22 and radio_position <= 90-22:
                 action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
-        elif radio_position >= 91 and radio_position <= 135:
+        elif radio_position >= 91-22 and radio_position <= 135-22:
                 action [SetVariable("radio_section", 3),Hide("radio_timer"), Call("results_radio_minigame")]
-        elif radio_position >= 136 and radio_position <= 180:
+        elif radio_position >= 136-22 and radio_position <= 180-22:
                 action [SetVariable("radio_section", 4),Hide("radio_timer"), Call("results_radio_minigame")]
-        elif radio_position >= 181 and radio_position <= 225:
+        elif radio_position >= 181-22 and radio_position <= 225-22:
                 action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
-        elif radio_position >= 226 and radio_position <= 270:
+        elif radio_position >= 226-22 and radio_position <= 270-22:
                 action [SetVariable("radio_section", 3),Hide("radio_timer"), Call("results_radio_minigame")]
-        elif radio_position >= 271 and radio_position <= 315:
+        elif radio_position >= 271-22 and radio_position <= 315-22:
                 action [SetVariable("radio_section", 4),Hide("radio_timer"), Call("results_radio_minigame")]
-        elif radio_position >= 316 and radio_position <= 360:
+        elif radio_position >= 316-22 and radio_position <= 360-22:
                 action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
         else:
             action [SetVariable("radio_section", 1),Hide("radio_timer"), Call("results_radio_minigame")]
-    if radio_position >= 0 and radio_position <= 45:
+    if radio_position >= 0-22 and radio_position <= 45-22:
             key "K_SPACE" action [SetVariable("radio_section", 1),Hide("radio_timer"), Call("results_radio_minigame")]
-    elif radio_position >= 46 and radio_position <= 90:
+    elif radio_position >= 46-22 and radio_position <= 90-22:
             key "K_SPACE" action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
-    elif radio_position >= 91 and radio_position <= 135:
+    elif radio_position >= 91-22 and radio_position <= 135-22:
             key "K_SPACE" action [SetVariable("radio_section", 3),Hide("radio_timer"), Call("results_radio_minigame")]
-    elif radio_position >= 136 and radio_position <= 180:
+    elif radio_position >= 136-22 and radio_position <= 180-22:
             key "K_SPACE" action [SetVariable("radio_section", 4),Hide("radio_timer"), Call("results_radio_minigame")]
-    elif radio_position >= 181 and radio_position <= 225:
+    elif radio_position >= 181-22 and radio_position <= 225-22:
             key "K_SPACE" action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
-    elif radio_position >= 226 and radio_position <= 270:
+    elif radio_position >= 226-22 and radio_position <= 270-22:
             key "K_SPACE" action [SetVariable("radio_section", 3),Hide("radio_timer"), Call("results_radio_minigame")]
-    elif radio_position >= 271 and radio_position <= 315:
+    elif radio_position >= 271-22 and radio_position <= 315-22:
             key "K_SPACE" action [SetVariable("radio_section", 4),Hide("radio_timer"), Call("results_radio_minigame")]
-    elif radio_position >= 316 and radio_position <= 360:
+    elif radio_position >= 316-22 and radio_position <= 360-22:
             key "K_SPACE" action [SetVariable("radio_section", 2),Hide("radio_timer"), Call("results_radio_minigame")]
     else:
         key "K_SPACE" action [SetVariable("radio_section", 1),Hide("radio_timer"), Call("results_radio_minigame")]

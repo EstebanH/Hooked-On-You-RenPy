@@ -134,7 +134,47 @@ label event_cooloutfit:
     $ renpy.music.set_volume(0.25,3.0,"music")
     play eventloop("audio/sfx_cool_outfit.ogg") fadein 3.0 loop
     return 
+
+label event_darkness:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_darkness_amongus.ogg") fadein 3.0 loop
+    return 
     
+label event_flesh:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_flesh_and_bones.ogg") fadein 3.0 loop
+    return 
+
+label event_hiding:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_hiding.ogg") fadein 3.0 loop
+    return 
+    
+label event_lunar:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_lunar.ogg") fadein 3.0 loop
+    return 
+
+label event_plague:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_plague.ogg") fadein 3.0 loop
+    return 
+
+label event_dbd_5:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_dbd_5.ogg") fadein 3.0 loop
+    return 
+
+label event_dbd_3:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_dbd_3.ogg") fadein 3.0 loop
+    return 
+
+label event_dbd_4:
+    $ renpy.music.set_volume(0.25,3.0,"music")
+    play eventloop("audio/sfx_dbd_4.ogg") fadein 3.0 loop
+    return 
+
 label namePlayer:
     # No quick menu in name input screen
     $ quick_menu = False

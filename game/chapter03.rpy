@@ -93,12 +93,15 @@ label chapter03:
         "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
             $ diamondchoice = False
             mc "I choose you, Wraith!"
+            nrr "<STORY NOT IMPLEMENTED >"
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False
             mc "I choose you, Trapper!"
+            nrr "<STORY NOT IMPLEMENTED >"
         "gui/button_huntress_idle.png¦gui/button_huntress_hover.png¦gui/button_huntress_select.png":
             $ diamondchoice = False
             mc "I choose you, Huntress!"
+            nrr "<STORY NOT IMPLEMENTED >"
 
     nrr "On that note, everyone decides it's time to take a break and split up for a little bit so that they can all have a moment alone before bed."
     nrr "Everyone leaves and you're alone by the fire. The only thing you hear is the ocean slowly lapping against the shore."
@@ -294,7 +297,47 @@ label storytime_spirit:
             hide spirit with dissolve
 
         "Cool story.":
-            mc "\"Cool story.\""
+            $ spiritObj.change("pose", "close03")
+            mc "Um... Cool story?"
+            $ trapperObj.change("pose", "pose01")
+            $ trapperObj.change("emotion", "happy")
+            $ trapperObj.change("emote", "sparks")
+            show trapper with dissolve
+            tt "*snort-laugh*"
+            $ trapperObj.change("emote", "none")
+            $ spiritObj.change("pose", "close02")
+            ts "Thanks for the feedback."
+            hide spirit with dissolve
+            nrr "Spirit floats away as everyone looks wide-eyed at you."
+            $ wraithObj.change("emotion", "idle")
+            $ wraithObj.change("pose", "pose01")
+            $ wraithObj.change("emote", "question")
+            show wraith with dissolve
+            tw "It was pretty cool?"
+            $ wraithObj.change("emote", "none")
+            $ huntressObj.change("pose", "pose01")
+            $ huntressObj.change("emotion", "disgusted")
+            show huntress with dissolve
+            th "So nice of you guys to provide validation."
+            hide huntress with dissolve
+            tt "Yeah, smooth move, doofus."
+            hide wraith
+            hide trapper
+            with Dissolve(0.25)
         "Stand up and try to start one of those slow claps":
-            mc "Claps"
+            nrr "You stand up and clap once, then after a beat again, slowly building a dramatic group clap..."
+            $ wraithObj.change("emotion", "idle")
+            $ wraithObj.change("pose", "pose01")
+            show wraith behind spirit with dissolve
+            nrr "Wraith stands next to you and claps. No one else does."
+            hide spirit with dissolve
+            nrr "Spirit floats off as the clapping slows ot a halt, which happens almost immediately because it was slow to begin with."
+            $ wraithObj.change("emotion", "happy")
+            tw "Usually they're much more disturbing."
+            $ wraithObj.change("emotion", "disgusted")
+            mc "More disturbing? Than {i}that{/i}?!"
+            tw "... no."
+            hide wraith with dissolve
+            nrr "You don't regret picking Spirit to tell the story for tonight, but you have to admit to yourself that even on the strangest say of your life so far--that you can remember, at least--you still weren't prepared for that."
+
     return

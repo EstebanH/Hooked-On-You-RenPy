@@ -27,7 +27,7 @@ label chapter04:
     $ spiritObj.change("emotion","mad")
     ts "... {i}Revenge{/i}"
     $ spiritObj.change("emote","none")
-    mc "Ok, so the similarities stop there,, I guess."
+    mc "Ok, so the similarities stop there, I guess."
     ts "Coincidences."
     mc "Sorry, the coincidences."
     $ spiritObj.change("emotion","disgusted")
@@ -56,10 +56,24 @@ label chapter04:
             ts "Who taught you to trust a stranger?! You're going to get hurt if you don't learn to take better care of yourself."
 
         "No":
-            mc ""
+            mc "I have to be honest and say, no, I don't believe you."
+            $ spiritObj.change("emotion","disgusted")
+            $ spiritObj.change("emote","dread")
+            ts "Fair enough. Why should you? Trust needs to be earned, not taken for granted. You're smart to be skeptical."
+            $ spiritObj.change("emote","none")
+            $ spiritObj.change("emotion","idle")
+
         "Who cares?":
             $ spirit_aff = spirit_aff + 1
-            mc ""
+            $ spiritObj.change("pose","pose03")
+            mc "Who says I believe in anything?"
+            mc "And for that matter, who even cares what I think? Our beliefs are out business, no one else's."
+            $ spiritObj.change("pose","close03")
+            ts "Well I'll be..."
+            ts "That's a strong take. You've got to cultivate your own garden. I just admire you, Esteban."
+            ts "You're not offering up your thoughts or opinions simply to feed the curiosity of others, like some of the more desperate residents of our little paradise. Good for you, I say."
+            $ spiritObj.change("pose","pose03")
+
     nrr "Now you've got me wondering, do I believe you if you believe her or not?"
     nrr "And if I know everything, because trust me I do know everything, don't I already know the answer to my own question about if I believe your answer to Spirit's question?"
     nrr "... woah..."
@@ -211,31 +225,34 @@ label summon_spirit:
     hide spirit with dissolve
     return
 label summon_wraith:
+    nrr "<STORY NOT IMPLEMENTED >"
     return
 label summon_trapper:
+    nrr "<STORY NOT IMPLEMENTED >"
     return
 label summon_huntress:
+    nrr "<STORY NOT IMPLEMENTED >"
     return
 label tune_radio:
     while tuning:
         if radio_section == 1:
-            call event_papercutbolsa
+            call event_dbd_3
         elif radio_section == 2:
-            call event_papercutbolsa
+            call event_dbd_4
         elif radio_section == 3:
-            call event_papercutbolsa
+            call event_darkness
         elif radio_section == 4:
-            call event_papercutbolsa
+            call event_flesh
         elif radio_section == 5:
-            call event_papercutbolsa
+            call event_hiding
         elif radio_section == 6:
-            call event_papercutbolsa
+            call event_lunar
         elif radio_section == 7:
-            call event_papercutbolsa
+            call event_plague
         elif radio_section == 8:
-            call event_papercutbolsa
+            call event_dbd_5
         else:
-            call event_papercutbolsa
+            call event_dbd_3
         menu:
             nrr "Let's see what's on this station."
             "Listen more?":
