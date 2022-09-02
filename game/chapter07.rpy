@@ -99,6 +99,7 @@ label chapter07:
     menu chosen_killer:
         mc "And I choose..."
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
+            $ spirit_aff = spirit_aff + 1
             $ diamondchoice = False
             nrr "When it comes down to it, neither of these two seems easy to love. I mean, damn, Spirit literally has broken glass shards sticking out of her. But... she has a certain charm to her gloom."
             $ spiritObj.change("emotion", "idle")
@@ -162,6 +163,7 @@ label chapter07:
             mc "The knowledge that life and death are a cycle has always given me peace."
             mc "Accepting the fleeting nature of life, like the beauty of a flower in bloom, allows me to appreciate the moment without being too hung up on what comes next."
         "Frustrated":
+            $ spirit_aff = spirit_aff + 1
             mc ""
         "Unsure":
             mc ""

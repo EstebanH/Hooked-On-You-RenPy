@@ -373,6 +373,7 @@ label chapter05:
         cho "So who will it be?"
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             call date_spirit
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False

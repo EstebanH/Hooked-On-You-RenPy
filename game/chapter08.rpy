@@ -37,6 +37,7 @@ label chapter08:
     menu:
         cho "Ok, but don't just sit there saying nothing. Nothing is not an option."
         "Be coy":
+            $ spirit_aff = spirit_aff + 1
             mc ""
         "Gush about your date":
             $ spiritObj.change("pose", "pose03")
@@ -175,6 +176,7 @@ label chapter08:
     menu:
         nrr "He's... not supposed to hear me. Get out of here, Wraith. [mc_name] was about to make an important decision about telling a story or not."
         "\"Fine, I'll tell a story\"":
+            $ spirit_aff = spirit_aff + 1
             mc "Sure! I'm game to tell a story."
         "\"I'm not the storytelling type\"":
             mc ""
@@ -188,6 +190,7 @@ label chapter08:
     menu:
         nrr "Uh, Ok? So what type of story do you want to tell?"
         "Romance":
+            $ spirit_aff = spirit_aff + 1
             mc "I'll tell a romantic story."
             $ spiritObj.change("pose", "pose01")
             $ spiritObj.change("emotion", "happy")
@@ -247,6 +250,7 @@ label chapter08:
         cho "You look from killer to killer, trying to decide who might be the most entertaining."
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             call storytime2_spirit
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False
@@ -353,6 +357,7 @@ label chapter08:
             call finaldate_spirit
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             call finaldate_spirit
         "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
             $ diamondchoice = False

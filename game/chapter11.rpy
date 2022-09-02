@@ -113,6 +113,7 @@ label chapter11:
             call flowers_spirit
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             call flowers_spirit
         #"gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
         #    $ diamondchoice = False
@@ -329,6 +330,7 @@ label flowers_spirit:
         "Stay down, live for sure":
             mc ""
         "Go up, maybe die":
+            $ spirit_aff = spirit_aff + 1
             nrr "You take a deep breath and think about every particle of sea air as it travels into your body and fills your lungs. It may be the last time you have such a thought, but you feel strangely at peace with that information."
             $ spiritObj.change("pose", "close04")
             mc "I don't need another friend. I want something more. I'd risk my life for it."
@@ -497,6 +499,7 @@ label flowers_spirit:
     menu:
         ts "MY SHOUTING?"
         "Say something":
+            $ spirit_aff = spirit_aff + 1
             $ spiritObj.change("emote", "none")
             stop eventloop fadeout 3.0
             mc "I'm sorry, I think I interrupted something... very personal, and also quite scary."
@@ -698,6 +701,7 @@ label flowers_spirit:
             show incorrect at center
             mc ""
         "Rin Yamaoka":
+            $ spirit_aff = spirit_aff + 1
             show correct at center
             $ trapperObj.change("emote", "sweat")
             tt "Ok, you got that one. Don't celebrate yet."
@@ -709,6 +713,7 @@ label flowers_spirit:
     menu:
         tt "What lives inside Spirit?"
         "A Dragon":
+            $ spirit_aff = spirit_aff + 1
             show correct at center
             tt "Sure, everyone knows that. They won't all be this easy."
 
@@ -730,6 +735,7 @@ label flowers_spirit:
             show incorrect at center
 
         "Restaurant":
+            $ spirit_aff = spirit_aff + 1
             show correct at center
             tt "I know, to think I would date a waitress. Don't tell my father I ever mingled with the help like that, he'd be so disappointed in me."
     hide incorrect
@@ -742,6 +748,7 @@ label flowers_spirit:
             show incorrect at center
 
         "Black":
+            $ spirit_aff = spirit_aff + 1
             show correct at center
             tt "Are these questions largely superficial? Sure. maybe I didn't get to know Spirit that well. Maybe that's why she dump--maybe that's why it didn't work out for us. Who knows."
 
@@ -765,6 +772,7 @@ label flowers_spirit:
             show incorrect at center
 
         "Not being seen for who you are":
+            $ spirit_aff = spirit_aff + 1
             show correct at center
             $ trapperObj.change("emotion", "disgusted")
     tt "When I pitched Trapper's Test to the suits at BHVR TV, they told me there was no room in the budget for a new car to be given as the final prize for winning."

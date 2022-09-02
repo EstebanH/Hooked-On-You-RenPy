@@ -28,6 +28,7 @@ label chapter06:
     menu:
         nrr "You're not exactly sure what to do. Is this an invitation to get in a little hands-on action? What else could it be?"
         "\"Thanks\"":
+            $ spirit_aff = spirit_aff + 1
             mc ""
         "\"Now we're talking\"":
             mc "Now we're talking, where should I start? Your back? They always start there in the movies..."
@@ -51,6 +52,7 @@ label chapter06:
     menu:
         nrr "You see a hand float around your back."
         "\"Sure, why not?\"":
+            $ spirit_aff = spirit_aff + 1
             mc "Sure, why not."
             nrr "Spirit's hand on your back is ice cold, but she has a soft touch. When she's done, she takes care of herself."
         "*GULP*":
@@ -67,6 +69,7 @@ label chapter06:
         "Say nothing":
             mc ""
         "Ask about the shards of glass sticking out from her":
+            $ spirit_aff = spirit_aff + 1
             mc ""
     menu:
         ts "I'm glad you get a kick out of it, but floating severed limbs isn't exactly the type of super power you think to wish for as a kid. I'd much rather be able to read minds. Maybe then I'd understand why some people act the way they do..."
@@ -134,9 +137,11 @@ label chapter06:
         $ sunscreen_speed = sunscreen_turn + 1
     if sunscreen_perfects == 5:
         ##Perfect
+        $ spirit_aff = spirit_aff + 1
         show spirit
     elif sunscreen_good > 1:
         ##Good
+        $ spirit_aff = spirit_aff + 1
         stop eventloop fadeout 3.0
         call mood_warmlight
         $ spiritObj.change("pose", "pose01")

@@ -30,6 +30,8 @@ init:
         linear 0.75 alpha 1.0
     transform noalpha:
         alpha 0.0
+    transform ghost:
+        alpha 0.75
     transform slidetocenter:
         linear 0.75 xoffset 0
     transform slightzoom:

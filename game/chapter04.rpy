@@ -58,6 +58,7 @@ label chapter04:
         "No":
             mc ""
         "Who cares?":
+            $ spirit_aff = spirit_aff + 1
             mc ""
     nrr "Now you've got me wondering, do I believe you if you believe her or not?"
     nrr "And if I know everything, because trust me I do know everything, don't I already know the answer to my own question about if I believe your answer to Spirit's question?"
@@ -126,6 +127,7 @@ label chapter04:
         nrr "Who would you like to summon to your side as you lay by the fire?"
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             call summon_spirit
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False

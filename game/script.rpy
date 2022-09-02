@@ -156,6 +156,10 @@ label start:
     $ mc_name = "Player"
     $ spirit_name = "THE SPIRIT"
     $ dwight_name = "DWIGHT"
+    $ spirit_aff = 0
+    $ trapper_aff = 0
+    $ huntress_aff = 0
+    $ wraith_aff = 0
     $ save_name = mc_name
     $ clauddwightObj = ClauddwightClass()
     $ entityObj = EntityClass()

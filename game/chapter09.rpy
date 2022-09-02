@@ -43,6 +43,7 @@ label chapter09:
         "Booze it up":
             mc ""
         "Stay sober":
+            $ spirit_aff = spirit_aff + 1
             $ clauddwightObj.change("emotion", "idle")
             $ spiritObj.change("pose", "pose03")
             mc "I've got the impression that tonight will be a night I want to remember perfectly, so I'm gonna pass on the alcoholic drinks."
@@ -70,6 +71,7 @@ label chapter09:
         "Bloody Mary":
             mc ""
         "Dark & Stormy":
+            $ spirit_aff = spirit_aff + 1
             mc "How about a dark and stormy drink for my dark and stormy date?"
             call mood_excitement(withDissolve = False)
             show clauddwight at movecenterleft
@@ -317,15 +319,19 @@ label chapter09:
         cho "What I'm trying to say is... I don't envy you, boss. So which sociopath are you eliminating?"
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
             $ diamondchoice = False
+            $ spirit_aff = 0
             call eliminate_wraith
         "gui/button_trapper_idle.png¦gui/button_trapper_hover.png¦gui/button_trapper_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             call eliminate_wraith
         "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             call eliminate_wraith
         "gui/button_huntress_idle.png¦gui/button_huntress_hover.png¦gui/button_huntress_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             call eliminate_wraith
     
     $ clauddwightObj.change("pose", "close01")

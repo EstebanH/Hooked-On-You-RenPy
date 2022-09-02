@@ -87,6 +87,7 @@ label chapter03:
         nrr "Please, pick somebody quickly so that this tropical vacation doesn't turn into a bloodbath."
         "gui/button_spirit_idle.png¦gui/button_spirit_hover.png¦gui/button_spirit_select.png":
             $ diamondchoice = False
+            $ spirit_aff = spirit_aff + 1
             mc "I choose you, Spirit!"
             call storytime_spirit
         "gui/button_wraith_idle.png¦gui/button_wraith_hover.png¦gui/button_wraith_select.png":
@@ -284,6 +285,7 @@ label storytime_spirit:
     menu:
         nrr "This game was supposed to be a lighthearted romp. Please. I SAID DO SOMETHING."
         "Say nothing. Hug her":
+            $ spirit_aff = spirit_aff + 1
             nrr "You stand and without saying anything approach Spirit, reaching your arms around her for a hug."
             $ spiritObj.change("pose", "close03")
             nrr "Her robe, hovering in the air, begins to wrap itself around you and squeeze you into her. It's kind of like being hugged back... but also like being tied up. It's certainly not what you expected."

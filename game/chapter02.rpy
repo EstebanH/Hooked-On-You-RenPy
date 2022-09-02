@@ -334,9 +334,61 @@ label chapter02:
     menu:
         nrr "I think they want an explanation why. What do you want to tell them?"
         "\"This is gross.\"":
-            mc "This is gross."
+            $ spiritObj.change("emotion", "idle")
+            mc "Everything about this dinner is an abomination. From what is almost certainly human meat, to the lack of manners, to the talk of dismembered parts. And these noises... Everything is so vile I might throw up."
+            $ spiritObj.change("emotion", "scared")
+            mc "Even Spirit is talking about number twos! I thought she was the classy one."
+            $ huntressObj.change("emote", "dread")
+            th "Oh. Well then. I didn't realize our eating habits grossed you out."
+            $ huntressObj.change("emote", "none")
+            $ spiritObj.change("emotion", "disgusted")
+            ts "Don't be so judgemental, sheesh."
+            $ trapperObj.change("emotion", "idle")
+            tt "If I could feel shame or sadness I might be experiencing both right now."
+            $ trapperObj.change("emote", "anger")
+            $ trapperObj.change("emotion", "mad")
+            show bg towel_day at Transform(matrixcolor=TintMatrix('#737373ff'))
+            tt "But what I can feel is rage. And I am {i}furious{/i} you just ruined the mea. I have a whole leg to eat!"
+            $ trapperObj.change("emote", "none")
+            show huntress at ghost
+            show trapper at ghost
+            show wraith at ghost
+            show spirit at ghost
+            with Dissolve(0.25)
+            nrr "Even though you're in the hot seat now, you're not nearly as panicked as you probably should be."
+            show bg towel_day at Transform(matrixcolor=TintMatrix('#3d3d3dff'))
+            hide huntress
+            hide trapper
+            hide wraith
+            hide spirit
+            with Dissolve(0.25)
+            nrr "That's almost certainly the lack of calories catching up to you, and you feel your whole body begin to shut itself down."
         "\"I'm sorry.\"":
-            mc "I'm sorry."
+            $ spiritObj.change("emotion", "idle")
+            mc "Actually, it's not the food or the company. I'm just super self-conscious how I look when I eat."
+            mc "I was just pretending to be grossed out by dinner so I'd have an excuse not to chew in front of everyone. Sorry if that made things awkward. I'm actually extremely hungry."
+            $ spiritObj.change("emotion", "disgusted")
+            ts "Yeah, watching people eat is gross. But try to relax and not worry what everyone thinks."
+            $ wraithObj.change("emotion", "scared")
+            tw "It's so important to always remember people are watching you. Judging you. Definitely not ignoring you. Right? Guys? Is anyone listening to me?"
+            show bg towel_day at Transform(matrixcolor=TintMatrix('#737373ff'))
+            show huntress at ghost
+            show trapper at ghost
+            show wraith at ghost
+            show spirit at ghost
+            with Dissolve(0.25)
+            $ spiritObj.change("emotion", "idle")
+            nrr "Typically a group that includes one if not more cannibals staring at you with meat-juice dripping from their chins would be quite scary."
+            $ wraithObj.change("emotion", "disgusted")
+            nrr "However right now you're barely able to keep your head up, let alone get scared and run away."
+            show bg towel_day at Transform(matrixcolor=TintMatrix('#3d3d3dff'))
+            hide huntress
+            hide trapper
+            hide wraith
+            hide spirit
+            with Dissolve(0.25)
+            nrr "I'm a narrator, not a physician, so please don't take this as medical advice, but I'm pretty sure you need to eat to stay alive."
+
         "\"Look at that seagull!\"":
             mc "Wow! You ever see a seagull that big? I haven't! That's incredible! Anyway, what were we talking about?"
             th "Lame misdirect."
@@ -350,17 +402,17 @@ label chapter02:
             $ trapperObj.change("emotion", "disgusted")
             tt "You have no idea the last time you ate a real meal. And you've been standing in the sun."
             mc "But the seagull..."
-    nrr "Uh oh. He just made a lot of good points."
-    mc "I swear..."
-    nrr "You're beginning to feel light headed."
-    mc "It waved at me..."
-    show bg towel_day at Transform(matrixcolor=TintMatrix('#737373ff'))
-    nrr "Maybe you need to eat to survive here."
-    nrr "Either that or someone poisoned you."
-    stop moodloop fadeout 3.0
-    stop eventloop fadeout 3.0
-    scene black with dissolve
-    nrr "No, wait. You haven't eaten, so you can't be poisoned. Hmm... Whatever the answer, you're cleatly about to pass out."
+            nrr "Uh oh. He just made a lot of good points."
+            mc "I swear..."
+            nrr "You're beginning to feel light headed."
+            mc "It waved at me..."
+            show bg towel_day at Transform(matrixcolor=TintMatrix('#737373ff'))
+            nrr "Maybe you need to eat to survive here."
+            nrr "Either that or someone poisoned you."
+            stop moodloop fadeout 3.0
+            stop eventloop fadeout 3.0
+            scene black with dissolve
+            nrr "No, wait. You haven't eaten, so you can't be poisoned. Hmm... Whatever the answer, you're cleatly about to pass out."
     call oceanhaunting
     oc "Oh hey, it's me again!"
     oc "Your friend, mentor, and guide. Narrator to The Narrator, {i}The Ocean{/i}."
@@ -405,8 +457,27 @@ label chapter02:
     menu:
         ts "Well? It's a simple question. How could they? How could anyone not feel small and alone in the face of such massive nothingness?"
         "You're always been alone":
+            $ spirit_aff = spirit_aff + 1
             $ spiritObj.change("emote", "none")
-            mc ""
+            nrr "Maybe it's Spirit's words, maybe it's the ocean, or maybe it has always been this way... but you suddenly feel connected to Spirit's words."
+            $ spiritObj.change("emotion", "idle")
+            mc "I may not remember much about my life before, but there's one thing I know to be true: I've always been alone."
+            mc "And I always will be alone."
+            $ spiritObj.change("pose", "close01")
+            nrr "Spirit has turned from looking at the ocean and is looking directly at you now."
+            mc "It's a funny idea, isn't it? Being alone..."
+            $ spiritObj.change("emote", "thoughts")
+            ts "... together?"
+            $ spiritObj.change("emote", "none")
+            ts "It's the best we can hope for."
+            mc "Maybe."
+            $ spiritObj.change("emotion", "sad")
+            call beacheveningscene(keep_images=True)
+            stop moodloop fadeout 3.0
+            with dissolve
+            ts "Or maybe it's too much to hope for. Maybe it's impossible? To pretend we know anything, is that just arrogance?"
+
+
         "You found someone special":
             $ spiritObj.change("emote", "none")
             mc "I used to feel that way. Small, unimportant, alone. But lately, I'm not so sure."
@@ -414,19 +485,19 @@ label chapter02:
             nrr "You look at Spirit, who has turned from the ocean to look at you while you speak on this topic she's clearly so passionate about."
             mc "A friend, perhaps something more? I don't know what this island has planned for me."
             $ spiritObj.change("emote", "exclamation")
-            $ spiritObj.change("emotion", "digusted")
+            $ spiritObj.change("emotion", "disgusted")
             ts "Hah! A \"friend?\" Friends are just cowards who seek comfort in numbers!"
             $ spiritObj.change("emote", "none")
-    call beacheveningscene 
-    stop moodloop fadeout 3.0
-    with dissolve
-    ts "I had friends, once. Back before I was chopped into a bunch of pieces by my father!"
-    $ spiritObj.change("emote", "sparks")
-    $ spiritObj.change("pose", "close02")
-    $ spiritObj.change("emotion", "mad")
-    ts "Friends aren't what's keeping me held together, I'm floating in a cloud of rage!"
+            call beacheveningscene(keep_images=True)
+            stop moodloop fadeout 3.0
+            with dissolve
+            ts "I had friends, once. Back before I was chopped into a bunch of pieces by my father!"
+            $ spiritObj.change("emote", "sparks")
+            $ spiritObj.change("pose", "close02")
+            $ spiritObj.change("emotion", "mad")
+            ts "Friends aren't what's keeping me held together, I'm floating in a cloud of rage!"
     $ spiritObj.change("emote", "none")
-    $ spiritObj.change("emotion", "digusted")
+    $ spiritObj.change("emotion", "disgusted")
     $ spiritObj.change("pose", "close03")
     call event_bloodconfident
     ts "Ugh, I was so dumb! So busy trying to please everyone and be the perfect student, the perfect employee, the perfect daughter, I didn't take care of myself! And now I'm all I've got."
@@ -443,6 +514,7 @@ label chapter02:
     menu:
         ts "But enough about me... what's inside of you, stranger?"
         "Nothing but darkness":
+            $ spirit_aff = spirit_aff + 1
             mc "I'd kill to have a dragon--"
             nrr "Maybe not the best choice of words."
             mc "I mean, a dragon sounds {i}awesome{/i}. Honestly, though, I don't feel like I've got anything inside me at all. Just... darkness, never ending darkness."
@@ -453,7 +525,15 @@ label chapter02:
             $ spiritObj.change("emote", "none")
 
         "No dragon, just a lot of fire":
-            mc ""
+            mc "No dragon, just fire. A raging inferno, in fact, begging to burn this whole place down if I let it out. Maybe I {i}am{/i} the dragon?"
+            $ spiritObj.change("emotion", "disgusted")
+            $ spiritObj.change("emote", "sweat")
+            ts "I'm sorry, but you're {i}no{/i} dragon. And breathing fire, that's some Hobbit type nonsense. I'm a descendent of proud Samurai. Our dragons are on a whole other level."
+            $ spiritObj.change("emote", "none")
+            nrr "Looks like there was only room for one dragon inside Spirit, after all."
+
+
+
     hide spirit with Dissolve(0.25)
     nrr "Just as things are really heating up, you hear a flurry of footsteps behind you and you quickly spin around, ready to fend off whatever new danger has popped up on this strange island..."
     $ clauddwightObj.change("pose", "pose02")

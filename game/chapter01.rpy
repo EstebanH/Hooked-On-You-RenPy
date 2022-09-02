@@ -158,6 +158,7 @@ label chapter01:
             $ wraithObj.change("emotion", "idle")
             $ wraithObj.change("pose", "pose01")
         "Flight":
+            $ spirit_aff = spirit_aff + 1
             $ wraithObj.change("emote", "none")
             $ wraithObj.change("emotion", "happy")
             $ wraithObj.change("pose", "pose03")
@@ -207,6 +208,7 @@ label chapter01:
             $ wraithObj.change("emote", "none")
             $ wraithObj.change("emotion", "idle")
         "History":
+            $ spirit_aff = spirit_aff + 1
             $ spiritObj.change("emote", "none")
             $ spiritObj.change("pose", "pose01")
             mc "History?"
@@ -241,6 +243,7 @@ label chapter01:
             $ huntressObj.change("emote", "none")
             $ huntressObj.change("pose", "pose01")
         "Cat":
+            $ spirit_aff = spirit_aff + 1
             hide huntress
             hide trapper
             hide wraith
@@ -345,6 +348,7 @@ label chapter01:
             $ huntressObj.change("emotion", "idle")
             $ spiritObj.change("emotion", "idle")
         "Not working at all":
+            $ spirit_aff = spirit_aff + 1
             $ spiritObj.change("emote", "none")
             $ spiritObj.change("pose", "pose01")
             mc "If we get to do what we really want, why work at all?"
@@ -577,6 +581,7 @@ label chapter01:
     menu:
         cho "Where do you want to go?"
         "gui/menu_choice_bar_idle.png¦gui/menu_choice_bar_hover.png¦gui/menu_choice_bar_select.png":
+            $ spirit_aff = spirit_aff + 1
             mc "It'd be great to relax for a second at the lounge."
             hide huntress
             hide trapper
@@ -710,7 +715,7 @@ label chapter01:
     nrr "Oh, right, that. Yes, that's true, he was. But he just meant that he wanted to get to the other vacation island getaway. A couple miles south of here. It has much fancier accommodations than this island."
     nrr "It's one of those big corporate outfits, quite exclusive, where all the famous celebrities hang out. Very luxurious. Doesn't quite have the charm that this island has, though. Trust me, you wouldn't want to go there. With all that money comes a lot of restrictions."
     nrr "This is where you belong. Now now, off you go. It's time for an activity! On this island, your decisions matter--mostly. When I agree with them. Not like that other island…"
-    
+    ##Don't put aff points here
     $ imagechoice = True
     menu:
         cho "So what'll it be?"
@@ -889,6 +894,7 @@ label spirit_ch1:
             hide trapper
 
         "Virgin Daiquiri":
+            $ spirit_aff = spirit_aff + 1
             mc "I didn't come here to party, I'm just trying to make the best of a… very strange situation. I dunno, how about a daiquiri?"
             dw "I know how to make that!"
             mc "But skip the liquor, I'll have mine virgin."
@@ -973,6 +979,7 @@ label spirit_ch1:
     menu:
         ts "Nothing too modern. Humanity has really gotten soft these past hundred years. So what's your favorite?"
         "Dracula":
+            $ spirit_aff = spirit_aff + 1
             $ spiritObj.change("emotion", "happy")
             mc "Dracula is one classic that's still scary."
             mc "To be seduced by some beautiful stranger, only to learn later on that they're an immortal villain…"
